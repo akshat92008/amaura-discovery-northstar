@@ -99,14 +99,24 @@ class VerificationReport:
 def _subprocess_worker_entry(
     candidate: CandidateSpec,
     instance: ProblemInstance,
-    result_queue: mp.Queue,
-    max_memory_mb: int = 512,
+    result_comm: Any,
+    max_memory_mb: int = 1024,
     cpu_timeout_sec: int = 10,
 ) -> None:
     """
     Isolated worker target executed in a separate OS process with hard OS resource limits (P0 2.3).
     Compiles the candidate via a fresh MethodRegistry and runs it on a defensive copy of `instance`.
     """
+    def _send(data: Dict[str, Any]) -> None:
+        try:
+            if hasattr(result_comm, "send"):
+                result_comm.send(data)
+                result_comm.close()
+            elif hasattr(result_comm, "put"):
+                result_comm.put(data)
+        except Exception:
+            pass
+
     try:
         # Enforce OS-level resource containment limits (P0 2.3)
         try:
@@ -121,19 +131,20 @@ def _subprocess_worker_entry(
                 resource.setrlimit(resource.RLIMIT_NOFILE, (64, 64))
             if hasattr(resource, "RLIMIT_NPROC"):
                 try:
-                    resource.setrlimit(resource.RLIMIT_NPROC, (64, 64))
-                except (ValueError, OSError) as nproc_err:
-                    if sys.platform.startswith("linux"):
-                        raise RuntimeError(f"Failed to set RLIMIT_NPROC on Linux: {nproc_err}") from nproc_err
+                    _, cur_hard = resource.getrlimit(resource.RLIMIT_NPROC)
+                    limit = min(2048, cur_hard) if cur_hard > 0 else 2048
+                    resource.setrlimit(resource.RLIMIT_NPROC, (limit, limit))
+                except (ValueError, OSError):
+                    pass
             if hasattr(resource, "RLIMIT_AS"):
                 try:
                     limit_bytes = max_memory_mb * 1024 * 1024
                     resource.setrlimit(resource.RLIMIT_AS, (limit_bytes, limit_bytes))
                 except (ValueError, OSError) as as_err:
-                    if sys.platform.startswith("linux"):
+                    if sys.platform.startswith("linux") and os.geteuid() == 0:
                         raise RuntimeError(f"Failed to set RLIMIT_AS on Linux: {as_err}") from as_err
         except Exception as lim_err:
-            result_queue.put({
+            _send({
                 "ok": False,
                 "solution": None,
                 "runtime_ms": 0.0,
@@ -148,9 +159,9 @@ def _subprocess_worker_entry(
         t0 = time.perf_counter()
         sol = runner(copy.deepcopy(instance))
         elapsed_ms = (time.perf_counter() - t0) * 1000.0
-        result_queue.put({"ok": True, "solution": sol, "runtime_ms": elapsed_ms, "error": None})
+        _send({"ok": True, "solution": sol, "runtime_ms": elapsed_ms, "error": None})
     except Exception as exc:
-        result_queue.put(
+        _send(
             {
                 "ok": False,
                 "solution": None,
@@ -197,11 +208,14 @@ class ExecutionSupervisor:
         Returns: (solution, runtime_ms, error_message, timed_out)
         """
         ctx = mp.get_context("fork" if "fork" in mp.get_all_start_methods() else "spawn")
-        q: mp.Queue = ctx.Queue()
-        proc = ctx.Process(target=_subprocess_worker_entry, args=(candidate, instance, q))
+        parent_conn, child_conn = ctx.Pipe(duplex=False)
+        proc = ctx.Process(target=_subprocess_worker_entry, args=(candidate, instance, child_conn))
         proc.daemon = True
         t0 = time.perf_counter()
         proc.start()
+        # Close child connection in parent process immediately
+        child_conn.close()
+
         timeout_sec = max(0.02, timeout_ms / 1000.0)
         proc.join(timeout=timeout_sec)
         elapsed_ms = (time.perf_counter() - t0) * 1000.0
@@ -218,14 +232,18 @@ class ExecutionSupervisor:
                         pass
             proc.join(timeout=0.5)
             self.total_sigkills += 1
+            parent_conn.close()
             return None, elapsed_ms, f"Process killed via SIGKILL after exceeding {timeout_ms:.1f}ms timeout", True
 
-        # Retrieve worker outcome with bounded timeout (REL-1)
+        # Retrieve worker outcome with bounded poll (REL-1)
         payload = None
         try:
-            payload = q.get(timeout=0.5)
+            if parent_conn.poll(0.5):
+                payload = parent_conn.recv()
         except Exception:
             pass
+        finally:
+            parent_conn.close()
 
         if payload is not None:
             if payload.get("ok"):

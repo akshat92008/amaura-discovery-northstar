@@ -138,6 +138,9 @@ class SplitFirewall:
             split: self._compute_split_hash(instances)
             for split, instances in self._splits.items()
         }
+        self._freeze_timestamp: Optional[float] = None
+        self._holdout_access_count: int = 0
+        self._selection_manifest: Optional[Dict[str, Any]] = None
 
     @staticmethod
     def _compute_split_hash(instances: Sequence[ProblemInstance]) -> str:
@@ -152,22 +155,40 @@ class SplitFirewall:
         if self.phase == LifecyclePhase.DEVELOPMENT_SEARCH:
             self.phase = LifecyclePhase.VALIDATION_SELECTION
 
-    def freeze_champions(self, champion_ids: Sequence[str]) -> str:
+    def freeze_champions(self, champion_ids: Sequence[str], selection_metadata: Optional[Dict[str, Any]] = None) -> str:
         """Freezes selected champion IDs and unseals FINAL_HOLDOUT for one-shot verification."""
         if not champion_ids:
             raise ValueError("Cannot freeze empty champion_ids list.")
+        # Validate that IDs are non-empty strings and deduplicate
+        validated_ids = []
+        for cid in champion_ids:
+            if not isinstance(cid, str) or not cid.strip():
+                raise ValueError(f"Invalid champion ID: {cid!r}")
+            if cid not in validated_ids:
+                validated_ids.append(cid)
         if self.frozen_champion_ids is not None:
             raise RuntimeError("Champions have already been frozen; re-freezing is prohibited.")
-        self.frozen_champion_ids = tuple(champion_ids)
+        import time as _time
+        self.frozen_champion_ids = tuple(validated_ids)
         self.phase = LifecyclePhase.CHAMPIONS_FROZEN_HOLDOUT_UNSEALED
-        payload = json.dumps(
-            {
-                "frozen_champions": list(self.frozen_champion_ids),
-                "holdout_hash": self.get_split_hash(SplitType.FINAL_HOLDOUT),
-            },
-            sort_keys=True,
-        )
+        self._freeze_timestamp = _time.time()
+        self._selection_manifest = {
+            "frozen_champions": list(self.frozen_champion_ids),
+            "holdout_hash": self.get_split_hash(SplitType.FINAL_HOLDOUT),
+            "freeze_timestamp": self._freeze_timestamp,
+            "metadata": dict(selection_metadata or {}),
+        }
+        payload = json.dumps(self._selection_manifest, sort_keys=True)
         return hashlib.sha256(payload.encode("utf-8")).hexdigest()
+
+    def has_holdout_been_accessed(self) -> bool:
+        return self._holdout_access_count > 0
+
+    def get_holdout_access_count(self) -> int:
+        return self._holdout_access_count
+
+    def get_selection_manifest(self) -> Optional[Dict[str, Any]]:
+        return copy.deepcopy(self._selection_manifest)
 
     def get_instances(self, split: SplitType, caller: str = "unknown") -> List[ProblemInstance]:
         """Returns defensive copies of instances for the requested split if permitted by firewall state."""
@@ -179,6 +200,9 @@ class SplitFirewall:
                 f"FIREWALL VIOLATION: Caller '{caller}' attempted to access FINAL_HOLDOUT during phase '{self.phase.value}'. "
                 "Holdout evaluation is strictly forbidden prior to freeze_champions()."
             )
+
+        if split == SplitType.FINAL_HOLDOUT:
+            self._holdout_access_count += 1
 
         # Verify cryptographic integrity before returning instances
         instances = self._splits.get(split, [])
@@ -672,7 +696,11 @@ class PFSPProblem(ProblemSpecification):
         if len(solution) != n:
             return ConstraintCheckResult(False, [f"Permutation length {len(solution)} != {n} jobs"], invariants)
         try:
-            ints = [int(x) for x in solution]
+            ints = []
+            for x in solution:
+                if isinstance(x, float) and not math.isfinite(x):
+                    return ConstraintCheckResult(False, [f"Permutation contains non-finite value: {x}"], invariants)
+                ints.append(int(x))
         except (ValueError, TypeError):
             return ConstraintCheckResult(False, ["Permutation contains non-integer job indices"], invariants)
         if set(ints) != set(range(n)):
@@ -770,6 +798,13 @@ class OnlineBinPackingProblem(ProblemSpecification):
         for b_idx, b in enumerate(solution):
             if not isinstance(b, (list, tuple)) or len(b) == 0:
                 return ConstraintCheckResult(False, [f"Bin {b_idx} is empty or not a list"], invariants)
+            for item_val in b:
+                try:
+                    fv = float(item_val)
+                    if not math.isfinite(fv):
+                        return ConstraintCheckResult(False, [f"Non-finite item value {item_val} in bin {b_idx}"], invariants)
+                except (ValueError, TypeError):
+                    return ConstraintCheckResult(False, [f"Invalid numerical item {item_val} in bin {b_idx}"], invariants)
             b_sum = sum(float(x) for x in b)
             if b_sum > cap + 1e-5:
                 return ConstraintCheckResult(
@@ -897,7 +932,11 @@ class GraphColoringProblem(ProblemSpecification):
         if len(solution) != n:
             return ConstraintCheckResult(False, [f"Color assignment length {len(solution)} != {n} vertices"], invariants)
         try:
-            cols = [int(c) for c in solution]
+            cols = []
+            for c in solution:
+                if isinstance(c, float) and not math.isfinite(c):
+                    return ConstraintCheckResult(False, [f"Colors contain non-finite value: {c}"], invariants)
+                cols.append(int(c))
         except (ValueError, TypeError):
             return ConstraintCheckResult(False, ["Colors must be integers"], invariants)
         if any(c < 0 for c in cols):

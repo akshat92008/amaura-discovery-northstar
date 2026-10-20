@@ -59,13 +59,14 @@ class Candidate:
         if self._callable is not None:
             return self._callable
         
-        local_scope: Dict[str, Any] = {}
-        # Execute code in clean namespace
-        exec(self.code, {"__builtins__": __builtins__}, local_scope)
-        if self.function_name not in local_scope:
+        from amaura_exec.safe_exec import create_safe_namespace
+        scope = create_safe_namespace()
+        # Execute code in restricted safe namespace (SEC-4)
+        exec(self.code, scope, scope)
+        if self.function_name not in scope:
             raise ValueError(f"Function '{self.function_name}' not defined in candidate code.")
         
-        self._callable = local_scope[self.function_name]
+        self._callable = scope[self.function_name]
         try:
             tree = ast.parse(self.code)
             self.ast_nodes = sum(1 for _ in ast.walk(tree))

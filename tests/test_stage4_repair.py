@@ -764,9 +764,9 @@ def test_confirmatory_mode_fails_if_holdout_key_overridden(tmp_path):
         runner.validate_preconditions(is_pilot=False)
 
 
-def test_evaluate_on_hidden_benchmark_fails_without_authorization():
+def test_evaluate_on_hidden_benchmark_fails_without_authorization(tmp_path):
     """P0.B: Lower-level evaluate_on_hidden_benchmark cannot be invoked without phase_two_authorized=True."""
-    runner = Stage4Runner(output_dir="dummy", benchmark_dir="dummy", mock_mode=True)
+    runner = Stage4Runner(output_dir=str(tmp_path), benchmark_dir=str(tmp_path), mock_mode=True)
     with pytest.raises(RuntimeError, match="PHASE 2 ACCESS FORBIDDEN: Direct call to evaluate_on_hidden_benchmark requires explicit phase_two_authorized=True"):
         runner.evaluate_on_hidden_benchmark(trials=[], hidden_streams=[], phase_two_authorized=False)
 

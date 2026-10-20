@@ -21,7 +21,16 @@ import os
 import random
 import time
 from dataclasses import dataclass, field
+from enum import Enum
 from typing import Any, Dict, List, Optional, Sequence, Tuple
+
+
+class RunState(str, Enum):
+    INITIALIZING = "INITIALIZING"
+    RUNNING = "RUNNING"
+    COMPLETED = "COMPLETED"
+    BUDGET_EXHAUSTED = "BUDGET_EXHAUSTED"
+    FAILED = "FAILED"
 
 from north_bluestar.candidates import (
     BehavioralFingerprinter,
@@ -243,6 +252,8 @@ class DiscoveryRunResult:
     strategy_posteriors: Dict[str, Dict[str, float]]
     baseline_comparison_table: List[Dict[str, Any]]
     convergence_history: List[Dict[str, Any]]
+    run_state: str = RunState.COMPLETED.value
+    budget_used: Dict[str, Any] = field(default_factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         return {
@@ -250,6 +261,8 @@ class DiscoveryRunResult:
             "problem_name": self.problem_name,
             "controller_mode": self.controller_mode,
             "termination_reason": self.termination_reason,
+            "run_state": self.run_state,
+            "budget_used": self.budget_used,
             "total_dev_evaluations": self.total_dev_evaluations,
             "total_wall_clock_ms": round(self.total_wall_clock_ms, 2),
             "anchor_baseline_id": self.anchor_baseline_id,
@@ -491,11 +504,27 @@ class NorthBlueStarEngine:
 
         total_wall_ms = (time.perf_counter() - t_start) * 1000.0
 
+        r_state = (
+            RunState.BUDGET_EXHAUSTED.value
+            if termination_reason in ("budget_exhausted", "wall_clock_budget_reached")
+            else RunState.COMPLETED.value
+        )
+        budget_summary = {
+            "dev_evaluations_used": dev_evals,
+            "max_evaluations_budget": budget.max_evaluations,
+            "wall_clock_ms_used": round(total_wall_ms, 2),
+            "max_wall_clock_ms_budget": budget.max_wall_clock_ms,
+            "stagnation_steps": stagnation_steps,
+            "stagnation_limit": budget.stagnation_limit,
+        }
+
         return DiscoveryRunResult(
             problem_id=self.problem.problem_id,
             problem_name=self.problem.name,
             controller_mode=controller_mode,
             termination_reason=termination_reason,
+            run_state=r_state,
+            budget_used=budget_summary,
             total_dev_evaluations=dev_evals,
             total_wall_clock_ms=total_wall_ms,
             anchor_baseline_id=anchor_spec.candidate_id,

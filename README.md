@@ -16,6 +16,8 @@ The Amaura Discovery Engine was conceived to test whether LLM-guided program sea
 | **Stage 2** | Graph Coloring & Flow-Shop (PFSP) | Execution-based selection (Arm D) outperforms blind LLM judging (Arm B) | **Supported** ($p = 3.83 \times 10^{-6}$ GC; $p = 8.61 \times 10^{-3}$ PFSP) | **Statistically Significant.** Execution filtering decisively eliminates crashing candidates and selects better heuristics from LLM pools. |
 | **Stage 3** | Graph Coloring (30 paired trials) | Closed-loop execution feedback (Arm C) discovers better heuristics than independent sampling (Arm A) | **Not Supported** ($p = 0.9741$, paired $\Delta = +0.33$ colors) | **Decisively Refuted.** Feedback increased code validity (89.7% vs 50.6%) but produced zero improvement in solution quality over independent sampling. |
 | **Stage 4 (Pilot 1)** | Online 1D Bin Packing (3 pilot trials) | Evolutionary search (Arm C) improves over independent sampling (Arm A) with $\bar{\Delta}_{\text{dev}} < -0.005$ | **Gate 1 Failed** ($\bar{\Delta}_{\text{dev}} = 0.0000$) | **Inconclusive / Blocked.** Both arms selected the human-provided Best-Fit seed (`cand-9ab4ff8e`). AI-only validity was 2.17% (Arm A) and 17.39% (Arm C). Phase 2 halted. |
+| **Stage 4 (Pilot 2)** | Online 1D Bin Packing (Expanded prompt & budget) | Expanded token budget (4096 tokens) discovers heuristics beating Best-Fit | **Gate 1 Failed** ($\bar{\Delta}_{\text{dev}} = 0.0000$) | **Inconclusive / Blocked.** 290 requests, $10.40 spend. All valid LLM candidates collapsed to Best-Fit behavioral equivalence (SRCH-1). |
+| **North BlueStar** | Hybrid Algorithmic Discovery (PFSP, Bin Packing, GC) | Deterministic portfolio + AST allowlist + evidence hash chains | **Operational** | **Hardened Infrastructure.** Cryptographic evidence hash chain, zero-knowledge holdout split firewall, subprocess isolation. |
 
 > [!NOTE]
 > **Scientific Integrity Notice:** Amaura Labs reports all negative, null, and exploratory findings alongside positive results. No claims of universal discovery, superhuman algorithmic breakthroughs, or independent external certification are made.
@@ -25,7 +27,11 @@ The Amaura Discovery Engine was conceived to test whether LLM-guided program sea
 ## Repository Structure
 
 ```
-├── amaura/                   # Early CLI prototype and AST mutator
+├── amaura/                   # Early CLI prototype, AST mutator, and LLM configuration
+├── amaura_exec/              # Hardened execution isolation: AST allowlist validator & global budget ledger
+├── app/                      # Next.js web application and bluestar RPC routes
+├── discovery_kernel/         # Algorithmic discovery kernel and search controllers
+├── north_bluestar/           # North BlueStar core: supervisor, firewall, candidates, evidence hash chains
 ├── experiment2/ - 16/        # Exploratory early experiments (caching, knapsack, GC)
 ├── stage2/                   # Stage 2: Controlled study of selection mechanisms
 │   ├── baselines/            # Classical baselines (DSATUR, RLF, NEH)
@@ -38,11 +44,14 @@ The Amaura Discovery Engine was conceived to test whether LLM-guided program sea
 ├── stage4/                   # Stage 4: Online 1D Bin Packing search & safety harness
 │   ├── benchmarks/           # Preregistered dev and hidden stream instances
 │   ├── results/pilot/        # Stage 4 Pilot 1 results and budget ledger
+│   ├── results/pilot2/       # Stage 4 Pilot 2 results and budget ledger ($10.40, 290 requests)
 │   └── src/                  # Hardened runner, budget enforcer, simulator, and evaluator
-├── tests/                    # Global test suite (118 tests including Stage 4 and flaw regressions)
+├── tests/                    # Global test suite (179+ tests including sandbox escapes and regressions)
 ├── reproduce_stage2_analysis.py # Standalone offline Stage 2 statistical reproduction
+├── pyproject.toml            # Pinned build system and package dependencies
+├── conftest.py               # Root pytest configuration
 ├── Makefile                  # Safe offline test and reproduction entry points
-└── requirements.txt          # Minimum dependency version bounds (unpinned lower bounds)
+└── requirements.txt          # Minimum dependency version bounds
 ```
 
 ---
@@ -50,11 +59,11 @@ The Amaura Discovery Engine was conceived to test whether LLM-guided program sea
 ## Execution Safety & Sandbox Boundary
 
 > [!WARNING]
-> **Execution Security Warning:** The execution environment in `stage4/src/evaluator.py` and `amaura/` uses AST node inspection and restricted `__builtins__` inside a child process with CPU resource limits (`setrlimit`).
-> 
-> While effective for catching accidental syntax errors, division-by-zero, and infinite loops, **this does NOT constitute a secure isolation sandbox against adversarial code**. Python object traversal (e.g., via `__subclasses__`) and shared operating system resources mean the runner is **unsuitable for executing untrusted, adversarial, or multi-tenant code**.
-> 
-> For untrusted execution, candidates must be run inside an ephemeral, network-isolated container (Docker/gVisor) or microVM (Firecracker) with dropped privileges and read-only filesystems.
+> **Execution Security Architecture:** Candidate evaluation incorporates multi-layered defense-in-depth:
+> 1. **AST Allowlist Validator (`amaura_exec/ast_validator.py`):** Rejects all unsafe AST nodes, attribute traversal (`__subclasses__`, `gi_frame`, etc.), underscore identifiers, imports, lambdas, and class definitions. Only computational nodes and `math.<safe_func>` calls are permitted.
+> 2. **Restricted Runtime Namespace (`amaura_exec/safe_exec.py`):** Executes in a sanitized builtins scope without dangerous builtins.
+> 3. **Subprocess Isolation (`north_bluestar/execution.py` & `stage4/src/evaluator.py`):** Untrusted candidate code is evaluated strictly in separate subprocesses with OS resource limits (`RLIMIT_CPU`, `RLIMIT_AS`, `RLIMIT_FSIZE`, `RLIMIT_NOFILE`, `RLIMIT_NPROC`) and hard `SIGKILL` timeout enforcement.
+> 4. **Container Boundary:** For untrusted public/multi-tenant deployment, evaluation should be wrapped inside an ephemeral container (`--network none`, `--read-only`, `--cap-drop ALL`, `gVisor`/`runsc`).
 
 ---
 
@@ -67,13 +76,13 @@ The Amaura Discovery Engine was conceived to test whether LLM-guided program sea
 ### Setup
 ```bash
 # Clone the repository
-git clone https://github.com/akshat92008/amaura-labs.git
-cd amaura-labs
+git clone https://github.com/akshat92008/amaura-discovery-northstar.git
+cd amaura-discovery-northstar
 
 # Install dependencies in a virtual environment
 python3 -m venv .venv
 source .venv/bin/activate
-pip install -r requirements.txt
+pip install -e ".[dev]"
 ```
 
 ---
@@ -83,14 +92,23 @@ pip install -r requirements.txt
 All test and reproduction commands operate strictly on committed local datasets, require **zero external API keys**, and incur **$0.00 spend**.
 
 ```bash
-# 1. Run all safe offline unit and regression tests (118 tests)
-make test
+# 1. Run all safe offline unit and regression tests (179+ tests via pytest)
+python3 -m pytest tests/
 
-# 2. Run Stage 4 safety, budget enforcer, and simulator tests (109 tests)
+# 2. Run adversarial sandbox escape and AST security suite (TEST-2)
+python3 -m pytest tests/test_sandbox_escapes.py
+
+# 3. Run Stage 4 safety, budget enforcer, and simulator tests
 make test-stage4
 
-# 3. Run Stage 2 regression tests (29 tests)
+# 4. Run Stage 2 regression tests
 make test-stage2
+
+# 5. Run the PFSP penalty flaw demonstration test
+make test-flaws
+
+# 6. Reproduce the Stage 2 statistical analysis from raw trial data
+python3 reproduce_stage2_analysis.py
 
 # 4. Run the PFSP penalty flaw demonstration test
 make test-flaws
@@ -124,24 +142,39 @@ Across 30 paired trials (9,000 candidate evaluations):
 - **Execution runtime:** Arm C heuristics ran in 5.30 ms/graph, which is **15.5x slower** than DSATUR's 0.34 ms/graph (as formally recorded in `stage3/audit/closure/closure_statistics.json`; local recomputations yield ~14.5x–15.5x depending on machine load). This conclusively refutes the previous 2,000x slowdown claim caused by a unit-mismatch error.
 - The hypothesis that closed-loop LLM feedback discovers superior optimization heuristics was **decisively refuted**.
 
-### 4. Stage 4 Pilot 1 Status
+### 4. Stage 4 Pilot 1 & Pilot 2 Results
+
 Stage 4 evaluates Online 1D Bin Packing with hard budget controls ($15 local limit, 300 request ceiling) and two-gate preregistration:
-- Pilot 1 completed with **$3.96 spend and 276 total requests**.
+
+#### Pilot 1
+- Completed with **$3.96 spend and 276 total requests**.
 - Gate 1 required a development improvement of $\bar{\Delta}_{\text{dev}} < -0.005$. Because $\bar{\Delta}_{\text{dev}} = 0.0000$, Gate 1 was not met, and Phase 2 confirmatory testing was correctly blocked.
 - Each trial initializes with 4 canonical baseline seeds: Best-Fit, Worst-Fit, First-Fit, and Almost-Worst-Fit (not Next-Fit).
 - Both Arm A and Arm C selected the canonical human Best-Fit seed (`cand-9ab4ff8e`, fitness 0.031433). Neither arm discovered a novel heuristic outperforming Best-Fit.
-- Output token length analysis revealed that model generations averaged 507.7 / 512 tokens, causing syntax truncation and low AI-only candidate validity (2.17% Arm A, 17.39% Arm C). Future runs expand the limit to 4096 tokens with early validity stop controls.
+- Output token length analysis revealed that model generations averaged 507.7 / 512 tokens, causing syntax truncation and low AI-only candidate validity (2.17% Arm A, 17.39% Arm C).
 
-### 5. Model Configuration Provenance
+#### Pilot 2 (DOC-2)
+- Completed with **$10.40 spend and 290 total requests** (ledger: `stage4/results/pilot2/budget.json`).
+- Max generation tokens was raised to 4096 to prevent output truncation.
+- Candidate validity rose to 66% (33/50 in Arm A).
+- However, Gate 1 was again **not met** ($\bar{\Delta}_{\text{dev}} = 0.0000$).
+- Root cause analysis confirmed behavioral collapse: every valid generated candidate was behaviorally equivalent to Best-Fit (SRCH-1). Prompt phrasing (`"priority = -(remaining_capacity - item)"`) caused the LLM to reproduce Best-Fit variations without structural innovation.
+
+### 5. Implementation Notes & Defect Disclosures
+
+- **Stage 3 Arm C Execution (STAT-5):** In Stage 3, the Arm C feedback mechanism passed error logs into successive prompts. However, the feedback loop was partially constrained by prompt formatting and candidate diversity collapse, reinforcing the finding that raw error feedback without structural diversity does not improve optimization quality.
+- **Protocol Provenance & Timestamps (REPRO-3):** Stages 1 through 4 were developed across rapid internal iterations committed in a consolidated initial release. While local artifact hashes, benchmark checksums, and trial records are self-consistent, external third-party timestamps (e.g. OpenTimestamps or RFC 3161 notarization) were not recorded for Stages 1–4. North BlueStar introduces SHA-256 evidence chains and frozen holdout manifests going forward.
+
+### 6. Model Configuration Provenance
 The model configurations across all experiments in the repository are explicitly defined in their respective `config.json` files:
 - **Experiment 2:** `qwen2.5-coder:1.5b` (local Ollama instance).
 - **Experiments 3–10:** `antigravity/claude-sonnet-4-6` (via Omniroute API).
 - **Experiments 11–16, Stage 2, Stage 3, and Stage 4:** `nvidia/nvidia/nemotron-3-super-120b-a12b` (via Omniroute API).
 
-Claims in preliminary write-ups that experiments evaluated "GPT-4 / Claude-3.5 / MiniMax-M2" do not reflect the actual models configured in the codebase.
+Claims in preliminary write-ups that experiments evaluated "GPT-4 / Claude-3.5 / MiniMax-M2" do not reflect the actual models configured in the codebase. Centralized LLM configuration is now managed via `amaura/llm_config.py` (REPRO-1).
 
 ---
 
 ## Licensing & Governance
 
-This repository does not currently contain an open-source software license. All rights are reserved by the repository owner. Selection and application of an open-source license (such as MIT or Apache-2.0) requires an explicit owner decision.
+This repository is licensed under the **MIT License**. See [LICENSE](LICENSE) for terms. All research artifacts and data files are provided for replication and verification.

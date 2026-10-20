@@ -14,6 +14,7 @@ and extracts structured empirical knowledge to guide future search decisions:
 
 from __future__ import annotations
 
+import copy
 import hashlib
 import json
 import math
@@ -179,7 +180,7 @@ class EvidenceStore:
             structural_hash=candidate.structural_hash,
             canonical_hash=candidate.canonical_hash,
             behavioral_hash=candidate.behavioral_hash,
-            payload=dict(candidate.payload),
+            payload=copy.deepcopy(candidate.payload),
             is_feasible=out.is_fully_feasible,
             is_proven_optimal=out.is_proven_split_optimal,
             mean_objective=out.mean_objective,
@@ -197,6 +198,49 @@ class EvidenceStore:
         )
         self.records.append(record)
         return record
+
+    def save_to_file(self, path: str) -> None:
+        """Atomically persists the evidence chain to disk (P0.11)."""
+        import os, tempfile
+        data = {
+            "direction": self.direction.value,
+            "records": [r.to_dict() for r in self.records],
+        }
+        dir_name = os.path.dirname(os.path.abspath(path))
+        os.makedirs(dir_name, exist_ok=True)
+        fd, tmp_path = tempfile.mkstemp(dir=dir_name, prefix=".evidence_tmp_", suffix=".json")
+        try:
+            with os.fdopen(fd, "w", encoding="utf-8") as f:
+                json.dump(data, f, sort_keys=True, indent=2)
+            os.replace(tmp_path, path)
+        except Exception:
+            try:
+                os.unlink(tmp_path)
+            except OSError:
+                pass
+            raise
+
+    @classmethod
+    def load_from_file(cls, path: str) -> "EvidenceStore":
+        """Loads a persisted evidence chain and verifies cryptographic integrity."""
+        with open(path, "r", encoding="utf-8") as f:
+            data = json.load(f)
+
+        store = cls(direction=OptimizationDirection(data.get("direction", "MINIMIZE")))
+        for rec_dict in data.get("records", []):
+            rec_dict_copy = dict(rec_dict)
+            rec_dict_copy["parent_ids"] = tuple(rec_dict_copy.get("parent_ids", []))
+            record = EvidenceRecord(**rec_dict_copy)
+            store.records.append(record)
+            if record.split == SplitType.DEVELOPMENT.value:
+                store._seen_structural_hashes.add(record.structural_hash)
+                store._seen_canonical_hashes.add(record.canonical_hash)
+                if record.behavioral_hash:
+                    store._seen_behavioral_hashes.add(record.behavioral_hash)
+
+        if not store.verify_hash_chain():
+            raise ValueError("PERSISTED EVIDENCE TAMPERING DETECTED: Hash chain verification failed.")
+        return store
 
     def verify_hash_chain(self) -> bool:
         """Verifies cryptographic integrity of the entire append-only evidence chain."""

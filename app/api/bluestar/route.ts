@@ -1,48 +1,87 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { execFile } from 'child_process';
-import { promisify } from 'util';
 import fs from 'fs/promises';
 import path from 'path';
 
-const execFileAsync = promisify(execFile);
+// Helper to safely execute Python scripts by streaming JSON payloads via stdin (WEB-3)
+function runPythonWithStdin(script: string, inputPayload: Record<string, unknown>, timeoutMs: number): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const child = execFile(
+      'python3',
+      ['-c', script],
+      {
+        cwd: process.cwd(),
+        timeout: timeoutMs,
+      },
+      (error, stdout, stderr) => {
+        if (error) {
+          reject(new Error(stderr || error.message));
+        } else {
+          resolve(stdout.trim());
+        }
+      }
+    );
 
-export async function GET() {
-  try {
-    const snapPath = path.join(process.cwd(), 'public', 'north_bluestar_snapshot.json');
-    try {
-      const raw = await fs.readFile(snapPath, 'utf-8');
-      return NextResponse.json(JSON.parse(raw));
-    } catch {
-      await execFileAsync('python3', [
-        '-m',
-        'north_bluestar.cli',
-        'export-workbench-snapshot',
-        '--out',
-        snapPath,
-        '--budget',
-        '24',
-      ]);
-      const raw = await fs.readFile(snapPath, 'utf-8');
-      return NextResponse.json(JSON.parse(raw));
+    if (child.stdin) {
+      child.stdin.write(JSON.stringify(inputPayload));
+      child.stdin.end();
+    } else {
+      reject(new Error('Failed to open stdin for python process'));
     }
-  } catch (err: unknown) {
-    const message = err instanceof Error ? err.message : String(err);
-    return NextResponse.json({ error: message }, { status: 500 });
-  }
+  });
 }
 
-export async function POST(req: NextRequest) {
-  try {
-    const body = await req.json();
-    const action = body.action || 'run_experiment';
+// Static allowlists for input validation (WEB-1, WEB-3)
+const ALLOWED_PROBLEM_IDS = new Set([
+  'pfsp_makespan',
+  'online_bin_packing_1d',
+  'graph_coloring',
+]);
 
-    if (action === 'run_experiment') {
-      const problemId = String(body.problem_id || 'pfsp_makespan');
-      const strategyMode = String(body.strategy_mode || 'north_bluestar_portfolio');
-      const budget = Math.min(60, Math.max(6, Number(body.budget || 20)));
-      const seed = Number(body.seed || 42);
+const ALLOWED_STRATEGY_MODES = new Set([
+  'north_bluestar_portfolio',
+  'randomized_search',
+  'structured_enumeration',
+  'local_coordinate_search',
+  'operator_recombination',
+  'surrogate_ucb',
+]);
 
-      const pyScript = `
+const ALLOWED_PRIORITY_RULES = new Set([
+  'total_time_desc',
+  'total_time_asc',
+  'first_op_desc',
+  'last_op_asc',
+]);
+
+const ALLOWED_TIE_BREAKERS = new Set([
+  'bottleneck_slack',
+  'fifo',
+  'lifo',
+]);
+
+const ALLOWED_INSERTION_MODES = new Set([
+  'earliest_makespan',
+  'first_feasible',
+  'best_fit',
+]);
+
+const ALLOWED_LOCAL_SEARCH_OPS = new Set([
+  'none',
+  'insert_adjacent',
+  'insert_any',
+  'swap_adjacent',
+  'swap_any',
+  'vnd_insert_swap',
+]);
+
+const ALLOWED_PIVOT_RULES = new Set([
+  'none',
+  'first_improvement',
+  'best_improvement',
+]);
+
+const RUN_EXPERIMENT_PY = `
 import json, sys
 from north_bluestar.orchestrator import (
     NorthBlueStarEngine,
@@ -62,10 +101,11 @@ from north_bluestar.controller import (
     SearchController,
 )
 
-problem_id = ${JSON.stringify(problemId)}
-mode = ${JSON.stringify(strategyMode)}
-budget_n = int(${budget})
-seed_n = int(${seed})
+payload = json.loads(sys.stdin.read())
+problem_id = payload["problem_id"]
+mode = payload["strategy_mode"]
+budget_n = int(payload["budget"])
+seed_n = int(payload["seed"])
 
 if problem_id == "pfsp_makespan":
     prob = build_pfsp_problem(seed=seed_n)
@@ -98,23 +138,9 @@ out = res.to_dict()
 out["evidence_records"] = [r.to_dict() for r in engine.evidence.records[:30]]
 print(json.dumps(out))
 `;
-      const { stdout } = await execFileAsync('python3', ['-c', pyScript], {
-        cwd: process.cwd(),
-        timeout: 25000,
-      });
-      return NextResponse.json(JSON.parse(stdout.trim()));
-    }
 
-    if (action === 'inspect_candidate') {
-      const priorityRule = String(body.priority_rule || 'total_time_desc');
-      const tieBreaker = String(body.tie_breaker || 'bottleneck_slack');
-      const insertionMode = String(body.insertion_mode || 'earliest_makespan');
-      const localSearchOp = String(body.local_search_op || 'vnd_insert_swap');
-      const pivotRule = String(body.pivot_rule || 'best_improvement');
-      const perturbationD = Number(body.perturbation_d ?? 2);
-
-      const pyScript = `
-import json
+const INSPECT_CANDIDATE_PY = `
+import json, sys
 from north_bluestar.candidates import (
     DeclarativePFSPConfig,
     CandidateSpec,
@@ -123,13 +149,15 @@ from north_bluestar.candidates import (
 from north_bluestar.problem import solve_pfsp_neh, solve_pfsp_neh_ls, SplitType
 from north_bluestar.orchestrator import build_pfsp_problem, NorthBlueStarEngine
 
+payload = json.loads(sys.stdin.read())
+
 cfg = DeclarativePFSPConfig(
-    priority_rule=${JSON.stringify(priorityRule)},
-    tie_breaker=${JSON.stringify(tieBreaker)},
-    insertion_mode=${JSON.stringify(insertionMode)},
-    local_search_op=${JSON.stringify(localSearchOp)},
-    pivot_rule=${JSON.stringify(pivotRule)},
-    perturbation_d=int(${perturbationD}),
+    priority_rule=payload["priority_rule"],
+    tie_breaker=payload["tie_breaker"],
+    insertion_mode=payload["insertion_mode"],
+    local_search_op=payload["local_search_op"],
+    pivot_rule=payload["pivot_rule"],
+    perturbation_d=int(payload["perturbation_d"]),
 )
 spec = CandidateSpec.from_declarative_pfsp(cfg, strategy_id="interactive_probe")
 neh_bh, neh_trace = BehavioralFingerprinter.fingerprint_pfsp_solver(solve_pfsp_neh)
@@ -159,11 +187,121 @@ print(json.dumps({
     }
 }))
 `;
-      const { stdout } = await execFileAsync('python3', ['-c', pyScript], {
-        cwd: process.cwd(),
-        timeout: 15000,
-      });
-      return NextResponse.json(JSON.parse(stdout.trim()));
+
+// GET: read-only access to pre-built workbench snapshot (WEB-2)
+export async function GET() {
+  try {
+    const snapPath = path.join(process.cwd(), 'public', 'north_bluestar_snapshot.json');
+    try {
+      const raw = await fs.readFile(snapPath, 'utf-8');
+      return NextResponse.json(JSON.parse(raw));
+    } catch {
+      return NextResponse.json(
+        {
+          error:
+            'Workbench snapshot not found. Generate it ahead of time via: ' +
+            'python3 -m north_bluestar.cli export-workbench-snapshot --out public/north_bluestar_snapshot.json',
+        },
+        { status: 404 }
+      );
+    }
+  } catch (err: unknown) {
+    const message = err instanceof Error ? err.message : String(err);
+    return NextResponse.json({ error: message }, { status: 500 });
+  }
+}
+
+// POST: validated RPC handlers with safe parameter transmission (WEB-1, WEB-3)
+export async function POST(req: NextRequest) {
+  try {
+    const body = await req.json();
+    const action = String(body.action || 'run_experiment');
+
+    if (action === 'run_experiment') {
+      const problemId = String(body.problem_id || 'pfsp_makespan');
+      if (!ALLOWED_PROBLEM_IDS.has(problemId)) {
+        return NextResponse.json(
+          { error: `Invalid problem_id: '${problemId}'. Allowed: ${Array.from(ALLOWED_PROBLEM_IDS).join(', ')}` },
+          { status: 400 }
+        );
+      }
+
+      const strategyMode = String(body.strategy_mode || 'north_bluestar_portfolio');
+      if (!ALLOWED_STRATEGY_MODES.has(strategyMode)) {
+        return NextResponse.json(
+          { error: `Invalid strategy_mode: '${strategyMode}'. Allowed: ${Array.from(ALLOWED_STRATEGY_MODES).join(', ')}` },
+          { status: 400 }
+        );
+      }
+
+      const budget = Math.min(60, Math.max(6, Math.floor(Number(body.budget || 20))));
+      const seed = Math.floor(Number(body.seed || 42));
+
+      const payload = {
+        problem_id: problemId,
+        strategy_mode: strategyMode,
+        budget,
+        seed,
+      };
+
+      const stdout = await runPythonWithStdin(RUN_EXPERIMENT_PY, payload, 25000);
+      return NextResponse.json(JSON.parse(stdout));
+    }
+
+    if (action === 'inspect_candidate') {
+      const priorityRule = String(body.priority_rule || 'total_time_desc');
+      if (!ALLOWED_PRIORITY_RULES.has(priorityRule)) {
+        return NextResponse.json(
+          { error: `Invalid priority_rule: '${priorityRule}'. Allowed: ${Array.from(ALLOWED_PRIORITY_RULES).join(', ')}` },
+          { status: 400 }
+        );
+      }
+
+      const tieBreaker = String(body.tie_breaker || 'bottleneck_slack');
+      if (!ALLOWED_TIE_BREAKERS.has(tieBreaker)) {
+        return NextResponse.json(
+          { error: `Invalid tie_breaker: '${tieBreaker}'. Allowed: ${Array.from(ALLOWED_TIE_BREAKERS).join(', ')}` },
+          { status: 400 }
+        );
+      }
+
+      const insertionMode = String(body.insertion_mode || 'earliest_makespan');
+      if (!ALLOWED_INSERTION_MODES.has(insertionMode)) {
+        return NextResponse.json(
+          { error: `Invalid insertion_mode: '${insertionMode}'. Allowed: ${Array.from(ALLOWED_INSERTION_MODES).join(', ')}` },
+          { status: 400 }
+        );
+      }
+
+      const localSearchOp = String(body.local_search_op || 'vnd_insert_swap');
+      if (!ALLOWED_LOCAL_SEARCH_OPS.has(localSearchOp)) {
+        return NextResponse.json(
+          { error: `Invalid local_search_op: '${localSearchOp}'. Allowed: ${Array.from(ALLOWED_LOCAL_SEARCH_OPS).join(', ')}` },
+          { status: 400 }
+        );
+      }
+
+      const pivotRule = String(body.pivot_rule || 'best_improvement');
+      if (!ALLOWED_PIVOT_RULES.has(pivotRule)) {
+        return NextResponse.json(
+          { error: `Invalid pivot_rule: '${pivotRule}'. Allowed: ${Array.from(ALLOWED_PIVOT_RULES).join(', ')}` },
+          { status: 400 }
+        );
+      }
+
+      const perturbationD = Math.max(0, Math.min(10, Math.floor(Number(body.perturbation_d ?? 2))));
+
+      const payload = {
+        priority_rule: priorityRule,
+        tie_breaker: tieBreaker,
+        insertion_mode: insertionMode,
+        local_search_op: localSearchOp,
+        pivot_rule: pivotRule,
+        perturbation_d: perturbationD,
+      };
+
+      const stdout = await runPythonWithStdin(INSPECT_CANDIDATE_PY, payload, 15000);
+      return NextResponse.json(JSON.parse(stdout));
     }
 
     return NextResponse.json({ error: `Unknown action: ${action}` }, { status: 400 });

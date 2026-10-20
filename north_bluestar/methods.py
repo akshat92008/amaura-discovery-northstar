@@ -515,7 +515,7 @@ class SandboxedPythonProgramMethodAdapter(MethodAdapter):
 
     FORBIDDEN_MODULES = {
         "os", "sys", "subprocess", "socket", "shutil", "ctypes", "multiprocessing",
-        "threading", "signal", "resource", " pathlib", "urllib", "http", "pickle", " builtins",
+        "threading", "signal", "resource", "pathlib", "urllib", "http", "pickle", "builtins",
     }
     FORBIDDEN_CALLS = {
         "eval", "exec", "compile", "open", "input", "__import__", "getattr", "setattr",
@@ -539,55 +539,19 @@ class SandboxedPythonProgramMethodAdapter(MethodAdapter):
 
     @classmethod
     def validate_ast_safety(cls, code: str, entry_func_name: str) -> Tuple[bool, Optional[str]]:
-        import ast
-
-        try:
-            tree = ast.parse(code)
-        except SyntaxError as e:
-            return False, f"SyntaxError: {e}"
-
-        has_entry = False
-        for node in ast.walk(tree):
-            if isinstance(node, ast.FunctionDef) and node.name == entry_func_name:
-                has_entry = True
-            elif isinstance(node, ast.Import):
-                for alias in node.names:
-                    root = alias.name.split(".")[0].strip()
-                    if root in cls.FORBIDDEN_MODULES:
-                        return False, f"Forbidden import: {alias.name}"
-            elif isinstance(node, ast.ImportFrom):
-                if node.module:
-                    root = node.module.split(".")[0].strip()
-                    if root in cls.FORBIDDEN_MODULES:
-                        return False, f"Forbidden import from: {node.module}"
-            elif isinstance(node, ast.Call):
-                if isinstance(node.func, ast.Name) and node.func.id in cls.FORBIDDEN_CALLS:
-                    return False, f"Forbidden builtin call: {node.func.id}"
-            elif isinstance(node, ast.Attribute):
-                if node.attr.startswith("__") and node.attr.endswith("__"):
-                    return False, f"Forbidden dunder attribute access: {node.attr}"
-
-        if not has_entry:
-            return False, f"Missing required entry function `def {entry_func_name}(...)`"
-        return True, None
+        from amaura_exec.ast_validator import validate_candidate_ast
+        return validate_candidate_ast(code, expected_func_name=entry_func_name)
 
     def compile_runner(self, candidate: CandidateSpec) -> Callable[[ProblemInstance], Any]:
+        from amaura_exec.safe_exec import create_safe_namespace
+
         code = candidate.payload.get("code", "")
         entry_func_name = candidate.payload.get("entry_func_name", "")
         ok, err = self.validate_ast_safety(code, entry_func_name)
         if not ok:
             raise ValueError(f"AST Safety Rejection: {err}")
 
-        safe_builtins = {
-            "abs": abs, "all": all, "any": any, "bool": bool, "dict": dict,
-            "divmod": divmod, "enumerate": enumerate, "filter": filter, "float": float,
-            "int": int, "len": len, "list": list, "map": map, "max": max, "min": min,
-            "pow": pow, "range": range, "reversed": reversed, "round": round,
-            "set": set, "sorted": sorted, "str": str, "sum": sum, "tuple": tuple, "zip": zip,
-            "True": True, "False": False, "None": None,
-            "ValueError": ValueError, "RuntimeError": RuntimeError, "Exception": Exception,
-        }
-        namespace: Dict[str, Any] = {"__builtins__": safe_builtins, "math": math}
+        namespace = create_safe_namespace()
         exec(compile(code, "<candidate_program>", "exec"), namespace, namespace)
         fn = namespace.get(entry_func_name)
         if not callable(fn):

@@ -183,8 +183,14 @@ class ExecutionSupervisor:
             self.total_sigkills += 1
             return None, elapsed_ms, f"Process killed via SIGKILL after exceeding {timeout_ms:.1f}ms timeout", True
 
-        if not q.empty():
-            payload = q.get_nowait()
+        # Retrieve worker outcome with bounded timeout (REL-1)
+        payload = None
+        try:
+            payload = q.get(timeout=0.5)
+        except Exception:
+            pass
+
+        if payload is not None:
             if payload.get("ok"):
                 return payload.get("solution"), float(payload.get("runtime_ms", elapsed_ms)), None, False
             return None, elapsed_ms, str(payload.get("error", "Unknown worker error")), False
@@ -213,11 +219,27 @@ class ExecutionSupervisor:
         timeout_ms = problem.default_timeout_ms or self.default_timeout_ms
 
         use_subproc = self.force_subprocess_for_all or (candidate.kind == CandidateKind.PYTHON_PROGRAM)
+        if candidate.kind not in (
+            CandidateKind.DECLARATIVE_PFSP,
+            CandidateKind.DECLARATIVE_BIN_PACKING,
+            CandidateKind.VERIFIED_BASELINE,
+        ):
+            use_subproc = True
 
         # Pre-check compilation & AST safety before running instances
+        in_proc_runner = None
         try:
             adapter = self.registry.get(candidate.method_id)
-            in_proc_runner = adapter.compile_runner(candidate)
+            if not use_subproc:
+                in_proc_runner = adapter.compile_runner(candidate)
+            else:
+                # For isolated candidates, validate AST statically in parent without executing code (P1.27)
+                if hasattr(adapter, "validate_ast_safety"):
+                    code = candidate.payload.get("code", "")
+                    entry = candidate.payload.get("entry_func_name", "")
+                    ok, err = adapter.validate_ast_safety(code, entry)
+                    if not ok:
+                        raise ValueError(f"AST Safety Rejection: {err}")
         except Exception as comp_exc:
             err_msg = f"{type(comp_exc).__name__}: {str(comp_exc)}"
             cat = (
@@ -304,7 +326,7 @@ class ExecutionSupervisor:
             else:
                 fail_cat = FailureCategory.CONSTRAINT_INFEASIBLE
 
-        # Optional repeatability check on the first 2 instances
+        # Optional repeatability check on the first 2 instances (P0.1: isolation-preserving)
         is_repeatable = True
         max_drift = 0.0
         if verify_repeatability and agg.is_fully_feasible and len(instances) > 0:
@@ -312,8 +334,19 @@ class ExecutionSupervisor:
             for idx in range(probe_count):
                 inst = instances[idx]
                 try:
-                    sol_2 = in_proc_runner(copy.deepcopy(inst))
-                    out_2 = problem.evaluate_solution_on_instance(inst, sol_2, runtime_ms=0.0)
+                    if use_subproc:
+                        sol_2, rt_2, err_2, timed_out_2 = self._run_single_instance_subprocess(
+                            candidate, inst, timeout_ms=timeout_ms
+                        )
+                        if err_2 is not None or timed_out_2:
+                            is_repeatable = False
+                            fail_cat = FailureCategory.NON_DETERMINISTIC
+                            continue
+                        out_2 = problem.evaluate_solution_on_instance(inst, sol_2, runtime_ms=rt_2)
+                    else:
+                        sol_2 = in_proc_runner(copy.deepcopy(inst)) if in_proc_runner else None
+                        out_2 = problem.evaluate_solution_on_instance(inst, sol_2, runtime_ms=0.0)
+
                     obj_1 = outcomes[idx].objective_value
                     obj_2 = out_2.objective_value
                     if (not out_2.is_feasible) or obj_1 is None or obj_2 is None:

@@ -111,24 +111,23 @@ def main():
     gc_d_valid = [t["selections"]["Arm_D_Amaura_Expert"]["hidden_is_valid"] for t in gc_trials]
     gc_b_valid = [t["selections"]["Arm_B_Judge"]["hidden_is_valid"] for t in gc_trials]
 
-    res_gc_full = run_paired_comparison(gc_d, gc_b)
-    
-    # Valid only subset
+    # STAT-1: Print valid-only comparison first to avoid crash-penalty distortion (999,999)
     gc_valid_pairs = [(d, b) for d, b, dv, bv in zip(gc_d, gc_b, gc_d_valid, gc_b_valid) if dv and bv]
     res_gc_valid = run_paired_comparison([p[0] for p in gc_valid_pairs], [p[1] for p in gc_valid_pairs]) if gc_valid_pairs else None
+    res_gc_full = run_paired_comparison(gc_d, gc_b)
 
     print("2. GRAPH COLORING (200 Unseen Hidden Instances):")
-    print(f"   Arm D (Execution Selected): Mean={res_gc_full['mean_d']} colors | Valid={sum(gc_d_valid)}/30 (100.0%)")
-    print(f"   Arm B (Blind LLM Judge):   Mean={res_gc_full['mean_b']} colors | Valid={sum(gc_b_valid)}/30 (30.0%)")
-    print(f"   Arm A (Random Draw):       Mean={round(float(np.mean(gc_a)), 2)} colors | Valid={sum(t['selections']['Arm_A_Random']['hidden_is_valid'] for t in gc_trials)}/30")
-    print(f"   Arm C (Diversified):       Mean={round(float(np.mean(gc_c)), 2)} colors | Valid={sum(t['selections']['Arm_C_Amaura_Div']['hidden_is_valid'] for t in gc_trials)}/30 (100.0%)")
-    print(f"   Full Paired Contrast (D vs B):")
-    print(f"     Wins: D={res_gc_full['wins_d']}, Ties={res_gc_full['ties']}, B={res_gc_full['losses_b']}")
-    print(f"     Mean Diff: {res_gc_full['mean_diff']} colors (95% CI: {res_gc_full['bootstrap_ci_95']})")
-    print(f"     Wilcoxon p-value: {res_gc_full['p_value']:.4e} (Cohen's d: {res_gc_full['effect_size_d']})")
+    print(f"   Validity Rates: Arm D = {sum(gc_d_valid)}/30 ({sum(gc_d_valid)/30*100:.1f}%) | Arm B = {sum(gc_b_valid)}/30 ({sum(gc_b_valid)/30*100:.1f}%)")
     if res_gc_valid:
-        print(f"   Valid-Only Subset (N={len(gc_valid_pairs)} trials):")
-        print(f"     Mean D={res_gc_valid['mean_d']} vs Mean B={res_gc_valid['mean_b']} | Wins: D={res_gc_valid['wins_d']}, B={res_gc_valid['losses_b']}")
+        print(f"   [Primary] Valid-Only Paired Subset (N={len(gc_valid_pairs)} trials, unbiased by crash penalties):")
+        print(f"     Mean D={res_gc_valid['mean_d']} vs Mean B={res_gc_valid['mean_b']} colors")
+        print(f"     Wins: D={res_gc_valid['wins_d']}, Ties={res_gc_valid['ties']}, B={res_gc_valid['losses_b']}")
+        print(f"     Mean Diff: {res_gc_valid['mean_diff']} colors (95% CI: {res_gc_valid['bootstrap_ci_95']})")
+        print(f"     Wilcoxon p-value: {res_gc_valid['p_value']:.4e} (Cohen's d: {res_gc_valid['effect_size_d']})")
+    print(f"   [Secondary] Imputed/Full Paired Contrast (includes 999,999 crash penalties for invalid candidates):")
+    print(f"     Arm D Mean={res_gc_full['mean_d']} vs Arm B Mean={res_gc_full['mean_b']}")
+    print(f"     Wins: D={res_gc_full['wins_d']}, Ties={res_gc_full['ties']}, B={res_gc_full['losses_b']}")
+    print(f"     Wilcoxon p-value: {res_gc_full['p_value']:.4e}")
     print()
 
     # 3. PFSP Scheduling Analysis
@@ -139,15 +138,14 @@ def main():
     pfsp_d_valid = [t["selections"]["Arm_D_Amaura_Expert"]["hidden_is_valid"] for t in pfsp_trials]
     pfsp_b_valid = [t["selections"]["Arm_B_Judge"]["hidden_is_valid"] for t in pfsp_trials]
 
-    res_pfsp_full = run_paired_comparison(pfsp_d, pfsp_b)
     pfsp_valid_pairs = [(d, b) for d, b, dv, bv in zip(pfsp_d, pfsp_b, pfsp_d_valid, pfsp_b_valid) if dv and bv]
     res_pfsp_valid = run_paired_comparison([p[0] for p in pfsp_valid_pairs], [p[1] for p in pfsp_valid_pairs])
+    res_pfsp_full = run_paired_comparison(pfsp_d, pfsp_b)
 
     print("3. PFSP SCHEDULING (204 Unseen Hidden Instances):")
-    print(f"   Arm D (Execution Selected): Valid={sum(pfsp_d_valid)}/30 (96.7%) | Valid-Only Mean={res_pfsp_valid['mean_d']}")
-    print(f"   Arm B (Blind LLM Judge):   Valid={sum(pfsp_b_valid)}/30 (66.7%) | Valid-Only Mean={res_pfsp_valid['mean_b']}")
-    print(f"   Arm C (Diversified):       Valid={sum(t['selections']['Arm_C_Amaura_Div']['hidden_is_valid'] for t in pfsp_trials)}/30 (100.0%) | Mean={round(float(np.mean(pfsp_c)), 2)}")
-    print(f"   Valid-Only Contrast (N={len(pfsp_valid_pairs)} trials):")
+    print(f"   Validity Rates: Arm D = {sum(pfsp_d_valid)}/30 ({sum(pfsp_d_valid)/30*100:.1f}%) | Arm B = {sum(pfsp_b_valid)}/30 ({sum(pfsp_b_valid)/30*100:.1f}%)")
+    print(f"   [Primary] Valid-Only Contrast (N={len(pfsp_valid_pairs)} trials, unbiased by crash penalties):")
+    print(f"     Mean D={res_pfsp_valid['mean_d']} vs Mean B={res_pfsp_valid['mean_b']} makespan units")
     print(f"     Wins: D={res_pfsp_valid['wins_d']}, Ties={res_pfsp_valid['ties']}, B={res_pfsp_valid['losses_b']}")
     print(f"     Mean Diff: {res_pfsp_valid['mean_diff']} makespan units (95% CI: {res_pfsp_valid['bootstrap_ci_95']})")
     print(f"     Wilcoxon p-value: {res_pfsp_valid['p_value']:.4e} (Cohen's d: {res_pfsp_valid['effect_size_d']})")
@@ -162,7 +160,10 @@ def main():
     print(f"   * PFSP: Arm C ({round(float(np.mean(pfsp_c)), 1)}) beats Iterated Greedy ({pfsp_base.get('iterated_greedy')}) by {float(np.mean(pfsp_c)) - pfsp_base.get('iterated_greedy'):.1f} makespan.\n")
 
     # 5. Holm-Bonferroni Correction
-    p_vals = [res_gc_full['p_value'], res_pfsp_valid['p_value']]
+    # Evaluate significance across the primary valid-only contrasts
+    primary_p_gc = res_gc_valid['p_value'] if res_gc_valid else res_gc_full['p_value']
+    primary_p_pfsp = res_pfsp_valid['p_value']
+    p_vals = [primary_p_gc, primary_p_pfsp]
     sorted_indices = np.argsort(p_vals)
     m = len(p_vals)
     corrected_p = [0.0] * m
@@ -170,16 +171,23 @@ def main():
         multiplier = m - rank
         corrected_p[idx] = min(1.0, p_vals[idx] * multiplier)
 
-    print("5. MULTIPLE TESTING CORRECTION (Holm-Bonferroni):")
-    print(f"   * Graph Coloring: Raw p={p_vals[0]:.4e} -> Holm-corrected p={corrected_p[0]:.4e} (< 0.05: SIGNIFICANT)")
-    print(f"   * PFSP Scheduling: Raw p={p_vals[1]:.4e} -> Holm-corrected p={corrected_p[1]:.4e} (< 0.05: SIGNIFICANT)\n")
+    print("5. MULTIPLE TESTING CORRECTION (Holm-Bonferroni on Primary Contrasts):")
+    print(f"   * Graph Coloring: Raw p={p_vals[0]:.4e} -> Holm-corrected p={corrected_p[0]:.4e} ({'SIGNIFICANT' if corrected_p[0] < 0.05 else 'NOT SIGNIFICANT'})")
+    print(f"   * PFSP Scheduling: Raw p={p_vals[1]:.4e} -> Holm-corrected p={corrected_p[1]:.4e} ({'SIGNIFICANT' if corrected_p[1] < 0.05 else 'NOT SIGNIFICANT'})\n")
 
-    # 6. Final Verdict
+    # 6. Final Verdict (STAT-2: Dynamically computed from statistical criteria)
+    all_significant = all(cp < 0.05 for cp in corrected_p)
+    verdict = "SUPPORTED" if all_significant else "PARTIALLY SUPPORTED / NOT SUPPORTED"
+
     print("=" * 80)
-    print("FINAL SCIENTIFIC VERDICT: SUPPORTED")
+    print(f"FINAL SCIENTIFIC VERDICT: {verdict}")
     print("=" * 80)
-    print("Execution-based candidate selection (Arm D) decisively outperforms")
-    print("execution-blind frontier LLM judging (Arm B) at the matched candidate budget.")
+    if all_significant:
+        print("Execution-based candidate selection (Arm D) decisively outperforms")
+        print("execution-blind frontier LLM judging (Arm B) across both benchmark domains.")
+    else:
+        print("Candidate validity is decisively higher under Arm D (p < 0.001), but solution")
+        print("quality on valid-only subsets requires cautious interpretation.")
     print("Replication completed with zero simulation or synthetic interpolation.\n")
 
 if __name__ == "__main__":

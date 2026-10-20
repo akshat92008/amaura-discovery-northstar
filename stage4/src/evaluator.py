@@ -54,26 +54,37 @@ def _isolated_evaluation_worker(
     Executes in a separate OS process with restricted environment and resource limits.
     """
     try:
-        # Enforce CPU time resource limit as backstop if supported
+        # Enforce resource limits (SEC-5: fail closed on errors if supported)
         try:
             import resource
+            # CPU time: 5s soft, 10s hard
             resource.setrlimit(resource.RLIMIT_CPU, (5, 10))
-        except Exception:
-            pass
+            # Core dump: 0
+            if hasattr(resource, "RLIMIT_CORE"):
+                resource.setrlimit(resource.RLIMIT_CORE, (0, 0))
+            # File size limit: 1 MB
+            if hasattr(resource, "RLIMIT_FSIZE"):
+                resource.setrlimit(resource.RLIMIT_FSIZE, (1024 * 1024, 1024 * 1024))
+            # Open files limit: 64
+            if hasattr(resource, "RLIMIT_NOFILE"):
+                resource.setrlimit(resource.RLIMIT_NOFILE, (64, 64))
+            # Max memory: 512 MB (if supported by OS)
+            if hasattr(resource, "RLIMIT_AS"):
+                try:
+                    resource.setrlimit(resource.RLIMIT_AS, (512 * 1024 * 1024, 512 * 1024 * 1024))
+                except (ValueError, OSError):
+                    pass
+        except Exception as lim_exc:
+            result_queue.put({"success": False, "error": f"ResourceLimitError: {lim_exc}"})
+            return
 
-        safe_globals = {
-            "__builtins__": {
-                "range": range, "len": len, "abs": abs, "min": min, "max": max,
-                "round": round, "sum": sum, "float": float, "int": int, "bool": bool,
-                "pow": pow, "divmod": divmod, "enumerate": enumerate, "zip": zip
-            },
-            "math": math
-        }
+        from amaura_exec.safe_exec import create_safe_namespace
+        safe_globals = create_safe_namespace()
         safe_locals: Dict[str, Any] = {}
 
         # Execute code in isolated worker process
         exec(code, safe_globals, safe_locals)
-        func = safe_locals.get(func_name)
+        func = safe_locals.get(func_name) or safe_globals.get(func_name)
         if func is None:
             result_queue.put({"success": False, "error": f"Function '{func_name}' not found after compilation"})
             return
@@ -101,71 +112,17 @@ class Stage4Evaluator:
 
     def validate_ast(self, code: str, expected_func: str = "priority") -> Tuple[bool, Optional[str]]:
         """Static AST inspection for security, interface conformance, and structural restrictions."""
-        try:
-            tree = ast.parse(code)
-        except SyntaxError as e:
-            return False, f"SyntaxError: {e}"
-
-        # 1. Structural Restrictions on Top-Level Statements
-        # Only functions, safe imports, docstrings, or simple constant assignments allowed.
-        # Top-level loops, function calls, or conditionals are strictly rejected.
-        for stmt in tree.body:
-            if isinstance(stmt, (ast.FunctionDef, ast.AsyncFunctionDef)):
-                continue
-            elif isinstance(stmt, (ast.Import, ast.ImportFrom)):
-                continue
-            elif isinstance(stmt, ast.Expr) and isinstance(stmt.value, ast.Constant):
-                # Module docstring or comment string literal
-                continue
-            elif isinstance(stmt, ast.Assign):
-                # Only allow literal constants (no function calls or expressions with side effects)
-                if not isinstance(stmt.value, (ast.Constant, ast.List, ast.Tuple, ast.Dict, ast.UnaryOp, ast.BinOp)):
-                    return False, f"Forbidden top-level assignment with complex expression or call"
-            else:
-                return False, f"Forbidden top-level execution statement: found '{type(stmt).__name__}' outside function definition"
-
-
-        # 2. Module & Function Walk
-        func_found = False
-        for node in ast.walk(tree):
-            # Check forbidden imports
-            if isinstance(node, ast.Import):
-                for alias in node.names:
-                    root_pkg = alias.name.split(".")[0]
-                    if root_pkg in FORBIDDEN_MODULES:
-                        return False, f"Forbidden import: {root_pkg}"
-            elif isinstance(node, ast.ImportFrom):
-                if node.module:
-                    root_pkg = node.module.split(".")[0]
-                    if root_pkg in FORBIDDEN_MODULES:
-                        return False, f"Forbidden import from: {root_pkg}"
-
-            # Check function definition
-            if isinstance(node, ast.FunctionDef) and node.name == expected_func:
-                func_found = True
-                arg_names = [arg.arg for arg in node.args.args]
-                if len(arg_names) != 3:
-                    return False, f"Function '{expected_func}' must take exactly 3 parameters, found {len(arg_names)}"
-
-        if not func_found:
-            return False, f"Function '{expected_func}' not defined in candidate code"
-
-        return True, None
+        from amaura_exec.ast_validator import validate_candidate_ast
+        return validate_candidate_ast(code, expected_func_name=expected_func, expected_param_count=3)
 
     def compile_function(self, code: str, func_name: str = "priority") -> Tuple[Optional[Callable], Optional[str]]:
         """Compiles code in a restricted dictionary for local inspection."""
-        safe_globals = {
-            "__builtins__": {
-                "range": range, "len": len, "abs": abs, "min": min, "max": max,
-                "round": round, "sum": sum, "float": float, "int": int, "bool": bool,
-                "pow": pow, "divmod": divmod, "enumerate": enumerate, "zip": zip
-            },
-            "math": math
-        }
+        from amaura_exec.safe_exec import create_safe_namespace
+        safe_globals = create_safe_namespace()
         safe_locals: Dict[str, Any] = {}
         try:
             exec(code, safe_globals, safe_locals)
-            func = safe_locals.get(func_name)
+            func = safe_locals.get(func_name) or safe_globals.get(func_name)
             if func is None:
                 return None, f"Function '{func_name}' not found after compilation"
             return func, None
@@ -244,11 +201,10 @@ class Stage4Evaluator:
                 error_message=f"TimeoutError: Execution exceeded {self.timeout_sec}s in isolated process (PID {worker_pid} terminated)"
             )
 
-        # Retrieve result from queue
+        # Retrieve result from queue (REL-1: use bounded timeout get to prevent queue race)
         res_data = None
         try:
-            if not queue.empty():
-                res_data = queue.get_nowait()
+            res_data = queue.get(timeout=0.5)
         except Exception:
             pass
 

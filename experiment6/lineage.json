@@ -1,0 +1,532 @@
+{
+  "champion": {
+    "candidate_id": "single_shot_3_9a24f4e92a4f",
+    "parent_id": "root",
+    "phase": "single_shot",
+    "island": "Island_A",
+    "generation": 0,
+    "type": "single_shot",
+    "model": "antigravity/claude-sonnet-4-6",
+    "provider": "omniroute/antigravity",
+    "prompt_hash": "9a24f4e92a4f",
+    "response_hash": "bb06d188e6c8",
+    "candidate_hash": "5a979de375df",
+    "structural_hash": "404d43395f39",
+    "generated_code": "def choose_vertex(uncolored: list[int], adj: list[list[int]], colors: list[int], saturation: list[int], degrees: list[int]) -> int:\n    \"\"\"\n    Args:\n    - uncolored: list[int], non-empty list of remaining uncolored vertex IDs\n    - adj: list[list[int]], graph adjacency list (adj[u] contains all neighbor IDs of vertex u)\n    - colors: list[int], length |V|, colors[u] is the non-negative integer color assigned to vertex u, or -1 if uncolored\n    - saturation: list[int], length |V|, saturation[u] is the number of distinct colors assigned to neighbors of vertex u\n    - degrees: list[int], length |V|, degrees[u] is the original degree of vertex u\n\n    Returns:\n    - int: the vertex ID from `uncolored` that should be colored next.\n    \"\"\"\n    uncolored_set = set(uncolored)\n    \n    best_vertex = None\n    best_score = None\n    \n    for v in uncolored:\n        sat_v = saturation[v]\n        deg_v = degrees[v]\n        \n        # Count uncolored neighbors (future conflict potential)\n        uncolored_neighbors = [u for u in adj[v] if u in uncolored_set]\n        uncolored_deg = len(uncolored_neighbors)\n        \n        # Compute 2-hop saturation pressure: sum of saturations of uncolored neighbors\n        # High value means coloring v will be hard for its neighbors\n        neighbor_sat_sum = sum(saturation[u] for u in uncolored_neighbors)\n        \n        # Count distinct colors in 2-hop neighborhood that are already used\n        two_hop_colors = set()\n        for u in uncolored_neighbors:\n            for w in adj[u]:\n                if colors[w] >= 0:\n                    two_hop_colors.add(colors[w])\n        two_hop_sat = len(two_hop_colors)\n        \n        # Primary: highest saturation (DSATUR base)\n        # Secondary: highest degree among uncolored neighbors (most constrained future)\n        # Tertiary: highest 2-hop saturation pressure\n        # We negate for min-heap style comparison (we want max)\n        score = (sat_v, deg_v, two_hop_sat, neighbor_sat_sum)\n        \n        if best_score is None or score > best_score:\n            best_score = score\n            best_vertex = v\n    \n    return best_vertex",
+    "explanation": "This heuristic extends DSATUR by breaking ties using the degree among uncolored neighbors and 2-hop neighborhood saturation pressure, prioritizing vertices whose coloring will most constrain future choices and reduce cascading conflicts.",
+    "is_valid": true,
+    "total_colors": 164,
+    "avg_colors": 6.56,
+    "excess_pct": -3.5294,
+    "runtime_ms": 107.9,
+    "error": null,
+    "prompt_tokens": 2619,
+    "completion_tokens": 682
+  },
+  "best_single_shot": {
+    "candidate_id": "single_shot_3_9a24f4e92a4f",
+    "parent_id": "root",
+    "phase": "single_shot",
+    "island": "single_shot",
+    "generation": 0,
+    "type": "single_shot",
+    "model": "antigravity/claude-sonnet-4-6",
+    "provider": "omniroute/antigravity",
+    "prompt_hash": "9a24f4e92a4f",
+    "response_hash": "bb06d188e6c8",
+    "candidate_hash": "5a979de375df",
+    "structural_hash": "404d43395f39",
+    "generated_code": "def choose_vertex(uncolored: list[int], adj: list[list[int]], colors: list[int], saturation: list[int], degrees: list[int]) -> int:\n    \"\"\"\n    Args:\n    - uncolored: list[int], non-empty list of remaining uncolored vertex IDs\n    - adj: list[list[int]], graph adjacency list (adj[u] contains all neighbor IDs of vertex u)\n    - colors: list[int], length |V|, colors[u] is the non-negative integer color assigned to vertex u, or -1 if uncolored\n    - saturation: list[int], length |V|, saturation[u] is the number of distinct colors assigned to neighbors of vertex u\n    - degrees: list[int], length |V|, degrees[u] is the original degree of vertex u\n\n    Returns:\n    - int: the vertex ID from `uncolored` that should be colored next.\n    \"\"\"\n    uncolored_set = set(uncolored)\n    \n    best_vertex = None\n    best_score = None\n    \n    for v in uncolored:\n        sat_v = saturation[v]\n        deg_v = degrees[v]\n        \n        # Count uncolored neighbors (future conflict potential)\n        uncolored_neighbors = [u for u in adj[v] if u in uncolored_set]\n        uncolored_deg = len(uncolored_neighbors)\n        \n        # Compute 2-hop saturation pressure: sum of saturations of uncolored neighbors\n        # High value means coloring v will be hard for its neighbors\n        neighbor_sat_sum = sum(saturation[u] for u in uncolored_neighbors)\n        \n        # Count distinct colors in 2-hop neighborhood that are already used\n        two_hop_colors = set()\n        for u in uncolored_neighbors:\n            for w in adj[u]:\n                if colors[w] >= 0:\n                    two_hop_colors.add(colors[w])\n        two_hop_sat = len(two_hop_colors)\n        \n        # Primary: highest saturation (DSATUR base)\n        # Secondary: highest degree among uncolored neighbors (most constrained future)\n        # Tertiary: highest 2-hop saturation pressure\n        # We negate for min-heap style comparison (we want max)\n        score = (sat_v, deg_v, two_hop_sat, neighbor_sat_sum)\n        \n        if best_score is None or score > best_score:\n            best_score = score\n            best_vertex = v\n    \n    return best_vertex",
+    "explanation": "This heuristic extends DSATUR by breaking ties using the degree among uncolored neighbors and 2-hop neighborhood saturation pressure, prioritizing vertices whose coloring will most constrain future choices and reduce cascading conflicts.",
+    "is_valid": true,
+    "total_colors": 164,
+    "avg_colors": 6.56,
+    "excess_pct": -3.5294,
+    "runtime_ms": 107.9,
+    "error": null,
+    "prompt_tokens": 2619,
+    "completion_tokens": 682
+  },
+  "island_champions": {
+    "Island_A": {
+      "candidate_id": "single_shot_3_9a24f4e92a4f",
+      "parent_id": "root",
+      "phase": "single_shot",
+      "island": "Island_A",
+      "generation": 0,
+      "type": "single_shot",
+      "model": "antigravity/claude-sonnet-4-6",
+      "provider": "omniroute/antigravity",
+      "prompt_hash": "9a24f4e92a4f",
+      "response_hash": "bb06d188e6c8",
+      "candidate_hash": "5a979de375df",
+      "structural_hash": "404d43395f39",
+      "generated_code": "def choose_vertex(uncolored: list[int], adj: list[list[int]], colors: list[int], saturation: list[int], degrees: list[int]) -> int:\n    \"\"\"\n    Args:\n    - uncolored: list[int], non-empty list of remaining uncolored vertex IDs\n    - adj: list[list[int]], graph adjacency list (adj[u] contains all neighbor IDs of vertex u)\n    - colors: list[int], length |V|, colors[u] is the non-negative integer color assigned to vertex u, or -1 if uncolored\n    - saturation: list[int], length |V|, saturation[u] is the number of distinct colors assigned to neighbors of vertex u\n    - degrees: list[int], length |V|, degrees[u] is the original degree of vertex u\n\n    Returns:\n    - int: the vertex ID from `uncolored` that should be colored next.\n    \"\"\"\n    uncolored_set = set(uncolored)\n    \n    best_vertex = None\n    best_score = None\n    \n    for v in uncolored:\n        sat_v = saturation[v]\n        deg_v = degrees[v]\n        \n        # Count uncolored neighbors (future conflict potential)\n        uncolored_neighbors = [u for u in adj[v] if u in uncolored_set]\n        uncolored_deg = len(uncolored_neighbors)\n        \n        # Compute 2-hop saturation pressure: sum of saturations of uncolored neighbors\n        # High value means coloring v will be hard for its neighbors\n        neighbor_sat_sum = sum(saturation[u] for u in uncolored_neighbors)\n        \n        # Count distinct colors in 2-hop neighborhood that are already used\n        two_hop_colors = set()\n        for u in uncolored_neighbors:\n            for w in adj[u]:\n                if colors[w] >= 0:\n                    two_hop_colors.add(colors[w])\n        two_hop_sat = len(two_hop_colors)\n        \n        # Primary: highest saturation (DSATUR base)\n        # Secondary: highest degree among uncolored neighbors (most constrained future)\n        # Tertiary: highest 2-hop saturation pressure\n        # We negate for min-heap style comparison (we want max)\n        score = (sat_v, deg_v, two_hop_sat, neighbor_sat_sum)\n        \n        if best_score is None or score > best_score:\n            best_score = score\n            best_vertex = v\n    \n    return best_vertex",
+      "explanation": "This heuristic extends DSATUR by breaking ties using the degree among uncolored neighbors and 2-hop neighborhood saturation pressure, prioritizing vertices whose coloring will most constrain future choices and reduce cascading conflicts.",
+      "is_valid": true,
+      "total_colors": 164,
+      "avg_colors": 6.56,
+      "excess_pct": -3.5294,
+      "runtime_ms": 107.9,
+      "error": null,
+      "prompt_tokens": 2619,
+      "completion_tokens": 682
+    },
+    "Island_B": {
+      "candidate_id": "single_shot_3_9a24f4e92a4f",
+      "parent_id": "root",
+      "phase": "single_shot",
+      "island": "Island_A",
+      "generation": 0,
+      "type": "single_shot",
+      "model": "antigravity/claude-sonnet-4-6",
+      "provider": "omniroute/antigravity",
+      "prompt_hash": "9a24f4e92a4f",
+      "response_hash": "bb06d188e6c8",
+      "candidate_hash": "5a979de375df",
+      "structural_hash": "404d43395f39",
+      "generated_code": "def choose_vertex(uncolored: list[int], adj: list[list[int]], colors: list[int], saturation: list[int], degrees: list[int]) -> int:\n    \"\"\"\n    Args:\n    - uncolored: list[int], non-empty list of remaining uncolored vertex IDs\n    - adj: list[list[int]], graph adjacency list (adj[u] contains all neighbor IDs of vertex u)\n    - colors: list[int], length |V|, colors[u] is the non-negative integer color assigned to vertex u, or -1 if uncolored\n    - saturation: list[int], length |V|, saturation[u] is the number of distinct colors assigned to neighbors of vertex u\n    - degrees: list[int], length |V|, degrees[u] is the original degree of vertex u\n\n    Returns:\n    - int: the vertex ID from `uncolored` that should be colored next.\n    \"\"\"\n    uncolored_set = set(uncolored)\n    \n    best_vertex = None\n    best_score = None\n    \n    for v in uncolored:\n        sat_v = saturation[v]\n        deg_v = degrees[v]\n        \n        # Count uncolored neighbors (future conflict potential)\n        uncolored_neighbors = [u for u in adj[v] if u in uncolored_set]\n        uncolored_deg = len(uncolored_neighbors)\n        \n        # Compute 2-hop saturation pressure: sum of saturations of uncolored neighbors\n        # High value means coloring v will be hard for its neighbors\n        neighbor_sat_sum = sum(saturation[u] for u in uncolored_neighbors)\n        \n        # Count distinct colors in 2-hop neighborhood that are already used\n        two_hop_colors = set()\n        for u in uncolored_neighbors:\n            for w in adj[u]:\n                if colors[w] >= 0:\n                    two_hop_colors.add(colors[w])\n        two_hop_sat = len(two_hop_colors)\n        \n        # Primary: highest saturation (DSATUR base)\n        # Secondary: highest degree among uncolored neighbors (most constrained future)\n        # Tertiary: highest 2-hop saturation pressure\n        # We negate for min-heap style comparison (we want max)\n        score = (sat_v, deg_v, two_hop_sat, neighbor_sat_sum)\n        \n        if best_score is None or score > best_score:\n            best_score = score\n            best_vertex = v\n    \n    return best_vertex",
+      "explanation": "This heuristic extends DSATUR by breaking ties using the degree among uncolored neighbors and 2-hop neighborhood saturation pressure, prioritizing vertices whose coloring will most constrain future choices and reduce cascading conflicts.",
+      "is_valid": true,
+      "total_colors": 164,
+      "avg_colors": 6.56,
+      "excess_pct": -3.5294,
+      "runtime_ms": 107.9,
+      "error": null,
+      "prompt_tokens": 2619,
+      "completion_tokens": 682
+    },
+    "Island_C": {
+      "candidate_id": "single_shot_3_9a24f4e92a4f",
+      "parent_id": "root",
+      "phase": "single_shot",
+      "island": "Island_A",
+      "generation": 0,
+      "type": "single_shot",
+      "model": "antigravity/claude-sonnet-4-6",
+      "provider": "omniroute/antigravity",
+      "prompt_hash": "9a24f4e92a4f",
+      "response_hash": "bb06d188e6c8",
+      "candidate_hash": "5a979de375df",
+      "structural_hash": "404d43395f39",
+      "generated_code": "def choose_vertex(uncolored: list[int], adj: list[list[int]], colors: list[int], saturation: list[int], degrees: list[int]) -> int:\n    \"\"\"\n    Args:\n    - uncolored: list[int], non-empty list of remaining uncolored vertex IDs\n    - adj: list[list[int]], graph adjacency list (adj[u] contains all neighbor IDs of vertex u)\n    - colors: list[int], length |V|, colors[u] is the non-negative integer color assigned to vertex u, or -1 if uncolored\n    - saturation: list[int], length |V|, saturation[u] is the number of distinct colors assigned to neighbors of vertex u\n    - degrees: list[int], length |V|, degrees[u] is the original degree of vertex u\n\n    Returns:\n    - int: the vertex ID from `uncolored` that should be colored next.\n    \"\"\"\n    uncolored_set = set(uncolored)\n    \n    best_vertex = None\n    best_score = None\n    \n    for v in uncolored:\n        sat_v = saturation[v]\n        deg_v = degrees[v]\n        \n        # Count uncolored neighbors (future conflict potential)\n        uncolored_neighbors = [u for u in adj[v] if u in uncolored_set]\n        uncolored_deg = len(uncolored_neighbors)\n        \n        # Compute 2-hop saturation pressure: sum of saturations of uncolored neighbors\n        # High value means coloring v will be hard for its neighbors\n        neighbor_sat_sum = sum(saturation[u] for u in uncolored_neighbors)\n        \n        # Count distinct colors in 2-hop neighborhood that are already used\n        two_hop_colors = set()\n        for u in uncolored_neighbors:\n            for w in adj[u]:\n                if colors[w] >= 0:\n                    two_hop_colors.add(colors[w])\n        two_hop_sat = len(two_hop_colors)\n        \n        # Primary: highest saturation (DSATUR base)\n        # Secondary: highest degree among uncolored neighbors (most constrained future)\n        # Tertiary: highest 2-hop saturation pressure\n        # We negate for min-heap style comparison (we want max)\n        score = (sat_v, deg_v, two_hop_sat, neighbor_sat_sum)\n        \n        if best_score is None or score > best_score:\n            best_score = score\n            best_vertex = v\n    \n    return best_vertex",
+      "explanation": "This heuristic extends DSATUR by breaking ties using the degree among uncolored neighbors and 2-hop neighborhood saturation pressure, prioritizing vertices whose coloring will most constrain future choices and reduce cascading conflicts.",
+      "is_valid": true,
+      "total_colors": 164,
+      "avg_colors": 6.56,
+      "excess_pct": -3.5294,
+      "runtime_ms": 107.9,
+      "error": null,
+      "prompt_tokens": 2619,
+      "completion_tokens": 682
+    }
+  },
+  "migrations": [
+    {
+      "generation": 10,
+      "A_to_B": {
+        "candidate_id": "single_shot_3_9a24f4e92a4f",
+        "colors": 164,
+        "accepted": true
+      },
+      "B_to_C": {
+        "candidate_id": "single_shot_5_d5d2baa3167a",
+        "colors": 166,
+        "accepted": true
+      },
+      "C_to_A": {
+        "candidate_id": "gen4_Island_C_exploit_d3d60331725b",
+        "colors": 167,
+        "accepted": true
+      }
+    },
+    {
+      "generation": 20,
+      "A_to_B": {
+        "candidate_id": "single_shot_3_9a24f4e92a4f",
+        "colors": 164,
+        "accepted": false
+      },
+      "B_to_C": {
+        "candidate_id": "single_shot_3_9a24f4e92a4f",
+        "colors": 164,
+        "accepted": true
+      },
+      "C_to_A": {
+        "candidate_id": "single_shot_5_d5d2baa3167a",
+        "colors": 166,
+        "accepted": true
+      }
+    }
+  ],
+  "diversity_progression": [
+    {
+      "generation": 1,
+      "unique_structures": 12,
+      "island_bests": {
+        "Island_A": 164,
+        "Island_B": 166,
+        "Island_C": 168
+      },
+      "global_best": 164,
+      "champion_id": "single_shot_3_9a24f4e92a4f"
+    },
+    {
+      "generation": 2,
+      "unique_structures": 12,
+      "island_bests": {
+        "Island_A": 164,
+        "Island_B": 166,
+        "Island_C": 168
+      },
+      "global_best": 164,
+      "champion_id": "single_shot_3_9a24f4e92a4f"
+    },
+    {
+      "generation": 3,
+      "unique_structures": 12,
+      "island_bests": {
+        "Island_A": 164,
+        "Island_B": 166,
+        "Island_C": 168
+      },
+      "global_best": 164,
+      "champion_id": "single_shot_3_9a24f4e92a4f"
+    },
+    {
+      "generation": 4,
+      "unique_structures": 12,
+      "island_bests": {
+        "Island_A": 164,
+        "Island_B": 166,
+        "Island_C": 167
+      },
+      "global_best": 164,
+      "champion_id": "single_shot_3_9a24f4e92a4f"
+    },
+    {
+      "generation": 5,
+      "unique_structures": 12,
+      "island_bests": {
+        "Island_A": 164,
+        "Island_B": 166,
+        "Island_C": 167
+      },
+      "global_best": 164,
+      "champion_id": "single_shot_3_9a24f4e92a4f"
+    },
+    {
+      "generation": 6,
+      "unique_structures": 12,
+      "island_bests": {
+        "Island_A": 164,
+        "Island_B": 166,
+        "Island_C": 167
+      },
+      "global_best": 164,
+      "champion_id": "single_shot_3_9a24f4e92a4f"
+    },
+    {
+      "generation": 7,
+      "unique_structures": 12,
+      "island_bests": {
+        "Island_A": 164,
+        "Island_B": 166,
+        "Island_C": 167
+      },
+      "global_best": 164,
+      "champion_id": "single_shot_3_9a24f4e92a4f"
+    },
+    {
+      "generation": 8,
+      "unique_structures": 12,
+      "island_bests": {
+        "Island_A": 164,
+        "Island_B": 166,
+        "Island_C": 167
+      },
+      "global_best": 164,
+      "champion_id": "single_shot_3_9a24f4e92a4f"
+    },
+    {
+      "generation": 9,
+      "unique_structures": 12,
+      "island_bests": {
+        "Island_A": 164,
+        "Island_B": 166,
+        "Island_C": 167
+      },
+      "global_best": 164,
+      "champion_id": "single_shot_3_9a24f4e92a4f"
+    },
+    {
+      "generation": 10,
+      "unique_structures": 12,
+      "island_bests": {
+        "Island_A": 164,
+        "Island_B": 166,
+        "Island_C": 167
+      },
+      "global_best": 164,
+      "champion_id": "single_shot_3_9a24f4e92a4f"
+    },
+    {
+      "generation": 11,
+      "unique_structures": 10,
+      "island_bests": {
+        "Island_A": 164,
+        "Island_B": 164,
+        "Island_C": 166
+      },
+      "global_best": 164,
+      "champion_id": "single_shot_3_9a24f4e92a4f"
+    },
+    {
+      "generation": 12,
+      "unique_structures": 10,
+      "island_bests": {
+        "Island_A": 164,
+        "Island_B": 164,
+        "Island_C": 166
+      },
+      "global_best": 164,
+      "champion_id": "single_shot_3_9a24f4e92a4f"
+    },
+    {
+      "generation": 13,
+      "unique_structures": 10,
+      "island_bests": {
+        "Island_A": 164,
+        "Island_B": 164,
+        "Island_C": 166
+      },
+      "global_best": 164,
+      "champion_id": "single_shot_3_9a24f4e92a4f"
+    },
+    {
+      "generation": 14,
+      "unique_structures": 10,
+      "island_bests": {
+        "Island_A": 164,
+        "Island_B": 164,
+        "Island_C": 166
+      },
+      "global_best": 164,
+      "champion_id": "single_shot_3_9a24f4e92a4f"
+    },
+    {
+      "generation": 15,
+      "unique_structures": 10,
+      "island_bests": {
+        "Island_A": 164,
+        "Island_B": 164,
+        "Island_C": 166
+      },
+      "global_best": 164,
+      "champion_id": "single_shot_3_9a24f4e92a4f"
+    },
+    {
+      "generation": 16,
+      "unique_structures": 10,
+      "island_bests": {
+        "Island_A": 164,
+        "Island_B": 164,
+        "Island_C": 166
+      },
+      "global_best": 164,
+      "champion_id": "single_shot_3_9a24f4e92a4f"
+    },
+    {
+      "generation": 17,
+      "unique_structures": 10,
+      "island_bests": {
+        "Island_A": 164,
+        "Island_B": 164,
+        "Island_C": 166
+      },
+      "global_best": 164,
+      "champion_id": "single_shot_3_9a24f4e92a4f"
+    },
+    {
+      "generation": 18,
+      "unique_structures": 10,
+      "island_bests": {
+        "Island_A": 164,
+        "Island_B": 164,
+        "Island_C": 166
+      },
+      "global_best": 164,
+      "champion_id": "single_shot_3_9a24f4e92a4f"
+    },
+    {
+      "generation": 19,
+      "unique_structures": 10,
+      "island_bests": {
+        "Island_A": 164,
+        "Island_B": 164,
+        "Island_C": 166
+      },
+      "global_best": 164,
+      "champion_id": "single_shot_3_9a24f4e92a4f"
+    },
+    {
+      "generation": 20,
+      "unique_structures": 10,
+      "island_bests": {
+        "Island_A": 164,
+        "Island_B": 164,
+        "Island_C": 166
+      },
+      "global_best": 164,
+      "champion_id": "single_shot_3_9a24f4e92a4f"
+    },
+    {
+      "generation": 21,
+      "unique_structures": 9,
+      "island_bests": {
+        "Island_A": 164,
+        "Island_B": 164,
+        "Island_C": 164
+      },
+      "global_best": 164,
+      "champion_id": "single_shot_3_9a24f4e92a4f"
+    },
+    {
+      "generation": 22,
+      "unique_structures": 9,
+      "island_bests": {
+        "Island_A": 164,
+        "Island_B": 164,
+        "Island_C": 164
+      },
+      "global_best": 164,
+      "champion_id": "single_shot_3_9a24f4e92a4f"
+    },
+    {
+      "generation": 23,
+      "unique_structures": 9,
+      "island_bests": {
+        "Island_A": 164,
+        "Island_B": 164,
+        "Island_C": 164
+      },
+      "global_best": 164,
+      "champion_id": "single_shot_3_9a24f4e92a4f"
+    },
+    {
+      "generation": 24,
+      "unique_structures": 9,
+      "island_bests": {
+        "Island_A": 164,
+        "Island_B": 164,
+        "Island_C": 164
+      },
+      "global_best": 164,
+      "champion_id": "single_shot_3_9a24f4e92a4f"
+    },
+    {
+      "generation": 25,
+      "unique_structures": 9,
+      "island_bests": {
+        "Island_A": 164,
+        "Island_B": 164,
+        "Island_C": 164
+      },
+      "global_best": 164,
+      "champion_id": "single_shot_3_9a24f4e92a4f"
+    },
+    {
+      "generation": 26,
+      "unique_structures": 9,
+      "island_bests": {
+        "Island_A": 164,
+        "Island_B": 164,
+        "Island_C": 164
+      },
+      "global_best": 164,
+      "champion_id": "single_shot_3_9a24f4e92a4f"
+    },
+    {
+      "generation": 27,
+      "unique_structures": 9,
+      "island_bests": {
+        "Island_A": 164,
+        "Island_B": 164,
+        "Island_C": 164
+      },
+      "global_best": 164,
+      "champion_id": "single_shot_3_9a24f4e92a4f"
+    },
+    {
+      "generation": 28,
+      "unique_structures": 9,
+      "island_bests": {
+        "Island_A": 164,
+        "Island_B": 164,
+        "Island_C": 164
+      },
+      "global_best": 164,
+      "champion_id": "single_shot_3_9a24f4e92a4f"
+    },
+    {
+      "generation": 29,
+      "unique_structures": 9,
+      "island_bests": {
+        "Island_A": 164,
+        "Island_B": 164,
+        "Island_C": 164
+      },
+      "global_best": 164,
+      "champion_id": "single_shot_3_9a24f4e92a4f"
+    },
+    {
+      "generation": 30,
+      "unique_structures": 9,
+      "island_bests": {
+        "Island_A": 164,
+        "Island_B": 164,
+        "Island_C": 164
+      },
+      "global_best": 164,
+      "champion_id": "single_shot_3_9a24f4e92a4f"
+    }
+  ],
+  "h2h_vs_dsatur": {
+    "population_champ": {
+      "hidden1": {
+        "wins": 12,
+        "losses": 10,
+        "ties": 98,
+        "mean_diff": -0.0083,
+        "max_win": -1,
+        "max_loss": 2
+      },
+      "hidden2": {
+        "wins": 20,
+        "losses": 10,
+        "ties": 90,
+        "mean_diff": -0.0833,
+        "max_win": -2,
+        "max_loss": 2
+      }
+    },
+    "single_shot_champ": {
+      "hidden1": {
+        "wins": 12,
+        "losses": 10,
+        "ties": 98,
+        "mean_diff": -0.0083,
+        "max_win": -1,
+        "max_loss": 2
+      },
+      "hidden2": {
+        "wins": 20,
+        "losses": 10,
+        "ties": 90,
+        "mean_diff": -0.0833,
+        "max_win": -2,
+        "max_loss": 2
+      }
+    }
+  }
+}

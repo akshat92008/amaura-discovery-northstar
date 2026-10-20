@@ -1,0 +1,168 @@
+{
+  "timestamp": 1792173662.118616,
+  "metadata": {
+    "python_version": "3.13.2 (v3.13.2:4f8bb3947cf, Feb  4 2025, 11:51:10) [Clang 15.0.0 (clang-1500.3.9.4)]",
+    "platform": "darwin",
+    "model": "nvidia/nvidia/nemotron-3-super-120b-a12b",
+    "base_url": "http://127.0.0.1:20128/v1/chat/completions",
+    "mock_mode": false,
+    "is_pilot": true,
+    "phase_two_authorized": false,
+    "strict_protocol": true
+  },
+  "reproducibility_notes": {
+    "provider_nondeterminism": "Remote frontier LLM inference is subject to provider-side GPU non-determinism (MoE routing jitter, FP non-associativity across CUDA threads, dynamic batching) even when fixed seeds and temperature are provided. Local components (item streams, deterministic simulator, tie-breaking, AST validation, budget ledger) are 100% bit-for-bit reproducible.",
+    "start_seed": 40401,
+    "num_trials": 3
+  },
+  "config": {
+    "num_trials": 3,
+    "candidate_slots": 50,
+    "max_cost_usd": 15.0,
+    "mock_mode": false,
+    "is_pilot": true
+  },
+  "dev_benchmark_sha256": "89e58244eed5272533f206c352bf285e267bc2481c2c1983bec9b7dd7024d74e",
+  "hidden_benchmark_sha256": "SEALED_NOT_READ",
+  "trials": [
+    {
+      "trial_id": 1,
+      "seed": 40401,
+      "arm_a": {
+        "candidate_id": "cand-9ab4ff8e",
+        "code": "def priority(item: float, remaining_capacity: float, bin_capacity: float) -> float:\n    # Best Fit\n    return -(remaining_capacity - item)\n",
+        "dev_fitness": 0.031433,
+        "stats": {
+          "total_evaluated": 50,
+          "valid_count": 5,
+          "failed_count": 45,
+          "failure_rate": 0.9,
+          "failure_reasons": {
+            "AST Validation Error": 38,
+            "Execution Failed": 7
+          },
+          "best_fitness": 0.031433
+        }
+      },
+      "arm_c": {
+        "candidate_id": "cand-9ab4ff8e",
+        "code": "def priority(item: float, remaining_capacity: float, bin_capacity: float) -> float:\n    # Best Fit\n    return -(remaining_capacity - item)\n",
+        "dev_fitness": 0.031433,
+        "stats": {
+          "total_evaluated": 50,
+          "valid_count": 12,
+          "failed_count": 38,
+          "failure_rate": 0.76,
+          "failure_reasons": {
+            "AST Validation Error": 31,
+            "Execution Failed": 7
+          },
+          "best_fitness": 0.031433
+        }
+      },
+      "delta_dev": 0.0
+    },
+    {
+      "trial_id": 2,
+      "seed": 40402,
+      "arm_a": {
+        "candidate_id": "cand-9ab4ff8e",
+        "code": "def priority(item: float, remaining_capacity: float, bin_capacity: float) -> float:\n    # Best Fit\n    return -(remaining_capacity - item)\n",
+        "dev_fitness": 0.031433,
+        "stats": {
+          "total_evaluated": 50,
+          "valid_count": 5,
+          "failed_count": 45,
+          "failure_rate": 0.9,
+          "failure_reasons": {
+            "AST Validation Error": 42,
+            "Execution Failed": 3
+          },
+          "best_fitness": 0.031433
+        }
+      },
+      "arm_c": {
+        "candidate_id": "cand-9ab4ff8e",
+        "code": "def priority(item: float, remaining_capacity: float, bin_capacity: float) -> float:\n    # Best Fit\n    return -(remaining_capacity - item)\n",
+        "dev_fitness": 0.031433,
+        "stats": {
+          "total_evaluated": 50,
+          "valid_count": 13,
+          "failed_count": 37,
+          "failure_rate": 0.74,
+          "failure_reasons": {
+            "AST Validation Error": 33,
+            "Execution Failed": 4
+          },
+          "best_fitness": 0.031433
+        }
+      },
+      "delta_dev": 0.0
+    },
+    {
+      "trial_id": 3,
+      "seed": 40403,
+      "arm_a": {
+        "candidate_id": "cand-9ab4ff8e",
+        "code": "def priority(item: float, remaining_capacity: float, bin_capacity: float) -> float:\n    # Best Fit\n    return -(remaining_capacity - item)\n",
+        "dev_fitness": 0.031433,
+        "stats": {
+          "total_evaluated": 50,
+          "valid_count": 5,
+          "failed_count": 45,
+          "failure_rate": 0.9,
+          "failure_reasons": {
+            "AST Validation Error": 41,
+            "Execution Failed": 4
+          },
+          "best_fitness": 0.031433
+        }
+      },
+      "arm_c": {
+        "candidate_id": "cand-9ab4ff8e",
+        "code": "def priority(item: float, remaining_capacity: float, bin_capacity: float) -> float:\n    # Best Fit\n    return -(remaining_capacity - item)\n",
+        "dev_fitness": 0.031433,
+        "stats": {
+          "total_evaluated": 50,
+          "valid_count": 11,
+          "failed_count": 39,
+          "failure_rate": 0.78,
+          "failure_reasons": {
+            "AST Validation Error": 36,
+            "Execution Failed": 3
+          },
+          "best_fitness": 0.031433
+        }
+      },
+      "delta_dev": 0.0
+    }
+  ],
+  "final_statistics": {
+    "phase": "phase_1_pilot_feasibility",
+    "num_trials": 3,
+    "mean_delta_dev": 0.0,
+    "gate1_threshold": -0.005,
+    "operational_feasibility_passed": false,
+    "dev_improvement_passed": false,
+    "gate1_passed": false,
+    "hidden_status": "SEALED_AND_UNTOUCHED",
+    "exploratory_warning": "Gate 1 evaluates operational feasibility and preliminary dev.json signal. It is strictly exploratory and NEVER substitutes for confirmatory hidden-test evidence."
+  },
+  "budget_ledger": {
+    "requests_count": 276,
+    "retries_count": 0,
+    "input_tokens": 618865,
+    "output_tokens": 140124,
+    "cost_usd": 3.958455,
+    "actual_reported_cost_usd": 3.958455,
+    "estimated_cost_usd": 0.0,
+    "reserved_requests": 0,
+    "reserved_cost_usd": 0,
+    "settled_reservations_count": 276,
+    "elapsed_sec": 4522.45,
+    "tripwire_triggered": false,
+    "stop_reason": null,
+    "pricing_source": "NVIDIA API Catalog / OmniRoute (nemotron-3-super-120b-a12b)",
+    "pricing_last_verified": "2026-10-14"
+  }
+}

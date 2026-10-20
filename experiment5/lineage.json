@@ -1,0 +1,74 @@
+{
+  "champion": {
+    "candidate_id": "gen5_Island_A_exploit_fbc6d9a30324",
+    "parent_id": "gen4_Island_A_explore_c670755ccd35",
+    "phase": "population_evolution",
+    "island": "Island_A",
+    "generation": 5,
+    "type": "exploitation",
+    "model": "antigravity/claude-sonnet-4-6",
+    "provider": "omniroute/antigravity",
+    "prompt_hash": "fbc6d9a30324",
+    "response_hash": "cdd63027a829",
+    "candidate_hash": "7a4418968ad9",
+    "structural_hash": "03498f536a3e",
+    "generated_code": "def choose_bin(item: float, bin_remaining: list[float], recent_items: list[float], bin_capacity: float) -> int:\n    import math\n\n    if not bin_remaining:\n        return -1\n\n    feasible = [(i, r) for i, r in enumerate(bin_remaining) if r >= item - 1e-6]\n    if not feasible:\n        return -1\n\n    if recent_items:\n        avg = sum(recent_items) / len(recent_items)\n        std = math.sqrt(sum((x - avg)**2 for x in recent_items) / len(recent_items)) if len(recent_items) > 1 else avg * 0.2\n    else:\n        avg = item\n        std = item * 0.2\n\n    small_threshold = max(avg - 1.5 * std, bin_capacity * 0.04)\n    orphan_lo = small_threshold\n    orphan_hi = max(avg - 0.25 * std, small_threshold + 1e-6)\n\n    best_idx = -1\n    best_score = float('inf')\n\n    for i, remaining in feasible:\n        leftover = remaining - item\n\n        if leftover < 1e-6:\n            score = -1000.0\n        elif leftover < small_threshold:\n            score = leftover / bin_capacity\n        elif orphan_lo <= leftover <= orphan_hi:\n            score = 2.5 + leftover / bin_capacity\n        else:\n            n_fits = leftover / avg if avg > 1e-9 else 0\n            fractional_waste = (n_fits - math.floor(n_fits)) * avg / bin_capacity\n            score = 0.5 + fractional_waste * 1.2 + (leftover / bin_capacity) * 0.08\n\n        if score < best_score:\n            best_score = score\n            best_idx = i\n\n    if best_idx >= 0:\n        leftover = bin_remaining[best_idx] - item\n        in_orphan = orphan_lo <= leftover <= orphan_hi\n        if in_orphan and item > bin_capacity * 0.25:\n            return -1\n        return best_idx\n\n    return -1",
+    "explanation": "This refinement tightens the orphan penalty (2.5 vs 2.0), lowers the new-bin threshold to 25% capacity, reduces the fractional-waste smoothing coefficient, and slightly adjusts the small-threshold floor to better avoid creating stranded small remainders.",
+    "is_valid": true,
+    "excess_pct": 8.1882,
+    "avg_bins": 49.68,
+    "runtime_ms": 11.45,
+    "error": null,
+    "prompt_tokens": 3138,
+    "completion_tokens": 621
+  },
+  "best_single_shot": {
+    "candidate_id": "single_shot_6_e8f9412de7a4",
+    "parent_id": "root",
+    "phase": "single_shot",
+    "island": "single_shot",
+    "generation": 0,
+    "type": "single_shot",
+    "model": "antigravity/claude-sonnet-4-6",
+    "provider": "omniroute/antigravity",
+    "prompt_hash": "e8f9412de7a4",
+    "response_hash": "504ec0713633",
+    "candidate_hash": "15564baaa32e",
+    "structural_hash": "d56b44818f2b",
+    "generated_code": "def choose_bin(item: float, bin_remaining: list[float], recent_items: list[float], bin_capacity: float) -> int:\n    import math\n\n    if not bin_remaining:\n        return -1\n\n    # Compute recent item statistics\n    if recent_items:\n        avg_recent = sum(recent_items) / len(recent_items)\n        variance = sum((x - avg_recent) ** 2 for x in recent_items) / len(recent_items)\n        std_recent = math.sqrt(variance) if variance > 0 else 0.0\n    else:\n        avg_recent = item\n        std_recent = 0.0\n\n    # Estimate future item size (use recent average as proxy)\n    future_avg = avg_recent\n\n    feasible = [(i, r) for i, r in enumerate(bin_remaining) if r >= item - 1e-6]\n\n    if not feasible:\n        return -1\n\n    best_idx = -1\n    best_score = float('inf')\n\n    for i, remaining in feasible:\n        leftover = remaining - item\n\n        # Penalize bins where leftover is too small to fit future items\n        # but not zero (wasted fragmentation)\n        if leftover < 1e-6:\n            # Perfect fit - very good\n            fragmentation_penalty = 0.0\n        else:\n            # How well does leftover accommodate future items?\n            # Ideal: leftover is a multiple of future_avg or at least >= future_avg\n            if future_avg > 1e-6:\n                # Prefer leftover that can fit at least one more item\n                fits_future = leftover / future_avg\n                # Penalize if leftover is too small to fit future avg item\n                if leftover < future_avg - std_recent:\n                    # Wasted space - high penalty\n                    fragmentation_penalty = leftover / bin_capacity * 2.0\n                else:\n                    # Can fit future items - prefer tighter fit\n                    # Score based on how close to ideal packing\n                    ideal_leftover = (math.floor(fits_future)) * future_avg\n                    waste = leftover - ideal_leftover\n                    fragmentation_penalty = waste / bin_capacity\n            else:\n                fragmentation_penalty = leftover / bin_capacity\n\n        # Primary: minimize leftover (best fit style)\n        # Secondary: fragmentation awareness\n        score = leftover / bin_capacity + fragmentation_penalty * 0.5\n\n        if score < best_score:\n            best_score = score\n            best_idx = i\n\n    # Decide whether to open a new bin\n    # If best leftover is very small (near perfect fit) or we found a good bin, use it\n    if best_idx >= 0:\n        best_remaining = bin_remaining[best_idx]\n        leftover = best_remaining - item\n        # Open new bin if item is large and leftover would be wasteful\n        # and we expect future large items\n        if (future_avg > bin_capacity * 0.4 and\n                leftover > bin_capacity * 0.3 and\n                leftover < future_avg - std_recent * 0.5):\n            return -1\n        return best_idx\n\n    return -1",
+    "explanation": "This algorithm extends Best Fit with distribution-aware scoring by using recent item statistics (mean and std deviation) to penalize bins whose leftover space would be too small for future items, reducing fragmentation by preferring bins where leftover can accommodate predicted upcoming items.",
+    "is_valid": true,
+    "excess_pct": 8.7108,
+    "avg_bins": 49.92,
+    "runtime_ms": 9.49,
+    "error": null,
+    "prompt_tokens": 2547,
+    "completion_tokens": 844
+  },
+  "h2h_vs_best_fit": {
+    "population_champ": {
+      "hidden1": {
+        "wins": 9,
+        "losses": 50,
+        "ties": 61
+      },
+      "hidden2": {
+        "wins": 14,
+        "losses": 33,
+        "ties": 73
+      }
+    },
+    "single_shot_champ": {
+      "hidden1": {
+        "wins": 4,
+        "losses": 2,
+        "ties": 114
+      },
+      "hidden2": {
+        "wins": 2,
+        "losses": 4,
+        "ties": 114
+      }
+    }
+  }
+}

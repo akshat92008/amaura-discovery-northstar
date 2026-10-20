@@ -1,0 +1,85 @@
+{
+  "current_state": "REPORT_COMPLETE",
+  "history": [
+    {
+      "state": "DRAFT",
+      "timestamp": "2026-10-05T13:53:10.393373+00:00",
+      "reason": "Stage 2 Experiment Initialized"
+    },
+    {
+      "state": "AUDIT",
+      "timestamp": "2026-10-05T13:53:11.435574+00:00",
+      "reason": "Audit passed successfully"
+    },
+    {
+      "state": "PILOT",
+      "timestamp": "2026-10-05T14:41:00.518157+00:00",
+      "reason": "Starting pilot calibration"
+    },
+    {
+      "state": "PROMPTS_FROZEN",
+      "timestamp": "2026-10-05T15:24:06.573544+00:00",
+      "reason": "Prompts and perspectives frozen after pilot"
+    },
+    {
+      "state": "DATA_FROZEN",
+      "timestamp": "2026-10-05T15:24:06.574296+00:00",
+      "reason": "Benchmark splits frozen cryptographically"
+    },
+    {
+      "state": "MAIN_RUNNING",
+      "timestamp": "2026-10-05T15:25:33.686132+00:00",
+      "reason": "Starting main candidate generation and selection"
+    },
+    {
+      "state": "SELECTIONS_FROZEN",
+      "timestamp": "2026-10-05T15:43:06.145817+00:00",
+      "reason": "All main trials completed; candidate generation and selection permanently frozen"
+    },
+    {
+      "state": "HIDDEN_RUNNING",
+      "timestamp": "2026-10-05T15:43:16.181532+00:00",
+      "reason": "Starting blind evaluation on hidden final benchmark"
+    },
+    {
+      "state": "ANALYSIS_FROZEN",
+      "timestamp": "2026-10-05T15:58:37.460626+00:00",
+      "reason": "Hidden evaluation complete; ready for statistical analysis"
+    },
+    {
+      "state": "REPORT_COMPLETE",
+      "timestamp": "2026-10-05T15:59:23.976667+00:00",
+      "reason": "Statistical analysis complete"
+    },
+    {
+      "state": "DATA_FROZEN",
+      "timestamp": "2026-10-05T16:24:45.028847+00:00",
+      "reason": "Resuming protocol to complete full N=30 trials"
+    },
+    {
+      "state": "MAIN_RUNNING",
+      "timestamp": "2026-10-05T16:24:57.763068+00:00",
+      "reason": "Starting main candidate generation and selection"
+    },
+    {
+      "state": "SELECTIONS_FROZEN",
+      "timestamp": "2026-10-06T14:00:56.757021+00:00",
+      "reason": "All main trials completed; candidate generation and selection permanently frozen"
+    },
+    {
+      "state": "HIDDEN_RUNNING",
+      "timestamp": "2026-10-06T14:01:34.525516+00:00",
+      "reason": "Starting blind evaluation on hidden final benchmark"
+    },
+    {
+      "state": "ANALYSIS_FROZEN",
+      "timestamp": "2026-10-06T17:31:28.598608+00:00",
+      "reason": "Hidden evaluation complete; ready for statistical analysis"
+    },
+    {
+      "state": "REPORT_COMPLETE",
+      "timestamp": "2026-10-06T17:31:36.915252+00:00",
+      "reason": "Statistical analysis complete"
+    }
+  ]
+}

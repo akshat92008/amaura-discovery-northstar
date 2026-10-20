@@ -1,0 +1,10 @@
+You are an expert combinatorial optimization judge.
+Review the following 10 algorithm candidates generated in Generation 10.
+Based purely on your theoretical analysis, algorithmic rigor, and mathematical structure,
+select exactly ONE candidate algorithm to represent your search.
+
+You must output your final decision in the exact format:
+SELECTED_CANDIDATE: Candidate_XX
+Reasoning: <one-sentence explanation>
+
+Do not select more than one candidate.

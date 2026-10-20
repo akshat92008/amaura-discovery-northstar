@@ -1,0 +1,252 @@
+{
+  "inventory": [
+    {
+      "relative_path": "stage3/results/main_results.json",
+      "absolute_path": "./stage3/results/main_results.json",
+      "size_bytes": 88099,
+      "last_modified_utc": "2026-10-14T19:27:34.733289+00:00",
+      "sha256": "9fb7bc6dc3e8142f5cb265b72f57cef47bd3e3f6e5d585152354769cafb058c9",
+      "description": "Final 30-trial results, descriptive stats, and statistical tests",
+      "status": "VERIFIED_PRESENT"
+    },
+    {
+      "relative_path": "stage3/results/selections.json",
+      "absolute_path": "./stage3/results/selections.json",
+      "size_bytes": 11397,
+      "last_modified_utc": "2026-10-14T19:26:20.861475+00:00",
+      "sha256": "f0d57ff95b03f5652c5eda2d34e99683e3930a98c513aa9302c466bd51332e93",
+      "description": "Frozen champion selections prior to unsealing hidden dataset",
+      "status": "VERIFIED_PRESENT"
+    },
+    {
+      "relative_path": "stage3/config.json",
+      "absolute_path": "./stage3/config.json",
+      "size_bytes": 1877,
+      "last_modified_utc": "2026-10-07T03:48:00.832001+00:00",
+      "sha256": "efd6d2d51c717db0a86f2343b46c6e1b7d8db0b0cee8fbb6f89141d3d6eb943f",
+      "description": "Preregistered experimental parameters and decision thresholds",
+      "status": "VERIFIED_PRESENT"
+    },
+    {
+      "relative_path": "stage3/state.json",
+      "absolute_path": "./stage3/state.json",
+      "size_bytes": 2225,
+      "last_modified_utc": "2026-10-14T19:27:34.729105+00:00",
+      "sha256": "1e1fde536cc23c52690668f2a959072b417093a105cc5e04e902831b5ec38df9",
+      "description": "State machine transition history",
+      "status": "VERIFIED_PRESENT"
+    },
+    {
+      "relative_path": "stage3/audit/audit_log.jsonl",
+      "absolute_path": "./stage3/audit/audit_log.jsonl",
+      "size_bytes": 6550,
+      "last_modified_utc": "2026-10-14T19:27:34.729464+00:00",
+      "sha256": "5a9080a7559da177c0afb01407dc4525a69125d5b5b5ba83efd91cb4e59891e0",
+      "description": "Chronological audit log of state transitions and firewall probes",
+      "status": "VERIFIED_PRESENT"
+    },
+    {
+      "relative_path": "stage3/candidates/main_candidates.jsonl",
+      "absolute_path": "./stage3/candidates/main_candidates.jsonl",
+      "size_bytes": 12134062,
+      "last_modified_utc": "2026-10-14T19:26:20.851778+00:00",
+      "sha256": "8c7ab8874f549664321f583229b18ecbbbae420785e8f33315efd6fb5a972a52",
+      "description": "Full immutable ledger of 9,000 candidate slots",
+      "status": "VERIFIED_PRESENT"
+    },
+    {
+      "relative_path": "stage3/benchmarks/manifest.json",
+      "absolute_path": "./stage3/benchmarks/manifest.json",
+      "size_bytes": 910,
+      "last_modified_utc": "2026-10-07T03:49:10.932823+00:00",
+      "sha256": "ffecb594da4fd98705e72d7637b92ed5b483f70c3427b9343350ab48329c72e0",
+      "description": "Benchmark dataset manifest and penalty verification",
+      "status": "VERIFIED_PRESENT"
+    },
+    {
+      "relative_path": "stage3/benchmarks/graph_coloring/dev.json",
+      "absolute_path": "./stage3/benchmarks/graph_coloring/dev.json",
+      "size_bytes": 283877,
+      "last_modified_utc": "2026-10-07T03:49:10.869148+00:00",
+      "sha256": "be32be00851ab62507d0ec856f8fdc1c2653ca0ab05d411ae089f10640c3d77f",
+      "description": "40 development graphs",
+      "status": "VERIFIED_PRESENT"
+    },
+    {
+      "relative_path": "stage3/benchmarks/graph_coloring/hidden.json",
+      "absolute_path": "./stage3/benchmarks/graph_coloring/hidden.json",
+      "size_bytes": 2163294,
+      "last_modified_utc": "2026-10-07T03:49:10.922200+00:00",
+      "sha256": "54bbad239a22626ec4fa2d227ad0ce0acc7a1e6776f331cd5aa91c563a7591ff",
+      "description": "200 unseen hidden graphs",
+      "status": "VERIFIED_PRESENT"
+    },
+    {
+      "relative_path": "stage3/src/analyze.py",
+      "absolute_path": "./stage3/src/analyze.py",
+      "size_bytes": 18375,
+      "last_modified_utc": "2026-10-07T03:53:35.222298+00:00",
+      "sha256": "44fd301034f7f669d8edd2d2731d952f5dd7ab847f6aa0df8420058f47ebe2b9",
+      "description": "Statistical engine implementation",
+      "status": "VERIFIED_PRESENT"
+    },
+    {
+      "relative_path": "stage3/src/evaluator_gc.py",
+      "absolute_path": "./stage3/src/evaluator_gc.py",
+      "size_bytes": 9744,
+      "last_modified_utc": "2026-10-07T11:44:41.754262+00:00",
+      "sha256": "64fa878f229cfcf6f2884cb4a3936fc221d27eb447eeaeb324391e386e44ebd4",
+      "description": "Graph coloring evaluator & validator",
+      "status": "VERIFIED_PRESENT"
+    },
+    {
+      "relative_path": "stage3/src/sandbox.py",
+      "absolute_path": "./stage3/src/sandbox.py",
+      "size_bytes": 5663,
+      "last_modified_utc": "2026-10-07T03:54:44.278972+00:00",
+      "sha256": "17bbb9c66dc355a9a715086ab5959b102bf56eba8dca8623a85467e7a56b3c0d",
+      "description": "AST sandbox & execution environment",
+      "status": "VERIFIED_PRESENT"
+    },
+    {
+      "relative_path": "stage3/src/state_machine.py",
+      "absolute_path": "./stage3/src/state_machine.py",
+      "size_bytes": 6442,
+      "last_modified_utc": "2026-10-07T03:50:26.228702+00:00",
+      "sha256": "9fbe420caee744e88aa3296d27870e0e82526f32c1e1206b7d05a6ca540623ab",
+      "description": "State machine & technical firewall implementation",
+      "status": "VERIFIED_PRESENT"
+    },
+    {
+      "relative_path": "stage3/src/main_runner.py",
+      "absolute_path": "./stage3/src/main_runner.py",
+      "size_bytes": 28916,
+      "last_modified_utc": "2026-10-12T02:14:54.933527+00:00",
+      "sha256": "f5885f3f4fbcb6a3fdf4f711886d76a54ff6df29961d4527fee3b15ece98fe27",
+      "description": "Sequential runner orchestration",
+      "status": "VERIFIED_PRESENT"
+    },
+    {
+      "relative_path": "stage3/baselines/graph_coloring.py",
+      "absolute_path": "./stage3/baselines/graph_coloring.py",
+      "size_bytes": 5561,
+      "last_modified_utc": "2026-10-07T03:53:56.175327+00:00",
+      "sha256": "f243d68aa148a7237c921cc2e600f8d6bf6fd32afb21e995a7f5e8b6a105a2e0",
+      "description": "Classical baseline implementations",
+      "status": "VERIFIED_PRESENT"
+    },
+    {
+      "relative_path": "stage3/audit/03_stage3_final_report.md",
+      "absolute_path": "./stage3/audit/03_stage3_final_report.md",
+      "size_bytes": 4897,
+      "last_modified_utc": "2026-10-14T19:27:34.733879+00:00",
+      "sha256": "c43c9b5e2480cc7ea18ba82a28fcdf677131771eaae1136b1fc5060332c81d63",
+      "description": "Original certified final report",
+      "status": "VERIFIED_PRESENT"
+    },
+    {
+      "relative_path": "stage3/audit/02_pilot_report.md",
+      "absolute_path": "./stage3/audit/02_pilot_report.md",
+      "size_bytes": 12041,
+      "last_modified_utc": "2026-10-07T11:00:58.800143+00:00",
+      "sha256": "612eabc71bd5248afa76b2291617a665cb691432935118792351377fc6e4c320",
+      "description": "Stage 3 pilot study report",
+      "status": "VERIFIED_PRESENT"
+    }
+  ],
+  "candidate_yield": {
+    "Arm_A_valid_slots": 1519,
+    "Arm_A_yield_rate": 0.5063,
+    "Arm_B_valid_slots": 1535,
+    "Arm_B_yield_rate": 0.5117,
+    "Arm_C_valid_slots": 2691,
+    "Arm_C_yield_rate": 0.897
+  },
+  "primary_endpoint": {
+    "trials_count": 30,
+    "arm_a_sum": 38170,
+    "arm_a_mean": 1272.3333,
+    "arm_a_median": 1275.0,
+    "arm_a_std": 12.8045,
+    "arm_c_sum": 38180,
+    "arm_c_mean": 1272.6667,
+    "arm_c_median": 1277.5,
+    "arm_c_std": 13.1578,
+    "mean_paired_difference": 0.3333,
+    "median_paired_difference": 0.5,
+    "std_paired_difference": 18.2026,
+    "tally": {
+      "c_wins": 14,
+      "ties": 1,
+      "a_wins": 15
+    },
+    "bootstrap_ci_95": [
+      -6.1008,
+      6.7
+    ],
+    "wilcoxon_w": 216.0,
+    "wilcoxon_p": 0.9741132070078699,
+    "practical_criterion_met": false,
+    "decision": "NOT_SUPPORTED"
+  },
+  "secondary_arm_b": {
+    "failures": 14,
+    "valid_count": 16,
+    "mcnemar_p": 0.0001220703125,
+    "imputed_mean_diff": -8279.3,
+    "imputed_ci_95": [
+      -11235.9025,
+      -5322.93
+    ],
+    "imputed_wilcoxon_p": 0.0001469948166845389
+  },
+  "baselines": {
+    "Greedy First-Fit": {
+      "total_colors": 1552,
+      "avg_colors_per_graph": 7.76,
+      "valid_all": true,
+      "total_runtime_ms": 10.0,
+      "avg_runtime_ms_per_graph": 0.05
+    },
+    "Welsh-Powell (1967)": {
+      "total_colors": 1450,
+      "avg_colors_per_graph": 7.25,
+      "valid_all": true,
+      "total_runtime_ms": 20.0,
+      "avg_runtime_ms_per_graph": 0.1
+    },
+    "DSATUR (Brelaz 1979)": {
+      "total_colors": 1333,
+      "avg_colors_per_graph": 6.665,
+      "valid_all": true,
+      "total_runtime_ms": 70.0,
+      "avg_runtime_ms_per_graph": 0.35
+    },
+    "Recursive Largest First (RLF 1979)": {
+      "total_colors": 1299,
+      "avg_colors_per_graph": 6.495,
+      "valid_all": true,
+      "total_runtime_ms": 90.0,
+      "avg_runtime_ms_per_graph": 0.45
+    }
+  },
+  "runtime_resolution": {
+    "dsatur_total_ms": 70.0,
+    "dsatur_per_graph_ms": 0.35,
+    "arm_a_mean_total_ms": 1066.99,
+    "arm_a_mean_per_graph_ms": 5.335,
+    "arm_c_mean_total_ms": 1059.65,
+    "arm_c_mean_per_graph_ms": 5.2982,
+    "arm_c_to_dsatur_ratio": 15.1,
+    "erroneous_comparison": "777.52 ms total / 0.33 ms per graph = ~2,350x"
+  },
+  "reproducibility": {
+    "trial_1_arm_a_recorded": 1292,
+    "trial_1_arm_a_replay": 1292,
+    "trial_1_arm_a_match": true,
+    "trial_1_arm_c_recorded": 1278,
+    "trial_1_arm_c_seeded_replay": 1278,
+    "trial_1_arm_c_match": true,
+    "unseeded_variance_tolerance": "1278 to 1282 (+/- 0.35%)"
+  }
+}

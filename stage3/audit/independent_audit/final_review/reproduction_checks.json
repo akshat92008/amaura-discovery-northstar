@@ -1,0 +1,254 @@
+{
+  "reproduction_checks": [
+    {
+      "check_id": "CHK-01-ARTIFACTS",
+      "category": "artifact_preservation",
+      "description": "Preservation and SHA-256 integrity check of all primary experimental artifacts",
+      "expected": "13 primary files present with valid hashes",
+      "observed": "13 primary files present and SHA-256 verified in read-only mode",
+      "tolerance": "exact_match",
+      "status": "PASSED",
+      "execution_limitations": "Checked file existence, sizes, and cryptographic hashes in-place; no source files modified."
+    },
+    {
+      "check_id": "CHK-02-TRIAL-DESIGN",
+      "category": "experimental_design",
+      "description": "Verification of 30 paired trials and sequential seed sequence 30301..30330",
+      "expected": {
+        "num_trials": 30,
+        "seed_min": 30301,
+        "seed_max": 30330
+      },
+      "observed": {
+        "num_trials": 30,
+        "seed_min": 30301,
+        "seed_max": 30330
+      },
+      "tolerance": "exact_match",
+      "status": "PASSED",
+      "execution_limitations": "None. All 30 trial objects verified."
+    },
+    {
+      "check_id": "CHK-03-CANDIDATE-LEDGER",
+      "category": "execution_integrity",
+      "description": "Completeness of main_candidates.jsonl candidate generation ledger",
+      "expected": "9,000 lines (30 trials x 3 arms x 100 candidate slots)",
+      "observed": "9,000 lines exactly, all 90 trial-arm pairs have exactly 100 entries",
+      "tolerance": "exact_match",
+      "status": "PASSED",
+      "execution_limitations": "No new LLM calls made. Verified stored candidate metadata and token usage."
+    },
+    {
+      "check_id": "CHK-04-SELECTION-ALIGNMENT",
+      "category": "data_provenance",
+      "description": "Cross-file consistency between selections.json, main_results.json, and checkpoints",
+      "expected": "0 candidate ID or dev_score mismatches across 30 trials",
+      "observed": "0 mismatches across all 90 champion slots",
+      "tolerance": "zero_mismatches",
+      "status": "PASSED",
+      "execution_limitations": "None."
+    },
+    {
+      "check_id": "CHK-05-ARM-A-TOTAL",
+      "category": "statistical_calculation",
+      "description": "Arm A hidden benchmark total colors and mean score across 30 trials",
+      "expected": {
+        "sum": 38170,
+        "mean": 1272.3333
+      },
+      "observed": {
+        "sum": 38170,
+        "mean": 1272.3333
+      },
+      "tolerance": 0.0001,
+      "status": "PASSED",
+      "execution_limitations": "Calculated across 30 frozen champion outputs on 200 hidden graphs."
+    },
+    {
+      "check_id": "CHK-06-ARM-C-TOTAL",
+      "category": "statistical_calculation",
+      "description": "Arm C hidden benchmark total colors and mean score across 30 trials",
+      "expected": {
+        "sum": 38180,
+        "mean": 1272.6667
+      },
+      "observed": {
+        "sum": 38180,
+        "mean": 1272.6667
+      },
+      "tolerance": 0.0001,
+      "status": "PASSED",
+      "execution_limitations": "Calculated across 30 frozen champion outputs on 200 hidden graphs."
+    },
+    {
+      "check_id": "CHK-07-PAIRED-DIFFERENCE",
+      "category": "primary_endpoint",
+      "description": "Mean and median paired difference E[Delta] = Score_C - Score_A",
+      "expected": {
+        "mean_delta": 0.3333,
+        "median_delta": 0.5
+      },
+      "observed": {
+        "mean_delta": 0.3333,
+        "median_delta": 0.5
+      },
+      "tolerance": 0.0001,
+      "status": "PASSED",
+      "execution_limitations": "Unit of analysis is paired trial (T=30)."
+    },
+    {
+      "check_id": "CHK-08-TRIAL-TALLY",
+      "category": "primary_endpoint",
+      "description": "Number of Arm C wins, ties, and losses across 30 paired trials",
+      "expected": {
+        "c_wins": 14,
+        "ties": 1,
+        "a_wins": 15
+      },
+      "observed": {
+        "c_wins": 14,
+        "ties": 1,
+        "a_wins": 15
+      },
+      "tolerance": "exact_match",
+      "status": "PASSED",
+      "execution_limitations": "Identified that interim summary reporting 13-1-16 was an editorial misclassification of Trial 23."
+    },
+    {
+      "check_id": "CHK-09-BOOTSTRAP-CI",
+      "category": "primary_endpoint",
+      "description": "95% Paired bootstrap confidence interval (10,000 resamples, seed 303)",
+      "expected": [
+        -6.1008,
+        6.7
+      ],
+      "observed": [
+        -6.1008,
+        6.7
+      ],
+      "tolerance": 0.0001,
+      "status": "PASSED",
+      "execution_limitations": "Resampled across 30 trial pairs using percentile bootstrap method."
+    },
+    {
+      "check_id": "CHK-10-WILCOXON-TEST",
+      "category": "primary_endpoint",
+      "description": "Two-sided paired Wilcoxon signed-rank test on finite differences",
+      "expected": {
+        "statistic": 216.0,
+        "p_value": 0.974113
+      },
+      "observed": {
+        "statistic": 216.0,
+        "p_value": 0.974113
+      },
+      "tolerance": 1e-06,
+      "status": "PASSED",
+      "execution_limitations": "Standard two-sided test; 1 zero-difference pair (Trial 2)."
+    },
+    {
+      "check_id": "CHK-11-PRACTICAL-GATE",
+      "category": "decision_rule",
+      "description": "Preregistered practical superiority criterion: CI_upper < -1.0 color",
+      "expected": false,
+      "observed": false,
+      "tolerance": "exact_match",
+      "status": "PASSED",
+      "execution_limitations": "Criterion evaluated: 6.7000 < -1.0 is False."
+    },
+    {
+      "check_id": "CHK-12-FINAL-DECISION",
+      "category": "decision_rule",
+      "description": "Application of preregistered final classification rule",
+      "expected": "NOT_SUPPORTED",
+      "observed": "NOT_SUPPORTED",
+      "tolerance": "exact_match",
+      "status": "PASSED",
+      "execution_limitations": "Decision rule faithfully executed by runner."
+    },
+    {
+      "check_id": "CHK-13-ARM-B-RELIABILITY",
+      "category": "secondary_endpoint",
+      "description": "Arm B crash count and exact two-sided McNemar test",
+      "expected": {
+        "b_failures": 14,
+        "mcnemar_p": 0.00012207
+      },
+      "observed": {
+        "b_failures": 14,
+        "mcnemar_p": 0.00012207
+      },
+      "tolerance": 1e-06,
+      "status": "PASSED",
+      "execution_limitations": "Analyzed 14 discordant pairs (B fail, C valid) using scipy.stats.binomtest."
+    },
+    {
+      "check_id": "CHK-14-ARM-B-IMPUTATION",
+      "category": "secondary_endpoint",
+      "description": "Bounded-imputation sensitivity analysis with S_penalty = 19,001",
+      "expected": {
+        "imputed_mean_delta": -8279.3,
+        "wilcoxon_p": 0.00014699
+      },
+      "observed": {
+        "imputed_mean_delta": -8279.3,
+        "wilcoxon_p": 0.00014699
+      },
+      "tolerance": 0.01,
+      "status": "PASSED",
+      "execution_limitations": "Imputed penalty of 19,001 colors for all 14 invalid Arm B trials."
+    },
+    {
+      "check_id": "CHK-15-CLASSICAL-BASELINES",
+      "category": "baseline_comparison",
+      "description": "Deterministic evaluation of classical heuristics on 200 hidden graphs",
+      "expected": {
+        "Greedy": 1552,
+        "Welsh_Powell": 1450,
+        "DSATUR": 1333,
+        "RLF": 1299
+      },
+      "observed": {
+        "Greedy": 1552,
+        "Welsh_Powell": 1450,
+        "DSATUR": 1333,
+        "RLF": 1299
+      },
+      "tolerance": "exact_match",
+      "status": "PASSED",
+      "execution_limitations": "Executed deterministically on local 200-graph benchmark. All outputs 100% valid."
+    },
+    {
+      "check_id": "CHK-16-CHAMPION-REPRODUCTION-A",
+      "category": "reproducibility",
+      "description": "Independent re-execution of Trial 1 Arm A champion (T01_A_C011) on 200 hidden graphs",
+      "expected": 1292,
+      "observed": 1292,
+      "tolerance": "exact_match",
+      "status": "PASSED",
+      "execution_limitations": "Champion is deterministic; produced identical score bit-for-bit."
+    },
+    {
+      "check_id": "CHK-17-CHAMPION-REPRODUCTION-C-SEEDED",
+      "category": "reproducibility",
+      "description": "Seeded re-execution of Trial 1 Arm C champion (T01_C_G10_C09) with random.seed(303)",
+      "expected": 1278,
+      "observed": 1278,
+      "tolerance": "exact_match",
+      "status": "PASSED",
+      "execution_limitations": "Verified that initializing master random seed 303 exactly reproduces recorded score."
+    },
+    {
+      "check_id": "CHK-18-STOCHASTIC-TOLERANCE-C",
+      "category": "reproducibility",
+      "description": "Unseeded rerun variance for Trial 1 Arm C champion due to internal random restarts",
+      "expected": "Score within [1278, 1282] (+/- 0.35% tolerance)",
+      "observed": "1279 on unseeded run 1, 1282 on unseeded run 2",
+      "tolerance": "0.35% relative tolerance",
+      "status": "PASSED",
+      "execution_limitations": "Algorithm uses internal random.random() and random.shuffle(20) passes without hardcoded seed."
+    }
+  ],
+  "total_checks": 18,
+  "passed": 18
+}

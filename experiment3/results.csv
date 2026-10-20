@@ -1,0 +1,4 @@
+Algorithm,Dev Excess %,Hidden Overall Excess %,Hidden Avg Bins,Runtime ms,Hidden_uniform_Excess_%,Hidden_weibull_Excess_%,Hidden_bimodal_Excess_%,Hidden_triplets_Excess_%
+Human Baseline (Best Fit),8.80%,8.14%,65.58,28.34,7.73%,4.68%,10.97%,8.80%
+Best Single-Shot (Claude Sonnet),8.80%,8.14%,65.58,25.76,7.73%,4.68%,10.97%,8.80%
+Best Iterative (Claude Sonnet),8.71%,8.15%,65.58,32.61,7.78%,4.68%,10.97%,8.80%

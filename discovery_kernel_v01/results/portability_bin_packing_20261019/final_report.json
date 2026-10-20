@@ -1,0 +1,74 @@
+{
+  "all_instances_valid": true,
+  "baseline_eval_scores": {
+    "first_fit": 0.0395
+  },
+  "beats_baseline": true,
+  "champion_eval_score": 0.0338,
+  "champion_method_id": "best_fit",
+  "champion_version": "1.0.0",
+  "eval_instance_count": 5,
+  "evaluation_timestamp": "2026-10-19T16:21:39Z",
+  "instance_scores": [
+    0.0417,
+    0.0219,
+    0.0364,
+    0.0443,
+    0.0248
+  ],
+  "matched_baseline_score": 0.0395,
+  "matched_champion_score": 0.0338,
+  "matched_instance_count": 5,
+  "matched_relative_gap": -0.143176,
+  "per_instance_details": [
+    {
+      "champion_is_valid": true,
+      "champion_runtime_ms": 6.77,
+      "champion_score": 0.041666666666666664,
+      "champion_status": "SUCCESS",
+      "instance_id": "stream_0",
+      "primary_baseline_score": 0.05482456140350877,
+      "primary_baseline_status": "SUCCESS"
+    },
+    {
+      "champion_is_valid": true,
+      "champion_runtime_ms": 5.07,
+      "champion_score": 0.0219435736677116,
+      "champion_status": "SUCCESS",
+      "instance_id": "stream_1",
+      "primary_baseline_score": 0.025078369905956112,
+      "primary_baseline_status": "SUCCESS"
+    },
+    {
+      "champion_is_valid": true,
+      "champion_runtime_ms": 3.43,
+      "champion_score": 0.03636363636363636,
+      "champion_status": "SUCCESS",
+      "instance_id": "stream_2",
+      "primary_baseline_score": 0.03636363636363636,
+      "primary_baseline_status": "SUCCESS"
+    },
+    {
+      "champion_is_valid": true,
+      "champion_runtime_ms": 6.43,
+      "champion_score": 0.04434589800443459,
+      "champion_status": "SUCCESS",
+      "instance_id": "stream_3",
+      "primary_baseline_score": 0.05321507760532151,
+      "primary_baseline_status": "SUCCESS"
+    },
+    {
+      "champion_is_valid": true,
+      "champion_runtime_ms": 5.1,
+      "champion_score": 0.024844720496894408,
+      "champion_status": "SUCCESS",
+      "instance_id": "stream_4",
+      "primary_baseline_score": 0.027950310559006212,
+      "primary_baseline_status": "SUCCESS"
+    }
+  ],
+  "relative_gap": -0.143471,
+  "status": "COMPLETED",
+  "total_runtime_ms": 26.81,
+  "valid_instance_count": 5
+}

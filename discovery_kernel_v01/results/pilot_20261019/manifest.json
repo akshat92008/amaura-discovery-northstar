@@ -1,0 +1,18 @@
+{
+  "experiment_id": "EXP_PILOT_DK01_20261019",
+  "files": {
+    "dev_summary.json": {
+      "sha256": "f24d5a44c0f500868d8af0e91be7cbf8fd80f7b00708e359db65021ebda65f66",
+      "size_bytes": 2513
+    },
+    "final_report.json": {
+      "sha256": "3dacb5e8661d03c55fa18e2fdf680cba75b2bcd68c345d73f5909fd1a476fc0a",
+      "size_bytes": 2012
+    },
+    "run_records.jsonl": {
+      "sha256": "014861634f34533695e03cbd5df3120c710f910a8fd76df01caacfa394ce05c1",
+      "size_bytes": 45327
+    }
+  },
+  "generated_at": "2026-10-19T16:08:03Z"
+}

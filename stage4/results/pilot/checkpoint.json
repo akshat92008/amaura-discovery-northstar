@@ -1,0 +1,117 @@
+{
+  "timestamp": 1792173662.11736,
+  "completed_trials": [
+    {
+      "trial_id": 1,
+      "seed": 40401,
+      "arm_a": {
+        "candidate_id": "cand-9ab4ff8e",
+        "code": "def priority(item: float, remaining_capacity: float, bin_capacity: float) -> float:\n    # Best Fit\n    return -(remaining_capacity - item)\n",
+        "dev_fitness": 0.031433,
+        "stats": {
+          "total_evaluated": 50,
+          "valid_count": 5,
+          "failed_count": 45,
+          "failure_rate": 0.9,
+          "failure_reasons": {
+            "AST Validation Error": 38,
+            "Execution Failed": 7
+          },
+          "best_fitness": 0.031433
+        }
+      },
+      "arm_c": {
+        "candidate_id": "cand-9ab4ff8e",
+        "code": "def priority(item: float, remaining_capacity: float, bin_capacity: float) -> float:\n    # Best Fit\n    return -(remaining_capacity - item)\n",
+        "dev_fitness": 0.031433,
+        "stats": {
+          "total_evaluated": 50,
+          "valid_count": 12,
+          "failed_count": 38,
+          "failure_rate": 0.76,
+          "failure_reasons": {
+            "AST Validation Error": 31,
+            "Execution Failed": 7
+          },
+          "best_fitness": 0.031433
+        }
+      },
+      "delta_dev": 0.0
+    },
+    {
+      "trial_id": 2,
+      "seed": 40402,
+      "arm_a": {
+        "candidate_id": "cand-9ab4ff8e",
+        "code": "def priority(item: float, remaining_capacity: float, bin_capacity: float) -> float:\n    # Best Fit\n    return -(remaining_capacity - item)\n",
+        "dev_fitness": 0.031433,
+        "stats": {
+          "total_evaluated": 50,
+          "valid_count": 5,
+          "failed_count": 45,
+          "failure_rate": 0.9,
+          "failure_reasons": {
+            "AST Validation Error": 42,
+            "Execution Failed": 3
+          },
+          "best_fitness": 0.031433
+        }
+      },
+      "arm_c": {
+        "candidate_id": "cand-9ab4ff8e",
+        "code": "def priority(item: float, remaining_capacity: float, bin_capacity: float) -> float:\n    # Best Fit\n    return -(remaining_capacity - item)\n",
+        "dev_fitness": 0.031433,
+        "stats": {
+          "total_evaluated": 50,
+          "valid_count": 13,
+          "failed_count": 37,
+          "failure_rate": 0.74,
+          "failure_reasons": {
+            "AST Validation Error": 33,
+            "Execution Failed": 4
+          },
+          "best_fitness": 0.031433
+        }
+      },
+      "delta_dev": 0.0
+    },
+    {
+      "trial_id": 3,
+      "seed": 40403,
+      "arm_a": {
+        "candidate_id": "cand-9ab4ff8e",
+        "code": "def priority(item: float, remaining_capacity: float, bin_capacity: float) -> float:\n    # Best Fit\n    return -(remaining_capacity - item)\n",
+        "dev_fitness": 0.031433,
+        "stats": {
+          "total_evaluated": 50,
+          "valid_count": 5,
+          "failed_count": 45,
+          "failure_rate": 0.9,
+          "failure_reasons": {
+            "AST Validation Error": 41,
+            "Execution Failed": 4
+          },
+          "best_fitness": 0.031433
+        }
+      },
+      "arm_c": {
+        "candidate_id": "cand-9ab4ff8e",
+        "code": "def priority(item: float, remaining_capacity: float, bin_capacity: float) -> float:\n    # Best Fit\n    return -(remaining_capacity - item)\n",
+        "dev_fitness": 0.031433,
+        "stats": {
+          "total_evaluated": 50,
+          "valid_count": 11,
+          "failed_count": 39,
+          "failure_rate": 0.78,
+          "failure_reasons": {
+            "AST Validation Error": 36,
+            "Execution Failed": 3
+          },
+          "best_fitness": 0.031433
+        }
+      },
+      "delta_dev": 0.0
+    }
+  ],
+  "is_pilot": true
+}

@@ -1,0 +1,331 @@
+{
+  "Human Baseline (Best Fit)": {
+    "overall": {
+      "is_valid": true,
+      "excess_pct": 8.1352,
+      "avg_bins": 65.58,
+      "total_bins": 7869,
+      "lower_bound": 7277,
+      "runtime_ms": 21.5,
+      "error": null
+    },
+    "uniform": {
+      "is_valid": true,
+      "excess_pct": 7.7262,
+      "avg_bins": 73.43,
+      "total_bins": 2203,
+      "lower_bound": 2045,
+      "runtime_ms": 5.04,
+      "error": null
+    },
+    "weibull": {
+      "is_valid": true,
+      "excess_pct": 4.6811,
+      "avg_bins": 59.63,
+      "total_bins": 1789,
+      "lower_bound": 1709,
+      "runtime_ms": 3.92,
+      "error": null
+    },
+    "bimodal": {
+      "is_valid": true,
+      "excess_pct": 10.9738,
+      "avg_bins": 74.83,
+      "total_bins": 2245,
+      "lower_bound": 2023,
+      "runtime_ms": 5.91,
+      "error": null
+    },
+    "triplets": {
+      "is_valid": true,
+      "excess_pct": 8.8,
+      "avg_bins": 54.4,
+      "total_bins": 1632,
+      "lower_bound": 1500,
+      "runtime_ms": 3.23,
+      "error": null
+    }
+  },
+  "Exp #2 Qwen 1.5B (Frozen)": {
+    "overall": {
+      "is_valid": true,
+      "excess_pct": 8.7536,
+      "avg_bins": 65.95,
+      "total_bins": 7914,
+      "lower_bound": 7277,
+      "runtime_ms": 18.14,
+      "error": null
+    },
+    "uniform": {
+      "is_valid": true,
+      "excess_pct": 9.1932,
+      "avg_bins": 74.43,
+      "total_bins": 2233,
+      "lower_bound": 2045,
+      "runtime_ms": 4.91,
+      "error": null
+    },
+    "weibull": {
+      "is_valid": true,
+      "excess_pct": 5.3833,
+      "avg_bins": 60.03,
+      "total_bins": 1801,
+      "lower_bound": 1709,
+      "runtime_ms": 3.94,
+      "error": null
+    },
+    "bimodal": {
+      "is_valid": true,
+      "excess_pct": 11.0232,
+      "avg_bins": 74.87,
+      "total_bins": 2246,
+      "lower_bound": 2023,
+      "runtime_ms": 5.76,
+      "error": null
+    },
+    "triplets": {
+      "is_valid": true,
+      "excess_pct": 8.9333,
+      "avg_bins": 54.47,
+      "total_bins": 1634,
+      "lower_bound": 1500,
+      "runtime_ms": 3.37,
+      "error": null
+    }
+  },
+  "Exp #3 Claude Single-Chain (Frozen)": {
+    "overall": {
+      "is_valid": false,
+      "excess_pct": Infinity,
+      "avg_bins": 0,
+      "total_bins": 0,
+      "lower_bound": 0,
+      "runtime_ms": 0.0,
+      "error": "Runtime Error on test call: NameError: name 'any' is not defined"
+    },
+    "uniform": {
+      "is_valid": false,
+      "excess_pct": Infinity,
+      "avg_bins": 0,
+      "total_bins": 0,
+      "lower_bound": 0,
+      "runtime_ms": 0.0,
+      "error": "Runtime Error on test call: NameError: name 'any' is not defined"
+    },
+    "weibull": {
+      "is_valid": false,
+      "excess_pct": Infinity,
+      "avg_bins": 0,
+      "total_bins": 0,
+      "lower_bound": 0,
+      "runtime_ms": 0.0,
+      "error": "Runtime Error on test call: NameError: name 'any' is not defined"
+    },
+    "bimodal": {
+      "is_valid": false,
+      "excess_pct": Infinity,
+      "avg_bins": 0,
+      "total_bins": 0,
+      "lower_bound": 0,
+      "runtime_ms": 0.0,
+      "error": "Runtime Error on test call: NameError: name 'any' is not defined"
+    },
+    "triplets": {
+      "is_valid": false,
+      "excess_pct": Infinity,
+      "avg_bins": 0,
+      "total_bins": 0,
+      "lower_bound": 0,
+      "runtime_ms": 0.0,
+      "error": "Runtime Error on test call: NameError: name 'any' is not defined"
+    }
+  },
+  "Exp #4 Population Champion": {
+    "overall": {
+      "is_valid": true,
+      "excess_pct": 8.149,
+      "avg_bins": 65.58,
+      "total_bins": 7870,
+      "lower_bound": 7277,
+      "runtime_ms": 30.08,
+      "error": null
+    },
+    "uniform": {
+      "is_valid": true,
+      "excess_pct": 7.824,
+      "avg_bins": 73.5,
+      "total_bins": 2205,
+      "lower_bound": 2045,
+      "runtime_ms": 7.83,
+      "error": null
+    },
+    "weibull": {
+      "is_valid": true,
+      "excess_pct": 4.6226,
+      "avg_bins": 59.6,
+      "total_bins": 1788,
+      "lower_bound": 1709,
+      "runtime_ms": 5.82,
+      "error": null
+    },
+    "bimodal": {
+      "is_valid": true,
+      "excess_pct": 10.9738,
+      "avg_bins": 74.83,
+      "total_bins": 2245,
+      "lower_bound": 2023,
+      "runtime_ms": 11.7,
+      "error": null
+    },
+    "triplets": {
+      "is_valid": true,
+      "excess_pct": 8.8,
+      "avg_bins": 54.4,
+      "total_bins": 1632,
+      "lower_bound": 1500,
+      "runtime_ms": 4.83,
+      "error": null
+    }
+  },
+  "Exp #4 Island A Champion": {
+    "overall": {
+      "is_valid": true,
+      "excess_pct": 8.149,
+      "avg_bins": 65.58,
+      "total_bins": 7870,
+      "lower_bound": 7277,
+      "runtime_ms": 30.14,
+      "error": null
+    },
+    "uniform": {
+      "is_valid": true,
+      "excess_pct": 7.824,
+      "avg_bins": 73.5,
+      "total_bins": 2205,
+      "lower_bound": 2045,
+      "runtime_ms": 7.82,
+      "error": null
+    },
+    "weibull": {
+      "is_valid": true,
+      "excess_pct": 4.6226,
+      "avg_bins": 59.6,
+      "total_bins": 1788,
+      "lower_bound": 1709,
+      "runtime_ms": 5.84,
+      "error": null
+    },
+    "bimodal": {
+      "is_valid": true,
+      "excess_pct": 10.9738,
+      "avg_bins": 74.83,
+      "total_bins": 2245,
+      "lower_bound": 2023,
+      "runtime_ms": 11.74,
+      "error": null
+    },
+    "triplets": {
+      "is_valid": true,
+      "excess_pct": 8.8,
+      "avg_bins": 54.4,
+      "total_bins": 1632,
+      "lower_bound": 1500,
+      "runtime_ms": 4.57,
+      "error": null
+    }
+  },
+  "Exp #4 Island B Champion": {
+    "overall": {
+      "is_valid": true,
+      "excess_pct": 8.149,
+      "avg_bins": 65.58,
+      "total_bins": 7870,
+      "lower_bound": 7277,
+      "runtime_ms": 29.42,
+      "error": null
+    },
+    "uniform": {
+      "is_valid": true,
+      "excess_pct": 7.824,
+      "avg_bins": 73.5,
+      "total_bins": 2205,
+      "lower_bound": 2045,
+      "runtime_ms": 7.56,
+      "error": null
+    },
+    "weibull": {
+      "is_valid": true,
+      "excess_pct": 4.6226,
+      "avg_bins": 59.6,
+      "total_bins": 1788,
+      "lower_bound": 1709,
+      "runtime_ms": 6.32,
+      "error": null
+    },
+    "bimodal": {
+      "is_valid": true,
+      "excess_pct": 10.9738,
+      "avg_bins": 74.83,
+      "total_bins": 2245,
+      "lower_bound": 2023,
+      "runtime_ms": 15.35,
+      "error": null
+    },
+    "triplets": {
+      "is_valid": true,
+      "excess_pct": 8.8,
+      "avg_bins": 54.4,
+      "total_bins": 1632,
+      "lower_bound": 1500,
+      "runtime_ms": 4.4,
+      "error": null
+    }
+  },
+  "Exp #4 Island C Champion": {
+    "overall": {
+      "is_valid": true,
+      "excess_pct": 8.149,
+      "avg_bins": 65.58,
+      "total_bins": 7870,
+      "lower_bound": 7277,
+      "runtime_ms": 28.85,
+      "error": null
+    },
+    "uniform": {
+      "is_valid": true,
+      "excess_pct": 7.824,
+      "avg_bins": 73.5,
+      "total_bins": 2205,
+      "lower_bound": 2045,
+      "runtime_ms": 7.45,
+      "error": null
+    },
+    "weibull": {
+      "is_valid": true,
+      "excess_pct": 4.6226,
+      "avg_bins": 59.6,
+      "total_bins": 1788,
+      "lower_bound": 1709,
+      "runtime_ms": 5.54,
+      "error": null
+    },
+    "bimodal": {
+      "is_valid": true,
+      "excess_pct": 10.9738,
+      "avg_bins": 74.83,
+      "total_bins": 2245,
+      "lower_bound": 2023,
+      "runtime_ms": 11.29,
+      "error": null
+    },
+    "triplets": {
+      "is_valid": true,
+      "excess_pct": 8.8,
+      "avg_bins": 54.4,
+      "total_bins": 1632,
+      "lower_bound": 1500,
+      "runtime_ms": 4.37,
+      "error": null
+    }
+  }
+}

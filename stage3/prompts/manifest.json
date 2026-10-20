@@ -1,0 +1,10 @@
+{
+  "expert_prompt_gc": {
+    "file": "stage3/prompts/expert_prompt_gc.txt",
+    "sha256": "e302c6f88d987ec332107d594c3fb5cd07de2852cc1beb36751888865dba56a4"
+  },
+  "blind_select_prompt": {
+    "file": "stage3/prompts/blind_select_prompt.txt",
+    "sha256": "8dee77135ae2729fa7f6e6c8bdfe86ecd2fc91a927305a31262adf0ee0f3b3f2"
+  }
+}

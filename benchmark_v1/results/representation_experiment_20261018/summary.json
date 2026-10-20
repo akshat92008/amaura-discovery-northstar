@@ -1,0 +1,165 @@
+{
+  "timestamp": 1792327037.0036922,
+  "model": "nvidia/nvidia/nemotron-3-super-120b-a12b",
+  "budget_per_rep": 16,
+  "baselines": {
+    "train": {
+      "best_fit": 0.031433,
+      "first_fit": 0.036816,
+      "worst_fit": 0.137627
+    },
+    "val": {
+      "best_fit": 0.031923,
+      "first_fit": 0.036981,
+      "worst_fit": 0.13474
+    }
+  },
+  "representation_a": {
+    "name": "Representation A (Stateless Priority)",
+    "total_proposals": 16,
+    "valid_proposals": 10,
+    "validity_rate": 0.625,
+    "unique_code_hashes": 16,
+    "unique_behavioral_phenotypes": 3,
+    "mean_decision_disagreement_rate": 0.1162,
+    "best_train_rho": 0.031433,
+    "median_train_rho": 0.031433,
+    "best_val_rho": 0.031923,
+    "median_val_rho": 0.031923,
+    "candidates_beating_bf_train": 0,
+    "candidates_beating_bf_val": 0,
+    "champion": {
+      "proposal_idx": 2,
+      "representation": "A_stateless_priority",
+      "function_name": "priority",
+      "code_hash": "1e43c1d8b5bb0766",
+      "code": "import math\n\ndef priority(item: float, remaining_capacity: float, bin_capacity: float) -> float:\n    \"\"\"\n    Online 1D bin\u2011packing priority heuristic (variant 3).\n\n    Higher return value -> higher priority for placing the item in the bin.\n    Combines a nonlinear waste penalty with a reward for utilizing bin capacity,\n    encouraging tight fits while discouraging unusable leftovers.\n\n    Parameters\n    ----------\n    item : float\n        Size of the item to pack.\n    remaining_capacity : float\n        Current free space in the candidate bin.\n    bin_capacity : float\n        Total capacity of each bin (constant for the problem).\n\n    Returns\n    -------\n    float\n        Priority score; larger means more preferable.\n        Returns -inf if the item does not fit.\n    \"\"\"\n    # If the item does not fit, assign the lowest possible priority.\n    if item > remaining_capacity + 1e-12:  # small tolerance for floating\u2011point errors\n        return float('-inf')\n\n    waste = remaining_capacity - item          # leftover space after placement\n    w_norm = waste / bin_capacity              # normalized waste [0,1]\n    i_norm = item / bin_capacity               # normalized item size [0,1]\n\n    # Non\u2011linear penalty: quadratic waste discourages large leftovers.\n    waste_penalty = -(w_norm ** 2)\n\n    # Reward term: higher for larger items, but decays exponentially with waste.\n    # This encourages filling bins while avoiding tiny unusable fragments.\n    utilization_reward = 0.5 * i_norm * math.exp(-2.0 * w_norm)\n\n    return waste_penalty + utilization_reward",
+      "latency_sec": 1196.126,
+      "tokens": {
+        "prompt_tokens": 2273,
+        "completion_tokens": 750,
+        "total_tokens": 3023,
+        "prompt_tokens_details": {
+          "audio_tokens": null,
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": null,
+          "audio_tokens": null,
+          "reasoning_tokens": 381,
+          "rejected_prediction_tokens": null
+        }
+      },
+      "evaluation": {
+        "is_valid": true,
+        "error": null,
+        "train_score": 0.031433,
+        "train_rel_gap": 7e-06,
+        "train_beats_bf": false,
+        "val_score": 0.031923,
+        "val_rel_gap": -2e-06,
+        "val_beats_bf": false,
+        "decision_disagreement_rate": 0.0,
+        "runtime_ms": 527.19,
+        "stream_scores": [
+          0.047297,
+          0.021875,
+          0.034682,
+          0.036876,
+          0.022152,
+          0.034884,
+          0.029083,
+          0.021875,
+          0.036585,
+          0.035242,
+          0.01875,
+          0.0375,
+          0.03532,
+          0.024242,
+          0.034884,
+          0.037281,
+          0.021341,
+          0.035503,
+          0.041485,
+          0.021807
+        ]
+      },
+      "timestamp": 1792325256.075597
+    }
+  },
+  "representation_b": {
+    "name": "Representation B (Stateful Select-Bin)",
+    "total_proposals": 16,
+    "valid_proposals": 15,
+    "validity_rate": 0.9375,
+    "unique_code_hashes": 16,
+    "unique_behavioral_phenotypes": 15,
+    "mean_decision_disagreement_rate": 0.6766,
+    "best_train_rho": 0.037501,
+    "median_train_rho": 0.095231,
+    "best_val_rho": 0.037792,
+    "median_val_rho": 0.091706,
+    "candidates_beating_bf_train": 0,
+    "candidates_beating_bf_val": 0,
+    "champion": {
+      "proposal_idx": 4,
+      "representation": "B_stateful_select_bin",
+      "function_name": "select_bin",
+      "code_hash": "7d729369e99cfc14",
+      "code": "def select_bin(item: float, open_bins: list, stream_history: list, bin_capacity: float) -> int:\n    \"\"\"\n    Online bin packing decision policy (variant 5).\n\n    Idea:\n    - Use Best-Fit as a base (choose bin with smallest remaining capacity after placement).\n    - Break ties by preferring bins whose resulting residual capacity is close to the\n      historical average item size. This encourages leaving gaps that are likely to be\n      usable by forthcoming items, reducing unusable small leftovers.\n    - If no open bins can accommodate the item, open a new bin (return -1).\n\n    Parameters\n    ----------\n    item : float\n        Size of the incoming item.\n    open_bins : list of dict\n        Each dict contains: 'bin_id', 'remaining_capacity', 'used_capacity', 'items_count'.\n    stream_history : list of float\n        Sizes of items that have arrived before the current item.\n    bin_capacity : float\n        Capacity of each bin.\n\n    Returns\n    -------\n    int\n        The bin_id of the selected open bin, or -1 to open a new bin.\n    \"\"\"\n    if not open_bins:\n        # No feasible open bin \u2192 open a new one\n        return -1\n\n    # Compute average item size from history; fallback to half capacity if no history\n    if stream_history:\n        avg_item = sum(stream_history) / len(stream_history)\n    else:\n        avg_item = bin_capacity * 0.5\n\n    best_bin = None\n    best_score = float('inf')\n    best_bin_id = None\n\n    for b in open_bins:\n        # remaining capacity after placing the item\n        waste = b['remaining_capacity'] - item\n        # waste should be >= 0 because b is in open_bins (feasible)\n        # Primary criterion: minimize waste (Best-Fit)\n        # Secondary criterion: make waste close to average item size\n        score = waste + abs(waste - avg_item)\n        # Tie\u2011break on bin_id for determinism\n        if (score < best_score) or (abs(score - best_score) < 1e-12 and b['bin_id'] < best_bin_id):\n            best_score = score\n            best_bin = b\n            best_bin_id = b['bin_id']\n\n    return best_bin_id if best_bin is not None else -1",
+      "latency_sec": 25.222,
+      "tokens": {
+        "prompt_tokens": 2441,
+        "completion_tokens": 1059,
+        "total_tokens": 3500,
+        "prompt_tokens_details": {
+          "audio_tokens": null,
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": null,
+          "audio_tokens": null,
+          "reasoning_tokens": 546,
+          "rejected_prediction_tokens": null
+        }
+      },
+      "evaluation": {
+        "is_valid": true,
+        "error": null,
+        "train_score": 0.037501,
+        "train_rel_gap": 0.193039,
+        "train_beats_bf": false,
+        "val_score": 0.037792,
+        "val_rel_gap": 0.183837,
+        "val_beats_bf": false,
+        "decision_disagreement_rate": 0.4835,
+        "runtime_ms": 867.25,
+        "stream_scores": [
+          0.060811,
+          0.028125,
+          0.034682,
+          0.052061,
+          0.025316,
+          0.034884,
+          0.040268,
+          0.025,
+          0.036585,
+          0.052863,
+          0.025,
+          0.0375,
+          0.046358,
+          0.027273,
+          0.02907,
+          0.054825,
+          0.02439,
+          0.035503,
+          0.054585,
+          0.024922
+        ]
+      },
+      "timestamp": 1792326023.908897
+    }
+  },
+  "discovery_candidates_count": 0,
+  "replications": []
+}

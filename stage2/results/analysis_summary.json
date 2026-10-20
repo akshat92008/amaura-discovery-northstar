@@ -1,0 +1,161 @@
+{
+  "timestamp": 1791307896.914476,
+  "classification": {
+    "overall_classification": "NARROW_POSITIVE",
+    "description": "D beats B on only one core problem (GC=POSITIVE, PFSP=INCONCLUSIVE_OR_MARGINAL).",
+    "graph_coloring_verdict": "POSITIVE",
+    "pfsp_verdict": "INCONCLUSIVE_OR_MARGINAL"
+  },
+  "comparisons": {
+    "graph_coloring_D_vs_B": {
+      "label_d": "Arm_D",
+      "label_b": "Arm_B",
+      "n_trials": 30,
+      "mean_d": 1227.6,
+      "mean_b": 700371.3667,
+      "mean_diff": -699143.7667,
+      "median_diff": -998770.0,
+      "pct_reduction": 99.82,
+      "bootstrap_ci_95": [
+        -865602.0008,
+        -532681.8
+      ],
+      "p_value_raw": 3.829955417417284e-06,
+      "p_value_corrected": 8e-06,
+      "effect_size_d": -1.5019,
+      "wins": 27,
+      "ties": 0,
+      "losses": 3
+    },
+    "graph_coloring_D_vs_A": {
+      "label_d": "Arm_D",
+      "label_b": "Arm_A",
+      "n_trials": 30,
+      "mean_d": 1227.6,
+      "mean_b": 833537.6667,
+      "mean_diff": -832310.0667,
+      "median_diff": -998770.5,
+      "pct_reduction": 99.85,
+      "bootstrap_ci_95": [
+        -965478.1,
+        -699140.1333
+      ],
+      "p_value_raw": 2.525344224323442e-06,
+      "p_value_corrected": 2.525344224323442e-06,
+      "effect_size_d": -2.1985,
+      "wins": 29,
+      "ties": 1,
+      "losses": 0
+    },
+    "graph_coloring_C_vs_D": {
+      "label_d": "Arm_C",
+      "label_b": "Arm_D",
+      "n_trials": 30,
+      "mean_d": 1232.8667,
+      "mean_b": 1227.6,
+      "mean_diff": 5.2667,
+      "median_diff": 2.0,
+      "pct_reduction": -0.43,
+      "bootstrap_ci_95": [
+        0.7667,
+        11.1333
+      ],
+      "p_value_raw": 0.06812205423367157,
+      "p_value_corrected": 0.06812205423367157,
+      "effect_size_d": 0.3566,
+      "wins": 10,
+      "ties": 2,
+      "losses": 18
+    },
+    "pfsp_D_vs_B": {
+      "label_d": "Arm_D",
+      "label_b": "Arm_B",
+      "n_trials": 30,
+      "mean_d": 1070043.1667,
+      "mean_b": 1048807.3,
+      "mean_diff": 21235.8667,
+      "median_diff": 26.5,
+      "pct_reduction": -2.02,
+      "bootstrap_ci_95": [
+        6981.7475,
+        35788.95
+      ],
+      "p_value_raw": 0.29487572721167077,
+      "p_value_corrected": 0.294876,
+      "effect_size_d": 0.5426,
+      "wins": 12,
+      "ties": 2,
+      "losses": 16
+    },
+    "pfsp_D_vs_A": {
+      "label_d": "Arm_D",
+      "label_b": "Arm_A",
+      "n_trials": 30,
+      "mean_d": 1070043.1667,
+      "mean_b": 1057543.1,
+      "mean_diff": 12500.0667,
+      "median_diff": -956.0,
+      "pct_reduction": -1.18,
+      "bootstrap_ci_95": [
+        -2055.0517,
+        27219.5383
+      ],
+      "p_value_raw": 0.7498782331919757,
+      "p_value_corrected": 0.7498782331919757,
+      "effect_size_d": 0.3046,
+      "wins": 19,
+      "ties": 2,
+      "losses": 9
+    },
+    "pfsp_C_vs_D": {
+      "label_d": "Arm_C",
+      "label_b": "Arm_D",
+      "n_trials": 30,
+      "mean_d": 1072332.4667,
+      "mean_b": 1070043.1667,
+      "mean_diff": 2289.3,
+      "median_diff": -34.0,
+      "pct_reduction": -0.21,
+      "bootstrap_ci_95": [
+        -263.9683,
+        7196.4033
+      ],
+      "p_value_raw": 0.583757072687149,
+      "p_value_corrected": 0.583757072687149,
+      "effect_size_d": 0.1738,
+      "wins": 16,
+      "ties": 0,
+      "losses": 14
+    }
+  },
+  "regret": {
+    "graph_coloring_Arm_B": {
+      "mean_absolute_regret": 699145.8333,
+      "median_absolute_regret": 998771.5,
+      "max_absolute_regret": 998777.0,
+      "mean_relative_regret_pct": 57024.56,
+      "zero_regret_rate": 0.0667
+    },
+    "graph_coloring_Arm_D": {
+      "mean_absolute_regret": 2.0667,
+      "median_absolute_regret": 0.5,
+      "max_absolute_regret": 17.0,
+      "mean_relative_regret_pct": 0.17,
+      "zero_regret_rate": 0.5
+    },
+    "pfsp_Arm_B": {
+      "mean_absolute_regret": 48808.3,
+      "median_absolute_regret": 72579.0,
+      "max_absolute_regret": 75874.0,
+      "mean_relative_regret_pct": 4.88,
+      "zero_regret_rate": 0.3333
+    },
+    "pfsp_Arm_D": {
+      "mean_absolute_regret": 70044.1667,
+      "median_absolute_regret": 72594.0,
+      "max_absolute_regret": 72892.0,
+      "mean_relative_regret_pct": 7.0,
+      "zero_regret_rate": 0.0333
+    }
+  }
+}

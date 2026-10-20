@@ -1,0 +1,832 @@
+{
+  "metadata": {
+    "experiment": "Amaura Experiment #15",
+    "date": "2026-10-04",
+    "dataset": "Alibaba Cluster Trace v2018",
+    "total_solvers": 8,
+    "solvers": [
+      "Policy_A_T4_C01",
+      "Policy_B_N60_T4_C51",
+      "kube_binpacking",
+      "kube_default",
+      "first_fit",
+      "best_fit",
+      "best_fit_decreasing",
+      "worst_fit"
+    ]
+  },
+  "paired_comparisons_vs_binpacking": {
+    "Policy_A_T4_C01": {
+      "cost_analysis": {
+        "label_a": "Policy_A_T4_C01",
+        "label_b": "kube_binpacking",
+        "n_instances": 55,
+        "mean_a": 177.72845454545455,
+        "mean_b": 177.8026363636364,
+        "mean_diff": -0.0742,
+        "median_diff": 0.0,
+        "mean_pct_reduction": 0.02,
+        "ci_95": [
+          -0.2225,
+          0.0
+        ],
+        "p_value": 0.31731050786291415,
+        "wins": 1,
+        "ties": 54,
+        "losses": 0
+      },
+      "node_analysis": {
+        "label_a": "Policy_A_T4_C01",
+        "label_b": "kube_binpacking",
+        "n_instances": 55,
+        "mean_a": 38.89090909090909,
+        "mean_b": 38.90909090909091,
+        "mean_diff": -0.0182,
+        "median_diff": 0.0,
+        "mean_pct_reduction": 0.02,
+        "ci_95": [
+          -0.0545,
+          0.0
+        ],
+        "p_value": 0.31731050786291415,
+        "wins": 1,
+        "ties": 54,
+        "losses": 0
+      }
+    },
+    "Policy_B_N60_T4_C51": {
+      "cost_analysis": {
+        "label_a": "Policy_B_N60_T4_C51",
+        "label_b": "kube_binpacking",
+        "n_instances": 55,
+        "mean_a": 177.87681818181818,
+        "mean_b": 177.8026363636364,
+        "mean_diff": 0.0742,
+        "median_diff": 0.0,
+        "mean_pct_reduction": -0.23,
+        "ci_95": [
+          0.0,
+          0.2225
+        ],
+        "p_value": 0.31731050786291415,
+        "wins": 0,
+        "ties": 54,
+        "losses": 1
+      },
+      "node_analysis": {
+        "label_a": "Policy_B_N60_T4_C51",
+        "label_b": "kube_binpacking",
+        "n_instances": 55,
+        "mean_a": 38.92727272727273,
+        "mean_b": 38.90909090909091,
+        "mean_diff": 0.0182,
+        "median_diff": 0.0,
+        "mean_pct_reduction": -0.26,
+        "ci_95": [
+          0.0,
+          0.0545
+        ],
+        "p_value": 0.31731050786291415,
+        "wins": 0,
+        "ties": 54,
+        "losses": 1
+      }
+    },
+    "kube_default": {
+      "cost_analysis": {
+        "label_a": "kube_default",
+        "label_b": "kube_binpacking",
+        "n_instances": 55,
+        "mean_a": 344.56336363636365,
+        "mean_b": 177.8026363636364,
+        "mean_diff": 166.7607,
+        "median_diff": 106.08,
+        "mean_pct_reduction": -169.07,
+        "ci_95": [
+          130.3375,
+          206.5982
+        ],
+        "p_value": 1.1038963180275214e-10,
+        "wins": 0,
+        "ties": 0,
+        "losses": 55
+      },
+      "node_analysis": {
+        "label_a": "kube_default",
+        "label_b": "kube_binpacking",
+        "n_instances": 55,
+        "mean_a": 79.78181818181818,
+        "mean_b": 38.90909090909091,
+        "mean_diff": 40.8727,
+        "median_diff": 26.0,
+        "mean_pct_reduction": -186.91,
+        "ci_95": [
+          31.9455,
+          50.6368
+        ],
+        "p_value": 1.0962875880606541e-10,
+        "wins": 0,
+        "ties": 0,
+        "losses": 55
+      }
+    },
+    "first_fit": {
+      "cost_analysis": {
+        "label_a": "first_fit",
+        "label_b": "kube_binpacking",
+        "n_instances": 55,
+        "mean_a": 177.8026363636364,
+        "mean_b": 177.8026363636364,
+        "mean_diff": 0.0,
+        "median_diff": 0.0,
+        "mean_pct_reduction": -0.0,
+        "ci_95": [
+          0.0,
+          0.0
+        ],
+        "p_value": 1.0,
+        "wins": 0,
+        "ties": 55,
+        "losses": 0
+      },
+      "node_analysis": {
+        "label_a": "first_fit",
+        "label_b": "kube_binpacking",
+        "n_instances": 55,
+        "mean_a": 38.90909090909091,
+        "mean_b": 38.90909090909091,
+        "mean_diff": 0.0,
+        "median_diff": 0.0,
+        "mean_pct_reduction": -0.0,
+        "ci_95": [
+          0.0,
+          0.0
+        ],
+        "p_value": 1.0,
+        "wins": 0,
+        "ties": 55,
+        "losses": 0
+      }
+    },
+    "best_fit": {
+      "cost_analysis": {
+        "label_a": "best_fit",
+        "label_b": "kube_binpacking",
+        "n_instances": 55,
+        "mean_a": 177.8026363636364,
+        "mean_b": 177.8026363636364,
+        "mean_diff": 0.0,
+        "median_diff": 0.0,
+        "mean_pct_reduction": -0.0,
+        "ci_95": [
+          0.0,
+          0.0
+        ],
+        "p_value": 1.0,
+        "wins": 0,
+        "ties": 55,
+        "losses": 0
+      },
+      "node_analysis": {
+        "label_a": "best_fit",
+        "label_b": "kube_binpacking",
+        "n_instances": 55,
+        "mean_a": 38.90909090909091,
+        "mean_b": 38.90909090909091,
+        "mean_diff": 0.0,
+        "median_diff": 0.0,
+        "mean_pct_reduction": -0.0,
+        "ci_95": [
+          0.0,
+          0.0
+        ],
+        "p_value": 1.0,
+        "wins": 0,
+        "ties": 55,
+        "losses": 0
+      }
+    },
+    "best_fit_decreasing": {
+      "cost_analysis": {
+        "label_a": "best_fit_decreasing",
+        "label_b": "kube_binpacking",
+        "n_instances": 55,
+        "mean_a": 177.72845454545455,
+        "mean_b": 177.8026363636364,
+        "mean_diff": -0.0742,
+        "median_diff": 0.0,
+        "mean_pct_reduction": 0.02,
+        "ci_95": [
+          -0.2225,
+          0.0
+        ],
+        "p_value": 0.31731050786291415,
+        "wins": 1,
+        "ties": 54,
+        "losses": 0
+      },
+      "node_analysis": {
+        "label_a": "best_fit_decreasing",
+        "label_b": "kube_binpacking",
+        "n_instances": 55,
+        "mean_a": 38.89090909090909,
+        "mean_b": 38.90909090909091,
+        "mean_diff": -0.0182,
+        "median_diff": 0.0,
+        "mean_pct_reduction": 0.02,
+        "ci_95": [
+          -0.0545,
+          0.0
+        ],
+        "p_value": 0.31731050786291415,
+        "wins": 1,
+        "ties": 54,
+        "losses": 0
+      }
+    },
+    "worst_fit": {
+      "cost_analysis": {
+        "label_a": "worst_fit",
+        "label_b": "kube_binpacking",
+        "n_instances": 55,
+        "mean_a": 344.56336363636365,
+        "mean_b": 177.8026363636364,
+        "mean_diff": 166.7607,
+        "median_diff": 106.08,
+        "mean_pct_reduction": -169.07,
+        "ci_95": [
+          130.3375,
+          206.5982
+        ],
+        "p_value": 1.1038963180275214e-10,
+        "wins": 0,
+        "ties": 0,
+        "losses": 55
+      },
+      "node_analysis": {
+        "label_a": "worst_fit",
+        "label_b": "kube_binpacking",
+        "n_instances": 55,
+        "mean_a": 79.78181818181818,
+        "mean_b": 38.90909090909091,
+        "mean_diff": 40.8727,
+        "median_diff": 26.0,
+        "mean_pct_reduction": -186.91,
+        "ci_95": [
+          31.9455,
+          50.6368
+        ],
+        "p_value": 1.0962875880606541e-10,
+        "wins": 0,
+        "ties": 0,
+        "losses": 55
+      }
+    }
+  },
+  "regime_breakdown": {
+    "hidden_low": {
+      "Policy_A_T4_C01": {
+        "label_a": "Policy_A_T4_C01",
+        "label_b": "kube_binpacking",
+        "n_instances": 20,
+        "mean_a": 328.703465,
+        "mean_b": 328.907465,
+        "mean_diff": -0.204,
+        "median_diff": 0.0,
+        "mean_pct_reduction": 0.04,
+        "ci_95": [
+          -0.612,
+          0.0
+        ],
+        "p_value": 0.31731050786291415,
+        "wins": 1,
+        "ties": 19,
+        "losses": 0
+      },
+      "Policy_B_N60_T4_C51": {
+        "label_a": "Policy_B_N60_T4_C51",
+        "label_b": "kube_binpacking",
+        "n_instances": 20,
+        "mean_a": 328.907465,
+        "mean_b": 328.907465,
+        "mean_diff": 0.0,
+        "median_diff": 0.0,
+        "mean_pct_reduction": -0.0,
+        "ci_95": [
+          0.0,
+          0.0
+        ],
+        "p_value": 1.0,
+        "wins": 0,
+        "ties": 20,
+        "losses": 0
+      },
+      "kube_default": {
+        "label_a": "kube_default",
+        "label_b": "kube_binpacking",
+        "n_instances": 20,
+        "mean_a": 621.851465,
+        "mean_b": 328.907465,
+        "mean_diff": 292.944,
+        "median_diff": 279.48,
+        "mean_pct_reduction": -89.13,
+        "ci_95": [
+          232.5549,
+          360.264
+        ],
+        "p_value": 1.9073486328125e-06,
+        "wins": 0,
+        "ties": 0,
+        "losses": 20
+      },
+      "best_fit": {
+        "label_a": "best_fit",
+        "label_b": "kube_binpacking",
+        "n_instances": 20,
+        "mean_a": 328.907465,
+        "mean_b": 328.907465,
+        "mean_diff": 0.0,
+        "median_diff": 0.0,
+        "mean_pct_reduction": -0.0,
+        "ci_95": [
+          0.0,
+          0.0
+        ],
+        "p_value": 1.0,
+        "wins": 0,
+        "ties": 20,
+        "losses": 0
+      },
+      "best_fit_decreasing": {
+        "label_a": "best_fit_decreasing",
+        "label_b": "kube_binpacking",
+        "n_instances": 20,
+        "mean_a": 328.703465,
+        "mean_b": 328.907465,
+        "mean_diff": -0.204,
+        "median_diff": 0.0,
+        "mean_pct_reduction": 0.04,
+        "ci_95": [
+          -0.612,
+          0.0
+        ],
+        "p_value": 0.31731050786291415,
+        "wins": 1,
+        "ties": 19,
+        "losses": 0
+      }
+    },
+    "hidden_med": {
+      "Policy_A_T4_C01": {
+        "label_a": "Policy_A_T4_C01",
+        "label_b": "kube_binpacking",
+        "n_instances": 20,
+        "mean_a": 85.12157999999998,
+        "mean_b": 85.12157999999998,
+        "mean_diff": 0.0,
+        "median_diff": 0.0,
+        "mean_pct_reduction": -0.0,
+        "ci_95": [
+          0.0,
+          0.0
+        ],
+        "p_value": 1.0,
+        "wins": 0,
+        "ties": 20,
+        "losses": 0
+      },
+      "Policy_B_N60_T4_C51": {
+        "label_a": "Policy_B_N60_T4_C51",
+        "label_b": "kube_binpacking",
+        "n_instances": 20,
+        "mean_a": 85.32557999999997,
+        "mean_b": 85.12157999999998,
+        "mean_diff": 0.204,
+        "median_diff": 0.0,
+        "mean_pct_reduction": -0.64,
+        "ci_95": [
+          0.0,
+          0.612
+        ],
+        "p_value": 0.31731050786291415,
+        "wins": 0,
+        "ties": 19,
+        "losses": 1
+      },
+      "kube_default": {
+        "label_a": "kube_default",
+        "label_b": "kube_binpacking",
+        "n_instances": 20,
+        "mean_a": 168.14958,
+        "mean_b": 85.12157999999998,
+        "mean_diff": 83.028,
+        "median_diff": 61.2,
+        "mean_pct_reduction": -140.47,
+        "ci_95": [
+          58.956,
+          114.648
+        ],
+        "p_value": 8.807368035275506e-05,
+        "wins": 0,
+        "ties": 0,
+        "losses": 20
+      },
+      "best_fit": {
+        "label_a": "best_fit",
+        "label_b": "kube_binpacking",
+        "n_instances": 20,
+        "mean_a": 85.12157999999998,
+        "mean_b": 85.12157999999998,
+        "mean_diff": 0.0,
+        "median_diff": 0.0,
+        "mean_pct_reduction": -0.0,
+        "ci_95": [
+          0.0,
+          0.0
+        ],
+        "p_value": 1.0,
+        "wins": 0,
+        "ties": 20,
+        "losses": 0
+      },
+      "best_fit_decreasing": {
+        "label_a": "best_fit_decreasing",
+        "label_b": "kube_binpacking",
+        "n_instances": 20,
+        "mean_a": 85.12157999999998,
+        "mean_b": 85.12157999999998,
+        "mean_diff": 0.0,
+        "median_diff": 0.0,
+        "mean_pct_reduction": -0.0,
+        "ci_95": [
+          0.0,
+          0.0
+        ],
+        "p_value": 1.0,
+        "wins": 0,
+        "ties": 20,
+        "losses": 0
+      }
+    },
+    "hidden_high": {
+      "Policy_A_T4_C01": {
+        "label_a": "Policy_A_T4_C01",
+        "label_b": "kube_binpacking",
+        "n_instances": 15,
+        "mean_a": 99.90427333333334,
+        "mean_b": 99.90427333333334,
+        "mean_diff": 0.0,
+        "median_diff": 0.0,
+        "mean_pct_reduction": -0.0,
+        "ci_95": [
+          0.0,
+          0.0
+        ],
+        "p_value": 1.0,
+        "wins": 0,
+        "ties": 15,
+        "losses": 0
+      },
+      "Policy_B_N60_T4_C51": {
+        "label_a": "Policy_B_N60_T4_C51",
+        "label_b": "kube_binpacking",
+        "n_instances": 15,
+        "mean_a": 99.90427333333334,
+        "mean_b": 99.90427333333334,
+        "mean_diff": 0.0,
+        "median_diff": 0.0,
+        "mean_pct_reduction": -0.0,
+        "ci_95": [
+          0.0,
+          0.0
+        ],
+        "p_value": 1.0,
+        "wins": 0,
+        "ties": 15,
+        "losses": 0
+      },
+      "kube_default": {
+        "label_a": "kube_default",
+        "label_b": "kube_binpacking",
+        "n_instances": 15,
+        "mean_a": 210.06427333333335,
+        "mean_b": 99.90427333333334,
+        "mean_diff": 110.16,
+        "median_diff": 53.04,
+        "mean_pct_reduction": -313.79,
+        "ci_95": [
+          62.56,
+          168.64
+        ],
+        "p_value": 0.0006500242387180627,
+        "wins": 0,
+        "ties": 0,
+        "losses": 15
+      },
+      "best_fit": {
+        "label_a": "best_fit",
+        "label_b": "kube_binpacking",
+        "n_instances": 15,
+        "mean_a": 99.90427333333334,
+        "mean_b": 99.90427333333334,
+        "mean_diff": 0.0,
+        "median_diff": 0.0,
+        "mean_pct_reduction": -0.0,
+        "ci_95": [
+          0.0,
+          0.0
+        ],
+        "p_value": 1.0,
+        "wins": 0,
+        "ties": 15,
+        "losses": 0
+      },
+      "best_fit_decreasing": {
+        "label_a": "best_fit_decreasing",
+        "label_b": "kube_binpacking",
+        "n_instances": 15,
+        "mean_a": 99.90427333333334,
+        "mean_b": 99.90427333333334,
+        "mean_diff": 0.0,
+        "median_diff": 0.0,
+        "mean_pct_reduction": -0.0,
+        "ci_95": [
+          0.0,
+          0.0
+        ],
+        "p_value": 1.0,
+        "wins": 0,
+        "ties": 15,
+        "losses": 0
+      }
+    }
+  },
+  "dynamic_replay_analysis": {
+    "Policy_A_T4_C01": {
+      "node_hours": {
+        "label_a": "Policy_A_T4_C01",
+        "label_b": "kube_binpacking",
+        "n_instances": 10,
+        "mean_a": 315.60623,
+        "mean_b": 307.90649999999994,
+        "mean_diff": 7.6997,
+        "median_diff": 2.104,
+        "mean_pct_reduction": -3.09,
+        "ci_95": [
+          2.0708,
+          14.4778
+        ],
+        "p_value": 0.00390625,
+        "wins": 1,
+        "ties": 0,
+        "losses": 9
+      },
+      "cost": {
+        "label_a": "Policy_A_T4_C01",
+        "label_b": "kube_binpacking",
+        "n_instances": 10,
+        "mean_a": 1287.67339,
+        "mean_b": 1256.2585199999999,
+        "mean_diff": 31.4149,
+        "median_diff": 8.5844,
+        "mean_pct_reduction": -3.09,
+        "ci_95": [
+          8.4488,
+          59.0692
+        ],
+        "p_value": 0.00390625,
+        "wins": 1,
+        "ties": 0,
+        "losses": 9
+      }
+    },
+    "Policy_B_N60_T4_C51": {
+      "node_hours": {
+        "label_a": "Policy_B_N60_T4_C51",
+        "label_b": "kube_binpacking",
+        "n_instances": 10,
+        "mean_a": 315.60623,
+        "mean_b": 307.90649999999994,
+        "mean_diff": 7.6997,
+        "median_diff": 2.104,
+        "mean_pct_reduction": -3.09,
+        "ci_95": [
+          2.0708,
+          14.4778
+        ],
+        "p_value": 0.00390625,
+        "wins": 1,
+        "ties": 0,
+        "losses": 9
+      },
+      "cost": {
+        "label_a": "Policy_B_N60_T4_C51",
+        "label_b": "kube_binpacking",
+        "n_instances": 10,
+        "mean_a": 1287.67339,
+        "mean_b": 1256.2585199999999,
+        "mean_diff": 31.4149,
+        "median_diff": 8.5844,
+        "mean_pct_reduction": -3.09,
+        "ci_95": [
+          8.4488,
+          59.0692
+        ],
+        "p_value": 0.00390625,
+        "wins": 1,
+        "ties": 0,
+        "losses": 9
+      }
+    },
+    "kube_default": {
+      "node_hours": {
+        "label_a": "kube_default",
+        "label_b": "kube_binpacking",
+        "n_instances": 10,
+        "mean_a": 2132.979700000001,
+        "mean_b": 307.90649999999994,
+        "mean_diff": 1825.0732,
+        "median_diff": 564.3273,
+        "mean_pct_reduction": -501.68,
+        "ci_95": [
+          348.024,
+          3836.8319
+        ],
+        "p_value": 0.001953125,
+        "wins": 0,
+        "ties": 0,
+        "losses": 10
+      },
+      "cost": {
+        "label_a": "kube_default",
+        "label_b": "kube_binpacking",
+        "n_instances": 10,
+        "mean_a": 8702.55717,
+        "mean_b": 1256.2585199999999,
+        "mean_diff": 7446.2986,
+        "median_diff": 2302.4551,
+        "mean_pct_reduction": -501.68,
+        "ci_95": [
+          1419.9379,
+          15654.2742
+        ],
+        "p_value": 0.001953125,
+        "wins": 0,
+        "ties": 0,
+        "losses": 10
+      }
+    },
+    "first_fit": {
+      "node_hours": {
+        "label_a": "first_fit",
+        "label_b": "kube_binpacking",
+        "n_instances": 10,
+        "mean_a": 306.93367,
+        "mean_b": 307.90649999999994,
+        "mean_diff": -0.9728,
+        "median_diff": -0.3699,
+        "mean_pct_reduction": 1.19,
+        "ci_95": [
+          -2.1881,
+          0.0185
+        ],
+        "p_value": 0.064453125,
+        "wins": 8,
+        "ties": 0,
+        "losses": 2
+      },
+      "cost": {
+        "label_a": "first_fit",
+        "label_b": "kube_binpacking",
+        "n_instances": 10,
+        "mean_a": 1252.28935,
+        "mean_b": 1256.2585199999999,
+        "mean_diff": -3.9692,
+        "median_diff": -1.509,
+        "mean_pct_reduction": 1.19,
+        "ci_95": [
+          -8.9275,
+          0.0755
+        ],
+        "p_value": 0.064453125,
+        "wins": 8,
+        "ties": 0,
+        "losses": 2
+      }
+    },
+    "best_fit": {
+      "node_hours": {
+        "label_a": "best_fit",
+        "label_b": "kube_binpacking",
+        "n_instances": 10,
+        "mean_a": 309.02545,
+        "mean_b": 307.90649999999994,
+        "mean_diff": 1.119,
+        "median_diff": 0.8772,
+        "mean_pct_reduction": -1.25,
+        "ci_95": [
+          0.4097,
+          1.8626
+        ],
+        "p_value": 0.02734375,
+        "wins": 2,
+        "ties": 1,
+        "losses": 7
+      },
+      "cost": {
+        "label_a": "best_fit",
+        "label_b": "kube_binpacking",
+        "n_instances": 10,
+        "mean_a": 1260.8238,
+        "mean_b": 1256.2585199999999,
+        "mean_diff": 4.5653,
+        "median_diff": 3.579,
+        "mean_pct_reduction": -1.25,
+        "ci_95": [
+          1.6714,
+          7.5994
+        ],
+        "p_value": 0.02734375,
+        "wins": 2,
+        "ties": 1,
+        "losses": 7
+      }
+    },
+    "best_fit_decreasing": {
+      "node_hours": {
+        "label_a": "best_fit_decreasing",
+        "label_b": "kube_binpacking",
+        "n_instances": 10,
+        "mean_a": 309.02545,
+        "mean_b": 307.90649999999994,
+        "mean_diff": 1.119,
+        "median_diff": 0.8772,
+        "mean_pct_reduction": -1.25,
+        "ci_95": [
+          0.4097,
+          1.8626
+        ],
+        "p_value": 0.02734375,
+        "wins": 2,
+        "ties": 1,
+        "losses": 7
+      },
+      "cost": {
+        "label_a": "best_fit_decreasing",
+        "label_b": "kube_binpacking",
+        "n_instances": 10,
+        "mean_a": 1260.8238,
+        "mean_b": 1256.2585199999999,
+        "mean_diff": 4.5653,
+        "median_diff": 3.579,
+        "mean_pct_reduction": -1.25,
+        "ci_95": [
+          1.6714,
+          7.5994
+        ],
+        "p_value": 0.02734375,
+        "wins": 2,
+        "ties": 1,
+        "losses": 7
+      }
+    },
+    "worst_fit": {
+      "node_hours": {
+        "label_a": "worst_fit",
+        "label_b": "kube_binpacking",
+        "n_instances": 10,
+        "mean_a": 2127.33992,
+        "mean_b": 307.90649999999994,
+        "mean_diff": 1819.4334,
+        "median_diff": 563.4139,
+        "mean_pct_reduction": -501.14,
+        "ci_95": [
+          347.4026,
+          3823.647
+        ],
+        "p_value": 0.001953125,
+        "wins": 0,
+        "ties": 0,
+        "losses": 10
+      },
+      "cost": {
+        "label_a": "worst_fit",
+        "label_b": "kube_binpacking",
+        "n_instances": 10,
+        "mean_a": 8679.54686,
+        "mean_b": 1256.2585199999999,
+        "mean_diff": 7423.2883,
+        "median_diff": 2298.7287,
+        "mean_pct_reduction": -501.14,
+        "ci_95": [
+          1417.4026,
+          15600.4798
+        ],
+        "p_value": 0.001953125,
+        "wins": 0,
+        "ties": 0,
+        "losses": 10
+      }
+    }
+  }
+}

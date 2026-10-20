@@ -1,0 +1,14 @@
+{
+  "experiment": "Experiment #3: Stronger LLM Capability Test",
+  "model": "antigravity/claude-sonnet-4-6",
+  "provider": "omniroute/antigravity",
+  "problem": "online_1d_bin_packing",
+  "bin_capacity": 100.0,
+  "dev_instances": 25,
+  "hidden_instances": 120,
+  "total_calls": 40,
+  "prompt_tokens": 119492,
+  "completion_tokens": 30048,
+  "failed_calls": 0,
+  "total_cost_usd": 0.0
+}

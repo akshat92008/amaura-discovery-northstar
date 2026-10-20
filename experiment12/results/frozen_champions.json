@@ -1,0 +1,195 @@
+{
+  "metadata": {
+    "experiment": "Amaura Experiment #12: Targeted Refinement vs Independent Best-of-N",
+    "frozen_at": "2026-10-04T06:44:58Z",
+    "model": "nvidia/nvidia/nemotron-3-super-120b-a12b",
+    "trials": 5,
+    "total_champions": 10
+  },
+  "champions": {
+    "A": [
+      {
+        "candidate_id": "T1_A_C07",
+        "trial_idx": 0,
+        "condition": "A",
+        "call_idx": 6,
+        "phase": "generation",
+        "development_score": 86429,
+        "mean_makespan": 2880.97,
+        "runtime_ms": 1114.08,
+        "validity": true,
+        "code_sha256": "c874f3d96a7ee1d2fa01b4cf53dc00fa4b3b70381dc187f6c9bfe5017a092dbd",
+        "code": "def schedule_flowshop(times):\n    \"\"\"\n    Constructive multi-start heuristic for the Permutation Flow Shop Scheduling problem\n    (minimizing makespan). Generates a few initial permutations using different sorting\n    criteria, applies the NEH insertion heuristic to each, and returns the best sequence.\n    \"\"\"\n    n = len(times)\n    if n == 0:\n        return []\n    m = len(times[0])\n\n    # ---------- makespan evaluation ----------\n    def makespan(seq):\n        \"\"\"Return the makespan of the given job permutation.\"\"\"\n        mach = [0] * m\n        for j in seq:\n            pj = times[j]\n            # machine 0\n            mach[0] += pj[0]\n            # other machines\n            for k in range(1, m):\n                mach[k] = max(mach[k - 1], mach[k]) + pj[k]\n        return mach[-1]\n\n    # ---------- NEH insertion ----------\n    def neh_construction(job_order):\n        \"\"\"Apply NEH insertion using the provided job order.\"\"\"\n        seq = []\n        for job in job_order:\n            best_pos = 0\n            best_val = float('inf')\n            # try all insertion positions\n            for pos in range(len(seq) + 1):\n                cand = seq[:pos] + [job] + seq[pos:]\n                val = makespan(cand)\n                if val < best_val:\n                    best_val = val\n                    best_pos = pos\n            seq = seq[:best_pos] + [job] + seq[best_pos:]\n        return seq\n\n    # ---------- sorting criteria ----------\n    def total_time(j):\n        return sum(times[j])\n\n    def slope_index(j):\n        # difference between last and first machine processing times\n        return times[j][-1] - times[j][0]\n\n    def max_machine_time(j):\n        return max(times[j])\n\n    criteria = [\n        (total_time, True),      # descending total processing time\n        (total_time, False),     # ascending total processing time\n        (slope_index, True),     # descending slope index\n        (max_machine_time, True) # descending maximal machine time\n    ]\n\n    best_seq = None\n    best_mk = float('inf')\n\n    for key_func, reverse in criteria:\n        ordered = sorted(range(n), key=key_func, reverse=reverse)\n        cand_seq = neh_construction(ordered)\n        cand_mk = makespan(cand_seq)\n        if cand_mk < best_mk:\n            best_mk = cand_mk\n            best_seq = cand_seq\n\n    return best_seq"
+      },
+      {
+        "candidate_id": "T2_A_C03",
+        "trial_idx": 1,
+        "condition": "A",
+        "call_idx": 2,
+        "phase": "generation",
+        "development_score": 86643,
+        "mean_makespan": 2888.1,
+        "runtime_ms": 321.15,
+        "validity": true,
+        "code_sha256": "8f740397973194086fb4e7dfe2f5d63afb456d0abfb637106d1c845c375f2e36",
+        "code": "def schedule_flowshop(times):\n    \"\"\"\n    Constructive NEH-inspired insertion heuristic for the Permutation Flow Shop\n    Scheduling problem (minimizing makespan).\n\n    Parameters\n    ----------\n    times : list[list[int]]\n        Processing times matrix where times[j][k] is the processing time of job j\n        on machine k.\n\n    Returns\n    -------\n    list[int]\n        A permutation of job indices that represents the job order on all machines.\n    \"\"\"\n    n = len(times)\n    if n == 0:\n        return []\n    m = len(times[0])\n\n    # 1. Rank jobs by descending total processing time (NEH's first step)\n    total_proc = [sum(row) for row in times]\n    jobs = sorted(range(n), key=lambda j: (-total_proc[j], j))\n\n    # 2. Helper to compute makespan of a given permutation\n    def makespan(perm):\n        # mc[k] = completion time of the last processed job on machine k\n        mc = [0] * m\n        for job in perm:\n            # machine 0\n            mc[0] += times[job][0]\n            # remaining machines\n            for k in range(1, m):\n                # start time = max(completion of same job on previous machine,\n                #               completion of previous job on this machine)\n                if mc[k - 1] > mc[k]:\n                    mc[k] = mc[k - 1] + times[job][k]\n                else:\n                    mc[k] = mc[k] + times[job][k]\n        return mc[-1] if m > 0 else 0\n\n    # 3. Insert each job into the best position of the current partial schedule\n    schedule = []\n    for job in jobs:\n        best_pos = 0\n        best_val = float('inf')\n        # evaluate every possible insertion position\n        for pos in range(len(schedule) + 1):\n            cand = schedule[:pos] + [job] + schedule[pos:]\n            val = makespan(cand)\n            if val < best_val:\n                best_val = val\n                best_pos = pos\n        # update schedule with the best insertion found\n        schedule = schedule[:best_pos] + [job] + schedule[best_pos:]\n\n    return schedule"
+      },
+      {
+        "candidate_id": "T3_A_C14",
+        "trial_idx": 2,
+        "condition": "A",
+        "call_idx": 13,
+        "phase": "generation",
+        "development_score": 86574,
+        "mean_makespan": 2885.8,
+        "runtime_ms": 474.81,
+        "validity": true,
+        "code_sha256": "a5306415137aaedb517185702b097adb40eed7df950eb29a4ad6aba2e62a73ee",
+        "code": "def schedule_flowshop(times):\n    \"\"\"\n    Constructive NEH heuristic followed by a bounded adjacent\u2011swap local search.\n    Returns a permutation of job indices that (hopefully) minimizes the makespan.\n    \"\"\"\n    if not times:\n        return []\n\n    n = len(times)\n    m = len(times[0])\n\n    # ---------- makespan computation for a given permutation ----------\n    def makespan(seq):\n        \"\"\"Return C_max for the job sequence `seq`.\"\"\"\n        if not seq:\n            return 0\n        # prev[k] = completion time of the previous job on machine k\n        prev = [0] * m\n        for job in seq:\n            cur = [0] * m\n            for k in range(m):\n                t = times[job][k]\n                if k == 0:\n                    # first machine: wait for previous job on same machine\n                    cur[0] = prev[0] + t if prev[0] or sum(prev) else t\n                else:\n                    # wait for max(previous job on this machine, same job on previous machine)\n                    cur[k] = (prev[k] if prev[k] > cur[k-1] else cur[k-1]) + t\n            prev = cur\n        return prev[-1]\n\n    # ---------- NEH constructive heuristic ----------\n    # Sort jobs by total processing time (descending)\n    job_totals = [sum(times[j]) for j in range(n)]\n    order = sorted(range(n), key=lambda j: job_totals[j], reverse=True)\n\n    seq = []\n    for job in order:\n        best_pos = 0\n        best_val = float('inf')\n        # try inserting `job` at every possible position\n        for pos in range(len(seq) + 1):\n            cand = seq[:pos] + [job] + seq[pos:]\n            val = makespan(cand)\n            if val < best_val:\n                best_val = val\n                best_pos = pos\n        seq = seq[:best_pos] + [job] + seq[best_pos:]\n\n    # ---------- Bounded adjacent\u2011swap local search ----------\n    max_iter = max(2, min(8, 150 // max(n, 1)))  # iteration cap as required\n    current = seq[:]\n    best_seq = current[:]\n    best_mk = makespan(best_seq)\n\n    for _ in range(max_iter):\n        improved = False\n        # examine all adjacent swaps\n        for i in range(len(current) - 1):\n            cand = current[:]\n            cand[i], cand[i + 1] = cand[i + 1], cand[i]\n            mk = makespan(cand)\n            if mk < best_mk:\n                best_mk = mk\n                best_seq = cand[:]\n                improved = True\n        if improved:\n            current = best_seq[:]  # start next iteration from the best found\n        else:\n            break\n\n    return best_seq"
+      },
+      {
+        "candidate_id": "T4_A_C10",
+        "trial_idx": 3,
+        "condition": "A",
+        "call_idx": 9,
+        "phase": "generation",
+        "development_score": 86185,
+        "mean_makespan": 2872.83,
+        "runtime_ms": 1997.2,
+        "validity": true,
+        "code_sha256": "9bd7d378b69d8cc953a3a966445c257d5462c50a88f8f5f4fd460b68cc02b197",
+        "code": "import random\nfrom typing import List\n\ndef schedule_flowshop(times: List[List[int]]) -> List[int]:\n    \"\"\"\n    Returns a permutation of job indices that aims to minimize the makespan\n    for a permutation flow shop problem using a stochastic ordering with\n    deterministic insertion placement and a limited improvement phase.\n    \"\"\"\n    n = len(times)\n    if n == 0:\n        return []\n    m = len(times[0])\n\n    # Helper to compute makespan of a given permutation\n    def makespan(perm: List[int]) -> int:\n        machine_free = [0] * m  # time each machine becomes available\n        for job in perm:\n            proc = times[job]\n            # machine 0\n            machine_free[0] += proc[0]\n            # other machines\n            for k in range(1, m):\n                # start time is max of completion on previous machine and machine availability\n                machine_free[k] = max(machine_free[k-1], machine_free[k]) + proc[k]\n        return machine_free[-1]\n\n    # 1. Stochastic ordering: bias toward jobs with smaller total processing time\n    weights = [sum(times[j]) + 1e-6 for j in range(n)]  # avoid zero\n    keys = [random.expovariate(w) for w in weights]   # smaller key -> higher priority\n    order = sorted(range(n), key=lambda j: (keys[j], j))  # deterministic tie\u2011break by index\n\n    # 2. Constructive insertion placement using the stochastic order\n    perm: List[int] = []\n    for job in order:\n        best_pos = 0\n        best_val = float('inf')\n        # try inserting 'job' at each possible position\n        for pos in range(len(perm) + 1):\n            # build temporary permutation without copying the whole list each time\n            # we can compute makespan by simulating insertion, but for clarity and\n            # given small n we just construct the list.\n            tmp = perm[:pos] + [job] + perm[pos:]\n            val = makespan(tmp)\n            if val < best_val:\n                best_val = val\n                best_pos = pos\n        perm = perm[:best_pos] + [job] + perm[best_pos:]\n\n    # 3. Limited improvement phase (insertion based) with explicit iteration cap\n    # Cap the number of passes to keep makespan evaluations low.\n    max_iter = max(2, min(8, 150 // max(n, 1)))\n    for _ in range(max_iter):\n        improved = False\n        for idx in range(n):\n            job = perm[idx]\n            # remove job at idx\n            reduced = perm[:idx] + perm[idx+1:]\n            best_pos = idx\n            best_val = makespan(perm)  # current makespan as baseline\n            # try re\u2011inserting job at each position in the reduced list\n            for pos in range(len(reduced) + 1):\n                tmp = reduced[:pos] + [job] + reduced[pos:]\n                val = makespan(tmp)\n                if val < best_val:\n                    best_val = val\n                    best_pos = pos\n            if best_pos != idx:\n                # perform the move\n                perm = reduced[:best_pos] + [job] + reduced[best_pos:]\n                improved = True\n        if not improved:\n            break\n\n    return perm"
+      },
+      {
+        "candidate_id": "T5_A_C05",
+        "trial_idx": 4,
+        "condition": "A",
+        "call_idx": 4,
+        "phase": "generation",
+        "development_score": 86574,
+        "mean_makespan": 2885.8,
+        "runtime_ms": 302.9,
+        "validity": true,
+        "code_sha256": "cfbe57a1214e95549f57d574332ce5524081e541382430ae2110851292df1b86",
+        "code": "def schedule_flowshop(times):\n    \"\"\"\n    Constructs a permutation for the Permutation Flow Shop Scheduling problem\n    that aims to minimize the makespan (C_max). The algorithm follows an\n    NEH-like constructive heuristic based on idle\u2011time minimization and then\n    applies a limited adjacent\u2011swap local search with an iteration cap to\n    respect the computational budget.\n    \"\"\"\n    n = len(times)\n    if n == 0:\n        return []\n    m = len(times[0])\n\n    # Helper to compute makespan of a given job sequence\n    def makespan(seq):\n        if not seq:\n            return 0\n        machine_times = [0] * m\n        for job in seq:\n            proc = times[job]\n            t = 0\n            for k in range(m):\n                t = max(t, machine_times[k]) + proc[k]\n                machine_times[k] = t\n        return machine_times[-1]\n\n    # --- Constructive phase (NEH style) ---\n    # Order jobs by descending total processing time\n    order = list(range(n))\n    order.sort(key=lambda j: sum(times[j]), reverse=True)\n\n    seq = [order[0]]\n    for idx in range(1, n):\n        job = order[idx]\n        best_seq = None\n        best_mk = float('inf')\n        # Try inserting the job at every possible position\n        for pos in range(len(seq) + 1):\n            cand = seq[:pos] + [job] + seq[pos:]\n            mk = makespan(cand)\n            if mk < best_mk:\n                best_mk = mk\n                best_seq = cand\n        seq = best_seq\n\n    # --- Improvement phase (adjacent swaps) ---\n    max_iter = max(2, min(8, 150 // max(n, 1)))  # iteration cap as required\n    for _ in range(max_iter):\n        cur_mk = makespan(seq)\n        improved = False\n        best_mk = cur_mk\n        best_seq = seq[:]\n        # Evaluate each adjacent swap\n        for i in range(len(seq) - 1):\n            cand = seq[:]\n            cand[i], cand[i + 1] = cand[i + 1], cand[i]\n            mk = makespan(cand)\n            if mk < best_mk:\n                best_mk = mk\n                best_seq = cand[:]\n                improved = True\n        if improved:\n            seq = best_seq\n        else:\n            break\n\n    return seq"
+      }
+    ],
+    "R": [
+      {
+        "candidate_id": "T1_R_C13",
+        "trial_idx": 0,
+        "condition": "R",
+        "call_idx": 12,
+        "phase": "refinement",
+        "development_score": 86524,
+        "mean_makespan": 2884.13,
+        "runtime_ms": 419.52,
+        "validity": true,
+        "code_sha256": "fcfc053a4438e93a4ddfa259f18328e2ffaa2ac159e85759a3eba25e8d3ebbef",
+        "code": "import math\nimport random\nimport typing\nimport collections\nimport itertools\nimport heapq\nimport copy\n\ndef schedule_flowshop(times: list[list[int]]) -> list[int]:\n    n = len(times)\n    if n == 0:\n        return []\n    m = len(times[0]) if n > 0 else 0\n\n    def makespan(perm: list[int]) -> int:\n        \"\"\"Compute makespan C_max for a given permutation.\"\"\"\n        if m == 0:\n            return 0\n        prev = [0] * m\n        for job in perm:\n            cur = [0] * m\n            for k in range(m):\n                if k == 0:\n                    cur[k] = prev[k] + times[job][k]\n                else:\n                    cur[k] = max(prev[k], cur[k - 1]) + times[job][k]\n            prev = cur\n        return prev[-1]\n\n    # ----- NEH heuristic -----\n    total_times = [(sum(times[j]), j) for j in range(n)]\n    total_times.sort(reverse=True)          # descending by total processing time\n    neh_perm = []\n    for _, job in total_times:\n        best_pos = 0\n        best_val = math.inf\n        for pos in range(len(neh_perm) + 1):\n            candidate = neh_perm[:pos] + [job] + neh_perm[pos:]\n            val = makespan(candidate)\n            if val < best_val:\n                best_val = val\n                best_pos = pos\n        neh_perm = neh_perm[:best_pos] + [job] + neh_perm[best_pos:]\n\n    # ----- Slope heuristic (first - last machine) -----\n    slope = [(times[j][0] - times[j][-1], j) for j in range(n)]\n    slope.sort(reverse=True)\n    slope_perm = [j for _, j in slope]\n\n    # ----- Bottleneck heuristic (max machine time) -----\n    bottleneck = [(max(times[j]), j) for j in range(n)]\n    bottleneck.sort(reverse=True)\n    bottleneck_perm = [j for _, j in bottleneck]\n\n    # Gather initial candidates\n    candidates = [neh_perm, slope_perm, bottleneck_perm]\n    best_perm = candidates[0]\n    best_makespan = makespan(best_perm)\n    for perm in candidates[1:]:\n        mk = makespan(perm)\n        if mk < best_makespan:\n            best_makespan = mk\n            best_perm = perm\n\n    # ----- Limited iterative improvement (pairwise swap) -----\n    # Cap the number of iterations based on problem size\n    max_iter = max(2, min(8, 150 // max(n, 1)))\n    current = best_perm[:]\n    current_mk = best_makespan\n\n    for _ in range(max_iter):\n        # Generate a neighbor by swapping two distinct positions\n        if n < 2:\n            break\n        i, j = random.sample(range(n), 2)\n        neighbor = current[:]\n        neighbor[i], neighbor[j] = neighbor[j], neighbor[i]\n        mk = makespan(neighbor)\n        if mk < current_mk:\n            current = neighbor\n            current_mk = mk\n\n    return current",
+        "trial_metadata_r": {
+          "parent_id": "T1_R_C07",
+          "parent_score": 86538,
+          "best_generation_id": "T1_R_C07",
+          "best_generation_score": 86538,
+          "best_refinement_id": "T1_R_C13",
+          "best_refinement_score": 86524,
+          "champion_source": "refinement",
+          "refinement_improved_over_parent": true
+        }
+      },
+      {
+        "candidate_id": "T2_R_C15",
+        "trial_idx": 1,
+        "condition": "R",
+        "call_idx": 14,
+        "phase": "refinement",
+        "development_score": 86571,
+        "mean_makespan": 2885.7,
+        "runtime_ms": 306.01,
+        "validity": true,
+        "code_sha256": "b20fa2995deb4877239223c96012bb4cbfe517a0b8704c3e48052cb6c6aefabe",
+        "code": "def schedule_flowshop(times):\n    \"\"\"\n    Permutation Flow Shop Scheduling (NEH heuristic with bottleneck\u2011machine tie\u2011break).\n    Jobs are sorted by descending total processing time, then by descending processing\n    time on the bottleneck machine (the machine with the highest total load), and\n    finally by job index to ensure determinism. Each job is then inserted into the\n    current partial sequence at the position that yields the smallest makespan.\n    \"\"\"\n    n = len(times)\n    if n == 0:\n        return []\n    m = len(times[0])\n\n    # 1. Total processing time per job\n    total_times = [sum(times[j]) for j in range(n)]\n\n    # 2. Machine loads to identify the bottleneck machine\n    machine_loads = [0] * m\n    for j in range(n):\n        for k in range(m):\n            machine_loads[k] += times[j][k]\n    bottleneck = max(range(m), key=lambda k: machine_loads[k])\n\n    # 3. Sort jobs: primary = -total, secondary = -time on bottleneck, tertiary = index\n    ordered_jobs = sorted(\n        range(n),\n        key=lambda j: (-total_times[j], -times[j][bottleneck], j)\n    )\n\n    # 4. Makespan computation for a given sequence\n    def makespan(seq):\n        machine_times = [0] * m\n        for job in seq:\n            carry = 0\n            for k in range(m):\n                carry = max(carry, machine_times[k]) + times[job][k]\n                machine_times[k] = carry\n        return carry\n\n    # 5. Constructive insertion (NEH)\n    sequence = []\n    for job in ordered_jobs:\n        best_pos = 0\n        best_mk = float('inf')\n        # Try all possible insertion positions\n        for pos in range(len(sequence) + 1):\n            candidate = sequence[:pos] + [job] + sequence[pos:]\n            mk = makespan(candidate)\n            if mk < best_mk:\n                best_mk = mk\n                best_pos = pos\n        sequence.insert(best_pos, job)\n\n    return sequence",
+        "trial_metadata_r": {
+          "parent_id": "T2_R_C08",
+          "parent_score": 86643,
+          "best_generation_id": "T2_R_C08",
+          "best_generation_score": 86643,
+          "best_refinement_id": "T2_R_C15",
+          "best_refinement_score": 86571,
+          "champion_source": "refinement",
+          "refinement_improved_over_parent": true
+        }
+      },
+      {
+        "candidate_id": "T3_R_C15",
+        "trial_idx": 2,
+        "condition": "R",
+        "call_idx": 14,
+        "phase": "refinement",
+        "development_score": 86571,
+        "mean_makespan": 2885.7,
+        "runtime_ms": 331.69,
+        "validity": true,
+        "code_sha256": "fef6a451499e5c086edfcb3386cac448af7a0510b9fd97a6d16325b59380cbbf",
+        "code": "def schedule_flowshop(times: list[list[int]]) -> list[int]:\n    if not times:\n        return []\n    n = len(times)\n    m = len(times[0])\n    # total processing time per job\n    job_totals = [sum(times[j]) for j in range(n)]\n    # machine loads to identify the bottleneck machine\n    machine_loads = [0] * m\n    for j in range(n):\n        for k in range(m):\n            machine_loads[k] += times[j][k]\n    bottleneck = max(range(m), key=lambda k: machine_loads[k])\n    # sort jobs: descending total time, then descending time on bottleneck, then index for stability\n    jobs = list(range(n))\n    jobs.sort(key=lambda j: (-job_totals[j], -times[j][bottleneck], j))\n    # makespan calculation for a given permutation\n    def makespan(seq):\n        if not seq:\n            return 0\n        comp = [0] * m\n        for job in seq:\n            comp[0] += times[job][0]\n            for k in range(1, m):\n                comp[k] = max(comp[k], comp[k-1]) + times[job][k]\n        return comp[-1]\n    # insertion heuristic (NEH style) using the refined priority order\n    schedule = []\n    for job in jobs:\n        best_pos = 0\n        best_val = float('inf')\n        for pos in range(len(schedule) + 1):\n            cand = schedule[:pos] + [job] + schedule[pos:]\n            val = makespan(cand)\n            if val < best_val:\n                best_val = val\n                best_pos = pos\n        schedule.insert(best_pos, job)\n    return schedule",
+        "trial_metadata_r": {
+          "parent_id": "T3_R_C03",
+          "parent_score": 86643,
+          "best_generation_id": "T3_R_C03",
+          "best_generation_score": 86643,
+          "best_refinement_id": "T3_R_C15",
+          "best_refinement_score": 86571,
+          "champion_source": "refinement",
+          "refinement_improved_over_parent": true
+        }
+      },
+      {
+        "candidate_id": "T4_R_C15",
+        "trial_idx": 3,
+        "condition": "R",
+        "call_idx": 14,
+        "phase": "refinement",
+        "development_score": 86421,
+        "mean_makespan": 2880.7,
+        "runtime_ms": 1106.12,
+        "validity": true,
+        "code_sha256": "1f14f31607bd755993b17826759149f6d857b2a53663ddebfda53b50834b1888",
+        "code": "import random\nfrom typing import List\n\ndef schedule_flowshop(times: List[List[int]]) -> List[int]:\n    n = len(times)\n    if n == 0:\n        return []\n    m = len(times[0])\n    \n    def makespan(perm: List[int]) -> int:\n        machine_end = [0] * m\n        for job in perm:\n            job_end = 0\n            for k in range(m):\n                job_end = max(job_end, machine_end[k]) + times[job][k]\n                machine_end[k] = job_end\n        return job_end\n\n    # NEH heuristic: sort by descending total processing time\n    job_totals = [sum(times[j]) for j in range(n)]\n    order = sorted(range(n), key=lambda j: -job_totals[j])\n    seq: List[int] = []\n    for job in order:\n        best_pos = 0\n        best_val = None\n        for pos in range(len(seq) + 1):\n            candidate = seq[:pos] + [job] + seq[pos:]\n            val = makespan(candidate)\n            if best_val is None or val < best_val:\n                best_val = val\n                best_pos = pos\n        seq = seq[:best_pos] + [job] + seq[best_pos:]\n\n    # Local search using insertion moves\n    max_evals = 10000\n    evals_used = 0\n    max_iter = max(2, min(8, 150 // max(n, 1)))\n    current_seq = seq[:]\n    current_val = makespan(current_seq)\n    improved = True\n    it = 0\n    while improved and it < max_iter and evals_used < max_evals:\n        improved = False\n        it += 1\n        attempts = min(50, max_evals - evals_used)  # limit attempts per iteration\n        for _ in range(attempts):\n            i = random.randrange(n)\n            job = current_seq[i]\n            seq_without = current_seq[:i] + current_seq[i+1:]\n            best_move_val = None\n            best_move_seq = None\n            # try all possible re\u2011insertion positions\n            for pos in range(len(seq_without) + 1):\n                if pos == i:  # inserting back to same spot yields no change\n                    continue\n                cand = seq_without[:pos] + [job] + seq_without[pos:]\n                val = makespan(cand)\n                evals_used += 1\n                if best_move_val is None or val < best_move_val:\n                    best_move_val = val\n                    best_move_seq = cand\n            if best_move_val is not None and best_move_val < current_val:\n                current_seq = best_move_seq\n                current_val = best_move_val\n                improved = True\n                break  # exit attempts loop, proceed to next iteration\n    return current_seq",
+        "trial_metadata_r": {
+          "parent_id": "T4_R_C09",
+          "parent_score": 86525,
+          "best_generation_id": "T4_R_C09",
+          "best_generation_score": 86525,
+          "best_refinement_id": "T4_R_C15",
+          "best_refinement_score": 86421,
+          "champion_source": "refinement",
+          "refinement_improved_over_parent": true
+        }
+      },
+      {
+        "candidate_id": "T5_R_C13",
+        "trial_idx": 4,
+        "condition": "R",
+        "call_idx": 12,
+        "phase": "refinement",
+        "development_score": 86630,
+        "mean_makespan": 2887.67,
+        "runtime_ms": 385.29,
+        "validity": true,
+        "code_sha256": "cb04fe59d8ee8cc9cc97b49220bd8fa281439ea3897f8c0cdd594695770a59a6",
+        "code": "def schedule_flowshop(times: list[list[int]]) -> list[int]:\n    import random\n    n = len(times)\n    if n == 0:\n        return []\n    m = len(times[0]) if n > 0 else 0\n\n    # Helper to compute makespan of a given permutation\n    def makespan(perm):\n        if m == 0:\n            return 0\n        machine_times = [0] * m\n        for job in perm:\n            for k in range(m):\n                if k == 0:\n                    machine_times[k] += times[job][k]\n                else:\n                    machine_times[k] = max(machine_times[k], machine_times[k - 1]) + times[job][k]\n        return machine_times[-1]\n\n    # NEH-like constructive phase: sort by descending total processing time\n    total_times = [sum(job) for job in times]\n    order = sorted(range(n), key=lambda i: total_times[i], reverse=True)\n    seq = [order[0]]\n    for job in order[1:]:\n        best_pos = 0\n        best_val = float('inf')\n        for pos in range(len(seq) + 1):\n            cand = seq[:pos] + [job] + seq[pos:]\n            val = makespan(cand)\n            if val < best_val:\n                best_val = val\n                best_pos = pos\n        seq = seq[:best_pos] + [job] + seq[best_pos:]\n\n    # Optional improvement phase with bounded iterations\n    cur_makespan = makespan(seq)\n    # Determine iteration cap based on problem size\n    max_iter = max(2, min(8, 150 // max(n, 1)))\n    for _ in range(max_iter):\n        # Pick two distinct positions uniformly at random\n        i, j = random.sample(range(n), 2)\n        seq[i], seq[j] = seq[j], seq[i]\n        new_makespan = makespan(seq)\n        if new_makespan < cur_makespan:\n            cur_makespan = new_makespan\n        else:\n            # revert the swap if no improvement\n            seq[i], seq[j] = seq[j], seq[i]\n\n    return seq",
+        "trial_metadata_r": {
+          "parent_id": "T5_R_C02",
+          "parent_score": 86643,
+          "best_generation_id": "T5_R_C02",
+          "best_generation_score": 86643,
+          "best_refinement_id": "T5_R_C13",
+          "best_refinement_score": 86630,
+          "champion_source": "refinement",
+          "refinement_improved_over_parent": true
+        }
+      }
+    ]
+  }
+}

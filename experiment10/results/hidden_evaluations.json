@@ -1,0 +1,179 @@
+{
+  "metadata": {
+    "hidden_benchmark_instances": 120,
+    "evaluation_timestamp": "2026-10-03T15:48:27Z"
+  },
+  "evaluations": {
+    "A": [
+      {
+        "candidate_id": "T1_A_C05",
+        "condition": "A",
+        "trial_idx": 0,
+        "validity": false,
+        "hidden_total_makespan": 999999,
+        "hidden_mean_makespan": 999999.0,
+        "instance_makespans": [],
+        "runtime_ms": 29910.32,
+        "error": "Scale-aware Timeout: instance took 1615.1ms > limit 1500.0ms (N=100)"
+      },
+      {
+        "candidate_id": "T2_A_C02",
+        "condition": "A",
+        "trial_idx": 1,
+        "validity": false,
+        "hidden_total_makespan": 999999,
+        "hidden_mean_makespan": 999999.0,
+        "instance_makespans": [],
+        "runtime_ms": 9148.52,
+        "error": "Scale-aware Timeout: instance took 1806.9ms > limit 1500.0ms (N=100)"
+      },
+      {
+        "candidate_id": "T3_A_C06",
+        "condition": "A",
+        "trial_idx": 2,
+        "validity": false,
+        "hidden_total_makespan": 999999,
+        "hidden_mean_makespan": 999999.0,
+        "instance_makespans": [],
+        "runtime_ms": 1824.89,
+        "error": "Scale-aware Timeout: instance took 1256.0ms > limit 1000.0ms (N=50)"
+      },
+      {
+        "candidate_id": "T4_A_C12",
+        "condition": "A",
+        "trial_idx": 3,
+        "validity": false,
+        "hidden_total_makespan": 999999,
+        "hidden_mean_makespan": 999999.0,
+        "instance_makespans": [],
+        "runtime_ms": 7099.8,
+        "error": "Scale-aware Timeout: instance took 1002.0ms > limit 1000.0ms (N=50)"
+      },
+      {
+        "candidate_id": "T5_A_C13",
+        "condition": "A",
+        "trial_idx": 4,
+        "validity": false,
+        "hidden_total_makespan": 999999,
+        "hidden_mean_makespan": 999999.0,
+        "instance_makespans": [],
+        "runtime_ms": 22842.28,
+        "error": "Scale-aware Timeout: instance took 1548.5ms > limit 1500.0ms (N=100)"
+      }
+    ],
+    "B": [
+      {
+        "candidate_id": "T1_B_C03",
+        "condition": "B",
+        "trial_idx": 0,
+        "validity": false,
+        "hidden_total_makespan": 999999,
+        "hidden_mean_makespan": 999999.0,
+        "instance_makespans": [],
+        "runtime_ms": 8571.77,
+        "error": "Scale-aware Timeout: instance took 1909.0ms > limit 1500.0ms (N=100)"
+      },
+      {
+        "candidate_id": "T2_B_C10",
+        "condition": "B",
+        "trial_idx": 1,
+        "validity": false,
+        "hidden_total_makespan": 999999,
+        "hidden_mean_makespan": 999999.0,
+        "instance_makespans": [],
+        "runtime_ms": 15696.8,
+        "error": "Scale-aware Timeout: instance took 1758.3ms > limit 1500.0ms (N=100)"
+      },
+      {
+        "candidate_id": "T3_B_C12",
+        "condition": "B",
+        "trial_idx": 2,
+        "validity": false,
+        "hidden_total_makespan": 999999,
+        "hidden_mean_makespan": 999999.0,
+        "instance_makespans": [],
+        "runtime_ms": 11773.1,
+        "error": "Scale-aware Timeout: instance took 1315.6ms > limit 1000.0ms (N=50)"
+      },
+      {
+        "candidate_id": "T4_B_C05",
+        "condition": "B",
+        "trial_idx": 3,
+        "validity": false,
+        "hidden_total_makespan": 999999,
+        "hidden_mean_makespan": 999999.0,
+        "instance_makespans": [],
+        "runtime_ms": 1873.13,
+        "error": "Scale-aware Timeout: instance took 1006.4ms > limit 1000.0ms (N=50)"
+      },
+      {
+        "candidate_id": "T5_B_C08",
+        "condition": "B",
+        "trial_idx": 4,
+        "validity": false,
+        "hidden_total_makespan": 999999,
+        "hidden_mean_makespan": 999999.0,
+        "instance_makespans": [],
+        "runtime_ms": 17495.37,
+        "error": "Scale-aware Timeout: instance took 2199.1ms > limit 1500.0ms (N=100)"
+      }
+    ],
+    "C": [
+      {
+        "candidate_id": "T1_C_C02",
+        "condition": "C",
+        "trial_idx": 0,
+        "validity": false,
+        "hidden_total_makespan": 999999,
+        "hidden_mean_makespan": 999999.0,
+        "instance_makespans": [],
+        "runtime_ms": 1700.59,
+        "error": "Scale-aware Timeout: instance took 1038.9ms > limit 1000.0ms (N=50)"
+      },
+      {
+        "candidate_id": "T2_C_C13",
+        "condition": "C",
+        "trial_idx": 1,
+        "validity": false,
+        "hidden_total_makespan": 999999,
+        "hidden_mean_makespan": 999999.0,
+        "instance_makespans": [],
+        "runtime_ms": 2356.01,
+        "error": "Scale-aware Timeout: instance took 1280.8ms > limit 1000.0ms (N=50)"
+      },
+      {
+        "candidate_id": "T3_C_C15",
+        "condition": "C",
+        "trial_idx": 2,
+        "validity": false,
+        "hidden_total_makespan": 999999,
+        "hidden_mean_makespan": 999999.0,
+        "instance_makespans": [],
+        "runtime_ms": 27753.56,
+        "error": "Scale-aware Timeout: instance took 1015.5ms > limit 1000.0ms (N=50)"
+      },
+      {
+        "candidate_id": "T4_C_C15",
+        "condition": "C",
+        "trial_idx": 3,
+        "validity": false,
+        "hidden_total_makespan": 999999,
+        "hidden_mean_makespan": 999999.0,
+        "instance_makespans": [],
+        "runtime_ms": 8793.52,
+        "error": "Scale-aware Timeout: instance took 1915.3ms > limit 1500.0ms (N=100)"
+      },
+      {
+        "candidate_id": "T5_C_C13",
+        "condition": "C",
+        "trial_idx": 4,
+        "validity": false,
+        "hidden_total_makespan": 999999,
+        "hidden_mean_makespan": 999999.0,
+        "instance_makespans": [],
+        "runtime_ms": 9877.47,
+        "error": "Scale-aware Timeout: instance took 1016.4ms > limit 1000.0ms (N=50)"
+      }
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "experiment": "Experiment #6: Cross-Domain Algorithm Discovery (Graph Coloring)",
+  "model": "antigravity/claude-sonnet-4-6",
+  "provider": "omniroute/antigravity",
+  "domain": "Graph Coloring Dynamic Vertex Ordering",
+  "baseline_strong": "DSATUR (Br\u00e9laz, 1979)",
+  "baseline_simple": "Welsh-Powell (1967)",
+  "single_shot_count": 10,
+  "population_size": 12,
+  "num_islands": 3,
+  "candidates_per_island": 4,
+  "generations": 30,
+  "migration_interval": 10,
+  "dev_graphs": 25,
+  "hidden1_graphs": 120,
+  "hidden2_graphs": 120,
+  "total_calls": 188,
+  "prompt_tokens": 546658,
+  "completion_tokens": 122591,
+  "failed_calls": 5,
+  "total_cost_usd": 0.0
+}

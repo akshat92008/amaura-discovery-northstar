@@ -1,0 +1,17 @@
+{
+  "dev": {
+    "path": "dev.json",
+    "num_streams": 20,
+    "sha256": "89e58244eed5272533f206c352bf285e267bc2481c2c1983bec9b7dd7024d74e"
+  },
+  "hidden": {
+    "path": "hidden.json",
+    "num_streams": 100,
+    "sha256": "02f2fad53dbf9862c1d8d3d4883c5f4df9d535eaf3d2b1e4901eb9f6ab22af09"
+  },
+  "private_hidden": {
+    "path": "private_hidden.json",
+    "num_streams": 100,
+    "sha256": "c325ca82f5d8d823c22c067d4ea85fb31ed52505f3ce9f179a05eccc87a76369"
+  }
+}

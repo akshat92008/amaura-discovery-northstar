@@ -1,0 +1,18 @@
+{
+  "experiment_id": "EXP_PILOT_DK01_BINPACKING_20261019",
+  "files": {
+    "dev_summary.json": {
+      "sha256": "7cce8aa3c12180dbd417416595f2d65a529344b4ef50bc4538053aa4fbb70030",
+      "size_bytes": 2943
+    },
+    "final_report.json": {
+      "sha256": "d9af2a81ef2f8aaaabe3181d1ea705d2bbd3813258c31985d7848cf4c58ab9f0",
+      "size_bytes": 2122
+    },
+    "run_records.jsonl": {
+      "sha256": "78f42934ddb3c2394c2ff32c4e88142c4169d6153db834bdc7e9b2fdc966cdda",
+      "size_bytes": 23607
+    }
+  },
+  "generated_at": "2026-10-19T16:21:39Z"
+}

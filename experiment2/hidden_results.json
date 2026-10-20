@@ -1,0 +1,143 @@
+{
+  "Human Baseline (Best Fit)": {
+    "overall": {
+      "is_valid": true,
+      "excess_pct": 8.1352,
+      "avg_bins": 65.58,
+      "total_bins": 7869,
+      "lower_bound": 7277,
+      "runtime_ms": 36.19,
+      "error": null
+    },
+    "uniform": {
+      "is_valid": true,
+      "excess_pct": 7.7262,
+      "avg_bins": 73.43,
+      "total_bins": 2203,
+      "lower_bound": 2045,
+      "runtime_ms": 8.15,
+      "error": null
+    },
+    "weibull": {
+      "is_valid": true,
+      "excess_pct": 4.6811,
+      "avg_bins": 59.63,
+      "total_bins": 1789,
+      "lower_bound": 1709,
+      "runtime_ms": 6.51,
+      "error": null
+    },
+    "bimodal": {
+      "is_valid": true,
+      "excess_pct": 10.9738,
+      "avg_bins": 74.83,
+      "total_bins": 2245,
+      "lower_bound": 2023,
+      "runtime_ms": 11.08,
+      "error": null
+    },
+    "triplets": {
+      "is_valid": true,
+      "excess_pct": 8.8,
+      "avg_bins": 54.4,
+      "total_bins": 1632,
+      "lower_bound": 1500,
+      "runtime_ms": 6.52,
+      "error": null
+    }
+  },
+  "Best Single-Shot LLM": {
+    "overall": {
+      "is_valid": true,
+      "excess_pct": 8.7536,
+      "avg_bins": 65.95,
+      "total_bins": 7914,
+      "lower_bound": 7277,
+      "runtime_ms": 35.87,
+      "error": null
+    },
+    "uniform": {
+      "is_valid": true,
+      "excess_pct": 9.1932,
+      "avg_bins": 74.43,
+      "total_bins": 2233,
+      "lower_bound": 2045,
+      "runtime_ms": 11.21,
+      "error": null
+    },
+    "weibull": {
+      "is_valid": true,
+      "excess_pct": 5.3833,
+      "avg_bins": 60.03,
+      "total_bins": 1801,
+      "lower_bound": 1709,
+      "runtime_ms": 9.04,
+      "error": null
+    },
+    "bimodal": {
+      "is_valid": true,
+      "excess_pct": 11.0232,
+      "avg_bins": 74.87,
+      "total_bins": 2246,
+      "lower_bound": 2023,
+      "runtime_ms": 12.57,
+      "error": null
+    },
+    "triplets": {
+      "is_valid": true,
+      "excess_pct": 8.9333,
+      "avg_bins": 54.47,
+      "total_bins": 1634,
+      "lower_bound": 1500,
+      "runtime_ms": 6.65,
+      "error": null
+    }
+  },
+  "Best Iterative LLM": {
+    "overall": {
+      "is_valid": true,
+      "excess_pct": 8.7536,
+      "avg_bins": 65.95,
+      "total_bins": 7914,
+      "lower_bound": 7277,
+      "runtime_ms": 35.39,
+      "error": null
+    },
+    "uniform": {
+      "is_valid": true,
+      "excess_pct": 9.1932,
+      "avg_bins": 74.43,
+      "total_bins": 2233,
+      "lower_bound": 2045,
+      "runtime_ms": 11.98,
+      "error": null
+    },
+    "weibull": {
+      "is_valid": true,
+      "excess_pct": 5.3833,
+      "avg_bins": 60.03,
+      "total_bins": 1801,
+      "lower_bound": 1709,
+      "runtime_ms": 10.1,
+      "error": null
+    },
+    "bimodal": {
+      "is_valid": true,
+      "excess_pct": 11.0232,
+      "avg_bins": 74.87,
+      "total_bins": 2246,
+      "lower_bound": 2023,
+      "runtime_ms": 12.53,
+      "error": null
+    },
+    "triplets": {
+      "is_valid": true,
+      "excess_pct": 8.9333,
+      "avg_bins": 54.47,
+      "total_bins": 1634,
+      "lower_bound": 1500,
+      "runtime_ms": 6.5,
+      "error": null
+    }
+  }
+}

@@ -1,0 +1,142 @@
+{
+  "recomputation_timestamp_utc": "2026-10-15T13:57:32Z",
+  "primary_endpoint": {
+    "num_trials": 30,
+    "seeds": [
+      30301,
+      30302,
+      30303,
+      30304,
+      30305,
+      30306,
+      30307,
+      30308,
+      30309,
+      30310,
+      30311,
+      30312,
+      30313,
+      30314,
+      30315,
+      30316,
+      30317,
+      30318,
+      30319,
+      30320,
+      30321,
+      30322,
+      30323,
+      30324,
+      30325,
+      30326,
+      30327,
+      30328,
+      30329,
+      30330
+    ],
+    "arm_a_total": 38170,
+    "arm_a_mean": 1272.3333,
+    "arm_a_median": 1275.0,
+    "arm_a_std": 12.8045,
+    "arm_c_total": 38180,
+    "arm_c_mean": 1272.6667,
+    "arm_c_median": 1277.5,
+    "arm_c_std": 13.1578,
+    "mean_paired_difference": 0.3333,
+    "median_paired_difference": 0.5,
+    "std_paired_difference": 18.2026,
+    "q25_paired_difference": -12.0,
+    "q75_paired_difference": 12.0,
+    "min_paired_difference": -38,
+    "max_paired_difference": 37,
+    "c_wins": 14,
+    "ties": 1,
+    "a_wins": 15,
+    "bootstrap_ci_95": [
+      -6.1008,
+      6.7
+    ],
+    "wilcoxon_stat": 216.0,
+    "wilcoxon_p": 0.9741132070078699,
+    "practical_criterion_met": false,
+    "final_decision": "NOT_SUPPORTED"
+  },
+  "reliability": {
+    "candidate_yield": {
+      "arm_a_valid": 1519,
+      "arm_a_rate": 0.5063,
+      "arm_b_valid": 1535,
+      "arm_b_rate": 0.5117,
+      "arm_c_valid": 2691,
+      "arm_c_rate": 0.897
+    },
+    "champion_failures": {
+      "arm_a": 0,
+      "arm_b": 14,
+      "arm_c": 0
+    },
+    "mcnemar_test_p": 0.0001220703125,
+    "bounded_imputation_sensitivity": {
+      "penalty_score": 19001,
+      "imputed_mean_diff": -8279.3,
+      "imputed_ci_95": [
+        -11235.9025,
+        -5322.93
+      ],
+      "imputed_wilcoxon_p": 0.0001469948166845389
+    }
+  },
+  "baselines": {
+    "Greedy First-Fit": {
+      "total_colors": 1552,
+      "avg_colors": 7.76,
+      "valid": true,
+      "total_runtime_ms": 12.08,
+      "per_graph_runtime_ms": 0.0604
+    },
+    "Welsh-Powell (1967)": {
+      "total_colors": 1450,
+      "avg_colors": 7.25,
+      "valid": true,
+      "total_runtime_ms": 13.52,
+      "per_graph_runtime_ms": 0.0676
+    },
+    "DSATUR (Brelaz 1979)": {
+      "total_colors": 1333,
+      "avg_colors": 6.665,
+      "valid": true,
+      "total_runtime_ms": 68.28,
+      "per_graph_runtime_ms": 0.3414
+    },
+    "Recursive Largest First (RLF 1979)": {
+      "total_colors": 1299,
+      "avg_colors": 6.495,
+      "valid": true,
+      "total_runtime_ms": 87.7,
+      "per_graph_runtime_ms": 0.4385
+    }
+  },
+  "runtime": {
+    "dsatur_total_ms": 68.28,
+    "dsatur_per_graph_ms": 0.3414,
+    "arm_a_mean_total_ms": 1066.99,
+    "arm_a_mean_per_graph_ms": 5.335,
+    "arm_c_mean_total_ms": 1059.65,
+    "arm_c_mean_per_graph_ms": 5.2982,
+    "arm_c_to_dsatur_ratio": 15.5
+  },
+  "discrepancies_reconciled": {
+    "win_tie_loss": {
+      "verified": "14 C wins, 1 tie, 15 A wins",
+      "error_in_interim": "13-1-16 (Trial 23 miscount)"
+    },
+    "runtime_slowdown": {
+      "verified": "15x - 16x",
+      "error_in_interim": "2,000x (batch total divided by single-graph time)"
+    },
+    "report_line_33": {
+      "verified": "0 failures for Arm A and Arm C",
+      "error_in_interim": "Printed valid count 30 under 'Failures' label"
+    }
+  }
+}

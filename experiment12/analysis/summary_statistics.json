@@ -1,0 +1,378 @@
+{
+  "metadata": {
+    "experiment": "Amaura_Experiment_12",
+    "trials": 5,
+    "calls_per_condition_per_trial": 15,
+    "condition_r_split": {
+      "generation": 10,
+      "refinement": 5
+    },
+    "total_calls": 150,
+    "invalid_rate_total": 0.1,
+    "truncation_rate_total": 0.0267,
+    "model": "nvidia/nvidia/nemotron-3-super-120b-a12b"
+  },
+  "classical_baselines": {
+    "dev": {
+      "palmer": {
+        "is_valid": true,
+        "total_makespan": 91150,
+        "mean_makespan": 3038.33,
+        "runtime_ms": 1.67,
+        "error": null
+      },
+      "cds": {
+        "is_valid": true,
+        "total_makespan": 89725,
+        "mean_makespan": 2990.83,
+        "runtime_ms": 10.59,
+        "error": null
+      },
+      "neh": {
+        "is_valid": true,
+        "total_makespan": 86643,
+        "mean_makespan": 2888.1,
+        "runtime_ms": 315.93,
+        "error": null
+      },
+      "iterated_greedy": {
+        "is_valid": true,
+        "total_makespan": 86529,
+        "mean_makespan": 2884.3,
+        "runtime_ms": 501.86,
+        "error": null
+      }
+    },
+    "hidden": {
+      "palmer": {
+        "is_valid": true,
+        "total_makespan": 552715,
+        "mean_makespan": 4605.96,
+        "runtime_ms": 10.7,
+        "error": null
+      },
+      "cds": {
+        "is_valid": true,
+        "total_makespan": 547633,
+        "mean_makespan": 4563.61,
+        "runtime_ms": 70.77,
+        "error": null
+      },
+      "neh": {
+        "is_valid": true,
+        "total_makespan": 531943,
+        "mean_makespan": 4432.86,
+        "runtime_ms": 4610.47,
+        "error": null
+      },
+      "iterated_greedy": {
+        "is_valid": true,
+        "total_makespan": 531354,
+        "mean_makespan": 4427.95,
+        "runtime_ms": 5569.31,
+        "error": null
+      }
+    }
+  },
+  "condition_statistics": {
+    "A": {
+      "dev": {
+        "scores": [
+          86429,
+          86643,
+          86574,
+          86185,
+          86574
+        ],
+        "mean": 86481.0,
+        "std": 182.94,
+        "min": 86185,
+        "max": 86643,
+        "median": 86574.0
+      },
+      "hidden": {
+        "scores": [
+          531074,
+          531943,
+          531665,
+          530478,
+          531665
+        ],
+        "mean": 531365.0,
+        "std": 588.54,
+        "min": 530478,
+        "max": 531943,
+        "median": 531665.0,
+        "validity_rate": 1.0,
+        "mean_runtime_ms": 11807.93,
+        "gap_vs_neh_percent": -0.109,
+        "gap_vs_ig_percent": 0.002
+      },
+      "candidates_audit": {
+        "total_calls": 75,
+        "valid_calls": 70,
+        "invalid_calls": 5,
+        "invalid_rate": 0.0667,
+        "truncated_calls": 2,
+        "truncation_rate": 0.0267,
+        "mean_prompt_tokens": 2604.7,
+        "mean_completion_tokens": 2257.5,
+        "mean_code_chars": 1919.5,
+        "mean_candidate_runtime_ms": 263.49
+      }
+    },
+    "R": {
+      "dev": {
+        "scores": [
+          86524,
+          86571,
+          86571,
+          86421,
+          86630
+        ],
+        "mean": 86543.4,
+        "std": 78.07,
+        "min": 86421,
+        "max": 86630,
+        "median": 86571.0
+      },
+      "hidden": {
+        "scores": [
+          531983,
+          531817,
+          531817,
+          530855,
+          531878
+        ],
+        "mean": 531670.0,
+        "std": 460.62,
+        "min": 530855,
+        "max": 531983,
+        "median": 531817.0,
+        "validity_rate": 1.0,
+        "mean_runtime_ms": 6372.26,
+        "gap_vs_neh_percent": -0.051,
+        "gap_vs_ig_percent": 0.059
+      },
+      "candidates_audit": {
+        "total_calls": 75,
+        "valid_calls": 65,
+        "invalid_calls": 10,
+        "invalid_rate": 0.1333,
+        "truncated_calls": 2,
+        "truncation_rate": 0.0267,
+        "mean_prompt_tokens": 2624.0,
+        "mean_completion_tokens": 1903.3,
+        "mean_code_chars": 1789.5,
+        "mean_candidate_runtime_ms": 316.42
+      }
+    }
+  },
+  "three_internal_comparisons": {
+    "comparison_1_primary_R_vs_A": {
+      "num_trials": 5,
+      "mean_difference": 305.0,
+      "std_difference": 383.29,
+      "ci_95": [
+        -170.84,
+        780.84
+      ],
+      "wins_r": 1,
+      "losses_r": 4,
+      "ties_r": 0,
+      "wilcoxon_p_val": 0.0796,
+      "cohens_d": 0.577,
+      "instance_level_120": {
+        "instances": 120,
+        "wins_r": 28,
+        "losses_r": 47,
+        "ties_r": 45,
+        "wilcoxon_p_val": 0.0081
+      }
+    },
+    "comparison_2_best_gen_vs_best_ref_within_R": {
+      "num_trials": 5,
+      "refinement_improved_over_parent_trials": 5,
+      "refinement_improved_rate": 1.0,
+      "champions_from_refinement": 5,
+      "champions_from_generation": 0,
+      "trial_details": [
+        {
+          "trial": 1,
+          "parent_id": "T1_R_C07",
+          "parent_score": 86538,
+          "best_refinement_id": "T1_R_C13",
+          "best_refinement_score": 86524,
+          "delta_best_ref_vs_parent": -14,
+          "refinement_improved_over_parent": true,
+          "champion_id": "T1_R_C13",
+          "champion_source": "refinement"
+        },
+        {
+          "trial": 2,
+          "parent_id": "T2_R_C08",
+          "parent_score": 86643,
+          "best_refinement_id": "T2_R_C15",
+          "best_refinement_score": 86571,
+          "delta_best_ref_vs_parent": -72,
+          "refinement_improved_over_parent": true,
+          "champion_id": "T2_R_C15",
+          "champion_source": "refinement"
+        },
+        {
+          "trial": 3,
+          "parent_id": "T3_R_C03",
+          "parent_score": 86643,
+          "best_refinement_id": "T3_R_C15",
+          "best_refinement_score": 86571,
+          "delta_best_ref_vs_parent": -72,
+          "refinement_improved_over_parent": true,
+          "champion_id": "T3_R_C15",
+          "champion_source": "refinement"
+        },
+        {
+          "trial": 4,
+          "parent_id": "T4_R_C09",
+          "parent_score": 86525,
+          "best_refinement_id": "T4_R_C15",
+          "best_refinement_score": 86421,
+          "delta_best_ref_vs_parent": -104,
+          "refinement_improved_over_parent": true,
+          "champion_id": "T4_R_C15",
+          "champion_source": "refinement"
+        },
+        {
+          "trial": 5,
+          "parent_id": "T5_R_C02",
+          "parent_score": 86643,
+          "best_refinement_id": "T5_R_C13",
+          "best_refinement_score": 86630,
+          "delta_best_ref_vs_parent": -13,
+          "refinement_improved_over_parent": true,
+          "champion_id": "T5_R_C13",
+          "champion_source": "refinement"
+        }
+      ]
+    },
+    "comparison_3_refinement_yield_all_calls": {
+      "total_refinement_calls": 25,
+      "improved_calls": 13,
+      "worse_calls": 8,
+      "equal_calls": 3,
+      "invalid_calls": 1,
+      "yield_rate": 0.52,
+      "by_objective": {
+        "Simplification & Efficiency Polish": {
+          "calls": 5,
+          "improved": 0,
+          "worse": 2,
+          "equal": 3,
+          "invalid": 0,
+          "deltas": [
+            105,
+            0,
+            0,
+            46,
+            0
+          ]
+        },
+        "Bottleneck & Idle-Time Hardening": {
+          "calls": 5,
+          "improved": 1,
+          "worse": 4,
+          "equal": 0,
+          "invalid": 0,
+          "deltas": [
+            40,
+            1020,
+            13,
+            -53,
+            30
+          ]
+        },
+        "Generalization & Scale Robustness": {
+          "calls": 5,
+          "improved": 2,
+          "worse": 2,
+          "equal": 0,
+          "invalid": 1,
+          "deltas": [
+            -14,
+            1463,
+            41,
+            -13
+          ]
+        },
+        "Bounded Local Improvement Polish": {
+          "calls": 5,
+          "improved": 5,
+          "worse": 0,
+          "equal": 0,
+          "invalid": 0,
+          "deltas": [
+            -6,
+            -69,
+            -4,
+            -1,
+            -2
+          ]
+        },
+        "Independent Critical Review & Principled Modification": {
+          "calls": 5,
+          "improved": 5,
+          "worse": 0,
+          "equal": 0,
+          "invalid": 0,
+          "deltas": [
+            -10,
+            -72,
+            -72,
+            -104,
+            -8
+          ]
+        }
+      }
+    }
+  },
+  "search_efficiency_curves": {
+    "A": [
+      87327.2,
+      87323.2,
+      86643.0,
+      86643.0,
+      86629.2,
+      86629.2,
+      86586.4,
+      86586.4,
+      86586.4,
+      86494.8,
+      86494.8,
+      86494.8,
+      86494.8,
+      86481.0,
+      86481.0
+    ],
+    "R": [
+      269585.2,
+      269416.8,
+      269314.2,
+      269314.2,
+      269314.2,
+      269314.2,
+      269293.2,
+      86614.4,
+      86598.4,
+      86598.4,
+      86598.4,
+      86587.8,
+      86582.4,
+      86567.8,
+      86543.4
+    ]
+  },
+  "verdict": {
+    "verdict": "NOT SUPPORTED",
+    "verdict_reason": "Condition R did not outperform Condition A on hidden benchmark (mean diff: 305.0, wins: 1/5, p_inst=0.0081)",
+    "amaura_decision": "ABANDON REFINEMENT"
+  }
+}

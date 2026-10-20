@@ -1,0 +1,87 @@
+{
+  "champion_dev_score": 0.0326,
+  "champion_method_id": "best_fit",
+  "champion_version": "1.0.0",
+  "dev_instances_evaluated": 5,
+  "experiment_id": "EXP_PILOT_DK01_BINPACKING_20261019",
+  "objective_direction": "MINIMIZE",
+  "objective_metric": "excess_ratio",
+  "problem_id": "online_1d_bin_packing",
+  "rankings": [
+    {
+      "exception_count": 0,
+      "is_fully_valid": true,
+      "mean_score": 0.0326,
+      "method_id": "best_fit",
+      "timeout_count": 0,
+      "total_count": 5,
+      "total_runtime_ms": 25.36,
+      "valid_count": 5,
+      "validation_errors": [],
+      "version": "1.0.0"
+    },
+    {
+      "exception_count": 0,
+      "is_fully_valid": true,
+      "mean_score": 0.0378,
+      "method_id": "first_fit",
+      "timeout_count": 0,
+      "total_count": 5,
+      "total_runtime_ms": 25.69,
+      "valid_count": 5,
+      "validation_errors": [],
+      "version": "1.0.0"
+    },
+    {
+      "exception_count": 0,
+      "is_fully_valid": true,
+      "mean_score": 0.1508,
+      "method_id": "worst_fit",
+      "timeout_count": 0,
+      "total_count": 5,
+      "total_runtime_ms": 33.65,
+      "valid_count": 5,
+      "validation_errors": [],
+      "version": "1.0.0"
+    },
+    {
+      "exception_count": 0,
+      "is_fully_valid": false,
+      "mean_score": null,
+      "method_id": "fault_missing_items",
+      "timeout_count": 0,
+      "total_count": 5,
+      "total_runtime_ms": 2.64,
+      "valid_count": 0,
+      "validation_errors": [
+        "[bin_packing_validity] Assignment count 500 does not match item count 1000",
+        "[bin_packing_validity] Assignment count 500 does not match item count 1000",
+        "[bin_packing_validity] Assignment count 500 does not match item count 1000",
+        "[bin_packing_validity] Assignment count 500 does not match item count 1000",
+        "[bin_packing_validity] Assignment count 500 does not match item count 1000"
+      ],
+      "version": "0.0.1-test"
+    },
+    {
+      "exception_count": 0,
+      "is_fully_valid": false,
+      "mean_score": null,
+      "method_id": "fault_overcapacity",
+      "timeout_count": 0,
+      "total_count": 5,
+      "total_runtime_ms": 2.62,
+      "valid_count": 0,
+      "validation_errors": [
+        "[bin_packing_validity] Bin 0 capacity exceeded: total weight 44319.0300 > capacity 100.0000",
+        "[bin_packing_validity] Bin 0 capacity exceeded: total weight 31991.3300 > capacity 100.0000",
+        "[bin_packing_validity] Bin 0 capacity exceeded: total weight 17268.5600 > capacity 100.0000",
+        "[bin_packing_validity] Bin 0 capacity exceeded: total weight 46019.0900 > capacity 100.0000",
+        "[bin_packing_validity] Bin 0 capacity exceeded: total weight 31573.7200 > capacity 100.0000"
+      ],
+      "version": "0.0.1-test"
+    }
+  ],
+  "selection_frozen_at": "2026-10-19T16:21:38Z",
+  "spec_fingerprint": "f37260b5626f6449fb5e259330ce63aaa7d514cd1b1e3864970804940689e610",
+  "total_evaluations": 25
+}

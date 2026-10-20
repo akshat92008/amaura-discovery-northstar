@@ -1,0 +1,760 @@
+{
+  "trial_id": 5,
+  "domain": "bin_packing",
+  "arm": "arm_e_evidence",
+  "total_budget": 32,
+  "num_trajectories": 1,
+  "budget_per_trajectory": 32,
+  "seed": 10001,
+  "generator_type": "live_llm",
+  "elapsed_sec": 589.938,
+  "accounting": {
+    "model_calls": 32,
+    "candidate_slots": 32,
+    "evaluator_runs": 38,
+    "retries": 0,
+    "invalid_outputs": 0,
+    "duplicate_candidates": 1
+  },
+  "selection": {
+    "candidate_id": "arm_e_seed_best_fit",
+    "code": "def priority(item: float, remaining_capacity: float, bin_capacity: float) -> float:\n    # Best Fit: minimize leftover space after placement\n    return -(remaining_capacity - item)\n",
+    "description": "Places item into the feasible open bin with least remaining space.",
+    "hypothesis": null,
+    "is_seed": true,
+    "train_score": 0.031433,
+    "train_rel_gap": 0.0,
+    "train_beats_baseline": false
+  },
+  "generalization_test": {
+    "test_score": 0.032435,
+    "test_avg_score": 0.032435,
+    "test_rel_gap": 0.0,
+    "test_beats_baseline": false,
+    "test_is_valid": true,
+    "test_runtime_ms": 641.49
+  },
+  "pilot_validation": {
+    "pilot_val_score": 0.031923,
+    "pilot_val_rel_gap": 0.0,
+    "pilot_val_beats_baseline": false,
+    "pilot_val_is_valid": true,
+    "pilot_val_runtime_ms": 645.2
+  },
+  "best_so_far_curve": [
+    0.031433,
+    0.031433,
+    0.031433,
+    0.031433,
+    0.031433,
+    0.031433,
+    0.031433,
+    0.031433,
+    0.031433,
+    0.031433,
+    0.031433,
+    0.031433,
+    0.031433,
+    0.031433,
+    0.031433,
+    0.031433,
+    0.031433,
+    0.031433,
+    0.031433,
+    0.031433,
+    0.031433,
+    0.031433,
+    0.031433,
+    0.031433,
+    0.031433,
+    0.031433,
+    0.031433,
+    0.031433,
+    0.031433,
+    0.031433,
+    0.031433,
+    0.031433
+  ],
+  "all_proposals": [
+    {
+      "candidate_id": "arm_e_t0_p0",
+      "proposal_index": 0,
+      "is_seed": false,
+      "parent_ids": [
+        "arm_e_seed_best_fit"
+      ],
+      "generation": 1,
+      "hypothesis": "The current Best\u2011Fit heuristic only uses a linear penalty for leftover space, which does not sufficiently differentiate between bins with large versus small remainders when the item is small relative to bin capacity. This leads to underfilled bins because the priority difference is too weak to steer items toward tighter fits. Applying a convex (quadratic) penalty to the leftover space amplifies the penalty for larger remainders, thereby increasing the priority gap and encouraging the algorithm to fill bins more tightly.",
+      "description": "Evidence-guided candidate 0",
+      "code": "def priority(item: float, remaining_capacity: float, bin_capacity: float) -> float:\n    # Quadratic penalty on leftover space to strongly discourage large remainders\n    leftover = remaining_capacity - item\n    return - (leftover * leftover)",
+      "code_hash": "f88b72802a5f5f99",
+      "train_eval": {
+        "is_valid": true,
+        "raw_score": 0.031433,
+        "relative_gap": 0.0,
+        "beats_baseline": false,
+        "error_message": null,
+        "runtime_ms": 151.29
+      }
+    },
+    {
+      "candidate_id": "arm_e_t0_p1",
+      "proposal_index": 1,
+      "is_seed": false,
+      "parent_ids": [
+        "arm_e_seed_best_fit"
+      ],
+      "generation": 1,
+      "hypothesis": "The current Best Fit heuristic penalizes leftover space linearly, which does not sufficiently discourage placing items in bins with large remaining capacity, leading to underfilled bins. By applying a convex (quadratic) penalty to the leftover space, we strongly favor bins that leave minimal waste, thereby tightening the selection threshold and reducing the number of underfilled bins.",
+      "description": "Evidence-guided candidate 1",
+      "code": "def priority(item: float, remaining_capacity: float, bin_capacity: float) -> float:\n    # Quadratic penalty on leftover space: stronger dislike for large waste\n    leftover = remaining_capacity - item\n    return - (leftover * leftover)",
+      "code_hash": "da851822a4db9a9f",
+      "train_eval": {
+        "is_valid": true,
+        "raw_score": 0.031433,
+        "relative_gap": 0.0,
+        "beats_baseline": false,
+        "error_message": null,
+        "runtime_ms": 94.14
+      }
+    },
+    {
+      "candidate_id": "arm_e_t0_p2",
+      "proposal_index": 2,
+      "is_seed": false,
+      "parent_ids": [
+        "arm_e_seed_best_fit"
+      ],
+      "generation": 1,
+      "hypothesis": "The current Best\u2011Fit heuristic uses a linear penalty for leftover capacity, which does not sufficiently discourage placing items in bins with large remaining space, leading to underfilled bins. By applying a super\u2011linear (quadratic) penalty to the leftover space, the heuristic will strongly favor bins where the item leaves little or no unused capacity, thereby reducing the number of lightly filled bins and lowering the excess ratio.",
+      "description": "Evidence-guided candidate 2",
+      "code": "import math\n\ndef priority(item: float, remaining_capacity: float, bin_capacity: float) -> float:\n    # Quadratic penalty for leftover space: strongly disfavor large gaps\n    leftover = remaining_capacity - item\n    return -math.pow(leftover, 2)",
+      "code_hash": "d9d8b2cd2eddf6a4",
+      "train_eval": {
+        "is_valid": true,
+        "raw_score": 0.031433,
+        "relative_gap": 0.0,
+        "beats_baseline": false,
+        "error_message": null,
+        "runtime_ms": 139.22
+      }
+    },
+    {
+      "candidate_id": "arm_e_t0_p3",
+      "proposal_index": 3,
+      "is_seed": false,
+      "parent_ids": [
+        "arm_e_seed_best_fit"
+      ],
+      "generation": 1,
+      "hypothesis": "The current Best\u2011Fit heuristic uses a linear penalty for leftover space, which does not sufficiently differentiate bins with large remaining capacities. This leads to underfilled bins because the algorithm does not strongly avoid placing items in bins where much space would remain unused. By increasing the penalty quadratically with leftover space, the heuristic will strongly favor tighter fits and reduce the number of underfilled bins, thereby lowering the excess ratio.",
+      "description": "Evidence-guided candidate 3",
+      "code": "import math\n\ndef priority(item: float, remaining_capacity: float, bin_capacity: float) -> float:\n    # Quadratic penalty on leftover space to strongly discourage large gaps\n    leftover = remaining_capacity - item\n    # Normalize by bin capacity to keep the scale consistent across instances\n    leftover_norm = leftover / bin_capacity if bin_capacity != 0 else leftover\n    return -math.pow(leftover_norm, 2)",
+      "code_hash": "5c86276e4ba6f15f",
+      "train_eval": {
+        "is_valid": true,
+        "raw_score": 0.031433,
+        "relative_gap": 0.0,
+        "beats_baseline": false,
+        "error_message": null,
+        "runtime_ms": 96.75
+      }
+    },
+    {
+      "candidate_id": "arm_e_t0_p4",
+      "proposal_index": 4,
+      "is_seed": false,
+      "parent_ids": [
+        "arm_e_seed_best_fit"
+      ],
+      "generation": 1,
+      "hypothesis": "The current Best\u2011Fit heuristic only penalizes leftover space linearly, which does not sufficiently differentiate bins with large remaining capacity from those with moderate capacity. By applying an exponentially decreasing penalty (e.g.,\u202fe^{\u2212leftover}), small improvements in fit are rewarded more strongly, discouraging the creation of underfilled bins and tightening the selection threshold for large remaining capacities.",
+      "description": "Evidence-guided candidate 4",
+      "code": "import math\n\ndef priority(item: float, remaining_capacity: float, bin_capacity: float) -> float:\n    # If the item does not fit, assign the lowest possible priority.\n    if remaining_capacity < item:\n        return -float('inf')\n    leftover = remaining_capacity - item          # non\u2011negative when feasible\n    # Exponential penalty: higher priority for smaller leftover.\n    return math.exp(-leftover)",
+      "code_hash": "d97b65ad552fd386",
+      "train_eval": {
+        "is_valid": true,
+        "raw_score": 0.031433,
+        "relative_gap": 0.0,
+        "beats_baseline": false,
+        "error_message": null,
+        "runtime_ms": 124.89
+      }
+    },
+    {
+      "candidate_id": "arm_e_t0_p5",
+      "proposal_index": 5,
+      "is_seed": false,
+      "parent_ids": [
+        "arm_e_seed_best_fit"
+      ],
+      "generation": 1,
+      "hypothesis": "The Best\u2011Fit heuristic only linearly penalizes leftover capacity, which is insufficient to deter placing items in bins with large remaining space. This leads to underfilled bins and higher excess ratio. By applying a quadratic penalty to the leftover space, we strongly discourage large waste and encourage tighter packing.",
+      "description": "Evidence-guided candidate 5",
+      "code": "import math\n\ndef priority(item: float, remaining_capacity: float, bin_capacity: float) -> float:\n    # Quadratic penalty on leftover space to tightly discourage waste\n    leftover = remaining_capacity - item\n    # If the item does not fit, return a very low priority\n    if leftover < 0:\n        return -float('inf')\n    return -(leftover * leftover)",
+      "code_hash": "5c690fbc5cccbd00",
+      "train_eval": {
+        "is_valid": true,
+        "raw_score": 0.031433,
+        "relative_gap": 0.0,
+        "beats_baseline": false,
+        "error_message": null,
+        "runtime_ms": 96.67
+      }
+    },
+    {
+      "candidate_id": "arm_e_t0_p6",
+      "proposal_index": 6,
+      "is_seed": false,
+      "parent_ids": [
+        "arm_e_seed_best_fit"
+      ],
+      "generation": 1,
+      "hypothesis": "The current Best\u2011Fit heuristic only uses a linear penalty for leftover space, which does not sufficiently differentiate bins when the leftover is large. This leads to underfilled bins because the priority difference between a small and a large leftover is not strong enough to steer items toward tighter bins. By applying a quadratic penalty (or any convex increasing function) to the leftover space, we amplify the disadvantage of leaving large gaps, thus encouraging the algorithm to fill bins more tightly and reduce the normalized excess ratio.",
+      "description": "Evidence-guided candidate 6",
+      "code": "import math\n\ndef priority(item: float, remaining_capacity: float, bin_capacity: float) -> float:\n    # Quadratic penalty on leftover space: stronger discouragement of large gaps\n    leftover = remaining_capacity - item\n    return - (leftover * leftover)  # equivalent to -math.pow(leftover, 2)",
+      "code_hash": "62242cbdae0255b6",
+      "train_eval": {
+        "is_valid": true,
+        "raw_score": 0.031433,
+        "relative_gap": 0.0,
+        "beats_baseline": false,
+        "error_message": null,
+        "runtime_ms": 124.9
+      }
+    },
+    {
+      "candidate_id": "arm_e_t0_p7",
+      "proposal_index": 7,
+      "is_seed": false,
+      "parent_ids": [
+        "arm_e_seed_best_fit"
+      ],
+      "generation": 1,
+      "hypothesis": "The current Best\u2011Fit heuristic only linearly penalizes leftover space, which does not sufficiently discourage placing items in bins with large remaining capacity. This leads to underfilled bins and a higher excess ratio. By using a quadratic penalty on the leftover space, we strongly discourage large gaps, encouraging tighter packing and reducing the number of bins needed.",
+      "description": "Evidence-guided candidate 7",
+      "code": "import math\n\ndef priority(item: float, remaining_capacity: float, bin_capacity: float) -> float:\n    # Quadratic penalty on leftover space: stronger discouragement of large gaps\n    leftover = remaining_capacity - item\n    return -(leftover * leftover)  # higher (less negative) priority for smaller leftover",
+      "code_hash": "00cdf6ac75d7df73",
+      "train_eval": {
+        "is_valid": true,
+        "raw_score": 0.031433,
+        "relative_gap": 0.0,
+        "beats_baseline": false,
+        "error_message": null,
+        "runtime_ms": 162.74
+      }
+    },
+    {
+      "candidate_id": "arm_e_t0_p8",
+      "proposal_index": 8,
+      "is_seed": false,
+      "parent_ids": [
+        "arm_e_seed_best_fit"
+      ],
+      "generation": 1,
+      "hypothesis": "The linear penalty in Best\u2011Fit does not sufficiently discriminate between bins with large remaining capacity, leading to underfilled bins because the priority difference grows too slowly with leftover space. Applying a super\u2011linear penalty (e.g., squaring the leftover) strongly discourages placing items in bins with lots of free space, thereby tightening the selection and reducing excess ratio.",
+      "description": "Evidence-guided candidate 8",
+      "code": "def priority(item: float, remaining_capacity: float, bin_capacity: float) -> float:\n    # Super\u2011linear Best Fit: penalize leftover space quadratically\n    leftover = remaining_capacity - item\n    return -(leftover * leftover)",
+      "code_hash": "80c5f17708da4b1e",
+      "train_eval": {
+        "is_valid": true,
+        "raw_score": 0.031433,
+        "relative_gap": 0.0,
+        "beats_baseline": false,
+        "error_message": null,
+        "runtime_ms": 120.24
+      }
+    },
+    {
+      "candidate_id": "arm_e_t0_p9",
+      "proposal_index": 9,
+      "is_seed": false,
+      "parent_ids": [
+        "arm_e_seed_best_fit"
+      ],
+      "generation": 1,
+      "hypothesis": "The current Best\u2011Fit heuristic uses a linear penalty for leftover capacity, which does not sufficiently discourage bins that leave large unused space after placing an item. This can lead to underfilled bins and a higher normalized excess ratio. By applying a convex penalty (e.g., squaring the leftover space), we strongly favor bins that leave minimal slack, thereby tightening the remaining\u2011space threshold and improving overall packing efficiency.",
+      "description": "Evidence-guided candidate 9",
+      "code": "import math\n\ndef priority(item: float, remaining_capacity: float, bin_capacity: float) -> float:\n    # Return -inf for infeasible bins (item does not fit)\n    if remaining_capacity < item:\n        return -math.inf\n    leftover = remaining_capacity - item\n    # Strongly penalize larger leftover using a squared term\n    return -(leftover * leftover)",
+      "code_hash": "2d0422e471e15524",
+      "train_eval": {
+        "is_valid": true,
+        "raw_score": 0.031433,
+        "relative_gap": 0.0,
+        "beats_baseline": false,
+        "error_message": null,
+        "runtime_ms": 94.48
+      }
+    },
+    {
+      "candidate_id": "arm_e_t0_p10",
+      "proposal_index": 10,
+      "is_seed": false,
+      "parent_ids": [
+        "arm_e_seed_best_fit"
+      ],
+      "generation": 1,
+      "hypothesis": "The current Best\u2011Fit heuristic only linearly penalizes leftover capacity, which yields insufficient discrimination when many bins have large remaining space. This can lead to placing items in bins that leave considerable slack, increasing the number of underfilled bins and the excess ratio. Applying a convex (quadratic) penalty to the leftover space amplifies the difference between tight and loose fits, steering the algorithm toward bins that minimize wasted capacity and thus reduce the normalized excess ratio.",
+      "description": "Evidence-guided candidate 10",
+      "code": "import math\n\ndef priority(item: float, remaining_capacity: float, bin_capacity: float) -> float:\n    # Quadratic penalty on leftover space: stronger dislike for large leftovers\n    leftover = remaining_capacity - item\n    if leftover < 0:\n        # Item does not fit; assign a very low priority\n        return -math.inf\n    # Negative squared leftover gives higher priority to smaller leftover\n    return -(leftover * leftover)",
+      "code_hash": "866b5d6c97a27857",
+      "train_eval": {
+        "is_valid": true,
+        "raw_score": 0.031433,
+        "relative_gap": 0.0,
+        "beats_baseline": false,
+        "error_message": null,
+        "runtime_ms": 145.31
+      }
+    },
+    {
+      "candidate_id": "arm_e_t0_p11",
+      "proposal_index": 11,
+      "is_seed": false,
+      "parent_ids": [
+        "arm_e_seed_best_fit"
+      ],
+      "generation": 1,
+      "hypothesis": "The Best Fit heuristic uses a linear penalty for leftover space, which does not sufficiently discriminate between bins with large remaining capacity. This results in small items being placed in loosely fitting bins, creating underfilled bins and increasing wasted space. By applying a quadratic penalty on the leftover space, large waste is strongly discouraged, prompting the algorithm to favor tighter fits and reduce overall excess ratio.",
+      "description": "Evidence-guided candidate 11",
+      "code": "def priority(item: float, remaining_capacity: float, bin_capacity: float) -> float:\n    # Quadratic penalty on leftover space to strongly discourage large waste\n    leftover = remaining_capacity - item\n    return -(leftover * leftover)",
+      "code_hash": "6aa8c49bd58e4ac6",
+      "train_eval": {
+        "is_valid": true,
+        "raw_score": 0.031433,
+        "relative_gap": 0.0,
+        "beats_baseline": false,
+        "error_message": null,
+        "runtime_ms": 142.51
+      }
+    },
+    {
+      "candidate_id": "arm_e_t0_p12",
+      "proposal_index": 12,
+      "is_seed": false,
+      "parent_ids": [
+        "arm_e_seed_best_fit"
+      ],
+      "generation": 1,
+      "hypothesis": "The Best Fit heuristic only linearly penalizes leftover capacity, which is insufficient to deter placing items in bins with large remaining space, leading to underfilled bins. By using a convex penalty (e.g., squared leftover), we strongly discourage large waste and prioritize bins where the item leaves minimal unused capacity, thereby reducing the normalized excess ratio.",
+      "description": "Evidence-guided candidate 12",
+      "code": "import math\n\ndef priority(item: float, remaining_capacity: float, bin_capacity: float) -> float:\n    # Penalize squared leftover capacity to strongly discourage large waste\n    leftover = remaining_capacity - item\n    return -(leftover * leftover) / bin_capacity",
+      "code_hash": "4581317f39ff0e15",
+      "train_eval": {
+        "is_valid": true,
+        "raw_score": 0.031433,
+        "relative_gap": 0.0,
+        "beats_baseline": false,
+        "error_message": null,
+        "runtime_ms": 121.06
+      }
+    },
+    {
+      "candidate_id": "arm_e_t0_p13",
+      "proposal_index": 13,
+      "is_seed": false,
+      "parent_ids": [
+        "arm_e_seed_best_fit"
+      ],
+      "generation": 1,
+      "hypothesis": "The current Best\u2011Fit heuristic uses a linear penalty on leftover space, which does not sufficiently discourage placing items in bins with large remaining capacity. This can leave bins overly empty, increasing the number of bins used. Applying a convex (quadratic) penalty to the leftover space amplifies the disadvantage of large waste, biasing the algorithm toward bins that leave minimal unused capacity and thus reducing underfilled bins.",
+      "description": "Evidence-guided candidate 13",
+      "code": "import math\n\ndef priority(item: float, remaining_capacity: float, bin_capacity: float) -> float:\n    # Quadratic penalty on leftover space: stronger discouragement of large waste\n    leftover = remaining_capacity - item\n    # Assuming item fits; if not, return a very low priority\n    if leftover < 0:\n        return -math.inf\n    return -(leftover * leftover)",
+      "code_hash": "cd0efa0efcd3c69b",
+      "train_eval": {
+        "is_valid": true,
+        "raw_score": 0.031433,
+        "relative_gap": 0.0,
+        "beats_baseline": false,
+        "error_message": null,
+        "runtime_ms": 129.14
+      }
+    },
+    {
+      "candidate_id": "arm_e_t0_p14",
+      "proposal_index": 14,
+      "is_seed": false,
+      "parent_ids": [
+        "arm_e_seed_best_fit"
+      ],
+      "generation": 1,
+      "hypothesis": "The linear penalty in Best\u2011Fit does not sufficiently discriminate between bins with large leftover capacity and those with moderate leftover, causing the algorithm to occasionally place items in bins that leave too much unused space. By applying a quadratic (or stronger) penalty to the leftover space, we increase the preference for bins that result in tighter fits, thereby reducing underfilled bins and improving the excess ratio.",
+      "description": "Evidence-guided candidate 14",
+      "code": "def priority(item: float, remaining_capacity: float, bin_capacity: float) -> float:\n    # Quadratic Best Fit: strongly penalize larger leftover space\n    leftover = remaining_capacity - item\n    return -(leftover * leftover)",
+      "code_hash": "2beaaee81cb8d468",
+      "train_eval": {
+        "is_valid": true,
+        "raw_score": 0.031433,
+        "relative_gap": 0.0,
+        "beats_baseline": false,
+        "error_message": null,
+        "runtime_ms": 100.92
+      }
+    },
+    {
+      "candidate_id": "arm_e_t0_p15",
+      "proposal_index": 15,
+      "is_seed": false,
+      "parent_ids": [
+        "arm_e_seed_best_fit"
+      ],
+      "generation": 1,
+      "hypothesis": "The linear penalty in Best\u2011Fit does not sufficiently differentiate between bins with large leftover space and those with small leftover space, leading to underfilled bins when large capacities are available. Applying a convex (quadratic) penalty to the leftover space will strongly discourage placements that leave large gaps, thereby tightening the threshold and improving packing efficiency.",
+      "description": "Evidence-guided candidate 15",
+      "code": "import math\n\ndef priority(item: float, remaining_capacity: float, bin_capacity: float) -> float:\n    # Quadratic penalty: strongly penalize large leftover space after placement\n    leftover = remaining_capacity - item\n    return -math.pow(leftover, 2)",
+      "code_hash": "1e401ac150dac658",
+      "train_eval": {
+        "is_valid": true,
+        "raw_score": 0.031433,
+        "relative_gap": 0.0,
+        "beats_baseline": false,
+        "error_message": null,
+        "runtime_ms": 122.04
+      }
+    },
+    {
+      "candidate_id": "arm_e_t0_p16",
+      "proposal_index": 16,
+      "is_seed": false,
+      "parent_ids": [
+        "arm_e_seed_best_fit"
+      ],
+      "generation": 1,
+      "hypothesis": "The linear Best\u2011Fit priority insufficiently penalizes bins with large remaining capacity, allowing items to be placed in overly spacious bins and creating underfilled bins. A stronger, nonlinear penalty (e.g., quadratic) on leftover space will discourage such placements, leading to tighter packing and lower excess ratio.",
+      "description": "Evidence-guided candidate 16",
+      "code": "import math\n\ndef priority(item: float, remaining_capacity: float, bin_capacity: float) -> float:\n    leftover = remaining_capacity - item\n    # Quadratic penalty on leftover space to strongly discourage large leftovers\n    return -math.pow(leftover, 2)",
+      "code_hash": "2e846e4541c880d8",
+      "train_eval": {
+        "is_valid": true,
+        "raw_score": 0.031433,
+        "relative_gap": 0.0,
+        "beats_baseline": false,
+        "error_message": null,
+        "runtime_ms": 107.45
+      }
+    },
+    {
+      "candidate_id": "arm_e_t0_p17",
+      "proposal_index": 17,
+      "is_seed": false,
+      "parent_ids": [
+        "arm_e_seed_best_fit"
+      ],
+      "generation": 1,
+      "hypothesis": "The linear Best\u2011Fit priority does not sufficiently penalize bins with large leftover space, leading to underfilled bins. A stronger, nonlinear penalty (e.g., quadratic) on the leftover capacity will better discriminate between tight and loose fits, reducing wasted space.",
+      "description": "Evidence-guided candidate 17",
+      "code": "import math\n\ndef priority(item: float, remaining_capacity: float, bin_capacity: float) -> float:\n    # Only consider bins where the item fits; otherwise give lowest priority.\n    if remaining_capacity < item:\n        return -math.inf\n    leftover = remaining_capacity - item\n    # Quadratic penalty: larger leftovers are heavily discouraged.\n    return -(leftover * leftover)",
+      "code_hash": "acadffed5223b2bc",
+      "train_eval": {
+        "is_valid": true,
+        "raw_score": 0.031433,
+        "relative_gap": 0.0,
+        "beats_baseline": false,
+        "error_message": null,
+        "runtime_ms": 132.03
+      }
+    },
+    {
+      "candidate_id": "arm_e_t0_p18",
+      "proposal_index": 18,
+      "is_seed": false,
+      "parent_ids": [
+        "arm_e_seed_best_fit"
+      ],
+      "generation": 1,
+      "hypothesis": "The Best\u2011Fit heuristic only penalizes leftover space linearly, which yields insufficient discrimination when a bin has large remaining capacity. This can cause large items to be placed in bins that leave considerable unused space, creating underfilled bins and increasing the excess ratio. By increasing the penalty for leftover space (e.g., using a quadratic term), the heuristic will strongly favor tighter fits, reducing wasted space and improving the normalized excess ratio.",
+      "description": "Evidence-guided candidate 18",
+      "code": "import math\n\ndef priority(item: float, remaining_capacity: float, bin_capacity: float) -> float:\n    # Quadratic penalty on leftover capacity to strongly discourage large unused space\n    leftover = remaining_capacity - item\n    return - (leftover * leftover)",
+      "code_hash": "0b9dc73e42c1d904",
+      "train_eval": {
+        "is_valid": true,
+        "raw_score": 0.031433,
+        "relative_gap": 0.0,
+        "beats_baseline": false,
+        "error_message": null,
+        "runtime_ms": 120.14
+      }
+    },
+    {
+      "candidate_id": "arm_e_t0_p19",
+      "proposal_index": 19,
+      "is_seed": false,
+      "parent_ids": [
+        "arm_e_seed_best_fit"
+      ],
+      "generation": 1,
+      "hypothesis": "The linear Best Fit heuristic insufficiently penalizes bins with large leftover capacity, causing underfilled bins. By applying a convex (quadratic) penalty to the leftover space, we widen the priority gap between good and poor fits, strongly discouraging large gaps and encouraging tighter packing.",
+      "description": "Evidence-guided candidate 19",
+      "code": "def priority(item: float, remaining_capacity: float, bin_capacity: float) -> float:\n    # Quadratic penalty on leftover space to strongly discourage large gaps\n    leftover = remaining_capacity - item\n    return - (leftover * leftover)  # negative squared leftover; higher (less negative) is better",
+      "code_hash": "858363af37b3c682",
+      "train_eval": {
+        "is_valid": true,
+        "raw_score": 0.031433,
+        "relative_gap": 0.0,
+        "beats_baseline": false,
+        "error_message": null,
+        "runtime_ms": 127.95
+      }
+    },
+    {
+      "candidate_id": "arm_e_t0_p20",
+      "proposal_index": 20,
+      "is_seed": false,
+      "parent_ids": [
+        "arm_e_seed_best_fit"
+      ],
+      "generation": 1,
+      "hypothesis": "The current Best\u2011Fit heuristic only uses a linear penalty for leftover space, which does not sufficiently discriminate between bins with large remaining capacity. This can lead to underfilled bins because the priority difference between a nearly empty bin and a moderately filled bin is too small. By applying a quadratic (or stronger) penalty to the leftover space, we strongly favor bins that leave minimal unused space, thereby tightening the selection rule and reducing the number of underfilled bins.",
+      "description": "Evidence-guided candidate 20",
+      "code": "def priority(item: float, remaining_capacity: float, bin_capacity: float) -> float:\n    # Quadratic penalty for leftover space after placing the item\n    leftover = remaining_capacity - item  # non\u2011negative when the item fits\n    return - (leftover * leftover)  # higher priority (less negative) for smaller leftover",
+      "code_hash": "19fcf418528cb113",
+      "train_eval": {
+        "is_valid": true,
+        "raw_score": 0.031433,
+        "relative_gap": 0.0,
+        "beats_baseline": false,
+        "error_message": null,
+        "runtime_ms": 124.01
+      }
+    },
+    {
+      "candidate_id": "arm_e_t0_p21",
+      "proposal_index": 21,
+      "is_seed": false,
+      "parent_ids": [
+        "arm_e_seed_best_fit"
+      ],
+      "generation": 1,
+      "hypothesis": "The linear penalty in Best\u2011Fit does not sufficiently discriminate between bins with large versus small leftover capacity, leading to underfilled bins. Applying a quadratic penalty strongly favors bins that leave minimal unused space, tightening the threshold and reducing the normalized excess ratio.",
+      "description": "Evidence-guided candidate 21",
+      "code": "def priority(item: float, remaining_capacity: float, bin_capacity: float) -> float:\n    # Quadratic Best Fit: penalize leftover space squared to tightly prefer minimal waste\n    leftover = remaining_capacity - item\n    return -(leftover * leftover)",
+      "code_hash": "31003aece28de253",
+      "train_eval": {
+        "is_valid": true,
+        "raw_score": 0.031433,
+        "relative_gap": 0.0,
+        "beats_baseline": false,
+        "error_message": null,
+        "runtime_ms": 137.54
+      }
+    },
+    {
+      "candidate_id": "arm_e_t0_p22",
+      "proposal_index": 22,
+      "is_seed": false,
+      "parent_ids": [
+        "arm_e_seed_best_fit"
+      ],
+      "generation": 1,
+      "hypothesis": "The current Best\u2011Fit heuristic uses a linear penalty for leftover capacity, which does not sufficiently discourage placing items in bins with large remaining space, leading to underfilled bins. By applying a convex penalty (e.g., squaring the leftover), large leftovers are penalized much more strongly, tightening the threshold and encouraging tighter fits.",
+      "description": "Evidence-guided candidate 22",
+      "code": "def priority(item: float, remaining_capacity: float, bin_capacity: float) -> float:\n    # Tightened Best Fit: penalize leftover space quadratically to avoid underfilled bins\n    leftover = remaining_capacity - item\n    return -(leftover * leftover)",
+      "code_hash": "4b57cce78f8d2132",
+      "train_eval": {
+        "is_valid": true,
+        "raw_score": 0.031433,
+        "relative_gap": 0.0,
+        "beats_baseline": false,
+        "error_message": null,
+        "runtime_ms": 120.9
+      }
+    },
+    {
+      "candidate_id": "arm_e_t0_p23",
+      "proposal_index": 23,
+      "is_seed": false,
+      "parent_ids": [
+        "arm_e_seed_best_fit"
+      ],
+      "generation": 1,
+      "hypothesis": "The current heuristic assigns priority linearly with leftover space, which insufficiently discriminates between bins with large leftover capacities, leading to underfilled bins. By using a quadratic penalty on leftover space, we strongly discourage placing items in bins with large remaining capacity, promoting tighter fits and reducing wasted space.",
+      "description": "Evidence-guided candidate 23",
+      "code": "def priority(item: float, remaining_capacity: float, bin_capacity: float) -> float:\n    leftover = remaining_capacity - item\n    # Quadratic penalty on leftover space: higher priority (less negative) for tighter fit\n    return -(leftover * leftover)",
+      "code_hash": "79acb01b0249b332",
+      "train_eval": {
+        "is_valid": true,
+        "raw_score": 0.031433,
+        "relative_gap": 0.0,
+        "beats_baseline": false,
+        "error_message": null,
+        "runtime_ms": 124.62
+      }
+    },
+    {
+      "candidate_id": "arm_e_t0_p24",
+      "proposal_index": 24,
+      "is_seed": false,
+      "parent_ids": [
+        "arm_e_seed_best_fit"
+      ],
+      "generation": 1,
+      "hypothesis": "The linear Best Fit heuristic insufficiently penalizes large leftover capacities, causing the algorithm to place items in bins with excessive slack and create many underfilled bins. By applying a quadratic penalty on the normalized leftover space, we strongly favor bins that leave minimal slack, thereby reducing the number of underfilled bins and improving the excess ratio.",
+      "description": "Evidence-guided candidate 24",
+      "code": "def priority(item: float, remaining_capacity: float, bin_capacity: float) -> float:\n    leftover = remaining_capacity - item\n    # Normalize leftover by bin capacity to keep the penalty scale consistent across instances\n    if bin_capacity != 0.0:\n        norm = leftover / bin_capacity\n    else:\n        norm = leftover\n    # Quadratic penalty: more negative for larger slack, thus higher priority for tighter fit\n    return -(norm * norm)",
+      "code_hash": "c2487d2f156e6cd2",
+      "train_eval": {
+        "is_valid": true,
+        "raw_score": 0.031433,
+        "relative_gap": 0.0,
+        "beats_baseline": false,
+        "error_message": null,
+        "runtime_ms": 123.39
+      }
+    },
+    {
+      "candidate_id": "arm_e_t0_p25",
+      "proposal_index": 25,
+      "is_seed": false,
+      "parent_ids": [
+        "arm_e_seed_best_fit"
+      ],
+      "generation": 1,
+      "hypothesis": "The current Best Fit heuristic uses a linear penalty on leftover capacity, which does not sufficiently discriminate between bins with large leftover spaces, causing the algorithm to place items in bins that leave significant unused capacity. By applying a convex penalty (e.g., squaring the leftover), we increase the priority gap between bins with small and large leftover, encouraging tighter packing and reducing underfilled bins.",
+      "description": "Evidence-guided candidate 25",
+      "code": "import math\n\ndef priority(item: float, remaining_capacity: float, bin_capacity: float) -> float:\n    leftover = remaining_capacity - item\n    if leftover < 0:\n        # Item does not fit; assign lowest possible priority\n        return -math.inf\n    # Use squared leftover to strongly penalize large unused space\n    return -(leftover * leftover)",
+      "code_hash": "5c5022348922af1f",
+      "train_eval": {
+        "is_valid": true,
+        "raw_score": 0.031433,
+        "relative_gap": 0.0,
+        "beats_baseline": false,
+        "error_message": null,
+        "runtime_ms": 123.94
+      }
+    },
+    {
+      "candidate_id": "arm_e_t0_p26",
+      "proposal_index": 26,
+      "is_seed": false,
+      "parent_ids": [
+        "arm_e_seed_best_fit"
+      ],
+      "generation": 1,
+      "hypothesis": "The linear penalty for leftover space does not sufficiently discourage placing items in bins with large remaining capacity, resulting in underfilled bins. A stronger, nonlinear penalty (e.g., quadratic) will increase the cost of large leftovers, guiding the algorithm to fill bins more tightly.",
+      "description": "Evidence-guided candidate 26",
+      "code": "import math\n\ndef priority(item: float, remaining_capacity: float, bin_capacity: float) -> float:\n    # If the item does not fit, assign the lowest possible priority.\n    if item > remaining_capacity + 1e-12:\n        return -float('inf')\n    leftover = remaining_capacity - item\n    # Quadratic penalty normalized by bin capacity to strongly discourage large leftovers.\n    return -(leftover * leftover) / bin_capacity",
+      "code_hash": "6077937a3161ff2e",
+      "train_eval": {
+        "is_valid": true,
+        "raw_score": 0.031433,
+        "relative_gap": 0.0,
+        "beats_baseline": false,
+        "error_message": null,
+        "runtime_ms": 147.7
+      }
+    },
+    {
+      "candidate_id": "arm_e_t0_p27",
+      "proposal_index": 27,
+      "is_seed": false,
+      "parent_ids": [
+        "arm_e_seed_best_fit"
+      ],
+      "generation": 1,
+      "hypothesis": "The Best Fit heuristic only minimizes absolute leftover space, which does not sufficiently discourage placing items in bins with large remaining capacity, leading to many underfilled bins. By scaling the penalty with the remaining capacity, we increase the disincentive for leaving large gaps, thus tightening the threshold and reducing wasted space.",
+      "description": "Evidence-guided candidate 27",
+      "code": "import math\n\ndef priority(item: float, remaining_capacity: float, bin_capacity: float) -> float:\n    # If the item does not fit, assign the lowest possible priority.\n    if item > remaining_capacity:\n        return -math.inf\n    leftover = remaining_capacity - item\n    # Penalize leftover proportionally to the remaining capacity to strongly discourage large gaps.\n    return -leftover * remaining_capacity",
+      "code_hash": "f4b586e4c159afa2",
+      "train_eval": {
+        "is_valid": true,
+        "raw_score": 0.031433,
+        "relative_gap": 0.0,
+        "beats_baseline": false,
+        "error_message": null,
+        "runtime_ms": 125.25
+      }
+    },
+    {
+      "candidate_id": "arm_e_t0_p28",
+      "proposal_index": 28,
+      "is_seed": false,
+      "parent_ids": [
+        "arm_e_seed_best_fit"
+      ],
+      "generation": 1,
+      "hypothesis": "The linear penalty used by Best Fit (\u2212leftover) does not sufficiently discourage placing items in bins with large remaining capacity, leading to underfilled bins and excess bins. A convex penalty that grows faster with leftover space (e.g., squared leftover) will strongly penalize large waste, promoting tighter fits and reducing the number of bins needed.",
+      "description": "Evidence-guided candidate 28",
+      "code": "def priority(item: float, remaining_capacity: float, bin_capacity: float) -> float:\n    leftover = remaining_capacity - item\n    if leftover < 0:\n        return -float('inf')          # item does not fit\n    return -(leftover * leftover)     # quadratic penalty for leftover space",
+      "code_hash": "aa79428d7332c3c9",
+      "train_eval": {
+        "is_valid": true,
+        "raw_score": 0.031433,
+        "relative_gap": 0.0,
+        "beats_baseline": false,
+        "error_message": null,
+        "runtime_ms": 149.67
+      }
+    },
+    {
+      "candidate_id": "arm_e_t0_p29",
+      "proposal_index": 29,
+      "is_seed": false,
+      "parent_ids": [
+        "arm_e_seed_best_fit"
+      ],
+      "generation": 1,
+      "hypothesis": "The linear penalty in Best\u2011Fit does not sufficiently discriminate between bins with large remaining capacity, causing items to be placed in overly spacious bins and leaving underfilled bins later. Using a super\u2011linear penalty (e.g., squaring the leftover space) increases the cost of large leftovers, biasing the heuristic toward tighter fits and reducing wasted capacity.",
+      "description": "Evidence-guided candidate 29",
+      "code": "def priority(item: float, remaining_capacity: float, bin_capacity: float) -> float:\n    # Super\u2011linear Best Fit: penalize leftover space quadratically\n    leftover = remaining_capacity - item\n    return -(leftover * leftover)",
+      "code_hash": "80c5f17708da4b1e",
+      "train_eval": {
+        "is_valid": true,
+        "raw_score": 0.031433,
+        "relative_gap": 0.0,
+        "beats_baseline": false,
+        "error_message": null,
+        "runtime_ms": 100.9
+      }
+    },
+    {
+      "candidate_id": "arm_e_t0_p30",
+      "proposal_index": 30,
+      "is_seed": false,
+      "parent_ids": [
+        "arm_e_seed_best_fit"
+      ],
+      "generation": 1,
+      "hypothesis": "The current Best\u2011Fit heuristic only linearly penalizes leftover space, which is insufficient to deter placement in bins with large remaining capacity. By increasing the penalty quadratically with leftover space, the heuristic will strongly favor tighter fits, reducing the number of underfilled bins and lowering the excess ratio.",
+      "description": "Evidence-guided candidate 30",
+      "code": "def priority(item: float, remaining_capacity: float, bin_capacity: float) -> float:\n    # Quadratic penalty for leftover space: tighter fit -> higher priority\n    leftover = remaining_capacity - item\n    return - (leftover * leftover)",
+      "code_hash": "9b0dec45659353cb",
+      "train_eval": {
+        "is_valid": true,
+        "raw_score": 0.031433,
+        "relative_gap": 0.0,
+        "beats_baseline": false,
+        "error_message": null,
+        "runtime_ms": 128.16
+      }
+    },
+    {
+      "candidate_id": "arm_e_t0_p31",
+      "proposal_index": 31,
+      "is_seed": false,
+      "parent_ids": [
+        "arm_e_seed_best_fit"
+      ],
+      "generation": 1,
+      "hypothesis": "The current Best\u2011Fit heuristic only linearly penalizes leftover space, which is insufficient to discourage placing items in bins that would remain largely empty after placement. This leads to underfilled bins and a higher excess ratio. By applying a quadratic penalty (or a normalized quadratic penalty) to the leftover capacity, we strongly discourage large leftovers, encouraging tighter fits and reducing wasted space.",
+      "description": "Evidence-guided candidate 31",
+      "code": "def priority(item: float, remaining_capacity: float, bin_capacity: float) -> float:\n    # Quadratic penalty on normalized leftover space to strongly discourage large gaps\n    leftover = remaining_capacity - item\n    # Normalize by bin capacity to keep the scale consistent across different bin sizes\n    norm_leftover = leftover / bin_capacity if bin_capacity != 0 else leftover\n    return - (norm_leftover * norm_leftover)",
+      "code_hash": "a646d9627b39523a",
+      "train_eval": {
+        "is_valid": true,
+        "raw_score": 0.031433,
+        "relative_gap": 0.0,
+        "beats_baseline": false,
+        "error_message": null,
+        "runtime_ms": 143.04
+      }
+    }
+  ],
+  "trajectory_summaries": [
+    {
+      "trajectory_id": 0,
+      "best_train_score": 0.031433,
+      "best_train_rel_gap": 0.0,
+      "total_proposals": 32
+    }
+  ]
+}

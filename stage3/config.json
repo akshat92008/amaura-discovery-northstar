@@ -1,0 +1,62 @@
+{
+  "experiment_id": "Amaura_Stage_3",
+  "name": "Iterative Execution-Driven Discovery vs. Independent Best-of-N Search",
+  "domain": "graph_coloring",
+  "primary_comparison": "C_AMAURA vs A_INDEPENDENT_BEST_OF_100",
+  "arms": {
+    "A": "A_INDEPENDENT_BEST_OF_100",
+    "B": "B_BLIND_ITERATIVE",
+    "C": "C_AMAURA"
+  },
+  "model": "nvidia/nvidia/nemotron-3-super-120b-a12b",
+  "api_base_url": "http://127.0.0.1:20128/v1/chat/completions",
+  "api_key_env_var": "STAGE3_API_KEY",
+  "api_key": null,
+  "mock_mode": false,
+  "temperature": 0.7,
+  "max_tokens": 4096,
+  "budget": {
+    "candidates_per_arm_per_trial": 100,
+    "generations": 10,
+    "candidates_per_generation": 10,
+    "pilot_trials": 3,
+    "main_trials": 30,
+    "checkpoints": [1, 5, 10, 20, 50, 100]
+  },
+  "statistical_parameters": {
+    "practical_margin": 1.0,
+    "alpha": 0.05,
+    "dual_valid_gate": 0.90,
+    "worst_case_penalty": 19001,
+    "bootstrap_resamples": 10000
+  },
+  "benchmarks": {
+    "graph_coloring": {
+      "pilot": "stage3/benchmarks/graph_coloring/pilot.json",
+      "dev": "stage3/benchmarks/graph_coloring/dev.json",
+      "hidden": "stage3/benchmarks/graph_coloring/hidden.json",
+      "sealed": "stage3/benchmarks/graph_coloring/sealed.json"
+    },
+    "manifest": "stage3/benchmarks/manifest.json",
+    "seed": 303
+  },
+  "prompts": {
+    "expert_gc": "stage3/prompts/expert_prompt_gc.txt",
+    "blind_select": "stage3/prompts/blind_select_prompt.txt",
+    "manifest": "stage3/prompts/manifest.json"
+  },
+  "baselines": {
+    "graph_coloring": [
+      "dsatur",
+      "rlf",
+      "tabucol"
+    ]
+  },
+  "paths": {
+    "candidates_log": "stage3/candidates/candidates.jsonl",
+    "selections": "stage3/results/selections.json",
+    "results": "stage3/results/evaluation_results.json",
+    "audit_log": "stage3/audit/audit_log.jsonl",
+    "state_file": "stage3/state.json"
+  }
+}

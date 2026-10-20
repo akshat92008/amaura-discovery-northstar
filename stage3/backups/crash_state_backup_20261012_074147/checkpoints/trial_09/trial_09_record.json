@@ -1,0 +1,77 @@
+{
+  "trial_id": 9,
+  "seed": 30309,
+  "duration_sec": 2333.67,
+  "arm_a": {
+    "status": "VALID",
+    "selected_candidate_id": "T09_A_C023",
+    "selected_candidate_code": "import math\nimport random\n\ndef color_graph(adj: list[list[int]]) -> list[int]:\n    if not adj:\n        return []\n    n = len(adj)\n    if n == 0:\n        return []\n    # Detect adjacency matrix vs list\n    is_matrix = False\n    if len(adj) > 0 and len(adj[0]) == len(adj):\n        if all(isinstance(x, int) and x in (0, 1) for row in adj for x in row):\n            is_matrix = True\n    if is_matrix:\n        neighbors = [[j for j in range(n) if adj[i][j] == 1] for i in range(n)]\n    else:\n        neighbors = [list(lst) for lst in adj]\n    # Ensure undirected and no self-loops\n    for i in range(n):\n        neighbors[i] = [j for j in neighbors[i] if j != i]\n        for j in neighbors[i]:\n            if i not in neighbors[j]:\n                neighbors[j].append(i)\n    # Handle trivial cases\n    if n == 1:\n        return [0]\n    if all(len(neighbors[i]) == 0 for i in range(n)):\n        return [0] * n\n    if all(len(neighbors[i]) == n - 1 for i in range(n)):\n        return list(range(n))\n    # DSATUR with RLF fallback and Kempe refinement\n    def dsatur():\n        color = [-1] * n\n        saturation = [set() for _ in range(n)]\n        # Initial vertex: max degree\n        v = max(range(n), key=lambda x: len(neighbors[x]))\n        color[v] = 0\n        for u in neighbors[v]:\n            saturation[u].add(0)\n        # Main loop\n        for _ in range(1, n):\n            # Find uncolored vertex with max saturation\n            max_sat = -1\n            candidates = []\n            for v in range(n):\n                if color[v] == -1:\n                    sat = len(saturation[v])\n                    if sat > max_sat:\n                        max_sat = sat\n                        candidates = [v]\n                    elif sat == max_sat:\n                        candidates.append(v)\n            if not candidates:\n                break  # should not happen\n            # Tie-break: max degree in uncolored subgraph\n            if len(candidates) > 1:\n                v = max(candidates, key=lambda x: sum(1 for y in neighbors[x] if color[y] == -1))\n            else:\n                v = candidates[0]\n            # Find smallest available color\n            used = saturation[v]\n            c = 0\n            while c in used:\n                c += 1\n            color[v] = c\n            # Update saturation of neighbors\n            for u in neighbors[v]:\n                if color[u] == -1:\n                    saturation[u].add(c)\n        return color\n    def rlf():\n        color = [-1] * n\n        uncolored = set(range(n))\n        c = 0\n        while uncolored:\n            # Build maximal independent set for color c\n            # Start with vertex of max degree in uncolored subgraph\n            v = max(uncolored, key=lambda x: sum(1 for y in neighbors[x] if y in uncolored))\n            S = {v}\n            uncolored.remove(v)\n            # Partition: U = not adjacent to S, W = adjacent to S\n            U = {u for u in uncolored if not any(w in S for w in neighbors[u])}\n            W = uncolored - U\n            while U:\n                # Select u in U with max neighbors in W\n                u = max(U, key=lambda x: sum(1 for y in neighbors[x] if y in W))\n                S.add(u)\n                U.remove(u)\n                # Move neighbors of u in U to W\n                for y in neighbors[u]:\n                    if y in U:\n                        U.remove(y)\n                        W.add(y)\n            # Assign color c to S\n            for v in S:\n                color[v] = c\n            c += 1\n            uncolored = W\n        return color\n    # Try DSATUR first (usually fast and good)\n    col_dsatur = dsatur()\n    k_dsatur = max(col_dsatur) + 1 if n > 0 else 0\n    # Try RLF (might be better on dense graphs)\n    col_rlf = rlf()\n    k_rlf = max(col_rlf) + 1 if n > 0 else 0\n    # Choose the better initial coloring\n    if k_dsatur <= k_rlf:\n        color = col_dsatur[:]\n        k = k_dsatur\n    else:\n        color = col_rlf[:]\n        k = k_rlf\n    # Kempe chain refinement to reduce color count\n    improved = True\n    while improved and k > 1:\n        improved = False\n        # Try to eliminate color k-1\n        target_color = k - 1\n        vertices = [v for v in range(n) if color[v] == target_color]\n        random.shuffle(vertices)  # randomize order to avoid worst-case\n        for v in vertices:\n            # Try to recolor v to a smaller color\n            neighbor_colors = {color[u] for u in neighbors[v]}\n            for c in range(target_color):\n                if c not in neighbor_colors:\n                    # Direct recolor possible\n                    color[v] = c\n                    improved = True\n                    break\n            if improved:\n                # After recoloring, check if target_color is still used\n                if target_color not in color:\n                    k -= 1\n                    break\n                else:\n                    continue\n            # Try Kempe chains\n            for c in range(target_color):\n                if c in neighbor_colors:\n                    continue  # skip if neighbor already has color c (would cause conflict)\n                # Find the Kempe chain component of v for colors (target_color, c)\n                # We want to swap colors in the component containing v if it does not contain any vertex of color c\n                # that is adjacent to v? Actually, we need to check if swapping removes v from target_color without\n                # adding any vertex to target_color.\n                # Standard: if the Kempe chain component of v in colors {target_color, c} does not contain any neighbor of v\n                # with color c, then swapping will free target_color for v.\n                # But simpler: if the component does not contain any vertex of color c that is adjacent to v,\n                # then after swap, v becomes c and no neighbor becomes target_color.\n                # Actually, we can just check: if there is no path from v to any vertex of color c using only colors\n                # target_color and c, then swapping the component of v will not introduce color c to any neighbor of v.\n                # Because if a neighbor of v had color c, it would be in the component.\n                # So we do BFS/DFS on the subgraph induced by colors target_color and c.\n                stack = [v]\n                visited = set()\n                component = set()\n                while stack:\n                    x = stack.pop()\n                    if x in visited:\n                        continue\n                    visited.add(x)\n                    component.add(x)\n                    for y in neighbors[x]:\n                        if color[y] in (target_color, c) and y not in visited:\n                            stack.append(y)\n                # Check if any neighbor of v is in component and has color c\n                conflict = False\n                for y in neighbors[v]:\n                    if y in component and color[y] == c:\n                        conflict = True\n                        break\n                if not conflict:\n                    # Perform swap: target_color <-> c in component\n                    for x in component:\n                        if color[x] == target_color:\n                            color[x] = c\n                        elif color[x] == c:\n                            color[x] = target_color\n                    improved = True\n                    # After swap, v is now color c\n                    break\n            if improved:\n                # Check if target_color is still used\n                if target_color not in color:\n                    k -= 1\n                    break\n                else:\n                    continue\n        # If we couldn't eliminate target_color, break\n        if not improved:\n            break\n    return color",
+    "dev_score": 222,
+    "valid_count": 53,
+    "duration_sec": 1866.21
+  },
+  "arm_b": {
+    "status": "ARM_FAILURE_NO_VALID_CANDIDATE",
+    "selected_candidate_id": "T09_B_G10_C01",
+    "selected_candidate_code": "",
+    "dev_score": null,
+    "valid_count": 17,
+    "duration_sec": 467.2,
+    "blind_selection_details": {
+      "raw_response": "",
+      "prompt_hash": "5618f253ff347705e54fe86b52fe5c7bb4ecf77410c4078287bb3e41b62c9b54"
+    }
+  },
+  "arm_c": {
+    "status": "ARM_FAILURE_NO_VALID_CANDIDATE",
+    "selected_candidate_id": null,
+    "selected_candidate_code": null,
+    "dev_score": null,
+    "valid_count": 0,
+    "duration_sec": 0.26
+  },
+  "checkpoints": {
+    "trial_id": 9,
+    "checkpoints": [
+      1,
+      5,
+      10,
+      20,
+      50,
+      100
+    ],
+    "Arm_A_Independent_Best_of_N": {
+      "curve": {
+        "1": 229,
+        "5": 223,
+        "10": 223,
+        "20": 223,
+        "50": 222,
+        "100": 222
+      },
+      "nature": "Retrospective and descriptive; does not represent adaptive behavior."
+    },
+    "Arm_B_Blind_Iterative": {
+      "curve": {
+        "1": 227,
+        "5": 227,
+        "10": 227,
+        "20": 226,
+        "50": 223,
+        "100": 223
+      },
+      "nature": "Textual context history only; zero execution feedback."
+    },
+    "Arm_C_Amaura": {
+      "curve": {
+        "1": null,
+        "5": null,
+        "10": null,
+        "20": null,
+        "50": null,
+        "100": null
+      },
+      "nature": "Adaptive execution-feedback-driven discovery."
+    }
+  }
+}

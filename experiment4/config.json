@@ -1,0 +1,17 @@
+{
+  "experiment": "Experiment #4: Population-Based Discovery",
+  "model": "antigravity/claude-sonnet-4-6",
+  "provider": "omniroute/antigravity",
+  "population_size": 12,
+  "num_islands": 3,
+  "candidates_per_island": 4,
+  "generations": 30,
+  "migration_interval": 10,
+  "dev_instances": 25,
+  "hidden_instances": 120,
+  "total_calls": 192,
+  "prompt_tokens": 545161,
+  "completion_tokens": 99854,
+  "failed_calls": 0,
+  "total_cost_usd": 0.0
+}

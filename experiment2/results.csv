@@ -1,0 +1,4 @@
+Algorithm,Dev Excess %,Hidden Overall Excess %,Hidden Avg Bins,Runtime ms,Hidden_uniform_Excess_%,Hidden_weibull_Excess_%,Hidden_bimodal_Excess_%,Hidden_triplets_Excess_%
+Human Baseline (Best Fit),8.80%,8.14%,65.58,36.19,7.73%,4.68%,10.97%,8.80%
+Best Single-Shot LLM,10.28%,8.75%,65.95,35.87,9.19%,5.38%,11.02%,8.93%
+Best Iterative LLM,10.28%,8.75%,65.95,35.39,9.19%,5.38%,11.02%,8.93%

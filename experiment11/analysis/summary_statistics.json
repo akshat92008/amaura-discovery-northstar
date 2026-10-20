@@ -1,0 +1,241 @@
+{
+  "metadata": {
+    "experiment": "Amaura_Experiment_11",
+    "trials": 5,
+    "calls_per_condition_per_trial": 15,
+    "total_calls": 150,
+    "invalid_rate_total": 0.0533,
+    "truncation_rate_total": 0.0333,
+    "model": "nvidia/nvidia/nemotron-3-super-120b-a12b"
+  },
+  "classical_baselines": {
+    "dev": {
+      "palmer": {
+        "is_valid": true,
+        "total_makespan": 91150,
+        "mean_makespan": 3038.33,
+        "runtime_ms": 1.67,
+        "error": null
+      },
+      "cds": {
+        "is_valid": true,
+        "total_makespan": 89725,
+        "mean_makespan": 2990.83,
+        "runtime_ms": 10.59,
+        "error": null
+      },
+      "neh": {
+        "is_valid": true,
+        "total_makespan": 86643,
+        "mean_makespan": 2888.1,
+        "runtime_ms": 315.93,
+        "error": null
+      },
+      "iterated_greedy": {
+        "is_valid": true,
+        "total_makespan": 86529,
+        "mean_makespan": 2884.3,
+        "runtime_ms": 501.86,
+        "error": null
+      }
+    },
+    "hidden": {
+      "palmer": {
+        "is_valid": true,
+        "total_makespan": 552715,
+        "mean_makespan": 4605.96,
+        "runtime_ms": 10.7,
+        "error": null
+      },
+      "cds": {
+        "is_valid": true,
+        "total_makespan": 547633,
+        "mean_makespan": 4563.61,
+        "runtime_ms": 70.77,
+        "error": null
+      },
+      "neh": {
+        "is_valid": true,
+        "total_makespan": 531943,
+        "mean_makespan": 4432.86,
+        "runtime_ms": 4610.47,
+        "error": null
+      },
+      "iterated_greedy": {
+        "is_valid": true,
+        "total_makespan": 531354,
+        "mean_makespan": 4427.95,
+        "runtime_ms": 5569.31,
+        "error": null
+      }
+    }
+  },
+  "condition_statistics": {
+    "A": {
+      "dev": {
+        "scores": [
+          86448,
+          86450,
+          86357,
+          86574,
+          86330
+        ],
+        "mean": 86431.8,
+        "std": 95.88117646337054,
+        "min": 86330,
+        "max": 86574,
+        "median": 86448.0
+      },
+      "hidden": {
+        "scores": [
+          530977,
+          531682,
+          530946,
+          531665,
+          530571
+        ],
+        "mean": 531168.2,
+        "std": 488.20559193847834,
+        "min": 530571,
+        "max": 531682,
+        "median": 530977.0,
+        "validity_rate": 1.0,
+        "mean_runtime_ms": 9763.224,
+        "gap_vs_neh_percent": -0.146,
+        "gap_vs_ig_percent": -0.035
+      },
+      "candidates_audit": {
+        "total_calls": 75,
+        "valid_calls": 72,
+        "invalid_calls": 3,
+        "invalid_rate": 0.04,
+        "truncated_calls": 1,
+        "truncation_rate": 0.0133,
+        "mean_prompt_tokens": 2678.2,
+        "mean_completion_tokens": 2163.693333333333,
+        "mean_code_chars": 2136.826666666667,
+        "mean_candidate_runtime_ms": 311.87083333333334
+      }
+    },
+    "C": {
+      "dev": {
+        "scores": [
+          86574,
+          86487,
+          86450,
+          86574,
+          86448
+        ],
+        "mean": 86506.6,
+        "std": 63.45707210390344,
+        "min": 86448,
+        "max": 86574,
+        "median": 86487.0
+      },
+      "hidden": {
+        "scores": [
+          531665,
+          531551,
+          531658,
+          531665,
+          530977
+        ],
+        "mean": 531503.2,
+        "std": 298.1160847723584,
+        "min": 530977,
+        "max": 531665,
+        "median": 531658.0,
+        "validity_rate": 1.0,
+        "mean_runtime_ms": 6186.0199999999995,
+        "gap_vs_neh_percent": -0.083,
+        "gap_vs_ig_percent": 0.028
+      },
+      "candidates_audit": {
+        "total_calls": 75,
+        "valid_calls": 70,
+        "invalid_calls": 5,
+        "invalid_rate": 0.0667,
+        "truncated_calls": 4,
+        "truncation_rate": 0.0533,
+        "mean_prompt_tokens": 3210.0266666666666,
+        "mean_completion_tokens": 2556.2266666666665,
+        "mean_code_chars": 2261.306666666667,
+        "mean_candidate_runtime_ms": 188.93200000000002
+      }
+    }
+  },
+  "primary_hypothesis_test_C_vs_A": {
+    "search_trials": {
+      "num_trials": 5,
+      "mean_difference": 335.0,
+      "std_difference": 387.67,
+      "ci_95": [
+        -146.36,
+        816.36
+      ],
+      "wins_c": 1,
+      "losses_c": 3,
+      "ties_c": 1,
+      "wilcoxon_p_val": 0.25,
+      "cohens_d": 0.828
+    },
+    "instance_level_120": {
+      "instances": 120,
+      "wins_c": 4,
+      "losses_c": 55,
+      "ties_c": 61,
+      "wilcoxon_p_val": 0.0
+    }
+  },
+  "search_efficiency_curves": {
+    "A": [
+      86643.0,
+      86604.0,
+      86604.0,
+      86535.6,
+      86510.4,
+      86510.4,
+      86510.4,
+      86510.4,
+      86482.2,
+      86431.8,
+      86431.8,
+      86431.8,
+      86431.8,
+      86431.8,
+      86431.8
+    ],
+    "C": [
+      86635.8,
+      86584.6,
+      86584.6,
+      86516.0,
+      86515.6,
+      86515.6,
+      86506.8,
+      86506.6,
+      86506.6,
+      86506.6,
+      86506.6,
+      86506.6,
+      86506.6,
+      86506.6,
+      86506.6
+    ]
+  },
+  "diversity_analysis": {
+    "A": {
+      "mean_pairwise_kendall": 0.26942326642305686,
+      "std": 0.07243508139697732
+    },
+    "C": {
+      "mean_pairwise_kendall": 0.297363231325236,
+      "std": 0.03396804472911927
+    }
+  },
+  "verdict": {
+    "verdict": "NOT SUPPORTED",
+    "verdict_reason": "Condition C did not outperform Condition A on hidden benchmark (mean diff: 335.0, wins: 1/5)",
+    "amaura_decision": "ABANDON QD"
+  }
+}

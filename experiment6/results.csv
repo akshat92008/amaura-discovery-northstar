@@ -1,0 +1,9 @@
+Algorithm,Dev Total Colors,Dev Excess % vs DSATUR,Hidden1 Total Colors,Hidden1 Excess % vs DSATUR,Hidden2 Total Colors,Hidden2 Excess % vs DSATUR,Runtime ms,H1_erdos_renyi_colors,H1_geometric_colors,H1_scale_free_colors,H1_mycielski_colors,H2_small_world_colors,H2_bipartite_bridges_colors,H2_regular_colors,H2_clustered_partition_colors
+Human Baseline (DSATUR),170,+0.00%,901,+0.00%,698,+0.00%,124.60,256,315,140,190,154,169,161,214
+Human Baseline (Welsh-Powell),185,+8.82%,952,+5.66%,757,+8.45%,31.73,287,323,149,193,160,198,161,238
+Human Baseline (Greedy),191,+12.35%,1020,+13.21%,769,+10.17%,18.08,315,354,138,213,164,180,161,264
+Exp #6 Best Single-Shot,164,-3.53%,900,-0.11%,688,-1.43%,2201.16,254,316,140,190,145,170,161,212
+Exp #6 Population Champion,164,-3.53%,900,-0.11%,688,-1.43%,2148.71,254,316,140,190,145,170,161,212
+Exp #6 Island A Champion,164,-3.53%,900,-0.11%,688,-1.43%,2002.48,254,316,140,190,145,170,161,212
+Exp #6 Island B Champion,164,-3.53%,900,-0.11%,688,-1.43%,2009.32,254,316,140,190,145,170,161,212
+Exp #6 Island C Champion,164,-3.53%,900,-0.11%,688,-1.43%,2009.61,254,316,140,190,145,170,161,212

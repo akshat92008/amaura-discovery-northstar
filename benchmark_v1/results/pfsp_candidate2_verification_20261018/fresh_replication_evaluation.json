@@ -1,0 +1,4017 @@
+{
+  "metadata": {
+    "dataset": "benchmark_v1/data/pfsp/fresh_replication_instances.json",
+    "total_instances": 30,
+    "timestamp": 1792342081.6991758,
+    "timeout_limit_sec": 4.0
+  },
+  "summary": {
+    "NEH": {
+      "valid_count": 30,
+      "timeouts": 0,
+      "total_cmax": 119540,
+      "mean_cmax": 3984.6666666666665,
+      "aggregate_gap_vs_neh": 0.0,
+      "mean_gap_vs_neh": 0.0,
+      "median_gap_vs_neh": 0.0,
+      "wins_ties_losses_vs_neh": [
+        0,
+        30,
+        0
+      ],
+      "aggregate_gap_vs_ls_single": 0.5129067518708484,
+      "mean_gap_vs_ls_single": 0.5132089147571905,
+      "median_gap_vs_ls_single": 0.18725366156318496,
+      "wins_ties_losses_vs_ls_single": [
+        0,
+        8,
+        22
+      ],
+      "mean_runtime_sec": 0.15293141113361344
+    },
+    "NEH-LS (Single-Pass)": {
+      "valid_count": 30,
+      "timeouts": 0,
+      "total_cmax": 118930,
+      "mean_cmax": 3964.3333333333335,
+      "aggregate_gap_vs_neh": -0.5102894428643132,
+      "mean_gap_vs_neh": -0.5075110026978266,
+      "median_gap_vs_neh": -0.18690295829781609,
+      "wins_ties_losses_vs_neh": [
+        22,
+        8,
+        0
+      ],
+      "aggregate_gap_vs_ls_single": 0.0,
+      "mean_gap_vs_ls_single": 0.0,
+      "median_gap_vs_ls_single": 0.0,
+      "wins_ties_losses_vs_ls_single": [
+        0,
+        30,
+        0
+      ],
+      "mean_runtime_sec": 0.6400522112341908
+    },
+    "NEH-LS (Multi-Pass)": {
+      "valid_count": 26,
+      "timeouts": 4,
+      "total_cmax": null,
+      "mean_cmax": null,
+      "aggregate_gap_vs_neh": null,
+      "mean_runtime_sec": 1.8893836069580479
+    },
+    "IteratedGreedy": {
+      "valid_count": 30,
+      "timeouts": 0,
+      "total_cmax": 118955,
+      "mean_cmax": 3965.1666666666665,
+      "aggregate_gap_vs_neh": -0.4893759411075791,
+      "mean_gap_vs_neh": -0.5619897837483357,
+      "median_gap_vs_neh": -0.3720262016412276,
+      "wins_ties_losses_vs_neh": [
+        22,
+        8,
+        0
+      ],
+      "aggregate_gap_vs_ls_single": 0.021020768519297066,
+      "mean_gap_vs_ls_single": -0.05426788888421073,
+      "median_gap_vs_ls_single": 0.0,
+      "wins_ties_losses_vs_ls_single": [
+        12,
+        10,
+        8
+      ],
+      "mean_runtime_sec": 0.6535295541786278
+    },
+    "Candidate2_V0_Original": {
+      "valid_count": 29,
+      "timeouts": 1,
+      "total_cmax": null,
+      "mean_cmax": null,
+      "aggregate_gap_vs_neh": null,
+      "mean_runtime_sec": 1.0464821320880826
+    },
+    "Candidate2_V1_ExactAccel": {
+      "valid_count": 29,
+      "timeouts": 1,
+      "total_cmax": null,
+      "mean_cmax": null,
+      "aggregate_gap_vs_neh": null,
+      "mean_runtime_sec": 0.5291511485624748
+    },
+    "Candidate2_V2_B100": {
+      "valid_count": 30,
+      "timeouts": 0,
+      "total_cmax": 119467,
+      "mean_cmax": 3982.233333333333,
+      "aggregate_gap_vs_neh": -0.06106742512966371,
+      "mean_gap_vs_neh": 0.04245190981448254,
+      "median_gap_vs_neh": 0.0,
+      "wins_ties_losses_vs_neh": [
+        10,
+        7,
+        13
+      ],
+      "aggregate_gap_vs_ls_single": 0.4515261077945009,
+      "mean_gap_vs_ls_single": 0.5547036861939512,
+      "median_gap_vs_ls_single": 0.32581663276568745,
+      "wins_ties_losses_vs_ls_single": [
+        6,
+        7,
+        17
+      ],
+      "mean_runtime_sec": 0.16837252489446353
+    },
+    "Candidate2_V2_B500": {
+      "valid_count": 30,
+      "timeouts": 0,
+      "total_cmax": 119325,
+      "mean_cmax": 3977.5,
+      "aggregate_gap_vs_neh": -0.1798561151079137,
+      "mean_gap_vs_neh": -0.11108575715661129,
+      "median_gap_vs_neh": 0.0,
+      "wins_ties_losses_vs_neh": [
+        11,
+        7,
+        12
+      ],
+      "aggregate_gap_vs_ls_single": 0.33212814260489365,
+      "mean_gap_vs_ls_single": 0.3999495526697875,
+      "median_gap_vs_ls_single": 0.32581663276568745,
+      "wins_ties_losses_vs_ls_single": [
+        7,
+        6,
+        17
+      ],
+      "mean_runtime_sec": 0.1711836596291202
+    },
+    "Candidate2_V2_B2000": {
+      "valid_count": 30,
+      "timeouts": 0,
+      "total_cmax": 119064,
+      "mean_cmax": 3968.8,
+      "aggregate_gap_vs_neh": -0.39819307344821814,
+      "mean_gap_vs_neh": -0.3700091798036425,
+      "median_gap_vs_neh": -0.04649559013404977,
+      "wins_ties_losses_vs_neh": [
+        16,
+        8,
+        6
+      ],
+      "aggregate_gap_vs_ls_single": 0.11267131926343227,
+      "mean_gap_vs_ls_single": 0.1388844319179801,
+      "median_gap_vs_ls_single": 0.0,
+      "wins_ties_losses_vs_ls_single": [
+        9,
+        7,
+        14
+      ],
+      "mean_runtime_sec": 0.21602230557473376
+    },
+    "Candidate2_V2_B10000": {
+      "valid_count": 30,
+      "timeouts": 0,
+      "total_cmax": 118822,
+      "mean_cmax": 3960.733333333333,
+      "aggregate_gap_vs_neh": -0.6006357704534047,
+      "mean_gap_vs_neh": -0.5554304980505052,
+      "median_gap_vs_neh": -0.04649559013404977,
+      "wins_ties_losses_vs_neh": [
+        17,
+        7,
+        6
+      ],
+      "aggregate_gap_vs_ls_single": -0.09080972000336333,
+      "mean_gap_vs_ls_single": -0.0479542357149123,
+      "median_gap_vs_ls_single": 0.0,
+      "wins_ties_losses_vs_ls_single": [
+        12,
+        6,
+        12
+      ],
+      "mean_runtime_sec": 0.3687975054141134
+    },
+    "Candidate2_V3_InsertionLS": {
+      "valid_count": 30,
+      "timeouts": 0,
+      "total_cmax": 119725,
+      "mean_cmax": 3990.8333333333335,
+      "aggregate_gap_vs_neh": 0.1547599129998327,
+      "mean_gap_vs_neh": 0.34774957419019453,
+      "median_gap_vs_neh": 0.265818354382572,
+      "wins_ties_losses_vs_neh": [
+        10,
+        2,
+        18
+      ],
+      "aggregate_gap_vs_ls_single": 0.6684604389136467,
+      "mean_gap_vs_ls_single": 0.8605601988446671,
+      "median_gap_vs_ls_single": 0.6217494072844898,
+      "wins_ties_losses_vs_ls_single": [
+        5,
+        2,
+        23
+      ],
+      "mean_runtime_sec": 0.21790688613352055
+    }
+  },
+  "group_summary": {
+    "NEH": {
+      "Small (n <= 30, 8 inst)": 0.0,
+      "Medium (50 <= n <= 75, 14 inst)": 0.0,
+      "Large (100 <= n <= 120, 8 inst)": 0.0
+    },
+    "NEH-LS (Single-Pass)": {
+      "Small (n <= 30, 8 inst)": -0.5242173656231541,
+      "Medium (50 <= n <= 75, 14 inst)": -0.5350740093775858,
+      "Large (100 <= n <= 120, 8 inst)": -0.48051771909089147
+    },
+    "NEH-LS (Multi-Pass)": {
+      "Small (n <= 30, 8 inst)": -0.7678676904902539,
+      "Medium (50 <= n <= 75, 14 inst)": -0.7998529006159787,
+      "Large (100 <= n <= 120, 8 inst)": null
+    },
+    "IteratedGreedy": {
+      "Small (n <= 30, 8 inst)": -0.7752510336680449,
+      "Medium (50 <= n <= 75, 14 inst)": -0.6380435781925163,
+      "Large (100 <= n <= 120, 8 inst)": -0.25769700257697004
+    },
+    "Candidate2_V0_Original": {
+      "Small (n <= 30, 8 inst)": -0.3544004725339634,
+      "Medium (50 <= n <= 75, 14 inst)": -0.8016916429162453,
+      "Large (100 <= n <= 120, 8 inst)": null
+    },
+    "Candidate2_V1_ExactAccel": {
+      "Small (n <= 30, 8 inst)": -0.3544004725339634,
+      "Medium (50 <= n <= 75, 14 inst)": -0.8016916429162453,
+      "Large (100 <= n <= 120, 8 inst)": null
+    },
+    "Candidate2_V2_B100": {
+      "Small (n <= 30, 8 inst)": 0.5020673360897815,
+      "Medium (50 <= n <= 75, 14 inst)": -0.007354969201066471,
+      "Large (100 <= n <= 120, 8 inst)": -0.2654472883687586
+    },
+    "Candidate2_V2_B500": {
+      "Small (n <= 30, 8 inst)": 0.24365032486709984,
+      "Medium (50 <= n <= 75, 14 inst)": -0.20042291072906132,
+      "Large (100 <= n <= 120, 8 inst)": -0.2693224312646529
+    },
+    "Candidate2_V2_B2000": {
+      "Small (n <= 30, 8 inst)": -0.28795038393384526,
+      "Medium (50 <= n <= 75, 14 inst)": -0.44129815206398826,
+      "Large (100 <= n <= 120, 8 inst)": -0.3817015752455872
+    },
+    "Candidate2_V2_B10000": {
+      "Small (n <= 30, 8 inst)": -0.3544004725339634,
+      "Medium (50 <= n <= 75, 14 inst)": -0.7428518893077135,
+      "Large (100 <= n <= 120, 8 inst)": -0.5153940051539401
+    },
+    "Candidate2_V3_InsertionLS": {
+      "Small (n <= 30, 8 inst)": 1.137034849379799,
+      "Medium (50 <= n <= 75, 14 inst)": 0.0956145996138641,
+      "Large (100 <= n <= 120, 8 inst)": -0.040689000406890004
+    }
+  },
+  "per_instance_records": {
+    "NEH": {
+      "cmaxes": [
+        1268,
+        1354,
+        1604,
+        1561,
+        1631,
+        1851,
+        2120,
+        2155,
+        3021,
+        2952,
+        3265,
+        3091,
+        3217,
+        3580,
+        3582,
+        3623,
+        4293,
+        4385,
+        4395,
+        4896,
+        5044,
+        5041,
+        5919,
+        5621,
+        6106,
+        6142,
+        6692,
+        6785,
+        7058,
+        7288
+      ],
+      "runtimes": [
+        0.0011866249842569232,
+        0.0013227920280769467,
+        0.002124833990819752,
+        0.002130707958713174,
+        0.0036942079896107316,
+        0.004234459018334746,
+        0.006943332962691784,
+        0.006916665937751532,
+        0.015139542054384947,
+        0.016093250014819205,
+        0.02956716693006456,
+        0.029209667001850903,
+        0.03114037506747991,
+        0.07278845901601017,
+        0.04698833299335092,
+        0.06509095896035433,
+        0.09882779093459249,
+        0.0988746250513941,
+        0.16566945798695087,
+        0.17906229093205184,
+        0.19643695803824812,
+        0.1506057920632884,
+        0.20490025007165968,
+        0.3057142909383401,
+        0.41537033405620605,
+        0.4700622910168022,
+        0.3867762089939788,
+        0.4258127500070259,
+        0.5911082499660552,
+        0.5641496670432389
+      ],
+      "timeouts": 0,
+      "invalid": 0,
+      "per_instance": [
+        {
+          "id": "fresh_pfsp_00",
+          "n": 20,
+          "m": 5,
+          "cmax": 1268,
+          "time_sec": 0.0011866249842569232,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_01",
+          "n": 20,
+          "m": 5,
+          "cmax": 1354,
+          "time_sec": 0.0013227920280769467,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_02",
+          "n": 20,
+          "m": 10,
+          "cmax": 1604,
+          "time_sec": 0.002124833990819752,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_03",
+          "n": 20,
+          "m": 10,
+          "cmax": 1561,
+          "time_sec": 0.002130707958713174,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_04",
+          "n": 30,
+          "m": 5,
+          "cmax": 1631,
+          "time_sec": 0.0036942079896107316,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_05",
+          "n": 30,
+          "m": 5,
+          "cmax": 1851,
+          "time_sec": 0.004234459018334746,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_06",
+          "n": 30,
+          "m": 10,
+          "cmax": 2120,
+          "time_sec": 0.006943332962691784,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_07",
+          "n": 30,
+          "m": 10,
+          "cmax": 2155,
+          "time_sec": 0.006916665937751532,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_08",
+          "n": 50,
+          "m": 5,
+          "cmax": 3021,
+          "time_sec": 0.015139542054384947,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_09",
+          "n": 50,
+          "m": 5,
+          "cmax": 2952,
+          "time_sec": 0.016093250014819205,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_10",
+          "n": 50,
+          "m": 10,
+          "cmax": 3265,
+          "time_sec": 0.02956716693006456,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_11",
+          "n": 50,
+          "m": 10,
+          "cmax": 3091,
+          "time_sec": 0.029209667001850903,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_12",
+          "n": 50,
+          "m": 10,
+          "cmax": 3217,
+          "time_sec": 0.03114037506747991,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_13",
+          "n": 50,
+          "m": 15,
+          "cmax": 3580,
+          "time_sec": 0.07278845901601017,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_14",
+          "n": 50,
+          "m": 15,
+          "cmax": 3582,
+          "time_sec": 0.04698833299335092,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_15",
+          "n": 50,
+          "m": 15,
+          "cmax": 3623,
+          "time_sec": 0.06509095896035433,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_16",
+          "n": 75,
+          "m": 10,
+          "cmax": 4293,
+          "time_sec": 0.09882779093459249,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_17",
+          "n": 75,
+          "m": 10,
+          "cmax": 4385,
+          "time_sec": 0.0988746250513941,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_18",
+          "n": 75,
+          "m": 10,
+          "cmax": 4395,
+          "time_sec": 0.16566945798695087,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_19",
+          "n": 75,
+          "m": 15,
+          "cmax": 4896,
+          "time_sec": 0.17906229093205184,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_20",
+          "n": 75,
+          "m": 15,
+          "cmax": 5044,
+          "time_sec": 0.19643695803824812,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_21",
+          "n": 75,
+          "m": 15,
+          "cmax": 5041,
+          "time_sec": 0.1506057920632884,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_22",
+          "n": 100,
+          "m": 10,
+          "cmax": 5919,
+          "time_sec": 0.20490025007165968,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_23",
+          "n": 100,
+          "m": 10,
+          "cmax": 5621,
+          "time_sec": 0.3057142909383401,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_24",
+          "n": 100,
+          "m": 15,
+          "cmax": 6106,
+          "time_sec": 0.41537033405620605,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_25",
+          "n": 100,
+          "m": 15,
+          "cmax": 6142,
+          "time_sec": 0.4700622910168022,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_26",
+          "n": 120,
+          "m": 10,
+          "cmax": 6692,
+          "time_sec": 0.3867762089939788,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_27",
+          "n": 120,
+          "m": 10,
+          "cmax": 6785,
+          "time_sec": 0.4258127500070259,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_28",
+          "n": 120,
+          "m": 15,
+          "cmax": 7058,
+          "time_sec": 0.5911082499660552,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_29",
+          "n": 120,
+          "m": 15,
+          "cmax": 7288,
+          "time_sec": 0.5641496670432389,
+          "status": "VALID",
+          "error": null
+        }
+      ]
+    },
+    "NEH-LS (Single-Pass)": {
+      "cmaxes": [
+        1268,
+        1354,
+        1604,
+        1557,
+        1608,
+        1851,
+        2105,
+        2126,
+        3021,
+        2952,
+        3229,
+        3044,
+        3216,
+        3517,
+        3555,
+        3594,
+        4271,
+        4380,
+        4394,
+        4853,
+        5035,
+        5033,
+        5919,
+        5611,
+        6049,
+        6130,
+        6686,
+        6785,
+        6969,
+        7214
+      ],
+      "runtimes": [
+        0.006023374968208373,
+        0.005240833968855441,
+        0.008226666948758066,
+        0.008273040992207825,
+        0.014657500083558261,
+        0.015466124983504415,
+        0.027645125053822994,
+        0.027437917073257267,
+        0.06157633394468576,
+        0.06208195898216218,
+        0.12051770905964077,
+        0.11815566604491323,
+        0.12465862499084324,
+        0.24950658297166228,
+        0.18747308303136379,
+        0.2831572500290349,
+        0.46288720797747374,
+        0.4044785420410335,
+        0.6361427078954875,
+        0.7534229999873787,
+        0.8642627090448514,
+        0.6262223749654368,
+        0.841754458961077,
+        1.355313624953851,
+        1.7070891669718549,
+        1.8129853339632973,
+        1.603438625112176,
+        1.6372302499366924,
+        2.8498287920374423,
+        2.326411750051193
+      ],
+      "timeouts": 0,
+      "invalid": 0,
+      "per_instance": [
+        {
+          "id": "fresh_pfsp_00",
+          "n": 20,
+          "m": 5,
+          "cmax": 1268,
+          "time_sec": 0.006023374968208373,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_01",
+          "n": 20,
+          "m": 5,
+          "cmax": 1354,
+          "time_sec": 0.005240833968855441,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_02",
+          "n": 20,
+          "m": 10,
+          "cmax": 1604,
+          "time_sec": 0.008226666948758066,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_03",
+          "n": 20,
+          "m": 10,
+          "cmax": 1557,
+          "time_sec": 0.008273040992207825,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_04",
+          "n": 30,
+          "m": 5,
+          "cmax": 1608,
+          "time_sec": 0.014657500083558261,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_05",
+          "n": 30,
+          "m": 5,
+          "cmax": 1851,
+          "time_sec": 0.015466124983504415,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_06",
+          "n": 30,
+          "m": 10,
+          "cmax": 2105,
+          "time_sec": 0.027645125053822994,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_07",
+          "n": 30,
+          "m": 10,
+          "cmax": 2126,
+          "time_sec": 0.027437917073257267,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_08",
+          "n": 50,
+          "m": 5,
+          "cmax": 3021,
+          "time_sec": 0.06157633394468576,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_09",
+          "n": 50,
+          "m": 5,
+          "cmax": 2952,
+          "time_sec": 0.06208195898216218,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_10",
+          "n": 50,
+          "m": 10,
+          "cmax": 3229,
+          "time_sec": 0.12051770905964077,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_11",
+          "n": 50,
+          "m": 10,
+          "cmax": 3044,
+          "time_sec": 0.11815566604491323,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_12",
+          "n": 50,
+          "m": 10,
+          "cmax": 3216,
+          "time_sec": 0.12465862499084324,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_13",
+          "n": 50,
+          "m": 15,
+          "cmax": 3517,
+          "time_sec": 0.24950658297166228,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_14",
+          "n": 50,
+          "m": 15,
+          "cmax": 3555,
+          "time_sec": 0.18747308303136379,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_15",
+          "n": 50,
+          "m": 15,
+          "cmax": 3594,
+          "time_sec": 0.2831572500290349,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_16",
+          "n": 75,
+          "m": 10,
+          "cmax": 4271,
+          "time_sec": 0.46288720797747374,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_17",
+          "n": 75,
+          "m": 10,
+          "cmax": 4380,
+          "time_sec": 0.4044785420410335,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_18",
+          "n": 75,
+          "m": 10,
+          "cmax": 4394,
+          "time_sec": 0.6361427078954875,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_19",
+          "n": 75,
+          "m": 15,
+          "cmax": 4853,
+          "time_sec": 0.7534229999873787,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_20",
+          "n": 75,
+          "m": 15,
+          "cmax": 5035,
+          "time_sec": 0.8642627090448514,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_21",
+          "n": 75,
+          "m": 15,
+          "cmax": 5033,
+          "time_sec": 0.6262223749654368,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_22",
+          "n": 100,
+          "m": 10,
+          "cmax": 5919,
+          "time_sec": 0.841754458961077,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_23",
+          "n": 100,
+          "m": 10,
+          "cmax": 5611,
+          "time_sec": 1.355313624953851,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_24",
+          "n": 100,
+          "m": 15,
+          "cmax": 6049,
+          "time_sec": 1.7070891669718549,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_25",
+          "n": 100,
+          "m": 15,
+          "cmax": 6130,
+          "time_sec": 1.8129853339632973,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_26",
+          "n": 120,
+          "m": 10,
+          "cmax": 6686,
+          "time_sec": 1.603438625112176,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_27",
+          "n": 120,
+          "m": 10,
+          "cmax": 6785,
+          "time_sec": 1.6372302499366924,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_28",
+          "n": 120,
+          "m": 15,
+          "cmax": 6969,
+          "time_sec": 2.8498287920374423,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_29",
+          "n": 120,
+          "m": 15,
+          "cmax": 7214,
+          "time_sec": 2.326411750051193,
+          "status": "VALID",
+          "error": null
+        }
+      ]
+    },
+    "NEH-LS (Multi-Pass)": {
+      "cmaxes": [
+        1268,
+        1354,
+        1604,
+        1557,
+        1585,
+        1851,
+        2105,
+        2116,
+        3021,
+        2952,
+        3229,
+        2992,
+        3200,
+        3517,
+        3545,
+        3547,
+        4271,
+        4380,
+        4394,
+        4851,
+        5035,
+        5016,
+        5919,
+        5611,
+        null,
+        null,
+        6667,
+        6785,
+        null,
+        null
+      ],
+      "runtimes": [
+        0.008594874991104007,
+        0.004399041994474828,
+        0.009131249971687794,
+        0.013783250004053116,
+        0.05048775009345263,
+        0.01558650005608797,
+        0.04004258301574737,
+        0.09914279193617404,
+        0.0656234169146046,
+        0.06193487497512251,
+        0.21260554098989815,
+        0.7545849159359932,
+        0.2170879169134423,
+        0.5078285839408636,
+        0.386484665912576,
+        1.2190837500384077,
+        0.6059722499921918,
+        0.9162285829661414,
+        0.8085596669698134,
+        1.6449659171048552,
+        1.129635874996893,
+        1.4263820420019329,
+        0.9589783339761198,
+        2.3881886249873787,
+        4.466379957972094,
+        16.477838833001442,
+        1.7976923329988495,
+        1.6292651670519263,
+        12.446970583987422,
+        6.318048333050683
+      ],
+      "timeouts": 4,
+      "invalid": 0,
+      "per_instance": [
+        {
+          "id": "fresh_pfsp_00",
+          "n": 20,
+          "m": 5,
+          "cmax": 1268,
+          "time_sec": 0.008594874991104007,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_01",
+          "n": 20,
+          "m": 5,
+          "cmax": 1354,
+          "time_sec": 0.004399041994474828,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_02",
+          "n": 20,
+          "m": 10,
+          "cmax": 1604,
+          "time_sec": 0.009131249971687794,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_03",
+          "n": 20,
+          "m": 10,
+          "cmax": 1557,
+          "time_sec": 0.013783250004053116,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_04",
+          "n": 30,
+          "m": 5,
+          "cmax": 1585,
+          "time_sec": 0.05048775009345263,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_05",
+          "n": 30,
+          "m": 5,
+          "cmax": 1851,
+          "time_sec": 0.01558650005608797,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_06",
+          "n": 30,
+          "m": 10,
+          "cmax": 2105,
+          "time_sec": 0.04004258301574737,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_07",
+          "n": 30,
+          "m": 10,
+          "cmax": 2116,
+          "time_sec": 0.09914279193617404,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_08",
+          "n": 50,
+          "m": 5,
+          "cmax": 3021,
+          "time_sec": 0.0656234169146046,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_09",
+          "n": 50,
+          "m": 5,
+          "cmax": 2952,
+          "time_sec": 0.06193487497512251,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_10",
+          "n": 50,
+          "m": 10,
+          "cmax": 3229,
+          "time_sec": 0.21260554098989815,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_11",
+          "n": 50,
+          "m": 10,
+          "cmax": 2992,
+          "time_sec": 0.7545849159359932,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_12",
+          "n": 50,
+          "m": 10,
+          "cmax": 3200,
+          "time_sec": 0.2170879169134423,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_13",
+          "n": 50,
+          "m": 15,
+          "cmax": 3517,
+          "time_sec": 0.5078285839408636,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_14",
+          "n": 50,
+          "m": 15,
+          "cmax": 3545,
+          "time_sec": 0.386484665912576,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_15",
+          "n": 50,
+          "m": 15,
+          "cmax": 3547,
+          "time_sec": 1.2190837500384077,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_16",
+          "n": 75,
+          "m": 10,
+          "cmax": 4271,
+          "time_sec": 0.6059722499921918,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_17",
+          "n": 75,
+          "m": 10,
+          "cmax": 4380,
+          "time_sec": 0.9162285829661414,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_18",
+          "n": 75,
+          "m": 10,
+          "cmax": 4394,
+          "time_sec": 0.8085596669698134,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_19",
+          "n": 75,
+          "m": 15,
+          "cmax": 4851,
+          "time_sec": 1.6449659171048552,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_20",
+          "n": 75,
+          "m": 15,
+          "cmax": 5035,
+          "time_sec": 1.129635874996893,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_21",
+          "n": 75,
+          "m": 15,
+          "cmax": 5016,
+          "time_sec": 1.4263820420019329,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_22",
+          "n": 100,
+          "m": 10,
+          "cmax": 5919,
+          "time_sec": 0.9589783339761198,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_23",
+          "n": 100,
+          "m": 10,
+          "cmax": 5611,
+          "time_sec": 2.3881886249873787,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_24",
+          "n": 100,
+          "m": 15,
+          "cmax": null,
+          "time_sec": 4.466379957972094,
+          "status": "TIMEOUT",
+          "error": "Exceeded runtime limit 4.0s (4.466s)"
+        },
+        {
+          "id": "fresh_pfsp_25",
+          "n": 100,
+          "m": 15,
+          "cmax": null,
+          "time_sec": 16.477838833001442,
+          "status": "TIMEOUT",
+          "error": "Exceeded runtime limit 4.0s (16.478s)"
+        },
+        {
+          "id": "fresh_pfsp_26",
+          "n": 120,
+          "m": 10,
+          "cmax": 6667,
+          "time_sec": 1.7976923329988495,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_27",
+          "n": 120,
+          "m": 10,
+          "cmax": 6785,
+          "time_sec": 1.6292651670519263,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_28",
+          "n": 120,
+          "m": 15,
+          "cmax": null,
+          "time_sec": 12.446970583987422,
+          "status": "TIMEOUT",
+          "error": "Exceeded runtime limit 4.0s (12.447s)"
+        },
+        {
+          "id": "fresh_pfsp_29",
+          "n": 120,
+          "m": 15,
+          "cmax": null,
+          "time_sec": 6.318048333050683,
+          "status": "TIMEOUT",
+          "error": "Exceeded runtime limit 4.0s (6.318s)"
+        }
+      ]
+    },
+    "IteratedGreedy": {
+      "cmaxes": [
+        1268,
+        1354,
+        1604,
+        1541,
+        1597,
+        1851,
+        2105,
+        2119,
+        3021,
+        2952,
+        3229,
+        3020,
+        3215,
+        3562,
+        3531,
+        3596,
+        4258,
+        4379,
+        4379,
+        4860,
+        5011,
+        5025,
+        5919,
+        5617,
+        6083,
+        6141,
+        6667,
+        6785,
+        7005,
+        7261
+      ],
+      "runtimes": [
+        0.02056600002106279,
+        0.015219082939438522,
+        0.027527750004082918,
+        0.029559167101979256,
+        0.03452691703569144,
+        0.0353707920294255,
+        0.06539920798968524,
+        0.06415912497323006,
+        0.0996861670864746,
+        0.10359766602050513,
+        0.18585833301767707,
+        0.21088933409191668,
+        0.1948668749537319,
+        0.3287742909742519,
+        0.6728676250204444,
+        0.3621812090277672,
+        0.500845417031087,
+        0.6362589580239728,
+        0.6208283749874681,
+        0.8872597919544205,
+        1.27545774995815,
+        0.7458462920039892,
+        0.9983535420615226,
+        1.2859676249790937,
+        1.555144750047475,
+        2.007237207959406,
+        1.4318129579769447,
+        1.3709011250175536,
+        1.8185263329651207,
+        2.020396958105266
+      ],
+      "timeouts": 0,
+      "invalid": 0,
+      "per_instance": [
+        {
+          "id": "fresh_pfsp_00",
+          "n": 20,
+          "m": 5,
+          "cmax": 1268,
+          "time_sec": 0.02056600002106279,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_01",
+          "n": 20,
+          "m": 5,
+          "cmax": 1354,
+          "time_sec": 0.015219082939438522,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_02",
+          "n": 20,
+          "m": 10,
+          "cmax": 1604,
+          "time_sec": 0.027527750004082918,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_03",
+          "n": 20,
+          "m": 10,
+          "cmax": 1541,
+          "time_sec": 0.029559167101979256,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_04",
+          "n": 30,
+          "m": 5,
+          "cmax": 1597,
+          "time_sec": 0.03452691703569144,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_05",
+          "n": 30,
+          "m": 5,
+          "cmax": 1851,
+          "time_sec": 0.0353707920294255,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_06",
+          "n": 30,
+          "m": 10,
+          "cmax": 2105,
+          "time_sec": 0.06539920798968524,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_07",
+          "n": 30,
+          "m": 10,
+          "cmax": 2119,
+          "time_sec": 0.06415912497323006,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_08",
+          "n": 50,
+          "m": 5,
+          "cmax": 3021,
+          "time_sec": 0.0996861670864746,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_09",
+          "n": 50,
+          "m": 5,
+          "cmax": 2952,
+          "time_sec": 0.10359766602050513,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_10",
+          "n": 50,
+          "m": 10,
+          "cmax": 3229,
+          "time_sec": 0.18585833301767707,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_11",
+          "n": 50,
+          "m": 10,
+          "cmax": 3020,
+          "time_sec": 0.21088933409191668,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_12",
+          "n": 50,
+          "m": 10,
+          "cmax": 3215,
+          "time_sec": 0.1948668749537319,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_13",
+          "n": 50,
+          "m": 15,
+          "cmax": 3562,
+          "time_sec": 0.3287742909742519,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_14",
+          "n": 50,
+          "m": 15,
+          "cmax": 3531,
+          "time_sec": 0.6728676250204444,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_15",
+          "n": 50,
+          "m": 15,
+          "cmax": 3596,
+          "time_sec": 0.3621812090277672,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_16",
+          "n": 75,
+          "m": 10,
+          "cmax": 4258,
+          "time_sec": 0.500845417031087,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_17",
+          "n": 75,
+          "m": 10,
+          "cmax": 4379,
+          "time_sec": 0.6362589580239728,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_18",
+          "n": 75,
+          "m": 10,
+          "cmax": 4379,
+          "time_sec": 0.6208283749874681,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_19",
+          "n": 75,
+          "m": 15,
+          "cmax": 4860,
+          "time_sec": 0.8872597919544205,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_20",
+          "n": 75,
+          "m": 15,
+          "cmax": 5011,
+          "time_sec": 1.27545774995815,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_21",
+          "n": 75,
+          "m": 15,
+          "cmax": 5025,
+          "time_sec": 0.7458462920039892,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_22",
+          "n": 100,
+          "m": 10,
+          "cmax": 5919,
+          "time_sec": 0.9983535420615226,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_23",
+          "n": 100,
+          "m": 10,
+          "cmax": 5617,
+          "time_sec": 1.2859676249790937,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_24",
+          "n": 100,
+          "m": 15,
+          "cmax": 6083,
+          "time_sec": 1.555144750047475,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_25",
+          "n": 100,
+          "m": 15,
+          "cmax": 6141,
+          "time_sec": 2.007237207959406,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_26",
+          "n": 120,
+          "m": 10,
+          "cmax": 6667,
+          "time_sec": 1.4318129579769447,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_27",
+          "n": 120,
+          "m": 10,
+          "cmax": 6785,
+          "time_sec": 1.3709011250175536,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_28",
+          "n": 120,
+          "m": 15,
+          "cmax": 7005,
+          "time_sec": 1.8185263329651207,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_29",
+          "n": 120,
+          "m": 15,
+          "cmax": 7261,
+          "time_sec": 2.020396958105266,
+          "status": "VALID",
+          "error": null
+        }
+      ]
+    },
+    "Candidate2_V0_Original": {
+      "cmaxes": [
+        1268,
+        1354,
+        1616,
+        1583,
+        1602,
+        1851,
+        2068,
+        2154,
+        3021,
+        2952,
+        3174,
+        3007,
+        3220,
+        3580,
+        3581,
+        3565,
+        4291,
+        4387,
+        4355,
+        4859,
+        4953,
+        5004,
+        5911,
+        5643,
+        6077,
+        6027,
+        6725,
+        6785,
+        null,
+        7201
+      ],
+      "runtimes": [
+        0.0028923340141773224,
+        0.0028126670513302088,
+        0.008373541058972478,
+        0.010796999908052385,
+        0.009473416954278946,
+        0.009887957945466042,
+        0.07347541593480855,
+        0.050944791990332305,
+        0.0413114579860121,
+        0.041740624932572246,
+        0.2212418339913711,
+        0.182621999992989,
+        0.19268533401191235,
+        0.11678966705221683,
+        0.2415190419415012,
+        0.3739794580033049,
+        0.31169604195747524,
+        0.431209750007838,
+        0.3669658750295639,
+        1.1795675000175834,
+        2.82946641696617,
+        0.8780575420241803,
+        0.7266238749725744,
+        0.8729935419978574,
+        1.8454047919949517,
+        2.7038654999341816,
+        1.878289584070444,
+        1.11693108396139,
+        12.541833249968477,
+        2.1310126669704914
+      ],
+      "timeouts": 1,
+      "invalid": 0,
+      "per_instance": [
+        {
+          "id": "fresh_pfsp_00",
+          "n": 20,
+          "m": 5,
+          "cmax": 1268,
+          "time_sec": 0.0028923340141773224,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_01",
+          "n": 20,
+          "m": 5,
+          "cmax": 1354,
+          "time_sec": 0.0028126670513302088,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_02",
+          "n": 20,
+          "m": 10,
+          "cmax": 1616,
+          "time_sec": 0.008373541058972478,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_03",
+          "n": 20,
+          "m": 10,
+          "cmax": 1583,
+          "time_sec": 0.010796999908052385,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_04",
+          "n": 30,
+          "m": 5,
+          "cmax": 1602,
+          "time_sec": 0.009473416954278946,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_05",
+          "n": 30,
+          "m": 5,
+          "cmax": 1851,
+          "time_sec": 0.009887957945466042,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_06",
+          "n": 30,
+          "m": 10,
+          "cmax": 2068,
+          "time_sec": 0.07347541593480855,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_07",
+          "n": 30,
+          "m": 10,
+          "cmax": 2154,
+          "time_sec": 0.050944791990332305,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_08",
+          "n": 50,
+          "m": 5,
+          "cmax": 3021,
+          "time_sec": 0.0413114579860121,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_09",
+          "n": 50,
+          "m": 5,
+          "cmax": 2952,
+          "time_sec": 0.041740624932572246,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_10",
+          "n": 50,
+          "m": 10,
+          "cmax": 3174,
+          "time_sec": 0.2212418339913711,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_11",
+          "n": 50,
+          "m": 10,
+          "cmax": 3007,
+          "time_sec": 0.182621999992989,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_12",
+          "n": 50,
+          "m": 10,
+          "cmax": 3220,
+          "time_sec": 0.19268533401191235,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_13",
+          "n": 50,
+          "m": 15,
+          "cmax": 3580,
+          "time_sec": 0.11678966705221683,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_14",
+          "n": 50,
+          "m": 15,
+          "cmax": 3581,
+          "time_sec": 0.2415190419415012,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_15",
+          "n": 50,
+          "m": 15,
+          "cmax": 3565,
+          "time_sec": 0.3739794580033049,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_16",
+          "n": 75,
+          "m": 10,
+          "cmax": 4291,
+          "time_sec": 0.31169604195747524,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_17",
+          "n": 75,
+          "m": 10,
+          "cmax": 4387,
+          "time_sec": 0.431209750007838,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_18",
+          "n": 75,
+          "m": 10,
+          "cmax": 4355,
+          "time_sec": 0.3669658750295639,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_19",
+          "n": 75,
+          "m": 15,
+          "cmax": 4859,
+          "time_sec": 1.1795675000175834,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_20",
+          "n": 75,
+          "m": 15,
+          "cmax": 4953,
+          "time_sec": 2.82946641696617,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_21",
+          "n": 75,
+          "m": 15,
+          "cmax": 5004,
+          "time_sec": 0.8780575420241803,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_22",
+          "n": 100,
+          "m": 10,
+          "cmax": 5911,
+          "time_sec": 0.7266238749725744,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_23",
+          "n": 100,
+          "m": 10,
+          "cmax": 5643,
+          "time_sec": 0.8729935419978574,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_24",
+          "n": 100,
+          "m": 15,
+          "cmax": 6077,
+          "time_sec": 1.8454047919949517,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_25",
+          "n": 100,
+          "m": 15,
+          "cmax": 6027,
+          "time_sec": 2.7038654999341816,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_26",
+          "n": 120,
+          "m": 10,
+          "cmax": 6725,
+          "time_sec": 1.878289584070444,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_27",
+          "n": 120,
+          "m": 10,
+          "cmax": 6785,
+          "time_sec": 1.11693108396139,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_28",
+          "n": 120,
+          "m": 15,
+          "cmax": null,
+          "time_sec": 12.541833249968477,
+          "status": "TIMEOUT",
+          "error": "Exceeded runtime limit 4.0s (12.542s)"
+        },
+        {
+          "id": "fresh_pfsp_29",
+          "n": 120,
+          "m": 15,
+          "cmax": 7201,
+          "time_sec": 2.1310126669704914,
+          "status": "VALID",
+          "error": null
+        }
+      ]
+    },
+    "Candidate2_V1_ExactAccel": {
+      "cmaxes": [
+        1268,
+        1354,
+        1616,
+        1583,
+        1602,
+        1851,
+        2068,
+        2154,
+        3021,
+        2952,
+        3174,
+        3007,
+        3220,
+        3580,
+        3581,
+        3565,
+        4291,
+        4387,
+        4355,
+        4859,
+        4953,
+        5004,
+        5911,
+        5643,
+        6077,
+        6027,
+        6725,
+        6785,
+        null,
+        7201
+      ],
+      "runtimes": [
+        0.0024412500206381083,
+        0.002059333026409149,
+        0.005831750109791756,
+        0.00707904202863574,
+        0.007910917047411203,
+        0.006681959028355777,
+        0.04095870803575963,
+        0.031860125018283725,
+        0.02706520794890821,
+        0.027144292020238936,
+        0.12926924997009337,
+        0.10254900006111711,
+        0.0950134169543162,
+        0.07812799990642816,
+        0.14519033301621675,
+        0.2128892500186339,
+        0.19543079193681479,
+        0.2592125419760123,
+        0.23706095793750137,
+        0.49552341701928526,
+        1.199872124940157,
+        0.46814479189924896,
+        0.42398554098326713,
+        0.5190810830099508,
+        1.161481666029431,
+        1.42909295798745,
+        1.124845709069632,
+        0.676339165889658,
+        5.522448958014138,
+        1.2399429159704596
+      ],
+      "timeouts": 1,
+      "invalid": 0,
+      "per_instance": [
+        {
+          "id": "fresh_pfsp_00",
+          "n": 20,
+          "m": 5,
+          "cmax": 1268,
+          "time_sec": 0.0024412500206381083,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_01",
+          "n": 20,
+          "m": 5,
+          "cmax": 1354,
+          "time_sec": 0.002059333026409149,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_02",
+          "n": 20,
+          "m": 10,
+          "cmax": 1616,
+          "time_sec": 0.005831750109791756,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_03",
+          "n": 20,
+          "m": 10,
+          "cmax": 1583,
+          "time_sec": 0.00707904202863574,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_04",
+          "n": 30,
+          "m": 5,
+          "cmax": 1602,
+          "time_sec": 0.007910917047411203,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_05",
+          "n": 30,
+          "m": 5,
+          "cmax": 1851,
+          "time_sec": 0.006681959028355777,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_06",
+          "n": 30,
+          "m": 10,
+          "cmax": 2068,
+          "time_sec": 0.04095870803575963,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_07",
+          "n": 30,
+          "m": 10,
+          "cmax": 2154,
+          "time_sec": 0.031860125018283725,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_08",
+          "n": 50,
+          "m": 5,
+          "cmax": 3021,
+          "time_sec": 0.02706520794890821,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_09",
+          "n": 50,
+          "m": 5,
+          "cmax": 2952,
+          "time_sec": 0.027144292020238936,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_10",
+          "n": 50,
+          "m": 10,
+          "cmax": 3174,
+          "time_sec": 0.12926924997009337,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_11",
+          "n": 50,
+          "m": 10,
+          "cmax": 3007,
+          "time_sec": 0.10254900006111711,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_12",
+          "n": 50,
+          "m": 10,
+          "cmax": 3220,
+          "time_sec": 0.0950134169543162,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_13",
+          "n": 50,
+          "m": 15,
+          "cmax": 3580,
+          "time_sec": 0.07812799990642816,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_14",
+          "n": 50,
+          "m": 15,
+          "cmax": 3581,
+          "time_sec": 0.14519033301621675,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_15",
+          "n": 50,
+          "m": 15,
+          "cmax": 3565,
+          "time_sec": 0.2128892500186339,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_16",
+          "n": 75,
+          "m": 10,
+          "cmax": 4291,
+          "time_sec": 0.19543079193681479,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_17",
+          "n": 75,
+          "m": 10,
+          "cmax": 4387,
+          "time_sec": 0.2592125419760123,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_18",
+          "n": 75,
+          "m": 10,
+          "cmax": 4355,
+          "time_sec": 0.23706095793750137,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_19",
+          "n": 75,
+          "m": 15,
+          "cmax": 4859,
+          "time_sec": 0.49552341701928526,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_20",
+          "n": 75,
+          "m": 15,
+          "cmax": 4953,
+          "time_sec": 1.199872124940157,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_21",
+          "n": 75,
+          "m": 15,
+          "cmax": 5004,
+          "time_sec": 0.46814479189924896,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_22",
+          "n": 100,
+          "m": 10,
+          "cmax": 5911,
+          "time_sec": 0.42398554098326713,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_23",
+          "n": 100,
+          "m": 10,
+          "cmax": 5643,
+          "time_sec": 0.5190810830099508,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_24",
+          "n": 100,
+          "m": 15,
+          "cmax": 6077,
+          "time_sec": 1.161481666029431,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_25",
+          "n": 100,
+          "m": 15,
+          "cmax": 6027,
+          "time_sec": 1.42909295798745,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_26",
+          "n": 120,
+          "m": 10,
+          "cmax": 6725,
+          "time_sec": 1.124845709069632,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_27",
+          "n": 120,
+          "m": 10,
+          "cmax": 6785,
+          "time_sec": 0.676339165889658,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_28",
+          "n": 120,
+          "m": 15,
+          "cmax": null,
+          "time_sec": 5.522448958014138,
+          "status": "TIMEOUT",
+          "error": "Exceeded runtime limit 4.0s (5.522s)"
+        },
+        {
+          "id": "fresh_pfsp_29",
+          "n": 120,
+          "m": 15,
+          "cmax": 7201,
+          "time_sec": 1.2399429159704596,
+          "status": "VALID",
+          "error": null
+        }
+      ]
+    },
+    "Candidate2_V2_B100": {
+      "cmaxes": [
+        1268,
+        1354,
+        1620,
+        1590,
+        1602,
+        1851,
+        2139,
+        2188,
+        3021,
+        2952,
+        3220,
+        3093,
+        3223,
+        3580,
+        3590,
+        3633,
+        4291,
+        4396,
+        4394,
+        4870,
+        5093,
+        5025,
+        5911,
+        5658,
+        6122,
+        6053,
+        6743,
+        6785,
+        6990,
+        7212
+      ],
+      "runtimes": [
+        0.0023794580483809114,
+        0.0017952920170500875,
+        0.00345408299472183,
+        0.003295667003840208,
+        0.0058800410479307175,
+        0.005224957945756614,
+        0.00856424996163696,
+        0.008499666932038963,
+        0.017699292046017945,
+        0.017704416066408157,
+        0.03290374996140599,
+        0.033757374971173704,
+        0.037125624949112535,
+        0.04981374996714294,
+        0.059634541044943035,
+        0.047181625035591424,
+        0.339513499988243,
+        0.1504961249884218,
+        0.13235383294522762,
+        0.20403958298265934,
+        0.16049845796078444,
+        0.1466581670101732,
+        0.2792897910112515,
+        0.2872453749878332,
+        0.3744482910260558,
+        0.3673429589252919,
+        0.4683140420820564,
+        0.40342308301478624,
+        0.5806286669103429,
+        0.8220100830076262
+      ],
+      "timeouts": 0,
+      "invalid": 0,
+      "per_instance": [
+        {
+          "id": "fresh_pfsp_00",
+          "n": 20,
+          "m": 5,
+          "cmax": 1268,
+          "time_sec": 0.0023794580483809114,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_01",
+          "n": 20,
+          "m": 5,
+          "cmax": 1354,
+          "time_sec": 0.0017952920170500875,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_02",
+          "n": 20,
+          "m": 10,
+          "cmax": 1620,
+          "time_sec": 0.00345408299472183,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_03",
+          "n": 20,
+          "m": 10,
+          "cmax": 1590,
+          "time_sec": 0.003295667003840208,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_04",
+          "n": 30,
+          "m": 5,
+          "cmax": 1602,
+          "time_sec": 0.0058800410479307175,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_05",
+          "n": 30,
+          "m": 5,
+          "cmax": 1851,
+          "time_sec": 0.005224957945756614,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_06",
+          "n": 30,
+          "m": 10,
+          "cmax": 2139,
+          "time_sec": 0.00856424996163696,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_07",
+          "n": 30,
+          "m": 10,
+          "cmax": 2188,
+          "time_sec": 0.008499666932038963,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_08",
+          "n": 50,
+          "m": 5,
+          "cmax": 3021,
+          "time_sec": 0.017699292046017945,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_09",
+          "n": 50,
+          "m": 5,
+          "cmax": 2952,
+          "time_sec": 0.017704416066408157,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_10",
+          "n": 50,
+          "m": 10,
+          "cmax": 3220,
+          "time_sec": 0.03290374996140599,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_11",
+          "n": 50,
+          "m": 10,
+          "cmax": 3093,
+          "time_sec": 0.033757374971173704,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_12",
+          "n": 50,
+          "m": 10,
+          "cmax": 3223,
+          "time_sec": 0.037125624949112535,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_13",
+          "n": 50,
+          "m": 15,
+          "cmax": 3580,
+          "time_sec": 0.04981374996714294,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_14",
+          "n": 50,
+          "m": 15,
+          "cmax": 3590,
+          "time_sec": 0.059634541044943035,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_15",
+          "n": 50,
+          "m": 15,
+          "cmax": 3633,
+          "time_sec": 0.047181625035591424,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_16",
+          "n": 75,
+          "m": 10,
+          "cmax": 4291,
+          "time_sec": 0.339513499988243,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_17",
+          "n": 75,
+          "m": 10,
+          "cmax": 4396,
+          "time_sec": 0.1504961249884218,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_18",
+          "n": 75,
+          "m": 10,
+          "cmax": 4394,
+          "time_sec": 0.13235383294522762,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_19",
+          "n": 75,
+          "m": 15,
+          "cmax": 4870,
+          "time_sec": 0.20403958298265934,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_20",
+          "n": 75,
+          "m": 15,
+          "cmax": 5093,
+          "time_sec": 0.16049845796078444,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_21",
+          "n": 75,
+          "m": 15,
+          "cmax": 5025,
+          "time_sec": 0.1466581670101732,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_22",
+          "n": 100,
+          "m": 10,
+          "cmax": 5911,
+          "time_sec": 0.2792897910112515,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_23",
+          "n": 100,
+          "m": 10,
+          "cmax": 5658,
+          "time_sec": 0.2872453749878332,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_24",
+          "n": 100,
+          "m": 15,
+          "cmax": 6122,
+          "time_sec": 0.3744482910260558,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_25",
+          "n": 100,
+          "m": 15,
+          "cmax": 6053,
+          "time_sec": 0.3673429589252919,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_26",
+          "n": 120,
+          "m": 10,
+          "cmax": 6743,
+          "time_sec": 0.4683140420820564,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_27",
+          "n": 120,
+          "m": 10,
+          "cmax": 6785,
+          "time_sec": 0.40342308301478624,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_28",
+          "n": 120,
+          "m": 15,
+          "cmax": 6990,
+          "time_sec": 0.5806286669103429,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_29",
+          "n": 120,
+          "m": 15,
+          "cmax": 7212,
+          "time_sec": 0.8220100830076262,
+          "status": "VALID",
+          "error": null
+        }
+      ]
+    },
+    "Candidate2_V2_B500": {
+      "cmaxes": [
+        1268,
+        1354,
+        1616,
+        1583,
+        1602,
+        1851,
+        2133,
+        2170,
+        3021,
+        2952,
+        3213,
+        3062,
+        3223,
+        3580,
+        3585,
+        3624,
+        4291,
+        4396,
+        4359,
+        4870,
+        5075,
+        5025,
+        5911,
+        5657,
+        6122,
+        6053,
+        6743,
+        6785,
+        6990,
+        7211
+      ],
+      "runtimes": [
+        0.0023352920543402433,
+        0.002082624938338995,
+        0.005837582983076572,
+        0.006764917052350938,
+        0.006927250069566071,
+        0.007374625070951879,
+        0.01289770903531462,
+        0.01304174994584173,
+        0.022425249917432666,
+        0.02200654207263142,
+        0.04049570800270885,
+        0.04260329098906368,
+        0.054418457904830575,
+        0.061050333082675934,
+        0.07212541601620615,
+        0.05686837492976338,
+        0.14397966698743403,
+        0.16536620794795454,
+        0.14795141597278416,
+        0.2239275419851765,
+        0.1748087089508772,
+        0.15939912502653897,
+        0.3339443749282509,
+        0.2871995409950614,
+        0.41613854095339775,
+        0.3906516249990091,
+        0.508737750002183,
+        0.4443193750921637,
+        0.5991808329708874,
+        0.7106499579967931
+      ],
+      "timeouts": 0,
+      "invalid": 0,
+      "per_instance": [
+        {
+          "id": "fresh_pfsp_00",
+          "n": 20,
+          "m": 5,
+          "cmax": 1268,
+          "time_sec": 0.0023352920543402433,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_01",
+          "n": 20,
+          "m": 5,
+          "cmax": 1354,
+          "time_sec": 0.002082624938338995,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_02",
+          "n": 20,
+          "m": 10,
+          "cmax": 1616,
+          "time_sec": 0.005837582983076572,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_03",
+          "n": 20,
+          "m": 10,
+          "cmax": 1583,
+          "time_sec": 0.006764917052350938,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_04",
+          "n": 30,
+          "m": 5,
+          "cmax": 1602,
+          "time_sec": 0.006927250069566071,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_05",
+          "n": 30,
+          "m": 5,
+          "cmax": 1851,
+          "time_sec": 0.007374625070951879,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_06",
+          "n": 30,
+          "m": 10,
+          "cmax": 2133,
+          "time_sec": 0.01289770903531462,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_07",
+          "n": 30,
+          "m": 10,
+          "cmax": 2170,
+          "time_sec": 0.01304174994584173,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_08",
+          "n": 50,
+          "m": 5,
+          "cmax": 3021,
+          "time_sec": 0.022425249917432666,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_09",
+          "n": 50,
+          "m": 5,
+          "cmax": 2952,
+          "time_sec": 0.02200654207263142,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_10",
+          "n": 50,
+          "m": 10,
+          "cmax": 3213,
+          "time_sec": 0.04049570800270885,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_11",
+          "n": 50,
+          "m": 10,
+          "cmax": 3062,
+          "time_sec": 0.04260329098906368,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_12",
+          "n": 50,
+          "m": 10,
+          "cmax": 3223,
+          "time_sec": 0.054418457904830575,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_13",
+          "n": 50,
+          "m": 15,
+          "cmax": 3580,
+          "time_sec": 0.061050333082675934,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_14",
+          "n": 50,
+          "m": 15,
+          "cmax": 3585,
+          "time_sec": 0.07212541601620615,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_15",
+          "n": 50,
+          "m": 15,
+          "cmax": 3624,
+          "time_sec": 0.05686837492976338,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_16",
+          "n": 75,
+          "m": 10,
+          "cmax": 4291,
+          "time_sec": 0.14397966698743403,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_17",
+          "n": 75,
+          "m": 10,
+          "cmax": 4396,
+          "time_sec": 0.16536620794795454,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_18",
+          "n": 75,
+          "m": 10,
+          "cmax": 4359,
+          "time_sec": 0.14795141597278416,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_19",
+          "n": 75,
+          "m": 15,
+          "cmax": 4870,
+          "time_sec": 0.2239275419851765,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_20",
+          "n": 75,
+          "m": 15,
+          "cmax": 5075,
+          "time_sec": 0.1748087089508772,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_21",
+          "n": 75,
+          "m": 15,
+          "cmax": 5025,
+          "time_sec": 0.15939912502653897,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_22",
+          "n": 100,
+          "m": 10,
+          "cmax": 5911,
+          "time_sec": 0.3339443749282509,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_23",
+          "n": 100,
+          "m": 10,
+          "cmax": 5657,
+          "time_sec": 0.2871995409950614,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_24",
+          "n": 100,
+          "m": 15,
+          "cmax": 6122,
+          "time_sec": 0.41613854095339775,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_25",
+          "n": 100,
+          "m": 15,
+          "cmax": 6053,
+          "time_sec": 0.3906516249990091,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_26",
+          "n": 120,
+          "m": 10,
+          "cmax": 6743,
+          "time_sec": 0.508737750002183,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_27",
+          "n": 120,
+          "m": 10,
+          "cmax": 6785,
+          "time_sec": 0.4443193750921637,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_28",
+          "n": 120,
+          "m": 15,
+          "cmax": 6990,
+          "time_sec": 0.5991808329708874,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_29",
+          "n": 120,
+          "m": 15,
+          "cmax": 7211,
+          "time_sec": 0.7106499579967931,
+          "status": "VALID",
+          "error": null
+        }
+      ]
+    },
+    "Candidate2_V2_B2000": {
+      "cmaxes": [
+        1268,
+        1354,
+        1616,
+        1583,
+        1602,
+        1851,
+        2077,
+        2154,
+        3021,
+        2952,
+        3199,
+        3031,
+        3222,
+        3580,
+        3582,
+        3594,
+        4291,
+        4387,
+        4355,
+        4870,
+        5039,
+        5022,
+        5911,
+        5643,
+        6096,
+        6047,
+        6741,
+        6785,
+        6990,
+        7201
+      ],
+      "runtimes": [
+        0.0022979590576142073,
+        0.002218750072643161,
+        0.005853541078977287,
+        0.007115500047802925,
+        0.007210458046756685,
+        0.006460374919697642,
+        0.03102754196152091,
+        0.03200266603380442,
+        0.02620049996767193,
+        0.026848459034226835,
+        0.07201687502674758,
+        0.07536600006278604,
+        0.08968775009270757,
+        0.0764164999127388,
+        0.11682133295107633,
+        0.09970004204660654,
+        0.17337516602128744,
+        0.2749266669852659,
+        0.19598999992012978,
+        0.2858528340002522,
+        0.24234324996359646,
+        0.21203879197128117,
+        0.5040212919702753,
+        0.3569579590111971,
+        0.4927260410040617,
+        0.45712170808110386,
+        0.5457835000706837,
+        0.5019857080187649,
+        0.7399487919174135,
+        0.8203532079933211
+      ],
+      "timeouts": 0,
+      "invalid": 0,
+      "per_instance": [
+        {
+          "id": "fresh_pfsp_00",
+          "n": 20,
+          "m": 5,
+          "cmax": 1268,
+          "time_sec": 0.0022979590576142073,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_01",
+          "n": 20,
+          "m": 5,
+          "cmax": 1354,
+          "time_sec": 0.002218750072643161,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_02",
+          "n": 20,
+          "m": 10,
+          "cmax": 1616,
+          "time_sec": 0.005853541078977287,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_03",
+          "n": 20,
+          "m": 10,
+          "cmax": 1583,
+          "time_sec": 0.007115500047802925,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_04",
+          "n": 30,
+          "m": 5,
+          "cmax": 1602,
+          "time_sec": 0.007210458046756685,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_05",
+          "n": 30,
+          "m": 5,
+          "cmax": 1851,
+          "time_sec": 0.006460374919697642,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_06",
+          "n": 30,
+          "m": 10,
+          "cmax": 2077,
+          "time_sec": 0.03102754196152091,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_07",
+          "n": 30,
+          "m": 10,
+          "cmax": 2154,
+          "time_sec": 0.03200266603380442,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_08",
+          "n": 50,
+          "m": 5,
+          "cmax": 3021,
+          "time_sec": 0.02620049996767193,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_09",
+          "n": 50,
+          "m": 5,
+          "cmax": 2952,
+          "time_sec": 0.026848459034226835,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_10",
+          "n": 50,
+          "m": 10,
+          "cmax": 3199,
+          "time_sec": 0.07201687502674758,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_11",
+          "n": 50,
+          "m": 10,
+          "cmax": 3031,
+          "time_sec": 0.07536600006278604,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_12",
+          "n": 50,
+          "m": 10,
+          "cmax": 3222,
+          "time_sec": 0.08968775009270757,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_13",
+          "n": 50,
+          "m": 15,
+          "cmax": 3580,
+          "time_sec": 0.0764164999127388,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_14",
+          "n": 50,
+          "m": 15,
+          "cmax": 3582,
+          "time_sec": 0.11682133295107633,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_15",
+          "n": 50,
+          "m": 15,
+          "cmax": 3594,
+          "time_sec": 0.09970004204660654,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_16",
+          "n": 75,
+          "m": 10,
+          "cmax": 4291,
+          "time_sec": 0.17337516602128744,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_17",
+          "n": 75,
+          "m": 10,
+          "cmax": 4387,
+          "time_sec": 0.2749266669852659,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_18",
+          "n": 75,
+          "m": 10,
+          "cmax": 4355,
+          "time_sec": 0.19598999992012978,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_19",
+          "n": 75,
+          "m": 15,
+          "cmax": 4870,
+          "time_sec": 0.2858528340002522,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_20",
+          "n": 75,
+          "m": 15,
+          "cmax": 5039,
+          "time_sec": 0.24234324996359646,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_21",
+          "n": 75,
+          "m": 15,
+          "cmax": 5022,
+          "time_sec": 0.21203879197128117,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_22",
+          "n": 100,
+          "m": 10,
+          "cmax": 5911,
+          "time_sec": 0.5040212919702753,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_23",
+          "n": 100,
+          "m": 10,
+          "cmax": 5643,
+          "time_sec": 0.3569579590111971,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_24",
+          "n": 100,
+          "m": 15,
+          "cmax": 6096,
+          "time_sec": 0.4927260410040617,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_25",
+          "n": 100,
+          "m": 15,
+          "cmax": 6047,
+          "time_sec": 0.45712170808110386,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_26",
+          "n": 120,
+          "m": 10,
+          "cmax": 6741,
+          "time_sec": 0.5457835000706837,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_27",
+          "n": 120,
+          "m": 10,
+          "cmax": 6785,
+          "time_sec": 0.5019857080187649,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_28",
+          "n": 120,
+          "m": 15,
+          "cmax": 6990,
+          "time_sec": 0.7399487919174135,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_29",
+          "n": 120,
+          "m": 15,
+          "cmax": 7201,
+          "time_sec": 0.8203532079933211,
+          "status": "VALID",
+          "error": null
+        }
+      ]
+    },
+    "Candidate2_V2_B10000": {
+      "cmaxes": [
+        1268,
+        1354,
+        1616,
+        1583,
+        1602,
+        1851,
+        2068,
+        2154,
+        3021,
+        2952,
+        3174,
+        3007,
+        3220,
+        3580,
+        3581,
+        3565,
+        4291,
+        4387,
+        4355,
+        4859,
+        4985,
+        5004,
+        5911,
+        5643,
+        6077,
+        6037,
+        6725,
+        6785,
+        6966,
+        7201
+      ],
+      "runtimes": [
+        0.0023289580130949616,
+        0.0020947499433532357,
+        0.005836708005517721,
+        0.007110291044227779,
+        0.0070781250251457095,
+        0.006431667017750442,
+        0.04162300005555153,
+        0.031795040937140584,
+        0.02628095797263086,
+        0.02728862501680851,
+        0.12905320897698402,
+        0.10160491603892297,
+        0.2144081660080701,
+        0.0774071249179542,
+        0.14833016588818282,
+        0.20353304198943079,
+        0.16550379199907184,
+        0.5756511249346659,
+        0.22546191699802876,
+        0.522569999913685,
+        0.580131166963838,
+        0.5054390409495682,
+        0.5001977919600904,
+        0.4869184159906581,
+        1.5463480830658227,
+        0.8943593329750001,
+        0.9475668339291587,
+        0.6279290829552338,
+        1.2018460829276592,
+        1.2517977500101551
+      ],
+      "timeouts": 0,
+      "invalid": 0,
+      "per_instance": [
+        {
+          "id": "fresh_pfsp_00",
+          "n": 20,
+          "m": 5,
+          "cmax": 1268,
+          "time_sec": 0.0023289580130949616,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_01",
+          "n": 20,
+          "m": 5,
+          "cmax": 1354,
+          "time_sec": 0.0020947499433532357,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_02",
+          "n": 20,
+          "m": 10,
+          "cmax": 1616,
+          "time_sec": 0.005836708005517721,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_03",
+          "n": 20,
+          "m": 10,
+          "cmax": 1583,
+          "time_sec": 0.007110291044227779,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_04",
+          "n": 30,
+          "m": 5,
+          "cmax": 1602,
+          "time_sec": 0.0070781250251457095,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_05",
+          "n": 30,
+          "m": 5,
+          "cmax": 1851,
+          "time_sec": 0.006431667017750442,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_06",
+          "n": 30,
+          "m": 10,
+          "cmax": 2068,
+          "time_sec": 0.04162300005555153,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_07",
+          "n": 30,
+          "m": 10,
+          "cmax": 2154,
+          "time_sec": 0.031795040937140584,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_08",
+          "n": 50,
+          "m": 5,
+          "cmax": 3021,
+          "time_sec": 0.02628095797263086,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_09",
+          "n": 50,
+          "m": 5,
+          "cmax": 2952,
+          "time_sec": 0.02728862501680851,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_10",
+          "n": 50,
+          "m": 10,
+          "cmax": 3174,
+          "time_sec": 0.12905320897698402,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_11",
+          "n": 50,
+          "m": 10,
+          "cmax": 3007,
+          "time_sec": 0.10160491603892297,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_12",
+          "n": 50,
+          "m": 10,
+          "cmax": 3220,
+          "time_sec": 0.2144081660080701,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_13",
+          "n": 50,
+          "m": 15,
+          "cmax": 3580,
+          "time_sec": 0.0774071249179542,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_14",
+          "n": 50,
+          "m": 15,
+          "cmax": 3581,
+          "time_sec": 0.14833016588818282,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_15",
+          "n": 50,
+          "m": 15,
+          "cmax": 3565,
+          "time_sec": 0.20353304198943079,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_16",
+          "n": 75,
+          "m": 10,
+          "cmax": 4291,
+          "time_sec": 0.16550379199907184,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_17",
+          "n": 75,
+          "m": 10,
+          "cmax": 4387,
+          "time_sec": 0.5756511249346659,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_18",
+          "n": 75,
+          "m": 10,
+          "cmax": 4355,
+          "time_sec": 0.22546191699802876,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_19",
+          "n": 75,
+          "m": 15,
+          "cmax": 4859,
+          "time_sec": 0.522569999913685,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_20",
+          "n": 75,
+          "m": 15,
+          "cmax": 4985,
+          "time_sec": 0.580131166963838,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_21",
+          "n": 75,
+          "m": 15,
+          "cmax": 5004,
+          "time_sec": 0.5054390409495682,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_22",
+          "n": 100,
+          "m": 10,
+          "cmax": 5911,
+          "time_sec": 0.5001977919600904,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_23",
+          "n": 100,
+          "m": 10,
+          "cmax": 5643,
+          "time_sec": 0.4869184159906581,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_24",
+          "n": 100,
+          "m": 15,
+          "cmax": 6077,
+          "time_sec": 1.5463480830658227,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_25",
+          "n": 100,
+          "m": 15,
+          "cmax": 6037,
+          "time_sec": 0.8943593329750001,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_26",
+          "n": 120,
+          "m": 10,
+          "cmax": 6725,
+          "time_sec": 0.9475668339291587,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_27",
+          "n": 120,
+          "m": 10,
+          "cmax": 6785,
+          "time_sec": 0.6279290829552338,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_28",
+          "n": 120,
+          "m": 15,
+          "cmax": 6966,
+          "time_sec": 1.2018460829276592,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_29",
+          "n": 120,
+          "m": 15,
+          "cmax": 7201,
+          "time_sec": 1.2517977500101551,
+          "status": "VALID",
+          "error": null
+        }
+      ]
+    },
+    "Candidate2_V3_InsertionLS": {
+      "cmaxes": [
+        1268,
+        1363,
+        1654,
+        1635,
+        1612,
+        1851,
+        2140,
+        2175,
+        3025,
+        2967,
+        3222,
+        3065,
+        3241,
+        3600,
+        3620,
+        3616,
+        4267,
+        4404,
+        4405,
+        4894,
+        5104,
+        5007,
+        5937,
+        5694,
+        6144,
+        6065,
+        6739,
+        6797,
+        7013,
+        7201
+      ],
+      "runtimes": [
+        0.002788166981190443,
+        0.0021951249800622463,
+        0.004402249935083091,
+        0.00525995809584856,
+        0.008895709062926471,
+        0.005979000008665025,
+        0.011203833972103894,
+        0.018076415988616645,
+        0.022828917019069195,
+        0.022283458965830505,
+        0.05086391605436802,
+        0.06973645801190287,
+        0.08675366698298603,
+        0.07020966592244804,
+        0.07291783299297094,
+        0.08502854208927602,
+        0.19039345800410956,
+        0.24402554100379348,
+        0.1737216250039637,
+        0.25440958398394287,
+        0.1904209170024842,
+        0.18482187495101243,
+        0.4160357079235837,
+        0.49543983407784253,
+        0.7341374589595944,
+        0.5305011660093442,
+        0.52921095804777,
+        0.4492301249410957,
+        0.7735238750465214,
+        0.8319115419872105
+      ],
+      "timeouts": 0,
+      "invalid": 0,
+      "per_instance": [
+        {
+          "id": "fresh_pfsp_00",
+          "n": 20,
+          "m": 5,
+          "cmax": 1268,
+          "time_sec": 0.002788166981190443,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_01",
+          "n": 20,
+          "m": 5,
+          "cmax": 1363,
+          "time_sec": 0.0021951249800622463,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_02",
+          "n": 20,
+          "m": 10,
+          "cmax": 1654,
+          "time_sec": 0.004402249935083091,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_03",
+          "n": 20,
+          "m": 10,
+          "cmax": 1635,
+          "time_sec": 0.00525995809584856,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_04",
+          "n": 30,
+          "m": 5,
+          "cmax": 1612,
+          "time_sec": 0.008895709062926471,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_05",
+          "n": 30,
+          "m": 5,
+          "cmax": 1851,
+          "time_sec": 0.005979000008665025,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_06",
+          "n": 30,
+          "m": 10,
+          "cmax": 2140,
+          "time_sec": 0.011203833972103894,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_07",
+          "n": 30,
+          "m": 10,
+          "cmax": 2175,
+          "time_sec": 0.018076415988616645,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_08",
+          "n": 50,
+          "m": 5,
+          "cmax": 3025,
+          "time_sec": 0.022828917019069195,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_09",
+          "n": 50,
+          "m": 5,
+          "cmax": 2967,
+          "time_sec": 0.022283458965830505,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_10",
+          "n": 50,
+          "m": 10,
+          "cmax": 3222,
+          "time_sec": 0.05086391605436802,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_11",
+          "n": 50,
+          "m": 10,
+          "cmax": 3065,
+          "time_sec": 0.06973645801190287,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_12",
+          "n": 50,
+          "m": 10,
+          "cmax": 3241,
+          "time_sec": 0.08675366698298603,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_13",
+          "n": 50,
+          "m": 15,
+          "cmax": 3600,
+          "time_sec": 0.07020966592244804,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_14",
+          "n": 50,
+          "m": 15,
+          "cmax": 3620,
+          "time_sec": 0.07291783299297094,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_15",
+          "n": 50,
+          "m": 15,
+          "cmax": 3616,
+          "time_sec": 0.08502854208927602,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_16",
+          "n": 75,
+          "m": 10,
+          "cmax": 4267,
+          "time_sec": 0.19039345800410956,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_17",
+          "n": 75,
+          "m": 10,
+          "cmax": 4404,
+          "time_sec": 0.24402554100379348,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_18",
+          "n": 75,
+          "m": 10,
+          "cmax": 4405,
+          "time_sec": 0.1737216250039637,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_19",
+          "n": 75,
+          "m": 15,
+          "cmax": 4894,
+          "time_sec": 0.25440958398394287,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_20",
+          "n": 75,
+          "m": 15,
+          "cmax": 5104,
+          "time_sec": 0.1904209170024842,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_21",
+          "n": 75,
+          "m": 15,
+          "cmax": 5007,
+          "time_sec": 0.18482187495101243,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_22",
+          "n": 100,
+          "m": 10,
+          "cmax": 5937,
+          "time_sec": 0.4160357079235837,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_23",
+          "n": 100,
+          "m": 10,
+          "cmax": 5694,
+          "time_sec": 0.49543983407784253,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_24",
+          "n": 100,
+          "m": 15,
+          "cmax": 6144,
+          "time_sec": 0.7341374589595944,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_25",
+          "n": 100,
+          "m": 15,
+          "cmax": 6065,
+          "time_sec": 0.5305011660093442,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_26",
+          "n": 120,
+          "m": 10,
+          "cmax": 6739,
+          "time_sec": 0.52921095804777,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_27",
+          "n": 120,
+          "m": 10,
+          "cmax": 6797,
+          "time_sec": 0.4492301249410957,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_28",
+          "n": 120,
+          "m": 15,
+          "cmax": 7013,
+          "time_sec": 0.7735238750465214,
+          "status": "VALID",
+          "error": null
+        },
+        {
+          "id": "fresh_pfsp_29",
+          "n": 120,
+          "m": 15,
+          "cmax": 7201,
+          "time_sec": 0.8319115419872105,
+          "status": "VALID",
+          "error": null
+        }
+      ]
+    }
+  }
+}

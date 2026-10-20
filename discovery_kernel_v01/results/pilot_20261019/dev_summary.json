@@ -1,0 +1,81 @@
+{
+  "champion_dev_score": 3700.4,
+  "champion_method_id": "neh_ls_insertion",
+  "champion_version": "1.0.0",
+  "dev_instances_evaluated": 5,
+  "experiment_id": "EXP_PILOT_DK01_20261019",
+  "objective_direction": "MINIMIZE",
+  "objective_metric": "makespan",
+  "problem_id": "pfsp_flowshop_scheduling",
+  "rankings": [
+    {
+      "exception_count": 0,
+      "is_fully_valid": true,
+      "mean_score": 3700.4,
+      "method_id": "neh_ls_insertion",
+      "timeout_count": 0,
+      "total_count": 5,
+      "total_runtime_ms": 1138.69,
+      "valid_count": 5,
+      "validation_errors": [],
+      "version": "1.0.0"
+    },
+    {
+      "exception_count": 0,
+      "is_fully_valid": true,
+      "mean_score": 3738.8,
+      "method_id": "neh_classical",
+      "timeout_count": 0,
+      "total_count": 5,
+      "total_runtime_ms": 316.48,
+      "valid_count": 5,
+      "validation_errors": [],
+      "version": "1.0.0"
+    },
+    {
+      "exception_count": 0,
+      "is_fully_valid": true,
+      "mean_score": 4470.2,
+      "method_id": "spt_ascending",
+      "timeout_count": 0,
+      "total_count": 5,
+      "total_runtime_ms": 2.76,
+      "valid_count": 5,
+      "validation_errors": [],
+      "version": "1.0.0"
+    },
+    {
+      "exception_count": 0,
+      "is_fully_valid": false,
+      "mean_score": null,
+      "method_id": "fault_hanging_worker",
+      "timeout_count": 5,
+      "total_count": 5,
+      "total_runtime_ms": 7534.66,
+      "valid_count": 0,
+      "validation_errors": [],
+      "version": "0.0.1-test"
+    },
+    {
+      "exception_count": 0,
+      "is_fully_valid": false,
+      "mean_score": null,
+      "method_id": "fault_invalid_permutation",
+      "timeout_count": 0,
+      "total_count": 5,
+      "total_runtime_ms": 2.61,
+      "valid_count": 0,
+      "validation_errors": [
+        "[permutation_validity] Permutation contains duplicate job IDs (unique: 1, expected: 20)",
+        "[permutation_validity] Permutation contains duplicate job IDs (unique: 1, expected: 75)",
+        "[permutation_validity] Permutation contains duplicate job IDs (unique: 1, expected: 50)",
+        "[permutation_validity] Permutation contains duplicate job IDs (unique: 1, expected: 50)",
+        "[permutation_validity] Permutation contains duplicate job IDs (unique: 1, expected: 100)"
+      ],
+      "version": "0.0.1-test"
+    }
+  ],
+  "selection_frozen_at": "2026-10-19T16:08:00Z",
+  "spec_fingerprint": "571bb3d854d0dd81e05a21c12a087eaffc0a2bff4e2418ef31224779ae25db32",
+  "total_evaluations": 25
+}

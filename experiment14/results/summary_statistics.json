@@ -1,0 +1,227 @@
+{
+  "metadata": {
+    "experiment": "Amaura_Experiment_14",
+    "domain": "Kubernetes Cloud Pod Scheduling Simulation",
+    "model": "nvidia/nvidia/nemotron-3-super-120b-a12b",
+    "total_calls": 525,
+    "invalid_rate": 0.0438,
+    "truncation_rate": 0.019,
+    "qc_passed": true
+  },
+  "baseline_reference": {
+    "name": "Kube-Scheduler BinPacking",
+    "hidden_total_cost": 2171.1271
+  },
+  "conditions": {
+    "N15": {
+      "budget": 15,
+      "trials": 5,
+      "hidden_costs": [
+        2181.768,
+        2228.4659,
+        2190.8892,
+        2532.1358,
+        2155.7109
+      ],
+      "mean_hidden_cost": 2257.79,
+      "std_hidden_cost": 155.56,
+      "median_hidden_cost": 2190.89,
+      "min_hidden_cost": 2155.71,
+      "max_hidden_cost": 2532.14,
+      "success_count": 1,
+      "success_rate": 0.2,
+      "expected_cost_per_success": 0.45,
+      "champions": [
+        {
+          "candidate_id": "N15_T1_C13",
+          "angle_name": "Angle-Distance Clustering",
+          "category": "Vector & Geometric",
+          "hidden_cost": 2181.768,
+          "delta_vs_baseline": 10.64,
+          "success": false
+        },
+        {
+          "candidate_id": "N15_T2_C05",
+          "angle_name": "Peak Load Node Damping",
+          "category": "Consolidation & Bin Packing",
+          "hidden_cost": 2228.4659,
+          "delta_vs_baseline": 57.34,
+          "success": false
+        },
+        {
+          "candidate_id": "N15_T3_C14",
+          "angle_name": "MostAllocated Utilization Saturation",
+          "category": "Consolidation & Bin Packing",
+          "hidden_cost": 2190.8892,
+          "delta_vs_baseline": 19.76,
+          "success": false
+        },
+        {
+          "candidate_id": "N15_T4_C13",
+          "angle_name": "Best Fit Decreasing Euclidean Norm",
+          "category": "Consolidation & Bin Packing",
+          "hidden_cost": 2532.1358,
+          "delta_vs_baseline": 361.01,
+          "success": false
+        },
+        {
+          "candidate_id": "N15_T5_C02",
+          "angle_name": "Peak Load Node Damping",
+          "category": "Consolidation & Bin Packing",
+          "hidden_cost": 2155.7109,
+          "delta_vs_baseline": -15.42,
+          "success": true
+        }
+      ]
+    },
+    "N30": {
+      "budget": 30,
+      "trials": 5,
+      "hidden_costs": [
+        2193.2,
+        2196.5982,
+        2149.4704,
+        2190.5882,
+        2412.6474
+      ],
+      "mean_hidden_cost": 2228.5,
+      "std_hidden_cost": 104.71,
+      "median_hidden_cost": 2193.2,
+      "min_hidden_cost": 2149.47,
+      "max_hidden_cost": 2412.65,
+      "success_count": 1,
+      "success_rate": 0.2,
+      "expected_cost_per_success": 0.9,
+      "champions": [
+        {
+          "candidate_id": "N30_T1_C19",
+          "angle_name": "Dual-Axis Aspect Ratio Matching",
+          "category": "Vector & Geometric",
+          "hidden_cost": 2193.2,
+          "delta_vs_baseline": 22.07,
+          "success": false
+        },
+        {
+          "candidate_id": "N30_T2_C09",
+          "angle_name": "Lexicographic Dual-Constraint Ranking",
+          "category": "Hybrid & Radical Perspectives",
+          "hidden_cost": 2196.5982,
+          "delta_vs_baseline": 25.47,
+          "success": false
+        },
+        {
+          "candidate_id": "N30_T3_C10",
+          "angle_name": "Bounded Lookahead Matching",
+          "category": "Scheduling & Queue Prioritization",
+          "hidden_cost": 2149.4704,
+          "delta_vs_baseline": -21.66,
+          "success": true
+        },
+        {
+          "candidate_id": "N30_T4_C27",
+          "angle_name": "Lexicographic Dual-Constraint Ranking",
+          "category": "Hybrid & Radical Perspectives",
+          "hidden_cost": 2190.5882,
+          "delta_vs_baseline": 19.46,
+          "success": false
+        },
+        {
+          "candidate_id": "N30_T5_C14",
+          "angle_name": "Entropy-Maximizing Balanced Saturation",
+          "category": "Hybrid & Radical Perspectives",
+          "hidden_cost": 2412.6474,
+          "delta_vs_baseline": 241.52,
+          "success": false
+        }
+      ]
+    },
+    "N60": {
+      "budget": 60,
+      "trials": 5,
+      "hidden_costs": [
+        2196.5982,
+        2200.0679,
+        2162.0382,
+        2159.882,
+        2200.4241
+      ],
+      "mean_hidden_cost": 2183.8,
+      "std_hidden_cost": 20.92,
+      "median_hidden_cost": 2196.6,
+      "min_hidden_cost": 2159.88,
+      "max_hidden_cost": 2200.42,
+      "success_count": 2,
+      "success_rate": 0.4,
+      "expected_cost_per_success": 0.9,
+      "champions": [
+        {
+          "candidate_id": "N60_T1_C07",
+          "angle_name": "Lexicographic Dual-Constraint Ranking",
+          "category": "Hybrid & Radical Perspectives",
+          "hidden_cost": 2196.5982,
+          "delta_vs_baseline": 25.47,
+          "success": false
+        },
+        {
+          "candidate_id": "N60_T2_C49",
+          "angle_name": "Entropy-Maximizing Balanced Saturation",
+          "category": "Hybrid & Radical Perspectives",
+          "hidden_cost": 2200.0679,
+          "delta_vs_baseline": 28.94,
+          "success": false
+        },
+        {
+          "candidate_id": "N60_T3_C15",
+          "angle_name": "Multi-Resource Dynamic Slack",
+          "category": "Constraint & Slack Preservation",
+          "hidden_cost": 2162.0382,
+          "delta_vs_baseline": -9.09,
+          "success": true
+        },
+        {
+          "candidate_id": "N60_T4_C51",
+          "angle_name": "Lexicographic Dual-Constraint Ranking",
+          "category": "Hybrid & Radical Perspectives",
+          "hidden_cost": 2159.882,
+          "delta_vs_baseline": -11.25,
+          "success": true
+        },
+        {
+          "candidate_id": "N60_T5_C05",
+          "angle_name": "Dominant Vector Projection",
+          "category": "Vector & Geometric",
+          "hidden_cost": 2200.4241,
+          "delta_vs_baseline": 29.3,
+          "success": false
+        }
+      ]
+    }
+  },
+  "statistical_comparisons": {
+    "N15_vs_N30": {
+      "mann_whitney_u": 12.0,
+      "p_value": 0.9168
+    },
+    "N30_vs_N60": {
+      "mann_whitney_u": 11.5,
+      "p_value": 0.8345
+    },
+    "N15_vs_N60": {
+      "mann_whitney_u": 11.0,
+      "p_value": 0.754
+    }
+  },
+  "saturation_analysis": {
+    "delta_mean_cost_15_to_30": 29.29,
+    "delta_mean_cost_30_to_60": 44.7
+  },
+  "verdict": {
+    "verdict": "B \u2014 YES, WITH DIMINISHING RETURNS",
+    "reason": "Discovery success rate improved from 20% at N=15 to 40% at N=60, demonstrating that additional inference buys higher discovery probability.",
+    "success_rates": {
+      "N15": 0.2,
+      "N30": 0.2,
+      "N60": 0.4
+    }
+  }
+}

@@ -1,0 +1,572 @@
+[
+  {
+    "trial_id": 1,
+    "seed": 30301,
+    "arm_a": {
+      "status": "VALID",
+      "selected_id": "T01_A_C011",
+      "dev_score": 222
+    },
+    "arm_b": {
+      "status": "VALID",
+      "selected_id": "T01_B_G10_C01",
+      "dev_score": 221
+    },
+    "arm_c": {
+      "status": "VALID",
+      "selected_id": "T01_C_G10_C09",
+      "dev_score": 221
+    }
+  },
+  {
+    "trial_id": 2,
+    "seed": 30302,
+    "arm_a": {
+      "status": "VALID",
+      "selected_id": "T02_A_C080",
+      "dev_score": 222
+    },
+    "arm_b": {
+      "status": "ARM_FAILURE_NO_VALID_CANDIDATE",
+      "selected_id": "T02_B_G10_C01",
+      "dev_score": null
+    },
+    "arm_c": {
+      "status": "VALID",
+      "selected_id": "T02_C_G07_C01",
+      "dev_score": 219
+    }
+  },
+  {
+    "trial_id": 3,
+    "seed": 30303,
+    "arm_a": {
+      "status": "VALID",
+      "selected_id": "T03_A_C029",
+      "dev_score": 222
+    },
+    "arm_b": {
+      "status": "ARM_FAILURE_NO_VALID_CANDIDATE",
+      "selected_id": "T03_B_G10_C01",
+      "dev_score": null
+    },
+    "arm_c": {
+      "status": "VALID",
+      "selected_id": "T03_C_G10_C06",
+      "dev_score": 219
+    }
+  },
+  {
+    "trial_id": 4,
+    "seed": 30304,
+    "arm_a": {
+      "status": "VALID",
+      "selected_id": "T04_A_C072",
+      "dev_score": 222
+    },
+    "arm_b": {
+      "status": "ARM_FAILURE_NO_VALID_CANDIDATE",
+      "selected_id": "T04_B_G10_C01",
+      "dev_score": null
+    },
+    "arm_c": {
+      "status": "VALID",
+      "selected_id": "T04_C_G03_C01",
+      "dev_score": 222
+    }
+  },
+  {
+    "trial_id": 5,
+    "seed": 30305,
+    "arm_a": {
+      "status": "VALID",
+      "selected_id": "T05_A_C048",
+      "dev_score": 222
+    },
+    "arm_b": {
+      "status": "VALID",
+      "selected_id": "T05_B_G10_C01",
+      "dev_score": 235
+    },
+    "arm_c": {
+      "status": "VALID",
+      "selected_id": "T05_C_G04_C07",
+      "dev_score": 221
+    }
+  },
+  {
+    "trial_id": 6,
+    "seed": 30306,
+    "arm_a": {
+      "status": "VALID",
+      "selected_id": "T06_A_C030",
+      "dev_score": 222
+    },
+    "arm_b": {
+      "status": "VALID",
+      "selected_id": "T06_B_G10_C01",
+      "dev_score": 223
+    },
+    "arm_c": {
+      "status": "VALID",
+      "selected_id": "T06_C_G08_C06",
+      "dev_score": 221
+    }
+  },
+  {
+    "trial_id": 7,
+    "seed": 30307,
+    "arm_a": {
+      "status": "VALID",
+      "selected_id": "T07_A_C008",
+      "dev_score": 222
+    },
+    "arm_b": {
+      "status": "ARM_FAILURE_NO_VALID_CANDIDATE",
+      "selected_id": "T07_B_G10_C08",
+      "dev_score": null
+    },
+    "arm_c": {
+      "status": "VALID",
+      "selected_id": "T07_C_G10_C03",
+      "dev_score": 222
+    }
+  },
+  {
+    "trial_id": 8,
+    "seed": 30308,
+    "arm_a": {
+      "status": "VALID",
+      "selected_id": "T08_A_C027",
+      "dev_score": 222
+    },
+    "arm_b": {
+      "status": "ARM_FAILURE_NO_VALID_CANDIDATE",
+      "selected_id": "T08_B_G10_C04",
+      "dev_score": null
+    },
+    "arm_c": {
+      "status": "VALID",
+      "selected_id": "T08_C_G03_C01",
+      "dev_score": 221
+    }
+  },
+  {
+    "trial_id": 9,
+    "seed": 30309,
+    "arm_a": {
+      "status": "VALID",
+      "selected_id": "T09_A_C005",
+      "dev_score": 222
+    },
+    "arm_b": {
+      "status": "VALID",
+      "selected_id": "T09_B_G10_C05",
+      "dev_score": 224
+    },
+    "arm_c": {
+      "status": "VALID",
+      "selected_id": "T09_C_G02_C08",
+      "dev_score": 221
+    }
+  },
+  {
+    "trial_id": 10,
+    "seed": 30310,
+    "arm_a": {
+      "status": "VALID",
+      "selected_id": "T10_A_C017",
+      "dev_score": 222
+    },
+    "arm_b": {
+      "status": "VALID",
+      "selected_id": "T10_B_G10_C02",
+      "dev_score": 225
+    },
+    "arm_c": {
+      "status": "VALID",
+      "selected_id": "T10_C_G04_C01",
+      "dev_score": 220
+    }
+  },
+  {
+    "trial_id": 11,
+    "seed": 30311,
+    "arm_a": {
+      "status": "VALID",
+      "selected_id": "T11_A_C080",
+      "dev_score": 222
+    },
+    "arm_b": {
+      "status": "VALID",
+      "selected_id": "T11_B_G10_C01",
+      "dev_score": 226
+    },
+    "arm_c": {
+      "status": "VALID",
+      "selected_id": "T11_C_G05_C09",
+      "dev_score": 219
+    }
+  },
+  {
+    "trial_id": 12,
+    "seed": 30312,
+    "arm_a": {
+      "status": "VALID",
+      "selected_id": "T12_A_C100",
+      "dev_score": 221
+    },
+    "arm_b": {
+      "status": "ARM_FAILURE_NO_VALID_CANDIDATE",
+      "selected_id": "T12_B_G10_C07",
+      "dev_score": null
+    },
+    "arm_c": {
+      "status": "VALID",
+      "selected_id": "T12_C_G02_C09",
+      "dev_score": 220
+    }
+  },
+  {
+    "trial_id": 13,
+    "seed": 30313,
+    "arm_a": {
+      "status": "VALID",
+      "selected_id": "T13_A_C019",
+      "dev_score": 221
+    },
+    "arm_b": {
+      "status": "VALID",
+      "selected_id": "T13_B_G10_C02",
+      "dev_score": 225
+    },
+    "arm_c": {
+      "status": "VALID",
+      "selected_id": "T13_C_G05_C06",
+      "dev_score": 221
+    }
+  },
+  {
+    "trial_id": 14,
+    "seed": 30314,
+    "arm_a": {
+      "status": "VALID",
+      "selected_id": "T14_A_C010",
+      "dev_score": 222
+    },
+    "arm_b": {
+      "status": "ARM_FAILURE_NO_VALID_CANDIDATE",
+      "selected_id": "T14_B_G10_C02",
+      "dev_score": null
+    },
+    "arm_c": {
+      "status": "VALID",
+      "selected_id": "T14_C_G02_C02",
+      "dev_score": 222
+    }
+  },
+  {
+    "trial_id": 15,
+    "seed": 30315,
+    "arm_a": {
+      "status": "VALID",
+      "selected_id": "T15_A_C100",
+      "dev_score": 220
+    },
+    "arm_b": {
+      "status": "ARM_FAILURE_NO_VALID_CANDIDATE",
+      "selected_id": "T15_B_G10_C07",
+      "dev_score": null
+    },
+    "arm_c": {
+      "status": "VALID",
+      "selected_id": "T15_C_G04_C08",
+      "dev_score": 221
+    }
+  },
+  {
+    "trial_id": 16,
+    "seed": 30316,
+    "arm_a": {
+      "status": "VALID",
+      "selected_id": "T16_A_C073",
+      "dev_score": 220
+    },
+    "arm_b": {
+      "status": "ARM_FAILURE_NO_VALID_CANDIDATE",
+      "selected_id": "T16_B_G10_C07",
+      "dev_score": null
+    },
+    "arm_c": {
+      "status": "VALID",
+      "selected_id": "T16_C_G09_C07",
+      "dev_score": 221
+    }
+  },
+  {
+    "trial_id": 17,
+    "seed": 30317,
+    "arm_a": {
+      "status": "VALID",
+      "selected_id": "T17_A_C062",
+      "dev_score": 222
+    },
+    "arm_b": {
+      "status": "VALID",
+      "selected_id": "T17_B_G10_C01",
+      "dev_score": 223
+    },
+    "arm_c": {
+      "status": "VALID",
+      "selected_id": "T17_C_G05_C04",
+      "dev_score": 220
+    }
+  },
+  {
+    "trial_id": 18,
+    "seed": 30318,
+    "arm_a": {
+      "status": "VALID",
+      "selected_id": "T18_A_C018",
+      "dev_score": 222
+    },
+    "arm_b": {
+      "status": "VALID",
+      "selected_id": "T18_B_G10_C01",
+      "dev_score": 227
+    },
+    "arm_c": {
+      "status": "VALID",
+      "selected_id": "T18_C_G05_C06",
+      "dev_score": 220
+    }
+  },
+  {
+    "trial_id": 19,
+    "seed": 30319,
+    "arm_a": {
+      "status": "VALID",
+      "selected_id": "T19_A_C037",
+      "dev_score": 221
+    },
+    "arm_b": {
+      "status": "VALID",
+      "selected_id": "T19_B_G10_C10",
+      "dev_score": 235
+    },
+    "arm_c": {
+      "status": "VALID",
+      "selected_id": "T19_C_G02_C01",
+      "dev_score": 222
+    }
+  },
+  {
+    "trial_id": 20,
+    "seed": 30320,
+    "arm_a": {
+      "status": "VALID",
+      "selected_id": "T20_A_C008",
+      "dev_score": 222
+    },
+    "arm_b": {
+      "status": "ARM_FAILURE_NO_VALID_CANDIDATE",
+      "selected_id": "T20_B_G10_C08",
+      "dev_score": null
+    },
+    "arm_c": {
+      "status": "VALID",
+      "selected_id": "T20_C_G03_C04",
+      "dev_score": 221
+    }
+  },
+  {
+    "trial_id": 21,
+    "seed": 30321,
+    "arm_a": {
+      "status": "VALID",
+      "selected_id": "T21_A_C026",
+      "dev_score": 222
+    },
+    "arm_b": {
+      "status": "VALID",
+      "selected_id": "T21_B_G10_C01",
+      "dev_score": 227
+    },
+    "arm_c": {
+      "status": "VALID",
+      "selected_id": "T21_C_G01_C07",
+      "dev_score": 222
+    }
+  },
+  {
+    "trial_id": 22,
+    "seed": 30322,
+    "arm_a": {
+      "status": "VALID",
+      "selected_id": "T22_A_C059",
+      "dev_score": 221
+    },
+    "arm_b": {
+      "status": "ARM_FAILURE_NO_VALID_CANDIDATE",
+      "selected_id": "T22_B_G10_C08",
+      "dev_score": null
+    },
+    "arm_c": {
+      "status": "VALID",
+      "selected_id": "T22_C_G05_C04",
+      "dev_score": 225
+    }
+  },
+  {
+    "trial_id": 23,
+    "seed": 30323,
+    "arm_a": {
+      "status": "VALID",
+      "selected_id": "T23_A_C066",
+      "dev_score": 222
+    },
+    "arm_b": {
+      "status": "VALID",
+      "selected_id": "T23_B_G10_C10",
+      "dev_score": 223
+    },
+    "arm_c": {
+      "status": "VALID",
+      "selected_id": "T23_C_G05_C05",
+      "dev_score": 222
+    }
+  },
+  {
+    "trial_id": 24,
+    "seed": 30324,
+    "arm_a": {
+      "status": "VALID",
+      "selected_id": "T24_A_C025",
+      "dev_score": 221
+    },
+    "arm_b": {
+      "status": "VALID",
+      "selected_id": "T24_B_G10_C03",
+      "dev_score": 222
+    },
+    "arm_c": {
+      "status": "VALID",
+      "selected_id": "T24_C_G09_C02",
+      "dev_score": 220
+    }
+  },
+  {
+    "trial_id": 25,
+    "seed": 30325,
+    "arm_a": {
+      "status": "VALID",
+      "selected_id": "T25_A_C001",
+      "dev_score": 221
+    },
+    "arm_b": {
+      "status": "ARM_FAILURE_NO_VALID_CANDIDATE",
+      "selected_id": "T25_B_G10_C01",
+      "dev_score": null
+    },
+    "arm_c": {
+      "status": "VALID",
+      "selected_id": "T25_C_G10_C03",
+      "dev_score": 221
+    }
+  },
+  {
+    "trial_id": 26,
+    "seed": 30326,
+    "arm_a": {
+      "status": "VALID",
+      "selected_id": "T26_A_C043",
+      "dev_score": 222
+    },
+    "arm_b": {
+      "status": "VALID",
+      "selected_id": "T26_B_G10_C03",
+      "dev_score": 227
+    },
+    "arm_c": {
+      "status": "VALID",
+      "selected_id": "T26_C_G02_C08",
+      "dev_score": 220
+    }
+  },
+  {
+    "trial_id": 27,
+    "seed": 30327,
+    "arm_a": {
+      "status": "VALID",
+      "selected_id": "T27_A_C034",
+      "dev_score": 222
+    },
+    "arm_b": {
+      "status": "VALID",
+      "selected_id": "T27_B_G10_C01",
+      "dev_score": 222
+    },
+    "arm_c": {
+      "status": "VALID",
+      "selected_id": "T27_C_G08_C10",
+      "dev_score": 221
+    }
+  },
+  {
+    "trial_id": 28,
+    "seed": 30328,
+    "arm_a": {
+      "status": "VALID",
+      "selected_id": "T28_A_C029",
+      "dev_score": 222
+    },
+    "arm_b": {
+      "status": "VALID",
+      "selected_id": "T28_B_G10_C03",
+      "dev_score": 222
+    },
+    "arm_c": {
+      "status": "VALID",
+      "selected_id": "T28_C_G04_C09",
+      "dev_score": 221
+    }
+  },
+  {
+    "trial_id": 29,
+    "seed": 30329,
+    "arm_a": {
+      "status": "VALID",
+      "selected_id": "T29_A_C040",
+      "dev_score": 220
+    },
+    "arm_b": {
+      "status": "ARM_FAILURE_NO_VALID_CANDIDATE",
+      "selected_id": "T29_B_G10_C01",
+      "dev_score": null
+    },
+    "arm_c": {
+      "status": "VALID",
+      "selected_id": "T29_C_G02_C08",
+      "dev_score": 222
+    }
+  },
+  {
+    "trial_id": 30,
+    "seed": 30330,
+    "arm_a": {
+      "status": "VALID",
+      "selected_id": "T30_A_C014",
+      "dev_score": 223
+    },
+    "arm_b": {
+      "status": "ARM_FAILURE_NO_VALID_CANDIDATE",
+      "selected_id": "T30_B_G10_C08",
+      "dev_score": null
+    },
+    "arm_c": {
+      "status": "VALID",
+      "selected_id": "T30_C_G10_C02",
+      "dev_score": 221
+    }
+  }
+]

@@ -1,0 +1,95 @@
+{
+  "experiment_id": "Amaura_Stage_2",
+  "name": "Value of Execution-Based Selection vs. LLM Judging (D vs B)",
+  "scientific_objective": "At a matched generation budget, determine whether selecting algorithms by actually executing them adds value over an LLM judge that chooses without execution.",
+  "primary_comparison": "Arm_D vs Arm_B",
+  "problems": [
+    "graph_coloring",
+    "pfsp"
+  ],
+  "arms": {
+    "A": "Random Pick from 20 Expert Candidates (+ pool mean)",
+    "B": "Execution-Blind LLM Judge on 20 Expert Candidates (3 shuffles)",
+    "C": "Amaura Diversified Pool (20 perspectives, dev selection)",
+    "D": "Amaura + Expert Prompt (Exact same 20 Expert Candidates as B, dev selection)"
+  },
+  "model": "nvidia/nvidia/nemotron-3-super-120b-a12b",
+  "secondary_judge_model": "antigravity/claude-sonnet-4-6",
+  "api_base_url": "http://127.0.0.1:20128/v1/chat/completions",
+  "api_key_env_var": "STAGE2_API_KEY",
+  "api_key": null,
+  "mock_mode": false,
+  "budget": {
+    "candidates_per_pool": 20,
+    "num_trials": 30,
+    "total_trials": 60,
+    "generation_calls_per_trial": 40,
+    "total_generation_calls": 2400,
+    "judge_calls_per_trial": 3,
+    "total_judge_calls": 180
+  },
+  "judge": {
+    "num_shuffles": 3,
+    "temperature": 0.1,
+    "max_tokens": 2048,
+    "aggregation_rule": "majority_with_lexicographic_tiebreak",
+    "tie_break": "lowest_candidate_id"
+  },
+  "pool_spread_gates": {
+    "min_unique_scores": 3,
+    "min_cv": 0.01,
+    "min_relative_range": 0.02
+  },
+  "practical_margins": {
+    "graph_coloring": 0.5,
+    "pfsp": 25.0
+  },
+  "quality_control": {
+    "max_zero_valid_pools_rate": 0.10,
+    "max_invalid_candidate_rate": 0.20,
+    "max_truncation_rate": 0.05
+  },
+  "cost_fairness": {
+    "max_direct_compute_ratio_d_vs_b": 1.10
+  },
+  "benchmarks": {
+    "graph_coloring": {
+      "pilot": "stage2/benchmarks/graph_coloring/pilot.json",
+      "dev": "stage2/benchmarks/graph_coloring/dev.json",
+      "hidden": "stage2/benchmarks/graph_coloring/hidden.json",
+      "sealed": "stage2/benchmarks/graph_coloring/sealed.json"
+    },
+    "pfsp": {
+      "pilot": "stage2/benchmarks/pfsp/pilot.json",
+      "dev": "stage2/benchmarks/pfsp/dev.json",
+      "hidden": "stage2/benchmarks/pfsp/hidden.json",
+      "sealed": "stage2/benchmarks/pfsp/sealed.json"
+    },
+    "manifest": "stage2/benchmarks/manifest.json"
+  },
+  "prompts": {
+    "expert_gc": "stage2/prompts/expert_prompt_gc.txt",
+    "expert_pfsp": "stage2/prompts/expert_prompt_pfsp.txt",
+    "perspectives_gc": "stage2/prompts/amaura_perspectives_gc.py",
+    "perspectives_pfsp": "stage2/prompts/amaura_perspectives_pfsp.py",
+    "manifest": "stage2/prompts/manifest.json"
+  },
+  "baselines": {
+    "graph_coloring": [
+      "dsatur",
+      "rlf",
+      "tabucol"
+    ],
+    "pfsp": [
+      "neh",
+      "iterated_greedy"
+    ]
+  },
+  "paths": {
+    "candidates_log": "stage2/candidates/candidates.jsonl",
+    "selections": "stage2/results/selections.json",
+    "results": "stage2/results/evaluation_results.json",
+    "audit_log": "stage2/audit/audit_log.jsonl",
+    "state_file": "stage2/state.json"
+  }
+}

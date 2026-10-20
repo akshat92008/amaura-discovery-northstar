@@ -1,0 +1,760 @@
+{
+  "trial_id": 2,
+  "domain": "bin_packing",
+  "arm": "arm_b_refinement",
+  "total_budget": 32,
+  "num_trajectories": 1,
+  "budget_per_trajectory": 32,
+  "seed": 10001,
+  "generator_type": "live_llm",
+  "elapsed_sec": 1096.278,
+  "accounting": {
+    "model_calls": 32,
+    "candidate_slots": 32,
+    "evaluator_runs": 38,
+    "retries": 0,
+    "invalid_outputs": 5,
+    "duplicate_candidates": 0
+  },
+  "selection": {
+    "candidate_id": "arm_b_seed_best_fit",
+    "code": "def priority(item: float, remaining_capacity: float, bin_capacity: float) -> float:\n    # Best Fit: minimize leftover space after placement\n    return -(remaining_capacity - item)\n",
+    "description": "Places item into the feasible open bin with least remaining space.",
+    "hypothesis": null,
+    "is_seed": true,
+    "train_score": 0.031433,
+    "train_rel_gap": 0.0,
+    "train_beats_baseline": false
+  },
+  "generalization_test": {
+    "test_score": 0.032435,
+    "test_avg_score": 0.032435,
+    "test_rel_gap": 0.0,
+    "test_beats_baseline": false,
+    "test_is_valid": true,
+    "test_runtime_ms": 2077.37
+  },
+  "pilot_validation": {
+    "pilot_val_score": 0.031923,
+    "pilot_val_rel_gap": 0.0,
+    "pilot_val_beats_baseline": false,
+    "pilot_val_is_valid": true,
+    "pilot_val_runtime_ms": 1144.71
+  },
+  "best_so_far_curve": [
+    0.031433,
+    0.031433,
+    0.031433,
+    0.031433,
+    0.031433,
+    0.031433,
+    0.031433,
+    0.031433,
+    0.031433,
+    0.031433,
+    0.031433,
+    0.031433,
+    0.031433,
+    0.031433,
+    0.031433,
+    0.031433,
+    0.031433,
+    0.031433,
+    0.031433,
+    0.031433,
+    0.031433,
+    0.031433,
+    0.031433,
+    0.031433,
+    0.031433,
+    0.031433,
+    0.031433,
+    0.031433,
+    0.031433,
+    0.031433,
+    0.031433,
+    0.031433
+  ],
+  "all_proposals": [
+    {
+      "candidate_id": "arm_b_t0_p0",
+      "proposal_index": 0,
+      "is_seed": false,
+      "parent_ids": [
+        "arm_b_seed_best_fit"
+      ],
+      "generation": 1,
+      "hypothesis": "Targeted iterative improvement",
+      "description": "Iterative refinement of arm_b_seed_best_fit",
+      "code": "import math\n\ndef priority(item: float, remaining_capacity: float, bin_capacity: float) -> float:\n    \"\"\"\n    Improved priority heuristic for online 1D bin packing.\n    - Returns negative squared leftover space after placing the item.\n    - Strongly penalizes larger wasted space, encouraging tighter fits.\n    - Items that do not fit receive -inf so they are never selected.\n    \"\"\"\n    leftover = remaining_capacity - item\n    if leftover < 0:          # item does not fit in this bin\n        return -math.inf\n    # Squared leftover gives higher priority to bins with minimal waste\n    return -(leftover * leftover)",
+      "code_hash": "ba0fd687e45eb447",
+      "train_eval": {
+        "is_valid": true,
+        "raw_score": 0.031433,
+        "relative_gap": 0.0,
+        "beats_baseline": false,
+        "error_message": null,
+        "runtime_ms": 125.45
+      }
+    },
+    {
+      "candidate_id": "arm_b_t0_p1",
+      "proposal_index": 1,
+      "is_seed": false,
+      "parent_ids": [
+        "arm_b_seed_best_fit"
+      ],
+      "generation": 1,
+      "hypothesis": "Targeted iterative improvement",
+      "description": "Iterative refinement of arm_b_seed_best_fit",
+      "code": "import math\n\ndef priority(item: float, remaining_capacity: float, bin_capacity: float) -> float:\n    \"\"\"\n    Hybrid Best/Worst Fit priority.\n    For small items (< half bin capacity) behaves like Best Fit (minimize leftover).\n    For large items (> half bin capacity) behaves like Worst Fit (maximize leftover).\n    Returns -inf for bins that cannot accommodate the item.\n    \"\"\"\n    # Feasibility check\n    if remaining_capacity < item - 1e-12:\n        return -float('inf')\n    \n    leftover = remaining_capacity - item          # space left after placing the item\n    factor = 2.0 * item / bin_capacity - 1.0      # ranges [-1, 1]; negative -> BF, positive -> WF\n    return factor * leftover",
+      "code_hash": "3660bbe2d09fec4c",
+      "train_eval": {
+        "is_valid": true,
+        "raw_score": 0.031433,
+        "relative_gap": 0.0,
+        "beats_baseline": false,
+        "error_message": null,
+        "runtime_ms": 142.24
+      }
+    },
+    {
+      "candidate_id": "arm_b_t0_p2",
+      "proposal_index": 2,
+      "is_seed": false,
+      "parent_ids": [
+        "arm_b_seed_best_fit"
+      ],
+      "generation": 1,
+      "hypothesis": "Targeted iterative improvement",
+      "description": "Iterative refinement of arm_b_seed_best_fit",
+      "code": "def priority(item: float, remaining_capacity: float, bin_capacity: float) -> float:\n    \"\"\"\n    Improved Best\u2011Fit: penalize leftover space more when the bin is emptier.\n    Higher priority \u2192 better bin for placing the item.\n    Assumes remaining_capacity >= item (feasible bin).\n    \"\"\"\n    leftover = remaining_capacity - item          # unused space if item is placed\n    # weight by how full the bin already is (remaining_capacity / bin_capacity)\n    return -leftover * (remaining_capacity / bin_capacity)",
+      "code_hash": "53ea320898f63b81",
+      "train_eval": {
+        "is_valid": true,
+        "raw_score": 0.031433,
+        "relative_gap": 0.0,
+        "beats_baseline": false,
+        "error_message": null,
+        "runtime_ms": 132.63
+      }
+    },
+    {
+      "candidate_id": "arm_b_t0_p3",
+      "proposal_index": 3,
+      "is_seed": false,
+      "parent_ids": [
+        "arm_b_seed_best_fit"
+      ],
+      "generation": 1,
+      "hypothesis": "Targeted iterative improvement",
+      "description": "Iterative refinement of arm_b_seed_best_fit",
+      "code": "import math\n\ndef priority(item: float, remaining_capacity: float, bin_capacity: float) -> float:\n    \"\"\"\n    Improved online bin\u2011packing priority heuristic.\n    - Core: Best Fit (minimize leftover space after placement).\n    - Refinement: Add a quadratic penalty on the leftover fraction to\n      discourage both very large waste and, indirectly, excessive fragmentation\n      when many bins have tiny leftovers.\n    - Items that do not fit receive the lowest possible priority.\n    \"\"\"\n    if remaining_capacity < item:\n        # Item does not fit in this bin.\n        return -float('inf')\n    \n    leftover = remaining_capacity - item          # unused space if we place the item\n    base = -leftover                              # Best Fit: higher when leftover is smaller\n    \n    # Quadratic penalty on the *relative* leftover.\n    # Penalty grows with leftover^2, thus favoring tighter fits while still\n    # distinguishing between different amounts of waste.\n    leftover_frac = leftover / bin_capacity\n    penalty = 0.5 * leftover_frac * leftover_frac   # 0.5 * (leftover / bin_capacity)^2\n    \n    return base - penalty",
+      "code_hash": "a9e2667fe877bc92",
+      "train_eval": {
+        "is_valid": true,
+        "raw_score": 0.031433,
+        "relative_gap": 0.0,
+        "beats_baseline": false,
+        "error_message": null,
+        "runtime_ms": 133.6
+      }
+    },
+    {
+      "candidate_id": "arm_b_t0_p4",
+      "proposal_index": 4,
+      "is_seed": false,
+      "parent_ids": [
+        "arm_b_seed_best_fit"
+      ],
+      "generation": 1,
+      "hypothesis": "Targeted iterative improvement",
+      "description": "Iterative refinement of arm_b_seed_best_fit",
+      "code": "def priority(item: float, remaining_capacity: float, bin_capacity: float) -> float:\n    # Improved Best Fit: minimize leftover while penalizing large empty space relative to item size\n    leftover = remaining_capacity - item\n    # Small epsilon to avoid division by zero when item is zero\n    penalty = 0.25 * (remaining_capacity / (item + 1e-9))\n    return -leftover - penalty",
+      "code_hash": "55c04d23b55fa940",
+      "train_eval": {
+        "is_valid": true,
+        "raw_score": 0.031433,
+        "relative_gap": 0.0,
+        "beats_baseline": false,
+        "error_message": null,
+        "runtime_ms": 642.13
+      }
+    },
+    {
+      "candidate_id": "arm_b_t0_p5",
+      "proposal_index": 5,
+      "is_seed": false,
+      "parent_ids": [
+        "arm_b_seed_best_fit"
+      ],
+      "generation": 1,
+      "hypothesis": "Targeted iterative improvement",
+      "description": "Iterative refinement of arm_b_seed_best_fit",
+      "code": "def priority(item: float, remaining_capacity: float, bin_capacity: float) -> float:\n    \"\"\"\n    Improved online bin\u2011packing priority heuristic.\n    Combines Best Fit (minimize leftover) with a tie\u2011breaker that favors\n    bins where the item occupies a larger fraction of the remaining space,\n    encouraging tighter packing and reducing fragmentation.\n    \"\"\"\n    # tolerance for floating\u2011point comparisons\n    eps = 1e-12\n    if remaining_capacity + eps < item:          # item does not fit\n        return -float('inf')\n    \n    leftover = remaining_capacity - item         # >= 0 when item fits\n    # Best Fit component: higher priority for smaller leftover\n    base = -leftover\n    \n    # Tie\u2011breaker: reward bins where the item fills a larger share of the free space\n    # (item / remaining_capacity) is larger when the bin is tighter.\n    # Avoid division by zero when remaining_capacity is zero (only possible if item == 0).\n    if remaining_capacity > eps:\n        bonus = 0.1 * (item / remaining_capacity)\n    else:\n        bonus = 0.0\n    \n    return base + bonus",
+      "code_hash": "2f3d306fa7e091bc",
+      "train_eval": {
+        "is_valid": true,
+        "raw_score": 0.031433,
+        "relative_gap": 0.0,
+        "beats_baseline": false,
+        "error_message": null,
+        "runtime_ms": 107.3
+      }
+    },
+    {
+      "candidate_id": "arm_b_t0_p6",
+      "proposal_index": 6,
+      "is_seed": false,
+      "parent_ids": [
+        "arm_b_seed_best_fit"
+      ],
+      "generation": 1,
+      "hypothesis": "Targeted iterative improvement",
+      "description": "Iterative refinement of arm_b_seed_best_fit",
+      "code": "def priority(item: float, remaining_capacity: float, bin_capacity: float) -> float:\n    \"\"\"\n    Improved bin\u2011packing priority heuristic.\n    Combines Best Fit (minimize leftover) with a term that discourages\n    leaving very small unusable gaps, encouraging more balanced bin usage.\n    \"\"\"\n    leftover = remaining_capacity - item\n    if leftover < 0:  # item does not fit\n        return -1e9   # very low priority\n    # Small weight to balance the two objectives; tuned empirically.\n    beta = 0.1 / bin_capacity\n    # Base Best Fit score: negative leftover (higher is better)\n    # Additional quadratic term penalizes extremely small leftovers.\n    return -leftover + beta * leftover * (bin_capacity - leftover)",
+      "code_hash": "e009e942ee2bb91b",
+      "train_eval": {
+        "is_valid": true,
+        "raw_score": 0.031433,
+        "relative_gap": 0.0,
+        "beats_baseline": false,
+        "error_message": null,
+        "runtime_ms": 147.04
+      }
+    },
+    {
+      "candidate_id": "arm_b_t0_p7",
+      "proposal_index": 7,
+      "is_seed": false,
+      "parent_ids": [
+        "arm_b_seed_best_fit"
+      ],
+      "generation": 1,
+      "hypothesis": "Targeted iterative improvement",
+      "description": "Iterative refinement of arm_b_seed_best_fit",
+      "code": "import math\n\ndef priority(item: float, remaining_capacity: float, bin_capacity: float) -> float:\n    \"\"\"\n    Online 1D bin packing priority heuristic.\n    Combines Best Fit with a penalty for leaving very small residual space.\n    Higher return value indicates a more preferred bin.\n    \"\"\"\n    # If the item does not fit, assign the lowest possible priority.\n    if remaining_capacity < item - 1e-12:  # tiny tolerance for floating\u2011point errors\n        return -float('inf')\n\n    # Leftover capacity after placing the item.\n    leftover = remaining_capacity - item\n    # Normalize leftover by bin capacity to make the heuristic scale\u2011invariant.\n    norm_leftover = leftover / bin_capacity if bin_capacity != 0 else float('inf')\n\n    # Best Fit term: minimize leftover (i.e., maximize -norm_leftover).\n    # Additional penalty term discourages extremely small leftovers.\n    alpha = 0.2   # weight of the penalty\n    beta  = 10.0  # sharpness of the penalty for small leftovers\n    return -norm_leftover - alpha * math.exp(-beta * norm_leftover)",
+      "code_hash": "b53d975278b902f2",
+      "train_eval": {
+        "is_valid": true,
+        "raw_score": 0.055914,
+        "relative_gap": 0.778831,
+        "beats_baseline": false,
+        "error_message": null,
+        "runtime_ms": 160.04
+      }
+    },
+    {
+      "candidate_id": "arm_b_t0_p8",
+      "proposal_index": 8,
+      "is_seed": false,
+      "parent_ids": [
+        "arm_b_seed_best_fit"
+      ],
+      "generation": 1,
+      "hypothesis": "Targeted iterative improvement",
+      "description": "Iterative refinement of arm_b_seed_best_fit",
+      "code": "We need to propose an improved version of priority function for online 1D bin packing heuristic. The champion is Best Fit: priority = -(remaining_capacity - item) = item - remaining_capacity. Actually negative leftover after placement: leftover = remaining_capacity - item; priority = -leftover => higher priority when leftover smaller (more tight fit). So Best Fit.\n\nGoal: minimize normalized excess ratio rho = (bins_used - L1)/L1 where L1 is sum of item sizes (total volume). So we want to minimize number of bins used.\n\nOnline heuristic can't know future. Best Fit is decent. Perhaps we can improve by considering also the ratio of item to bin capacity, or using a weighting that prefers bins with remaining capacity close to item but also not too small leftover that could cause waste.\n\nOne known heuristic: Best Fit Decreasing (offline) but online we can't sort. Some online heuristics: Next Fit, First Fit, Best Fit, Worst Fit. There's also Refined First Fit, etc.\n\nWe can try to incorporate a lookahead of the item size relative to remaining capacity: maybe use a function that penalizes bins where leftover after placement is too small (i.e., less than some threshold) because that leftover may be unusable for future small items. Actually small leftover is waste; we want to avoid leaving tiny gaps that cannot fit future items. So we might want to maximize leftover but also minimize wasted space? There's a trade-off.\n\nBetter heuristic: \"Best Fit that minimizes the maximum leftover after placement\"? Not sure.\n\nAlternatively, we can use a function that returns priority = -(remaining_capacity - item) + epsilon * (remaining_capacity) maybe to bias towards bins with larger remaining capacity (so we keep space for future larger items). Actually we want to avoid using up bins too tightly if it leaves no room for future items that might be moderate size.\n\nConsider using a function that favors bins where leftover after placement is proportional to item size: maybe priority = -(remaining_capacity - item) / (remaining_capacity + 1e-9). This normalizes leftover relative to capacity, giving higher priority to bins where leftover is small relative to capacity (i.e., tight fit) but also considering bin's remaining capacity.\n\nAlternatively, we could use a function that tries to minimize the squared leftover: priority = - (remaining_capacity - item)^2. This would strongly penalize large leftover, encouraging tight fit, but also heavily penalizing moderate leftover? Actually squared leftover will be larger for larger leftover, making priority more negative (lower). So we still pick minimal leftover, but with more emphasis on larger leftover differences.\n\nMaybe we can incorporate a term that encourages using bins with more remaining capacity when item is small relative to bin capacity, to preserve space for larger items later. For small items, we might want to put them in bins that already have some occupancy (i.e., less remaining capacity) to avoid fragmenting empty bins. That's similar to Best Fit: small items go to fullest bin possible.\n\nThus Best Fit already does that.\n\nPerhaps we can incorporate a lookahead based on the item size: if item is large (> bin_capacity/2), we might want to use a bin with the smallest leftover that can accommodate it (Best Fit). If item is small, we might want to use the bin with the most remaining capacity (Worst Fit) to avoid filling bins too much leaving many nearly empty bins? Actually for small items, Best Fit will put them in the fullest bin possible, which may be good to keep bins with large remaining capacity for future large items. That seems reasonable.\n\nThus Best Fit may already be near optimal.\n\nBut we can try a hybrid: priority = -(remaining_capacity - item) * (remaining_capacity / bin_capacity). This gives extra weight to bins with higher remaining capacity (i.e., more empty) when the leftover after placement is same? Actually if leftover same, priority scales with remaining_capacity: higher remaining capacity yields higher (less negative) priority? Wait: leftover = remaining_capacity - item. Suppose two bins have same leftover L after placement. Then remaining_capacity = L + item. So priority = -L * ((L+item)/bin_capacity). Since L same, priority proportional to -(L+item). So bin with larger remaining_capacity (i.e., larger L+item) yields more negative priority (lower). Actually we want higher priority for better bins. So we might want to prioritize bins with smaller remaining_capacity after placement (i.e., fuller bins). So we want priority = -L * (1/(remaining_capacity+epsilon))? Let's think.\n\nWe want to pick bin that after placement leaves minimal leftover L, but if tie, we prefer bin that results in less remaining capacity (i.e., fuller bin). Actually if leftover same, then remaining_capacity = L+item is same across bins (since item fixed). So tie cannot happen unless remaining_capacity differs but leftover same? Wait leftover = remaining_capacity - item. If leftover same, then remaining_capacity = leftover + item, so same. So tie implies identical remaining_capacity before placement. So no need tie-breaker.\n\nThus Best Fit is deterministic.\n\nMaybe we can improve by considering not just leftover but also the ratio of item to remaining_capacity: we might want to avoid placing an item in a bin where it occupies a very small fraction of remaining capacity, leaving a large leftover that may be unusable for future items that are similarly sized. Actually if item is small relative to remaining_capacity, leftover large; maybe we want to avoid that because we waste space. So Best Fit already picks bin that minimizes leftover, which tends to maximize item/remaining_capacity ratio (i.e., fill as much as possible). So again Best Fit.\n\nThus maybe we need to incorporate a lookahead of future items distribution: but we don't have that.\n\nAnother approach: Use a function that minimizes the maximum leftover across bins after placement (like balancing). But online we can't know future.\n\nPerhaps we can use a variant of Best Fit that uses a weight factor based on the item size relative to bin capacity: priority = -(remaining_capacity - item) * (item / bin_capacity). This would give higher priority to bins where the item is large relative to bin capacity (i.e., we want to place large items tightly). For small items, the weight is small, reducing priority differences, maybe leading to more balanced usage? Not sure.\n\nLet's think about the objective: minimize number of bins. Equivalent to maximize total packed volume per bin. Since total volume fixed, we want to minimize wasted space. So we want to minimize sum over bins of leftover space (unused capacity). That's exactly what Best Fit tries to do greedily: each step, choose bin that results in minimal leftover after placing item (i.e., minimal increase in wasted space). Actually the increase in wasted space is leftover after placement minus leftover before placement? Wait leftover before placement is remaining_capacity. After placing item, leftover becomes remaining_capacity - item. So the wasted space increases by (remaining_capacity - item) - remaining_capacity? Actually wasted space before placement in that bin is remaining_capacity (the empty space). After placement, wasted space becomes remaining_capacity - item. So the wasted space reduces by item (the occupied space). But we care about total wasted space across bins after all items placed. The greedy choice of minimizing leftover after placement is equivalent to maximizing the occupied space in that bin after placement (since leftover = remaining_capacity - item). Actually maximizing occupied space = item (constant) + (used space before placement?) Not exactly.\n\nBut we can think: we want to minimize the sum of leftover capacities after all items placed. At each step, placing an item in a bin reduces that bin's leftover by item (if it fits). So the leftover after placement = remaining_capacity - item. The total leftover after placement across all bins = sum over bins of leftover_i. Initially sum of leftover = number_of_bins * bin_capacity (if we start with infinite bins? Actually we start with zero bins, we open a new bin when needed). The decision influences future leftover.\n\nBest Fit chooses bin that yields smallest leftover after placement (i.e., most full bin after placing). This seems reasonable.\n\nNevertheless, we can attempt to improve by using a function that also considers the variance of leftover across bins, aiming to keep leftover sizes similar to avoid many tiny fragments. For example, we could penalize bins where leftover after placement is very small (less than some epsilon) because that creates unusable fragments. So we might want to avoid leaving tiny leftover < threshold (say 0.1 * bin_capacity). So we could add a penalty if leftover < small_threshold.\n\nThus priority = -(remaining_capacity - item) - penalty * indicator(leftover < eps). Actually we want higher priority for bins that avoid tiny leftover. So we could add a term that is large positive when leftover >= eps, and negative when leftover < eps.\n\nDefine eps = 0.05 * bin_capacity (5%). Then priority = -(remaining_capacity - item) + (leftover >= eps ? C : -C). Actually we want to increase priority for bins where leftover >= eps (i.e., not too small), and decrease for bins where lef",
+      "code_hash": "d8acd51e3ef8c292",
+      "train_eval": {
+        "is_valid": false,
+        "raw_score": 1.0,
+        "relative_gap": 30.813699,
+        "beats_baseline": false,
+        "error_message": "SyntaxError in code: SyntaxError",
+        "runtime_ms": 9.51
+      }
+    },
+    {
+      "candidate_id": "arm_b_t0_p9",
+      "proposal_index": 9,
+      "is_seed": false,
+      "parent_ids": [
+        "arm_b_seed_best_fit"
+      ],
+      "generation": 1,
+      "hypothesis": "Targeted iterative improvement",
+      "description": "Iterative refinement of arm_b_seed_best_fit",
+      "code": "import math\n\ndef priority(item: float, remaining_capacity: float, bin_capacity: float) -> float:\n    \"\"\"\n    Hybrid heuristic:\n    - For large items (> 50% of bin capacity) use Worst Fit to place them in emptier bins,\n      reducing fragmentation caused by big items.\n    - For small items use Best Fit to fill bins tightly.\n    \"\"\"\n    # Normalized item size\n    size_ratio = item / bin_capacity if bin_capacity > 0 else 0.0\n    \n    if size_ratio > 0.5:\n        # Worst Fit: prefer bins with more remaining space\n        return remaining_capacity\n    else:\n        # Best Fit: prefer bins that leave the least leftover after placement\n        return -(remaining_capacity - item)",
+      "code_hash": "2b3b1ba8e1d69384",
+      "train_eval": {
+        "is_valid": true,
+        "raw_score": 0.031433,
+        "relative_gap": 0.0,
+        "beats_baseline": false,
+        "error_message": null,
+        "runtime_ms": 146.89
+      }
+    },
+    {
+      "candidate_id": "arm_b_t0_p10",
+      "proposal_index": 10,
+      "is_seed": false,
+      "parent_ids": [
+        "arm_b_seed_best_fit"
+      ],
+      "generation": 1,
+      "hypothesis": "Targeted iterative improvement",
+      "description": "Iterative refinement of arm_b_seed_best_fit",
+      "code": "def priority(item: float, remaining_capacity: float, bin_capacity: float) -> float:\n    # If the item does not fit, make the bin unattractive.\n    if remaining_capacity < item:\n        return -float('inf')\n    \n    # Relative size of the item.\n    r = item / bin_capacity\n    \n    # For large items use Best Fit (minimize leftover space).\n    # For small items use Worst Fit (maximize leftover space) to reduce fragmentation.\n    if r > 0.5:\n        return -(remaining_capacity - item)   # Best Fit\n    else:\n        return remaining_capacity - item      # Worst Fit",
+      "code_hash": "4ff644244e926f4a",
+      "train_eval": {
+        "is_valid": true,
+        "raw_score": 0.137627,
+        "relative_gap": 3.378424,
+        "beats_baseline": false,
+        "error_message": null,
+        "runtime_ms": 333.69
+      }
+    },
+    {
+      "candidate_id": "arm_b_t0_p11",
+      "proposal_index": 11,
+      "is_seed": false,
+      "parent_ids": [
+        "arm_b_seed_best_fit"
+      ],
+      "generation": 1,
+      "hypothesis": "Targeted iterative improvement",
+      "description": "Iterative refinement of arm_b_seed_best_fit",
+      "code": "def priority(item: float, remaining_capacity: float, bin_capacity: float) -> float:\n    # Best Fit: minimize leftover waste after placement\n    # Tie\u2011breaker: prefer bins with larger remaining capacity to reduce fragmentation\n    waste = remaining_capacity - item\n    return -waste + 1e-6 * remaining_capacity",
+      "code_hash": "be5589b79d43e92b",
+      "train_eval": {
+        "is_valid": true,
+        "raw_score": 0.031433,
+        "relative_gap": 0.0,
+        "beats_baseline": false,
+        "error_message": null,
+        "runtime_ms": 138.39
+      }
+    },
+    {
+      "candidate_id": "arm_b_t0_p12",
+      "proposal_index": 12,
+      "is_seed": false,
+      "parent_ids": [
+        "arm_b_seed_best_fit"
+      ],
+      "generation": 1,
+      "hypothesis": "Targeted iterative improvement",
+      "description": "Iterative refinement of arm_b_seed_best_fit",
+      "code": "import math\n\ndef priority(item: float, remaining_capacity: float, bin_capacity: float) -> float:\n    # If the item does not fit, give the lowest possible priority.\n    if item > remaining_capacity + 1e-12:\n        return -math.inf\n\n    leftover = remaining_capacity - item          # space that would remain after placement\n    beta = 0.2                                    # threshold as fraction of bin capacity\n    alpha = 0.5                                   # penalty strength for small leftovers\n\n    threshold = beta * bin_capacity               # minimal acceptable leftover\n    excess = threshold - leftover                 # how much we fall below the threshold (positive if too small)\n\n    if excess > 0:                                # apply penalty only when leftover is too small\n        return -leftover - alpha * excess\n    else:\n        return -leftover",
+      "code_hash": "eb535bf7a974c9da",
+      "train_eval": {
+        "is_valid": true,
+        "raw_score": 0.031433,
+        "relative_gap": 0.0,
+        "beats_baseline": false,
+        "error_message": null,
+        "runtime_ms": 154.46
+      }
+    },
+    {
+      "candidate_id": "arm_b_t0_p13",
+      "proposal_index": 13,
+      "is_seed": false,
+      "parent_ids": [
+        "arm_b_seed_best_fit"
+      ],
+      "generation": 1,
+      "hypothesis": "Targeted iterative improvement",
+      "description": "Iterative refinement of arm_b_seed_best_fit",
+      "code": "We need to propose an improved priority function. The current champion is Best Fit: return -(remaining_capacity - item) i.e., negative leftover after placing item; higher priority for smaller leftover (i.e., more negative leftover? Actually we want higher priority for better fit: we return negative leftover; larger negative leftover means leftover is larger? Wait: leftover = remaining_capacity - item; we want to minimize leftover, so we want higher priority for smaller leftover. Since we return -(remaining_capacity - item) = item - remaining_capacity. Actually -(remaining_capacity - item) = item - remaining_capacity. So priority = item - remaining_capacity. If remaining_capacity is just enough (item fits tightly), leftover small => remaining_capacity - item small => negative of small => small negative? Example: remaining_capacity=10, item=9 => leftover=1 => priority = -1. If remaining_capacity=10, item=5 => leftover=5 => priority = -5. So -1 > -5, thus priority higher for smaller leftover (since -1 > -5). Good.\n\nWe need to improve upon Best Fit. Perhaps incorporate lookahead or use a combination of Best Fit and Worst Fit, or use a function that considers remaining capacity relative to item size, maybe using a ratio. Could use something like: priority = -(remaining_capacity - item) / remaining_capacity (i.e., relative waste). Or use a function that penalizes bins that are too empty or too full.\n\nGoal: minimize normalized excess ratio rho = (bins_used - L1) / L1, where L1 is sum of item sizes / bin_capacity (lower bound). So we want to pack tightly.\n\nBest Fit is decent. Perhaps we can improve by using a hybrid: if item is large (>0.5*bin_capacity), use Best Fit; else use something like Next Fit or Worst Fit? Actually for small items, Best Fit may cause fragmentation. Could use a function that encourages placing items in bins where remaining capacity after placement is close to some multiple of item size? Or use a function that minimizes the variance of leftover spaces.\n\nSimplify: Use a function that returns priority = -(remaining_capacity - item) + epsilon * (remaining_capacity / bin_capacity) maybe to encourage using fuller bins.\n\nBut we must keep within math library only.\n\nLet's propose: priority = -(remaining_capacity - item) * (1 + alpha * (remaining_capacity / bin_capacity)), where alpha is a small positive constant to bias towards bins with less remaining capacity (i.e., fuller bins) when leftover equal.\n\nAlternatively, use: priority = -(remaining_capacity - item) / (remaining_capacity + 1e-9) to normalize.\n\nWe need to output higher priority for better packing. So we can compute a score that is higher for better.\n\nLet's define waste = remaining_capacity - item (>=0 if fits). We want to minimize waste, but also maybe minimize number of bins used. So we could incorporate a term that encourages using bins that are already opened (i.e., remaining_capacity < bin_capacity). But all bins considered have some remaining_capacity; we could give a bonus for bins that are more filled (i.e., lower remaining_capacity). So priority = -waste + beta * (bin_capacity - remaining_capacity) (i.e., reward fill). Since bin_capacity - remaining_capacity = used space in bin. So priority = -waste + beta * used = -(remaining_capacity - item) + beta*(bin_capacity - remaining_capacity). Simplify: = item - remaining_capacity + beta*(bin_capacity - remaining_capacity) = item - remaining_capacity + beta*bin_capacity - beta*remaining_capacity = item + beta*bin_capacity - (1+beta)*remaining_capacity.\n\nSince item and bin_capacity are constants for given item, maximizing priority equivalent to minimizing (1+beta)*remaining_capacity (since other terms constant). So basically same as minimizing remaining_capacity (i.e., choose bin with least remaining capacity that fits). That's actually Best Fit? Wait Best Fit minimizes leftover after placement, which is remaining_capacity - item. Minimizing remaining_capacity is not same; it prefers bins with least remaining capacity regardless of item size, which could cause overflow if item doesn't fit. But we only consider bins where remaining_capacity >= item (feasible). Among feasible bins, minimizing remaining_capacity is equivalent to minimizing leftover after placement? Let's check: leftover = remaining_capacity - item. Minimizing remaining_capacity also minimizes leftover because item constant. So it's same as Best Fit. Actually Best Fit chooses bin with smallest leftover after placement, which is equivalent to smallest remaining_capacity that can accommodate item (since leftover = remaining_capacity - item). So minimizing remaining_capacity among feasible bins yields same as Best Fit. So adding reward for used space doesn't change ordering.\n\nThus need different approach.\n\nMaybe we can look at the ratio of item to remaining_capacity: we prefer bins where item fills a large proportion of remaining capacity (i.e., high utilization). So priority = item / remaining_capacity (higher better). But we must ensure remaining_capacity >= item; ratio <=1. Actually if remaining_capacity just fits item, ratio =1; if lots of space, ratio small. So we want maximize ratio. So priority = item / remaining_capacity. This is similar to Best Fit? Let's test: For two bins: remaining_capacity1=10, item=9 => ratio=0.9; remaining_capacity2=12, item=9 => ratio=0.75. So bin1 higher priority (0.9 >0.75). That's same as Best Fit (less leftover). However, if remaining_capacity1=10, item=5 => ratio=0.5; remaining_capacity2=6, item=5 => ratio=0.833 => bin2 higher priority (less leftover). So again same ordering? Actually Best Fit compares leftover: bin1 leftover=5, bin2 leftover=1 => bin2 better. Ratio also picks bin2. So monotonic transformation? Since ratio = item / remaining_capacity = 1 / (1 + leftover/item). Since item constant, maximizing ratio equivalent to minimizing leftover. So same.\n\nThus need something else.\n\nMaybe we can incorporate lookahead of next item? But we don't have future.\n\nCould use a function that penalizes bins that are too empty (i.e., remaining_capacity close to bin_capacity) to avoid opening new bins unnecessarily. But we only consider existing bins; opening new bin is when no existing bin fits; then we open a new bin with remaining_capacity = bin_capacity. So priority for new bin is computed with remaining_capacity = bin_capacity. So we need to make opening new bin less attractive unless necessary.\n\nThus we can define priority = -(remaining_capacity - item) - gamma * (remaining_capacity / bin_capacity). Actually we want to penalize high remaining_capacity (i.e., empty bins). So subtract a term proportional to remaining_capacity (or ratio). Since we want higher priority for better, we subtract penalty: priority = -(remaining_capacity - item) - lambda * (remaining_capacity / bin_capacity). Since remaining_capacity / bin_capacity in [0,1]. So higher remaining_capacity reduces priority (more negative). This encourages bins with less remaining capacity (fuller) when leftover equal.\n\nLet's test: Suppose two bins with same leftover after placement but different remaining_capacity before placement? Can't have same leftover with different remaining_capacity because leftover = remaining_capacity - item, so if leftover equal, remaining_capacity equal. So not needed.\n\nConsider scenario where leftover differs: bin A: remaining_capacity=8, item=5 => leftover=3; bin B: remaining_capacity=9, item=5 => leftover=4. Best Fit picks A (less leftover). Our penalty: priority_A = -3 - lambda*(8/BC); priority_B = -4 - lambda*(9/BC). Since -3 > -4, A still better unless lambda large enough to overcome difference? Actually penalty term: -(lambda)*(remaining_capacity/BC) is more negative for larger remaining_capacity, so B gets more penalty, making A even better. So still same ordering.\n\nThus need non-monotonic transformation that could change ordering in some cases to improve performance.\n\nMaybe we can use a function that prioritizes bins where the leftover after placement is close to some multiple of a typical item size, to reduce fragmentation. For example, we could aim to leave leftover that is either 0 or close to bin_capacity (i.e., either full or almost empty) to avoid small fragments. So we could penalize medium leftovers.\n\nDefine leftover L = remaining_capacity - item (>=0). We want to minimize a cost function like: cost = L if L < epsilon or L > bin_capacity - epsilon else large penalty. Actually we want to avoid small leftover fragments (like small L) because they cause wasted space that can't be used? Actually small leftover is good (tight fit). Wait small leftover means almost full, which is good. Medium leftover (like half bin) maybe not as good as either full or empty? Actually empty",
+      "code_hash": "f0a17a63102fe782",
+      "train_eval": {
+        "is_valid": false,
+        "raw_score": 1.0,
+        "relative_gap": 30.813699,
+        "beats_baseline": false,
+        "error_message": "SyntaxError in code: SyntaxError",
+        "runtime_ms": 1.61
+      }
+    },
+    {
+      "candidate_id": "arm_b_t0_p14",
+      "proposal_index": 14,
+      "is_seed": false,
+      "parent_ids": [
+        "arm_b_seed_best_fit"
+      ],
+      "generation": 1,
+      "hypothesis": "Targeted iterative improvement",
+      "description": "Iterative refinement of arm_b_seed_best_fit",
+      "code": "def priority(item: float, remaining_capacity: float, bin_capacity: float) -> float:\n    \"\"\"\n    Hybrid priority heuristic:\n    - For large items (> 50% of bin capacity) use Best Fit:\n      minimize leftover space after placement.\n    - For small items (<= 50% of bin capacity) use a Worst\u2011Fit\u2011like bias:\n      prefer bins with more remaining capacity to reduce fragmentation.\n    Higher return value indicates higher priority.\n    \"\"\"\n    if item > bin_capacity * 0.5:\n        # Best Fit: tighter fit -> higher priority\n        return -(remaining_capacity - item)\n    else:\n        # Worst Fit bias: more space left -> higher priority\n        return remaining_capacity",
+      "code_hash": "f74a301a7a8c2615",
+      "train_eval": {
+        "is_valid": true,
+        "raw_score": 0.137627,
+        "relative_gap": 3.378424,
+        "beats_baseline": false,
+        "error_message": null,
+        "runtime_ms": 237.42
+      }
+    },
+    {
+      "candidate_id": "arm_b_t0_p15",
+      "proposal_index": 15,
+      "is_seed": false,
+      "parent_ids": [
+        "arm_b_seed_best_fit"
+      ],
+      "generation": 1,
+      "hypothesis": "Targeted iterative improvement",
+      "description": "Iterative refinement of arm_b_seed_best_fit",
+      "code": "We need to propose an improved version of priority heuristic for online bin packing. The champion is Best Fit: priority = -(remaining_capacity - item) i.e., larger priority when leftover after placement is smaller (more negative leftover? Actually negative of leftover, so higher priority when leftover is small). We need to improve.\n\nGoal: minimize normalized excess ratio rho = (bins_used - L1) / L1, where L1 is sum of item sizes (total size). Equivalent to minimize bins_used.\n\nWe can consider heuristics like Weighted Best Fit, or consider future items? Since online, we cannot know future.\n\nWe can try to incorporate item size relative to bin capacity: maybe use a function that penalizes bins with too much remaining capacity (to avoid fragmentation) but also encourages using bins that are not too empty.\n\nOne idea: Use a combination of Best Fit and Worst Fit depending on item size: For large items (> half capacity), use Best Fit; for small items, use Worst Fit to fill bins.\n\nAlternatively, use a function like priority = -(remaining_capacity - item) + alpha * (remaining_capacity / bin_capacity) where alpha is small positive to bias towards less empty bins? Actually we want higher priority for bins where placing item yields better overall packing: maybe we want to minimize the maximum leftover across bins? Or minimize variance.\n\nWe can try to use a function that approximates the increase in bins used if we place item in this bin vs opening a new bin. For each bin, if we place item, leftover = remaining_capacity - item. If leftover < 0, cannot place. If leftover >= 0, we consider the \"waste\" = leftover. Opening a new bin would waste bin_capacity - item (since new bin empty then leftover = bin_capacity - item). So we prefer bin where waste is less than waste of new bin. So priority could be -(waste) = -(remaining_capacity - item). That's same as Best Fit. But we could also consider that if waste is too large, maybe better to open new bin to avoid fragmentation. So we could add a penalty for large waste relative to bin capacity: priority = -(remaining_capacity - item) - beta * (remaining_capacity / bin_capacity) where beta >0 penalizes bins with large remaining capacity (i.e., nearly empty). Actually we want to avoid using nearly empty bins for small items? Wait, if remaining capacity is large (i.e., bin nearly empty), placing a small item there leaves large leftover -> waste high. Best Fit would avoid that because waste large => low priority (more negative?). Actually priority = -waste, so larger waste gives more negative priority (lower). So Best Fit already disfavors large waste.\n\nBut maybe we want to consider also the item size relative to remaining capacity: if item fits exactly, waste=0 => priority=0 (highest). If item is small relative to remaining capacity, waste large => low priority. So Best Fit already does that.\n\nPotential improvements: Use a lookahead of one item? Not possible.\n\nCould use a function that encourages opening new bin when item is large relative to capacity? Actually Best Fit already does that: if item large, only bins with enough remaining capacity will be considered; if none, open new bin.\n\nMaybe we can incorporate a factor that uses the sum of squares of remaining capacities to penalize fragmentation: priority = -(remaining_capacity - item) + gamma * (remaining_capacity**2) ??? Not sure.\n\nWe need to output higher priority for bins where placing item produces better overall packing. So we want to maximize some utility.\n\nWe could try to minimize the expected increase in number of bins given a stochastic assumption about future items. Assuming future items are uniformly distributed? Then we might want to keep bins as full as possible, but also keep some bins with moderate remaining capacity to accommodate future items of various sizes.\n\nOne known heuristic is \"Best Fit Decreasing\" offline, but online we have \"Best Fit\". Variants: \"Best Fit with threshold\", \"Refined First Fit\", \"Worst Fit\", \"Almost Best Fit\".\n\nMaybe we can propose a heuristic that uses a linear combination of Best Fit and Worst Fit: priority = -(remaining_capacity - item) + lambda * (remaining_capacity) where lambda is small positive to bias towards bins with larger remaining capacity (i.e., Worst Fit) for small items? Actually we want to sometimes choose Worst Fit for small items to fill up bins? Wait Worst Fit chooses bin with maximum remaining capacity after placement (i.e., minimize waste? Actually Worst Fit chooses bin with maximum remaining capacity after placement, i.e., leaves most empty space, trying to spread items evenly). That seems counterintuitive for minimizing bins. But for small items, Worst Fit can help keep bins balanced to avoid creating many nearly full bins that can't accept medium items later? Not sure.\n\nBetter approach: Use a function that considers the ratio of item to remaining capacity: priority = -(remaining_capacity - item) * (item / remaining_capacity) maybe? That would give extra boost when item is large relative to remaining capacity (i.e., tight fit). If item small relative to remaining capacity, product small -> low priority.\n\nAlternatively, use priority = -(remaining_capacity - item) / (remaining_capacity + epsilon) to normalize.\n\nWe need to keep it simple, only math.\n\nLet's propose: priority = -(remaining_capacity - item) * (item / bin_capacity) . This scales by item size relative to bin capacity, giving higher priority for larger items that fit tightly.\n\nBut we need to ensure that if item does not fit (remaining_capacity < item) we return -inf or very low priority to avoid placement. The champion code presumably is used only for bins where item fits? Usually they check if remaining_capacity >= item else skip. We'll assume same.\n\nThus improved priority: if remaining_capacity < item: return -inf (or a very low number). Else: return -(remaining_capacity - item) * (item / bin_capacity). Since item/bin_capacity in (0,1], this reduces magnitude for small items, making priority less negative (i.e., higher) for small items? Wait: negative times positive factor yields negative; magnitude smaller => less negative => higher priority (since we want higher priority). Example: item=0.1*C, remaining_capacity=0.9*C => waste=0.8*C => priority = -0.8*C *0.1 = -0.08*C. Best Fit priority = -0.8*C. So improved priority is -0.08*C vs -0.8*C, which is higher (less negative). So small item gets higher priority in bins with large remaining capacity, which may encourage placing small items in nearly empty bins (bad). Actually we want to avoid that. So maybe we need inverse scaling: multiply by (remaining_capacity / bin_capacity) to penalize large remaining capacity. Let's try priority = -(remaining_capacity - item) * (remaining_capacity / bin_capacity). Then for small item in big empty bin: waste large, remaining_capacity large => product large negative => lower priority (more negative) => good. For tight fit: waste small, remaining_capacity maybe moderate => product small magnitude => higher priority.\n\nThus priority = -(remaining_capacity - item) * (remaining_capacity / bin_capacity). If remaining_capacity < item, return -inf.\n\nSimplify: priority = - (remaining_capacity - item) * remaining_capacity / bin_capacity.\n\nWe can also add a small constant to avoid zero.\n\nLet's test mental: bin capacity=1. item=0.6. Bin A: remaining=0.6 (exact fit). waste=0 => priority=0. Bin B: remaining=0.9 (waste=0.3). priority = -0.3*0.9 = -0.27. Bin C: remaining=0.2 (cannot fit). So Best Fit would pick A (priority 0) vs B (-0.3). Our new picks A (0) vs B (-0.27) still A better. Good.\n\nItem=0.2. Bin A: remaining=0.2 (exact) => priority=0. Bin B: remaining=0.8 (waste=0.6) => priority=-0.6*0.8=-0.48. Bin C: remaining=0.5 (waste=0.3) => priority=-0.3*0.5=-0.15. So Best Fit would pick A (0) then C (-0.15) then B (-0.48). Our new picks A (0) then C (-0.15) then B (-0.48). Same ordering because factor remaining_capacity scales waste but monotonic? Actually priority = -waste * remaining_capacity. For two bins with waste1<waste2 but remaining_capacity1 maybe larger or smaller, could flip. Example: Bin D: remaining=0.4, waste=0.2 (item=0.2) => priority=-0.2*0.4=-0.08. Bin E: remaining=0.9, waste=0.7 => priority=-0.7*0.9=-0.63. So D better than E. Best Fit: waste 0.2 vs 0.7 => D better. So ordering same? Not necessarily: consider Bin F: remaining=0.3, waste=0.1 (item=0.2) => priority=-0.1*0",
+      "code_hash": "ce0f03c9547fc599",
+      "train_eval": {
+        "is_valid": false,
+        "raw_score": 1.0,
+        "relative_gap": 30.813699,
+        "beats_baseline": false,
+        "error_message": "SyntaxError in code: SyntaxError",
+        "runtime_ms": 5.49
+      }
+    },
+    {
+      "candidate_id": "arm_b_t0_p16",
+      "proposal_index": 16,
+      "is_seed": false,
+      "parent_ids": [
+        "arm_b_seed_best_fit"
+      ],
+      "generation": 1,
+      "hypothesis": "Targeted iterative improvement",
+      "description": "Iterative refinement of arm_b_seed_best_fit",
+      "code": "import math\n\ndef priority(item: float, remaining_capacity: float, bin_capacity: float) -> float:\n    \"\"\"\n    Improved priority heuristic for online 1D bin packing.\n    Prefers bins that leave the smallest leftover space after placing the item,\n    using a squared penalty to strongly discourage large wasted gaps.\n    If the item does not fit, returns negative infinity.\n    \"\"\"\n    # If the item cannot fit in the bin, this bin gets the lowest possible priority.\n    if item > remaining_capacity:\n        return -math.inf\n\n    leftover = remaining_capacity - item          # space that would remain after placement\n    # Squared penalty: smaller leftover yields a higher (less negative) priority.\n    return - (leftover * leftover)",
+      "code_hash": "b7bae3cdd589b04c",
+      "train_eval": {
+        "is_valid": true,
+        "raw_score": 0.031433,
+        "relative_gap": 0.0,
+        "beats_baseline": false,
+        "error_message": null,
+        "runtime_ms": 165.05
+      }
+    },
+    {
+      "candidate_id": "arm_b_t0_p17",
+      "proposal_index": 17,
+      "is_seed": false,
+      "parent_ids": [
+        "arm_b_seed_best_fit"
+      ],
+      "generation": 1,
+      "hypothesis": "Targeted iterative improvement",
+      "description": "Iterative refinement of arm_b_seed_best_fit",
+      "code": "def priority(item: float, remaining_capacity: float, bin_capacity: float) -> float:\n    \"\"\"\n    Improved Best Fit heuristic.\n    - Bins where the item does not fit are given the lowest priority.\n    - Among feasible bins, we minimize the leftover space after placement,\n      but we scale the penalty by the item size so that leaving a small\n      leftover after placing a large item is preferred over the same leftover\n      after placing a small item (reduces fragmentation).\n    \"\"\"\n    if remaining_capacity < item:          # infeasible placement\n        return float('-inf')\n    leftover = remaining_capacity - item   # space that would remain\n    # Avoid division by zero; item > 0 in typical bin\u2011packing instances\n    return -leftover / (item + 1e-9)",
+      "code_hash": "90ab6f50d804d9ea",
+      "train_eval": {
+        "is_valid": true,
+        "raw_score": 0.031433,
+        "relative_gap": 0.0,
+        "beats_baseline": false,
+        "error_message": null,
+        "runtime_ms": 160.44
+      }
+    },
+    {
+      "candidate_id": "arm_b_t0_p18",
+      "proposal_index": 18,
+      "is_seed": false,
+      "parent_ids": [
+        "arm_b_seed_best_fit"
+      ],
+      "generation": 1,
+      "hypothesis": "Targeted iterative improvement",
+      "description": "Iterative refinement of arm_b_seed_best_fit",
+      "code": "def priority(item: float, remaining_capacity: float, bin_capacity: float) -> float:\n    # Improved Best Fit: minimize leftover while preferring bins that are already fuller.\n    if item > remaining_capacity + 1e-12:   # item does not fit\n        return -float('inf')\n    leftover = remaining_capacity - item   # unused space if we place the item here\n    # Weight the penalty by how full the bin already is (remaining_capacity / bin_capacity)\n    weight = remaining_capacity / bin_capacity if bin_capacity != 0 else 0.0\n    return -leftover * weight",
+      "code_hash": "28f8526c391b0629",
+      "train_eval": {
+        "is_valid": true,
+        "raw_score": 0.031433,
+        "relative_gap": 0.0,
+        "beats_baseline": false,
+        "error_message": null,
+        "runtime_ms": 194.51
+      }
+    },
+    {
+      "candidate_id": "arm_b_t0_p19",
+      "proposal_index": 19,
+      "is_seed": false,
+      "parent_ids": [
+        "arm_b_seed_best_fit"
+      ],
+      "generation": 1,
+      "hypothesis": "Targeted iterative improvement",
+      "description": "Iterative refinement of arm_b_seed_best_fit",
+      "code": "def priority(item: float, remaining_capacity: float, bin_capacity: float) -> float:\n    \"\"\"\n    Hybrid Best/Worst Fit priority:\n    - For small items (<= half bin capacity) use Best Fit (minimize leftover).\n    - For large items (> half bin capacity) use Worst Fit (maximize leftover).\n    - Transition is smooth based on item size ratio.\n    Returns higher priority for better bins.\n    \"\"\"\n    if item > remaining_capacity:          # item does not fit\n        return float('-inf')\n    \n    leftover = remaining_capacity - item   # space left after placing item\n    r = item / bin_capacity                # relative size of item\n    # weight for Worst Fit: 0 for small items, 1 for large items, linear in between\n    w = max(0.0, min(1.0, 2.0 * r - 1.0))\n    # priority = leftover * (2*w - 1)  (positive weight -> Worst Fit, negative -> Best Fit)\n    return leftover * (2.0 * w - 1.0)",
+      "code_hash": "5b2636a301125e71",
+      "train_eval": {
+        "is_valid": true,
+        "raw_score": 0.031433,
+        "relative_gap": 0.0,
+        "beats_baseline": false,
+        "error_message": null,
+        "runtime_ms": 103.94
+      }
+    },
+    {
+      "candidate_id": "arm_b_t0_p20",
+      "proposal_index": 20,
+      "is_seed": false,
+      "parent_ids": [
+        "arm_b_seed_best_fit"
+      ],
+      "generation": 1,
+      "hypothesis": "Targeted iterative improvement",
+      "description": "Iterative refinement of arm_b_seed_best_fit",
+      "code": "def priority(item: float, remaining_capacity: float, bin_capacity: float) -> float:\n    # If the item does not fit, return a very low priority.\n    if remaining_capacity < item - 1e-12:\n        return -float('inf')\n    leftover = remaining_capacity - item\n    # Normalized squared leftover penalizes large fragments more strongly.\n    eps = 1e-9\n    return -(leftover * leftover) / (remaining_capacity + eps)",
+      "code_hash": "6c252e5660260dbd",
+      "train_eval": {
+        "is_valid": true,
+        "raw_score": 0.031433,
+        "relative_gap": 0.0,
+        "beats_baseline": false,
+        "error_message": null,
+        "runtime_ms": 148.94
+      }
+    },
+    {
+      "candidate_id": "arm_b_t0_p21",
+      "proposal_index": 21,
+      "is_seed": false,
+      "parent_ids": [
+        "arm_b_seed_best_fit"
+      ],
+      "generation": 1,
+      "hypothesis": "Targeted iterative improvement",
+      "description": "Iterative refinement of arm_b_seed_best_fit",
+      "code": "import math\n\ndef priority(item: float, remaining_capacity: float, bin_capacity: float) -> float:\n    \"\"\"\n    Improved priority heuristic for online 1D bin packing.\n    Returns a higher value for bins where placing the item yields a tighter fit,\n    penalizing large leftover space quadratically to reduce fragmentation.\n    \"\"\"\n    leftover = remaining_capacity - item\n    # If the item does not fit, assign the lowest possible priority.\n    if leftover < 0:\n        return -math.inf\n    # Quadratic penalty on leftover space, normalized by bin capacity.\n    return -(leftover * leftover) / bin_capacity",
+      "code_hash": "7c2f55b78b07740e",
+      "train_eval": {
+        "is_valid": true,
+        "raw_score": 0.031433,
+        "relative_gap": 0.0,
+        "beats_baseline": false,
+        "error_message": null,
+        "runtime_ms": 99.69
+      }
+    },
+    {
+      "candidate_id": "arm_b_t0_p22",
+      "proposal_index": 22,
+      "is_seed": false,
+      "parent_ids": [
+        "arm_b_seed_best_fit"
+      ],
+      "generation": 1,
+      "hypothesis": "Targeted iterative improvement",
+      "description": "Iterative refinement of arm_b_seed_best_fit",
+      "code": "import math\n\ndef priority(item: float, remaining_capacity: float, bin_capacity: float) -> float:\n    # Return -inf for infeasible bins (should not be chosen)\n    if remaining_capacity < item - 1e-12:\n        return -float('inf')\n    leftover = remaining_capacity - item\n    # Primary: minimize leftover (Best Fit)\n    # Secondary: slight preference for larger remaining capacity\n    return -leftover + 1e-4 * remaining_capacity",
+      "code_hash": "2c5787f7d0168602",
+      "train_eval": {
+        "is_valid": true,
+        "raw_score": 0.031433,
+        "relative_gap": 0.0,
+        "beats_baseline": false,
+        "error_message": null,
+        "runtime_ms": 214.94
+      }
+    },
+    {
+      "candidate_id": "arm_b_t0_p23",
+      "proposal_index": 23,
+      "is_seed": false,
+      "parent_ids": [
+        "arm_b_seed_best_fit"
+      ],
+      "generation": 1,
+      "hypothesis": "Targeted iterative improvement",
+      "description": "Iterative refinement of arm_b_seed_best_fit",
+      "code": "def priority(item: float, remaining_capacity: float, bin_capacity: float) -> float:\n    # If the item does not fit, discourage this bin strongly\n    if item > remaining_capacity:\n        return float('-inf')\n    leftover = remaining_capacity - item          # unused space after placement\n    # Proportion of the bin already filled before placing the item\n    used_ratio = (bin_capacity - remaining_capacity) / bin_capacity if bin_capacity != 0 else 0.0\n    # Best Fit core (minimize leftover) with a small bias toward fuller bins\n    return -leftover + 0.01 * used_ratio",
+      "code_hash": "52367ba4f32a06a2",
+      "train_eval": {
+        "is_valid": true,
+        "raw_score": 0.031433,
+        "relative_gap": 0.0,
+        "beats_baseline": false,
+        "error_message": null,
+        "runtime_ms": 168.72
+      }
+    },
+    {
+      "candidate_id": "arm_b_t0_p24",
+      "proposal_index": 24,
+      "is_seed": false,
+      "parent_ids": [
+        "arm_b_seed_best_fit"
+      ],
+      "generation": 1,
+      "hypothesis": "Targeted iterative improvement",
+      "description": "Iterative refinement of arm_b_seed_best_fit",
+      "code": "def priority(item: float, remaining_capacity: float, bin_capacity: float) -> float:\n    \"\"\"\n    Hybrid heuristic:\n    - For large items (> bin_capacity/2) use Best Fit (minimize leftover space).\n    - For small items (<= bin_capacity/2) use Worst Fit (maximize leftover space).\n    This balances tight packing of big items with spreading out small items to reduce fragmentation.\n    \"\"\"\n    threshold = bin_capacity / 2.0\n    # factor = 1 if item <= threshold else -1\n    factor = 1.0 - 2.0 * (item > threshold)\n    return (remaining_capacity - item) * factor",
+      "code_hash": "0592d25f1fa3b0eb",
+      "train_eval": {
+        "is_valid": true,
+        "raw_score": 0.137627,
+        "relative_gap": 3.378424,
+        "beats_baseline": false,
+        "error_message": null,
+        "runtime_ms": 387.29
+      }
+    },
+    {
+      "candidate_id": "arm_b_t0_p25",
+      "proposal_index": 25,
+      "is_seed": false,
+      "parent_ids": [
+        "arm_b_seed_best_fit"
+      ],
+      "generation": 1,
+      "hypothesis": "Targeted iterative improvement",
+      "description": "Iterative refinement of arm_b_seed_best_fit",
+      "code": "We need to propose an improved priority function for online 1D bin packing, to minimize normalized excess ratio rho = (bins_used - L1) / L1, where L1 is lower bound (total size / bin_capacity). The champion is Best Fit: priority = -(remaining_capacity - item) (i.e., negative leftover after placement). Higher priority means more negative leftover? Actually they return negative leftover: smaller leftover (tight fit) yields less negative? Let's see: leftover = remaining_capacity - item. If leftover small (tight fit), then -(leftover) is close to zero negative small magnitude? Actually if leftover = 0, priority = 0. If leftover = 10, priority = -10. So higher priority (less negative) means tighter fit. So they pick bin with maximum priority (largest value) i.e., smallest leftover.\n\nWe need to improve. Perhaps incorporate lookahead or consider future items distribution, maybe use weighted combination of leftover and remaining capacity relative to item size, or use a function that penalizes bins with too little remaining capacity (to avoid fragmentation). Could use something like: priority = -(remaining_capacity - item) + alpha * (item / bin_capacity) * (remaining_capacity / bin_capacity) ... Not sure.\n\nWe need to propose a targeted improvement based on analysis. The champion is Best Fit, which is known to perform well but can suffer from fragmentation when many small items cause many bins with small leftover that cannot accommodate later items. Perhaps we can modify to avoid bins with very small leftover that are less than a threshold (like epsilon * bin_capacity). For example, we could penalize bins where leftover after placement is less than some fraction (like 0.1 * bin_capacity) to avoid creating unusable gaps. Or we could use a function that favors bins where leftover after placement is close to zero but not too small, maybe using a quadratic penalty: priority = -(remaining_capacity - item)^2? Actually Best Fit uses linear leftover; we could use something like: priority = -(remaining_capacity - item) + beta * (remaining_capacity - item)^2 / bin_capacity to penalize both large leftovers and extremely small leftovers (since square small leftover yields small penalty, but we want to penalize small leftover? Actually we want to avoid tiny leftover that cannot fit future items; we could add a term that increases priority when leftover is moderate, maybe using a function like: priority = -(remaining_capacity - item) + gamma * (remaining_capacity - item) * (item / bin_capacity). Not sure.\n\nAlternatively, we could use a hybrid of Best Fit and Worst Fit: choose bin that leaves leftover closest to some optimal value, like half of bin capacity? Actually we want to minimize wasted space overall. Perhaps we can use a function that minimizes the expected wasted space assuming future items are uniformly distributed. For online, we don't know future items. But we can use a heuristic that prefers bins where leftover after placement is close to some multiple of average item size observed so far. However we only have current item and remaining capacity; we cannot maintain state across calls? The priority function receives only item, remaining_capacity, bin_capacity. It cannot access history. So we cannot compute average item size observed so far unless we use global variables (but not allowed? Not prohibited but likely they want pure function). We can use closure? But they ask to define function priority only; we could use static variables via function attributes. That is allowed? Usually they allow any Python code inside function; we could use function attributes to store state across calls. However the problem statement: \"Allowed libraries: math only.\" It doesn't forbid using global variables. But typical online heuristics are stateless; but we could incorporate some state using default mutable argument or attribute. However they might test by calling priority many times; using mutable default may cause cross-test contamination. Safer to keep stateless.\n\nThus we need a stateless function that improves over Best Fit. Perhaps we can incorporate a lookahead based on item size relative to bin capacity: if item is large (>0.5*bin), we want to fill bins tightly; if item is small, we might want to avoid creating too many small leftovers; we could bias towards bins with larger remaining capacity (i.e., Worst Fit) for small items to preserve space for future large items. So we could combine: priority = -(remaining_capacity - item) * f(item/bin_capacity) where f is decreasing for small items? Actually we want for small items to prioritize bins with larger leftover after placement (i.e., less negative leftover? Wait priority higher means better. For small items, we might want to avoid filling a bin too much leaving tiny leftover that cannot fit future items (maybe also small). Actually if we place a small item in a nearly full bin, leftover becomes tiny; that may be useless for future items (if future items also small maybe okay). But if future items vary, we might want to keep some medium-sized gaps.\n\nThus we could use a function that penalizes leftover after placement that is too small relative to bin capacity: e.g., priority = -(remaining_capacity - item) + c * (remaining_capacity - item) / bin_capacity * (some threshold). Actually we want to increase priority (make it less negative) when leftover is medium, and decrease priority (more negative) when leftover is too small or too large. So we could use a quadratic centered at some optimal leftover L* (maybe bin_capacity/2). For each bin, compute leftover after placement L = remaining_capacity - item. Then priority = -abs(L - L_target) where L_target is some function of item size? Actually we want to minimize absolute deviation from target leftover. So priority = -abs(L - L_target). Higher priority (less negative) means closer to target. Choose L_target maybe = item? Not sure.\n\nAlternatively, we could use a function that favors bins where leftover after placement is close to zero but not extremely small: we could use priority = -(remaining_capacity - item) + k * (remaining_capacity - item)^2 / bin_capacity. For small leftover, the quadratic term is small positive (since squared small => small) but we add? Actually we want to reduce priority for tiny leftover (i.e., make it more negative). If leftover is small, we want priority lower (more negative). The linear term -(leftover) is near zero (small negative). To make it more negative, we need to subtract something positive. So we could subtract a term that is large when leftover is small: e.g., priority = -(leftover) - alpha * (bin_capacity / (leftover + epsilon))? That would blow up for small leftover making priority very negative (bad). But we must avoid division by zero.\n\nBetter: use priority = -(leftover) - alpha * exp(-beta * leftover / bin_capacity). For small leftover, exp(-small) ~ 1, so subtract alpha, making priority more negative (worse). For large leftover, exp(-large) ~ 0, subtract near zero, priority ~ -(leftover) (negative large magnitude? Actually leftover large => -(leftover) large negative, which is already bad). Wait we want to penalize both large leftover (waste) and tiny leftover (fragments). So we want priority to be highest (least negative) for some intermediate leftover. So we could use something like: priority = - (leftover - target)^2, where target is some optimal leftover (maybe bin_capacity/2). Then priority is negative squared deviation; maximum at zero deviation (i.e., leftover = target). That yields higher priority (less negative) for leftover close to target, lower priority for far away (both too small or too large). This seems good.\n\nThus priority = - ( (remaining_capacity - item) - target )**2. We need to choose target as a function of item size maybe? Could be constant like bin_capacity/2. But if item is large, leftover after placement will be small anyway; we might still want to target small leftover for large items. So target could be something like max(0, bin_capacity - 2*item)?? Not sure.\n\nAlternatively, we could use a piecewise: if item > bin_capacity/2, use Best Fit (minimize leftover). If item <= bin_capacity/2, use a function that avoids too-small leftover: maybe priority = -(remaining_capacity - item) + gamma * (remaining_capacity - item) / bin_capacity (i.e., add a small positive term proportional to leftover to reduce penalty for tiny leftover? Actually we want to increase priority for tiny leftover? Wait we want to avoid tiny leftover, so we want to make priority lower (more negative) for tiny leftover. So we subtract something when leftover is small. So priority = -(leftover) - delta * (bin_capacity / (leftover + epsilon)). That seems complex.\n\nGiven constraints, simplest improvement: use a hybrid of Best Fit and Worst Fit based on item size ratio. For small items (<0.2*bin_capacity), use Worst Fit (maximize leftover after placement) to avoid filling bins too much and creating many tiny gaps. For larger items",
+      "code_hash": "39cd9a086ada2c5c",
+      "train_eval": {
+        "is_valid": false,
+        "raw_score": 1.0,
+        "relative_gap": 30.813699,
+        "beats_baseline": false,
+        "error_message": "SyntaxError in code: SyntaxError",
+        "runtime_ms": 0.43
+      }
+    },
+    {
+      "candidate_id": "arm_b_t0_p26",
+      "proposal_index": 26,
+      "is_seed": false,
+      "parent_ids": [
+        "arm_b_seed_best_fit"
+      ],
+      "generation": 1,
+      "hypothesis": "Targeted iterative improvement",
+      "description": "Iterative refinement of arm_b_seed_best_fit",
+      "code": "import math\n\ndef priority(item: float, remaining_capacity: float, bin_capacity: float) -> float:\n    # Return a very low priority if the item does not fit\n    if remaining_capacity < item:\n        return -1e9\n    leftover = remaining_capacity - item\n    # Strongly penalize large leftover (squared) and add a modest incentive for larger items\n    return -(leftover ** 2) + 0.5 * (item / bin_capacity)",
+      "code_hash": "3d4ad1dd11541956",
+      "train_eval": {
+        "is_valid": true,
+        "raw_score": 0.031433,
+        "relative_gap": 0.0,
+        "beats_baseline": false,
+        "error_message": null,
+        "runtime_ms": 200.91
+      }
+    },
+    {
+      "candidate_id": "arm_b_t0_p27",
+      "proposal_index": 27,
+      "is_seed": false,
+      "parent_ids": [
+        "arm_b_seed_best_fit"
+      ],
+      "generation": 1,
+      "hypothesis": "Targeted iterative improvement",
+      "description": "Iterative refinement of arm_b_seed_best_fit",
+      "code": "def priority(item: float, remaining_capacity: float, bin_capacity: float) -> float:\n    # Quadratic Best Fit: minimize squared leftover space after placement\n    leftover = remaining_capacity - item\n    return -(leftover * leftover)",
+      "code_hash": "f8d4c8d826a8f515",
+      "train_eval": {
+        "is_valid": true,
+        "raw_score": 0.031433,
+        "relative_gap": 0.0,
+        "beats_baseline": false,
+        "error_message": null,
+        "runtime_ms": 149.74
+      }
+    },
+    {
+      "candidate_id": "arm_b_t0_p28",
+      "proposal_index": 28,
+      "is_seed": false,
+      "parent_ids": [
+        "arm_b_seed_best_fit"
+      ],
+      "generation": 1,
+      "hypothesis": "Targeted iterative improvement",
+      "description": "Iterative refinement of arm_b_seed_best_fit",
+      "code": "def priority(item: float, remaining_capacity: float, bin_capacity: float) -> float:\n    # If the item does not fit, give the lowest possible priority.\n    if remaining_capacity < item:\n        return -float('inf')\n    \n    leftover = remaining_capacity - item          # unused space after placing the item\n    # Give extra weight to bins that are already fuller;\n    # this encourages filling existing bins before opening new ones.\n    weight = remaining_capacity / bin_capacity if bin_capacity != 0 else 0.0\n    # Higher priority (less negative) for smaller leftover * weight.\n    return -leftover * weight",
+      "code_hash": "2ba8caac32aaceaf",
+      "train_eval": {
+        "is_valid": true,
+        "raw_score": 0.031433,
+        "relative_gap": 0.0,
+        "beats_baseline": false,
+        "error_message": null,
+        "runtime_ms": 140.55
+      }
+    },
+    {
+      "candidate_id": "arm_b_t0_p29",
+      "proposal_index": 29,
+      "is_seed": false,
+      "parent_ids": [
+        "arm_b_seed_best_fit"
+      ],
+      "generation": 1,
+      "hypothesis": "Targeted iterative improvement",
+      "description": "Iterative refinement of arm_b_seed_best_fit",
+      "code": "We need to improve over Best Fit (minimize leftover). Best Fit picks bin with smallest leftover after placing item (i.e., maximize remaining_capacity - item? Actually leftover = remaining_capacity - item; we want smallest leftover => most negative? They return -(remaining_capacity - item) which is item - remaining_capacity. Wait: -(remaining_capacity - item) = item - remaining_capacity. So larger value means more priority? Since they return negative leftover: if leftover small (close to zero), then -(small) is near zero negative? Actually leftover = remaining_capacity - item. If leftover is small (tight fit), then -(leftover) is a small negative number (close to zero from below). If leftover large (lots of space), -(leftover) is large negative (more negative). So they want higher priority for less negative? Actually they want higher priority for smaller leftover, so they'd want larger (less negative) value? Let's test: leftover=0 => priority=0. leftover=10 => priority=-10. So 0 > -10, so they pick higher priority (0) for tight fit. Good.\n\nGoal: minimize normalized excess ratio rho = (bins_used - L1)/L1 where L1 is sum(item)/bin_capacity (lower bound). So we want to use as few bins as possible, close to optimal.\n\nBest Fit is decent but can be improved with something like \"Best Fit Decreasing\" but online we cannot reorder. Perhaps we can incorporate lookahead: consider item size relative to remaining capacity, maybe use a function that penalizes bins that are too empty or too full.\n\nWe could use a combination: priority = -(remaining_capacity - item) + alpha * (remaining_capacity / bin_capacity) maybe? Actually we want to avoid leaving very small unusable gaps. So we might want to favor bins where leftover after placement is either zero or large enough to fit future items. But we don't know future.\n\nOne known online heuristic: \"Worst Fit\" picks bin with most remaining capacity (maximize leftover). Not good. \"Almost Worst Fit\" picks bin with most leftover but not the maximum. Another: \"Fit\" heuristics like \"Best Fit\" works well.\n\nWe could try to incorporate a term that encourages using bins that are more filled, i.e., maximize fill ratio after placement: (item)/(remaining_capacity). Actually after placement, new remaining capacity = remaining_capacity - item. Fill ratio = (bin_capacity - new_remaining)/bin_capacity = (item + used)/bin_capacity. But we only know remaining_capacity before placement. So we could compute resulting fill ratio: (bin_capacity - (remaining_capacity - item))/bin_capacity = (bin_capacity - remaining_capacity + item)/bin_capacity = used_sofar + item over capacity. But used_sofar = bin_capacity - remaining_capacity. So fill after = (bin_capacity - remaining_capacity + item)/bin_capacity = 1 - (remaining_capacity - item)/bin_capacity. So maximizing fill after is equivalent to minimizing leftover (remaining_capacity - item). So same as Best Fit.\n\nMaybe we can incorporate a lookahead penalty for creating very small leftover that cannot fit any future item (i.e., less than min_item_size seen so far). We could track smallest item seen so far (global). But we cannot store state? The priority function only gets item, remaining_capacity, bin_capacity. No memory. However we could use item itself as estimate of future min size? Not reliable.\n\nAlternatively, we could use a function that prefers bins where leftover after placement is either zero or >= item (so that the bin could accommodate another item of similar size). That is, we want to avoid leftover < item (i.e., leftover too small to fit another item of same size). So we could give extra penalty if leftover < item. For example: priority = -(remaining_capacity - item) - penalty * max(0, item - (remaining_capacity - item)). Actually leftover = remaining_capacity - item. If leftover < item, then we create a gap smaller than item; maybe bad. So we add negative penalty.\n\nThus priority = -(remaining_capacity - item) - C * max(0, item - (remaining_capacity - item)). Simplify: leftover = remaining_capacity - item. penalty = C * max(0, item - leftover). So priority = -leftover - C * max(0, item - leftover). If leftover >= item, penalty zero, priority = -leftover (same as BF). If leftover < item, priority = -leftover - C*(item - leftover) = -leftover - C*item + C*leftover = -(1-C)*leftover - C*item. Since leftover < item, this is more negative (lower priority) as C>0, discouraging such bins.\n\nWe need to choose C. Maybe C=1? Then priority = -leftover - max(0, item - leftover). If leftover < item: priority = -leftover - (item - leftover) = -item. So priority = -item (constant negative). If leftover >= item: priority = -leftover. Since leftover >= item => -leftover <= -item (more negative or equal). Actually -leftover <= -item (since leftover >= item => -leftover <= -item). So priority for feasible tight fit is <= -item, while for too small leftover we get exactly -item (higher? Wait -item is greater (less negative) than -leftover when leftover < item? Example: item=0.4, leftover=0.2 (<item). Then -item=-0.4, -leftover=-0.2. -0.4 < -0.2, so priority -0.4 is lower (worse) than -0.2. Actually we want to discourage bins with leftover<item, so we want lower priority (more negative) for those. Our formula gave priority=-item=-0.4 which is more negative than -leftover=-0.2, so indeed lower priority. Good.\n\nIf leftover >= item: say leftover=0.6, priority=-0.6 which is less than -0.4? -0.6 < -0.4, so priority lower (worse) than the penalized case? Actually we want to prefer bins with leftover>=item (i.e., enough space for another item of same size) over those with leftover<item? Not necessarily; we want to minimize leftover overall, but also avoid tiny gaps. So maybe we want to prioritize bins where leftover is small but not too small (<item). So we could give extra boost for leftover in [0, item]?? Hmm.\n\nLet's think: we want to avoid leftover that is too small to be useful. So if leftover < item, it's a useless gap (wasted). So we might want to avoid creating such gaps. So we should penalize bins that would produce leftover < item. So we want lower priority for those bins. So our penalty works.\n\nNow we need to test if this improves over BF. Hard to know but we can propose.\n\nAlternatively, we could use a function that combines BF with a term that encourages using bins with higher remaining capacity (like Worst Fit) to keep balanced. Maybe priority = -(remaining_capacity - item) + alpha * (remaining_capacity / bin_capacity). Since we want higher priority for better bins, we add positive term for remaining capacity (bigger remaining capacity => higher priority). But BF already prefers small leftover (i.e., small remaining_capacity - item). That is equivalent to preferring bins where remaining_capacity is just enough to fit item (tight). Adding a term for remaining_capacity would counteract, maybe leading to something like \"Best Fit with tolerance\".\n\nWe could try priority = -(remaining_capacity - item) + beta * remaining_capacity. Since remaining_capacity is larger for emptier bins, adding positive beta would increase priority for emptier bins, making it more like Worst Fit. Choose small beta.\n\nLet's derive: priority = -(remaining_capacity - item) + beta * remaining_capacity = -remaining_capacity + item + beta * remaining_capacity = item + (beta -1)*remaining_capacity. If beta <1, coefficient on remaining_capacity negative (since beta-1 negative) => priority decreases with remaining_capacity (prefer less remaining capacity). If beta>1, priority increases with remaining_capacity (prefer more remaining capacity). So we can set beta slightly less than 1 to still prefer less remaining capacity but with a slight bias towards emptier bins? Actually if beta=0.5, then priority = item -0.5*remaining_capacity. So higher remaining_capacity reduces priority (more negative). So still prefer less remaining_capacity (tight fit). But the magnitude of dependence is reduced.\n\nMaybe we can use a function that looks at the ratio leftover/item: priority = - (remaining_capacity - item) / (item + epsilon). This normalizes by item size, giving relative leftover. Might help.\n\nAlternatively, we could use a function that prioritizes bins where leftover after placement is either zero or close to a multiple of item?",
+      "code_hash": "8c03bd1c62da7c54",
+      "train_eval": {
+        "is_valid": false,
+        "raw_score": 1.0,
+        "relative_gap": 30.813699,
+        "beats_baseline": false,
+        "error_message": "SyntaxError in code: SyntaxError",
+        "runtime_ms": 6.96
+      }
+    },
+    {
+      "candidate_id": "arm_b_t0_p30",
+      "proposal_index": 30,
+      "is_seed": false,
+      "parent_ids": [
+        "arm_b_seed_best_fit"
+      ],
+      "generation": 1,
+      "hypothesis": "Targeted iterative improvement",
+      "description": "Iterative refinement of arm_b_seed_best_fit",
+      "code": "def priority(item: float, remaining_capacity: float, bin_capacity: float) -> float:\n    # Best Fit: minimize leftover space after placement\n    base = -(remaining_capacity - item)          # = item - remaining_capacity\n    # S bias: prefer bins that are already fuller (less remaining capacity)\n    bias = -0.05 * (remaining_capacity / bin_capacity)  # reduces priority for emptier bins\n    return base + bias",
+      "code_hash": "ea8e916ae7368486",
+      "train_eval": {
+        "is_valid": true,
+        "raw_score": 0.031433,
+        "relative_gap": 0.0,
+        "beats_baseline": false,
+        "error_message": null,
+        "runtime_ms": 173.57
+      }
+    },
+    {
+      "candidate_id": "arm_b_t0_p31",
+      "proposal_index": 31,
+      "is_seed": false,
+      "parent_ids": [
+        "arm_b_seed_best_fit"
+      ],
+      "generation": 1,
+      "hypothesis": "Targeted iterative improvement",
+      "description": "Iterative refinement of arm_b_seed_best_fit",
+      "code": "import math\n\ndef priority(item: float, remaining_capacity: float, bin_capacity: float) -> float:\n    \"\"\"\n    Hybrid heuristic: Best Fit with a small reward for leaving\n    a modest amount of free space to avoid creating unusably tiny\n    remnants.  The priority is higher for bins where the leftover\n    after placing the item is small, but not excessively small.\n    \"\"\"\n    leftover = remaining_capacity - item\n    if leftover < 0:          # item does not fit\n        return float('-inf')\n    # sigma controls the trade\u2011off between tight fit and avoiding\n    # excessive fragmentation; tuned empirically.\n    sigma = 0.2\n    return -leftover + sigma * math.sqrt(leftover)",
+      "code_hash": "411bc5c3d9ef7fdc",
+      "train_eval": {
+        "is_valid": true,
+        "raw_score": 0.031433,
+        "relative_gap": 0.0,
+        "beats_baseline": false,
+        "error_message": null,
+        "runtime_ms": 208.22
+      }
+    }
+  ],
+  "trajectory_summaries": [
+    {
+      "trajectory_id": 0,
+      "best_train_score": 0.031433,
+      "best_train_rel_gap": 0.0,
+      "total_proposals": 32
+    }
+  ]
+}

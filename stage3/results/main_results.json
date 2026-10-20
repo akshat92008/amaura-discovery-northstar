@@ -1,0 +1,3029 @@
+{
+  "metadata": {
+    "experiment": "Amaura Labs Stage 3 Main Experiment",
+    "protocol_version": "Revision 4.3",
+    "execution_mode": "SEQUENTIAL (concurrency = 1)",
+    "model": "nvidia/nvidia/nemotron-3-super-120b-a12b",
+    "T_main": 30,
+    "N_slots": 100,
+    "total_slots": 9000,
+    "total_calls": 5117,
+    "total_input_tokens": 35774321,
+    "total_output_tokens": 12315099,
+    "total_tokens": 48089420,
+    "total_cost_usd": 292.0494,
+    "total_runtime_sec": 139031.54,
+    "total_runtime_hours": 38.62,
+    "timestamp": "2026-10-14T19:27:34Z"
+  },
+  "statistical_analysis": {
+    "governance_revision": "4.3",
+    "T_trials": 30,
+    "penalty_bound": 19001,
+    "final_classification": "NOT_SUPPORTED",
+    "verdict_explanation": "Execution-driven adaptive search did not demonstrate statistically significant and practically meaningful superiority over independent Best-of-100 search.",
+    "primary_comparison_C_vs_A": {
+      "continuous_dual_valid": {
+        "status": "COMPLETED",
+        "T_total": 30,
+        "T_dual_valid": 30,
+        "dual_valid_rate": 1.0,
+        "dual_valid_trial_ids": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30
+        ],
+        "mean_delta": 0.3333,
+        "median_delta": 0.5,
+        "mean_x": 1272.6667,
+        "mean_y": 1272.3333,
+        "bootstrap_ci_95": [
+          -6.1008,
+          6.7
+        ],
+        "wilcoxon_stat": 216.0,
+        "wilcoxon_raw_p": 0.9741132070078699,
+        "practical_criterion_met": false,
+        "finite_differences": [
+          -14.0,
+          0.0,
+          -38.0,
+          30.0,
+          -16.0,
+          9.0,
+          23.0,
+          -15.0,
+          1.0,
+          -21.0,
+          -19.0,
+          -36.0,
+          27.0,
+          14.0,
+          27.0,
+          3.0,
+          2.0,
+          -7.0,
+          -9.0,
+          2.0,
+          12.0,
+          12.0,
+          -1.0,
+          -4.0,
+          -13.0,
+          3.0,
+          -2.0,
+          12.0,
+          37.0,
+          -9.0
+        ],
+        "wilcoxon_holm_adj_p": 0.9741132070078699
+      },
+      "binary_reliability": {
+        "Arm_C_valid_count": 30,
+        "Arm_C_fail_count": 0,
+        "Arm_C_valid_rate": 1.0,
+        "Arm_A_valid_count": 30,
+        "Arm_A_fail_count": 0,
+        "Arm_A_valid_rate": 1.0,
+        "contingency_table": {
+          "both_valid": 30,
+          "Arm_A_valid_Arm_C_fail": 0,
+          "Arm_A_fail_Arm_C_valid": 0,
+          "both_fail": 0
+        },
+        "discordant_pairs": {
+          "Arm_C_fails_only": 0,
+          "Arm_A_fails_only": 0,
+          "total_discordant": 0
+        },
+        "risk_difference_fail_x_minus_y": 0.0,
+        "risk_difference_95_ci": [
+          0.0,
+          0.0
+        ],
+        "mcnemar_exact_p_value": 1.0,
+        "reliability_failure_triggered": false
+      },
+      "bounded_imputation_sensitivity": {
+        "T_total": 30,
+        "penalty_score_used": 19001,
+        "imputed_mean_delta": 0.3333,
+        "imputed_median_delta": 0.5,
+        "imputed_bootstrap_ci_95": [
+          -6.1008,
+          6.7
+        ],
+        "imputed_wilcoxon_stat": 216.0,
+        "imputed_wilcoxon_raw_p": 0.9741132070078699,
+        "sensitivity_criterion_met": false,
+        "imputed_differences": [
+          -14.0,
+          0.0,
+          -38.0,
+          30.0,
+          -16.0,
+          9.0,
+          23.0,
+          -15.0,
+          1.0,
+          -21.0,
+          -19.0,
+          -36.0,
+          27.0,
+          14.0,
+          27.0,
+          3.0,
+          2.0,
+          -7.0,
+          -9.0,
+          2.0,
+          12.0,
+          12.0,
+          -1.0,
+          -4.0,
+          -13.0,
+          3.0,
+          -2.0,
+          12.0,
+          37.0,
+          -9.0
+        ]
+      }
+    },
+    "secondary_comparison_C_vs_B": {
+      "continuous_dual_valid": {
+        "status": "COMPLETED",
+        "T_total": 30,
+        "T_dual_valid": 16,
+        "dual_valid_rate": 0.5333,
+        "dual_valid_trial_ids": [
+          1,
+          5,
+          6,
+          9,
+          10,
+          11,
+          13,
+          17,
+          18,
+          19,
+          21,
+          23,
+          24,
+          26,
+          27,
+          28
+        ],
+        "mean_delta": -11.4375,
+        "median_delta": 0.5,
+        "mean_x": 1272.625,
+        "mean_y": 1284.0625,
+        "bootstrap_ci_95": [
+          -25.5625,
+          1.1891
+        ],
+        "wilcoxon_stat": 42.0,
+        "wilcoxon_raw_p": 0.3062337331376457,
+        "practical_criterion_met": false,
+        "finite_differences": [
+          31.0,
+          -59.0,
+          1.0,
+          12.0,
+          -28.0,
+          -18.0,
+          0.0,
+          7.0,
+          -19.0,
+          -65.0,
+          1.0,
+          15.0,
+          1.0,
+          -60.0,
+          -11.0,
+          9.0
+        ],
+        "wilcoxon_holm_adj_p": 0.6124674662752914
+      },
+      "binary_reliability": {
+        "Arm_C_valid_count": 30,
+        "Arm_C_fail_count": 0,
+        "Arm_C_valid_rate": 1.0,
+        "Arm_B_valid_count": 16,
+        "Arm_B_fail_count": 14,
+        "Arm_B_valid_rate": 0.5333,
+        "contingency_table": {
+          "both_valid": 16,
+          "Arm_B_valid_Arm_C_fail": 0,
+          "Arm_B_fail_Arm_C_valid": 14,
+          "both_fail": 0
+        },
+        "discordant_pairs": {
+          "Arm_C_fails_only": 0,
+          "Arm_B_fails_only": 14,
+          "total_discordant": 14
+        },
+        "risk_difference_fail_x_minus_y": -0.4667,
+        "risk_difference_95_ci": [
+          -0.6452,
+          -0.2881
+        ],
+        "mcnemar_exact_p_value": 0.0001220703125,
+        "reliability_failure_triggered": false
+      },
+      "bounded_imputation_sensitivity": {
+        "T_total": 30,
+        "penalty_score_used": 19001,
+        "imputed_mean_delta": -8279.3,
+        "imputed_median_delta": -62.5,
+        "imputed_bootstrap_ci_95": [
+          -11235.9025,
+          -5322.93
+        ],
+        "imputed_wilcoxon_stat": 42.0,
+        "imputed_wilcoxon_raw_p": 0.0001469948166845389,
+        "sensitivity_criterion_met": true,
+        "imputed_differences": [
+          31.0,
+          -17724.0,
+          -17764.0,
+          -17714.0,
+          -59.0,
+          1.0,
+          -17721.0,
+          -17719.0,
+          12.0,
+          -28.0,
+          -18.0,
+          -17753.0,
+          0.0,
+          -17711.0,
+          -17721.0,
+          -17738.0,
+          7.0,
+          -19.0,
+          -65.0,
+          -17724.0,
+          1.0,
+          -17714.0,
+          15.0,
+          1.0,
+          -17734.0,
+          -60.0,
+          -11.0,
+          9.0,
+          -17721.0,
+          -17738.0
+        ]
+      }
+    },
+    "tertiary_comparison_B_vs_A": {
+      "continuous_dual_valid": {
+        "status": "COMPLETED",
+        "T_total": 30,
+        "T_dual_valid": 16,
+        "dual_valid_rate": 0.5333,
+        "dual_valid_trial_ids": [
+          1,
+          5,
+          6,
+          9,
+          10,
+          11,
+          13,
+          17,
+          18,
+          19,
+          21,
+          23,
+          24,
+          26,
+          27,
+          28
+        ],
+        "mean_delta": 9.75,
+        "median_delta": 7.5,
+        "mean_x": 1284.0625,
+        "mean_y": 1274.3125,
+        "bootstrap_ci_95": [
+          -2.6875,
+          23.0016
+        ],
+        "wilcoxon_stat": 41.5,
+        "wilcoxon_raw_p": 0.1704558366891279,
+        "practical_criterion_met": false,
+        "finite_differences": [
+          -45.0,
+          43.0,
+          8.0,
+          -11.0,
+          7.0,
+          -1.0,
+          27.0,
+          -5.0,
+          12.0,
+          56.0,
+          11.0,
+          -16.0,
+          -5.0,
+          63.0,
+          9.0,
+          3.0
+        ],
+        "wilcoxon_holm_adj_p": 0.5113675100673837
+      },
+      "binary_reliability": {
+        "Arm_B_valid_count": 16,
+        "Arm_B_fail_count": 14,
+        "Arm_B_valid_rate": 0.5333,
+        "Arm_A_valid_count": 30,
+        "Arm_A_fail_count": 0,
+        "Arm_A_valid_rate": 1.0,
+        "contingency_table": {
+          "both_valid": 16,
+          "Arm_A_valid_Arm_B_fail": 14,
+          "Arm_A_fail_Arm_B_valid": 0,
+          "both_fail": 0
+        },
+        "discordant_pairs": {
+          "Arm_B_fails_only": 14,
+          "Arm_A_fails_only": 0,
+          "total_discordant": 14
+        },
+        "risk_difference_fail_x_minus_y": 0.4667,
+        "risk_difference_95_ci": [
+          0.2881,
+          0.6452
+        ],
+        "mcnemar_exact_p_value": 0.0001220703125,
+        "reliability_failure_triggered": true
+      },
+      "bounded_imputation_sensitivity": {
+        "T_total": 30,
+        "penalty_score_used": 19001,
+        "imputed_mean_delta": 8279.6333,
+        "imputed_median_delta": 59.5,
+        "imputed_bootstrap_ci_95": [
+          5322.8333,
+          11236.9008
+        ],
+        "imputed_wilcoxon_stat": 41.5,
+        "imputed_wilcoxon_raw_p": 8.52005345321563e-05,
+        "sensitivity_criterion_met": false,
+        "imputed_differences": [
+          -45.0,
+          17724.0,
+          17726.0,
+          17744.0,
+          43.0,
+          8.0,
+          17744.0,
+          17704.0,
+          -11.0,
+          7.0,
+          -1.0,
+          17717.0,
+          27.0,
+          17725.0,
+          17748.0,
+          17741.0,
+          -5.0,
+          12.0,
+          56.0,
+          17726.0,
+          11.0,
+          17726.0,
+          -16.0,
+          -5.0,
+          17721.0,
+          63.0,
+          9.0,
+          3.0,
+          17758.0,
+          17729.0
+        ]
+      }
+    },
+    "holm_bonferroni_summary": {
+      "raw_p_values": {
+        "C_vs_A": 0.9741132070078699,
+        "C_vs_B": 0.3062337331376457,
+        "B_vs_A": 0.1704558366891279
+      },
+      "adjusted_p_values": {
+        "B_vs_A": 0.5113675100673837,
+        "C_vs_B": 0.6124674662752914,
+        "C_vs_A": 0.9741132070078699
+      }
+    }
+  },
+  "trials": [
+    {
+      "trial_id": 1,
+      "seed": 30301,
+      "duration_sec": 7217.86,
+      "arm_a": {
+        "status": "VALID",
+        "selected_candidate_id": "T01_A_C011",
+        "dev_score": 222,
+        "valid_count": 52,
+        "duration_sec": 2267.37,
+        "hidden_score": 1292,
+        "hidden_avg_colors": 6.46,
+        "hidden_valid": true,
+        "hidden_runtime_ms": 379.36
+      },
+      "arm_b": {
+        "status": "VALID",
+        "selected_candidate_id": "T01_B_G10_C01",
+        "dev_score": 221,
+        "valid_count": 80,
+        "duration_sec": 2576.92,
+        "blind_selection_details": {
+          "raw_response": "SELECTED_CANDIDATE: Candidate_01\nReasoning: Candidate_01 integrates Welsh-Powell, DSATUR with randomization, RLF with incremental degree updates, and Kempe chain refinement, offering a strong balance of heuristic diversity and optimization depth for graph coloring.",
+          "prompt_hash": "79ef578292848d351d41caa862b69cd0acf46d82de68e13cde9178fa4b2d1c90"
+        },
+        "hidden_score": 1247,
+        "hidden_avg_colors": 6.235,
+        "hidden_valid": true,
+        "hidden_runtime_ms": 1696.88
+      },
+      "arm_c": {
+        "status": "VALID",
+        "selected_candidate_id": "T01_C_G10_C09",
+        "dev_score": 221,
+        "valid_count": 94,
+        "duration_sec": 2373.57,
+        "hidden_score": 1278,
+        "hidden_avg_colors": 6.39,
+        "hidden_valid": true,
+        "hidden_runtime_ms": 777.52
+      },
+      "checkpoints": {
+        "trial_id": 1,
+        "checkpoints": [
+          1,
+          5,
+          10,
+          20,
+          50,
+          100
+        ],
+        "Arm_A_Independent_Best_of_N": {
+          "curve": {
+            "1": 228,
+            "5": 224,
+            "10": 224,
+            "20": 222,
+            "50": 222,
+            "100": 222
+          },
+          "nature": "Retrospective and descriptive; does not represent adaptive behavior."
+        },
+        "Arm_B_Blind_Iterative": {
+          "curve": {
+            "1": null,
+            "5": 223,
+            "10": 223,
+            "20": 222,
+            "50": 219,
+            "100": 219
+          },
+          "nature": "Textual context history only; zero execution feedback."
+        },
+        "Arm_C_Amaura": {
+          "curve": {
+            "1": 231,
+            "5": 222,
+            "10": 222,
+            "20": 222,
+            "50": 222,
+            "100": 221
+          },
+          "nature": "Adaptive execution-feedback-driven discovery."
+        }
+      }
+    },
+    {
+      "trial_id": 2,
+      "seed": 30302,
+      "duration_sec": 5707.84,
+      "arm_a": {
+        "status": "VALID",
+        "selected_candidate_id": "T02_A_C080",
+        "dev_score": 222,
+        "valid_count": 53,
+        "duration_sec": 1943.26,
+        "hidden_score": 1277,
+        "hidden_avg_colors": 6.385,
+        "hidden_valid": true,
+        "hidden_runtime_ms": 528.4
+      },
+      "arm_b": {
+        "status": "ARM_FAILURE_NO_VALID_CANDIDATE",
+        "selected_candidate_id": "T02_B_G10_C01",
+        "dev_score": null,
+        "valid_count": 5,
+        "duration_sec": 1849.29,
+        "blind_selection_details": {
+          "raw_response": "SELECTED_CANDIDATE: Candidate_01\nReasoning: Candidate_01 demonstrates strong theoretical grounding with multiple advanced ordering heuristics (degeneracy, Welsh-Powell, DSATUR, RLF, random) and an optimized Kempe chain-based local search that efficiently reduces color count while maintaining correctness and avoiding unnecessary recomputation.",
+          "prompt_hash": "7e769ee549058d6f023f783b2c4929b1aca2074c2384e495331571b32898fe20"
+        },
+        "hidden_score": null,
+        "hidden_avg_colors": null,
+        "hidden_valid": false,
+        "hidden_runtime_ms": 0.0
+      },
+      "arm_c": {
+        "status": "VALID",
+        "selected_candidate_id": "T02_C_G07_C01",
+        "dev_score": 219,
+        "valid_count": 98,
+        "duration_sec": 1915.29,
+        "hidden_score": 1277,
+        "hidden_avg_colors": 6.385,
+        "hidden_valid": true,
+        "hidden_runtime_ms": 2221.07
+      },
+      "checkpoints": {
+        "trial_id": 2,
+        "checkpoints": [
+          1,
+          5,
+          10,
+          20,
+          50,
+          100
+        ],
+        "Arm_A_Independent_Best_of_N": {
+          "curve": {
+            "1": null,
+            "5": 228,
+            "10": 227,
+            "20": 226,
+            "50": 223,
+            "100": 222
+          },
+          "nature": "Retrospective and descriptive; does not represent adaptive behavior."
+        },
+        "Arm_B_Blind_Iterative": {
+          "curve": {
+            "1": null,
+            "5": 224,
+            "10": 224,
+            "20": 224,
+            "50": 224,
+            "100": 224
+          },
+          "nature": "Textual context history only; zero execution feedback."
+        },
+        "Arm_C_Amaura": {
+          "curve": {
+            "1": 224,
+            "5": 223,
+            "10": 223,
+            "20": 222,
+            "50": 221,
+            "100": 219
+          },
+          "nature": "Adaptive execution-feedback-driven discovery."
+        }
+      }
+    },
+    {
+      "trial_id": 3,
+      "seed": 30303,
+      "duration_sec": 5299.34,
+      "arm_a": {
+        "status": "VALID",
+        "selected_candidate_id": "T03_A_C029",
+        "dev_score": 222,
+        "valid_count": 53,
+        "duration_sec": 2201.91,
+        "hidden_score": 1275,
+        "hidden_avg_colors": 6.375,
+        "hidden_valid": true,
+        "hidden_runtime_ms": 536.05
+      },
+      "arm_b": {
+        "status": "ARM_FAILURE_NO_VALID_CANDIDATE",
+        "selected_candidate_id": "T03_B_G10_C01",
+        "dev_score": null,
+        "valid_count": 6,
+        "duration_sec": 1276.64,
+        "blind_selection_details": {
+          "raw_response": "SELECTED_CANDIDATE: Candidate_01\nReasoning: Candidate_01 implements a robust DSATUR algorithm with saturation tracking and Kempe chain refinement, offering strong theoretical grounding and practical effectiveness for graph coloring.",
+          "prompt_hash": "13ee42404cc88e3d43c3e5ef0f9aa0723e44fe809cadf62c55b963492ca1f9aa"
+        },
+        "hidden_score": null,
+        "hidden_avg_colors": null,
+        "hidden_valid": false,
+        "hidden_runtime_ms": 0.0
+      },
+      "arm_c": {
+        "status": "VALID",
+        "selected_candidate_id": "T03_C_G10_C06",
+        "dev_score": 219,
+        "valid_count": 94,
+        "duration_sec": 1820.79,
+        "hidden_score": 1237,
+        "hidden_avg_colors": 6.185,
+        "hidden_valid": true,
+        "hidden_runtime_ms": 3659.35
+      },
+      "checkpoints": {
+        "trial_id": 3,
+        "checkpoints": [
+          1,
+          5,
+          10,
+          20,
+          50,
+          100
+        ],
+        "Arm_A_Independent_Best_of_N": {
+          "curve": {
+            "1": 249,
+            "5": 230,
+            "10": 225,
+            "20": 223,
+            "50": 222,
+            "100": 222
+          },
+          "nature": "Retrospective and descriptive; does not represent adaptive behavior."
+        },
+        "Arm_B_Blind_Iterative": {
+          "curve": {
+            "1": null,
+            "5": 233,
+            "10": 223,
+            "20": 223,
+            "50": 223,
+            "100": 223
+          },
+          "nature": "Textual context history only; zero execution feedback."
+        },
+        "Arm_C_Amaura": {
+          "curve": {
+            "1": 228,
+            "5": 228,
+            "10": 225,
+            "20": 221,
+            "50": 221,
+            "100": 219
+          },
+          "nature": "Adaptive execution-feedback-driven discovery."
+        }
+      }
+    },
+    {
+      "trial_id": 4,
+      "seed": 30304,
+      "duration_sec": 6401.79,
+      "arm_a": {
+        "status": "VALID",
+        "selected_candidate_id": "T04_A_C072",
+        "dev_score": 222,
+        "valid_count": 50,
+        "duration_sec": 2595.68,
+        "hidden_score": 1257,
+        "hidden_avg_colors": 6.285,
+        "hidden_valid": true,
+        "hidden_runtime_ms": 946.15
+      },
+      "arm_b": {
+        "status": "ARM_FAILURE_NO_VALID_CANDIDATE",
+        "selected_candidate_id": "T04_B_G10_C01",
+        "dev_score": null,
+        "valid_count": 13,
+        "duration_sec": 2299.67,
+        "blind_selection_details": {
+          "raw_response": "SELECTED_CANDIDATE: Candidate_01\nReasoning: Candidate_01 combines strong initial heuristics (DSATUR, Welsh-Powell, Smallest-Last, RLF) with a degeneracy lower bound check and an advanced iterated local search using Kempe chains and adaptive restarts, offering a rigorous and well-balanced approach to graph coloring.",
+          "prompt_hash": "6b6e3d358cd0737aa7882d7d84ddb13a139fd617af9c17f6332c11e4d9a88647"
+        },
+        "hidden_score": null,
+        "hidden_avg_colors": null,
+        "hidden_valid": false,
+        "hidden_runtime_ms": 0.0
+      },
+      "arm_c": {
+        "status": "VALID",
+        "selected_candidate_id": "T04_C_G03_C01",
+        "dev_score": 222,
+        "valid_count": 91,
+        "duration_sec": 1506.43,
+        "hidden_score": 1287,
+        "hidden_avg_colors": 6.435,
+        "hidden_valid": true,
+        "hidden_runtime_ms": 203.1
+      },
+      "checkpoints": {
+        "trial_id": 4,
+        "checkpoints": [
+          1,
+          5,
+          10,
+          20,
+          50,
+          100
+        ],
+        "Arm_A_Independent_Best_of_N": {
+          "curve": {
+            "1": 224,
+            "5": 224,
+            "10": 224,
+            "20": 223,
+            "50": 223,
+            "100": 222
+          },
+          "nature": "Retrospective and descriptive; does not represent adaptive behavior."
+        },
+        "Arm_B_Blind_Iterative": {
+          "curve": {
+            "1": 223,
+            "5": 223,
+            "10": 223,
+            "20": 223,
+            "50": 223,
+            "100": 223
+          },
+          "nature": "Textual context history only; zero execution feedback."
+        },
+        "Arm_C_Amaura": {
+          "curve": {
+            "1": 226,
+            "5": 226,
+            "10": 226,
+            "20": 226,
+            "50": 222,
+            "100": 222
+          },
+          "nature": "Adaptive execution-feedback-driven discovery."
+        }
+      }
+    },
+    {
+      "trial_id": 5,
+      "seed": 30305,
+      "duration_sec": 6692.95,
+      "arm_a": {
+        "status": "VALID",
+        "selected_candidate_id": "T05_A_C048",
+        "dev_score": 222,
+        "valid_count": 53,
+        "duration_sec": 2365.68,
+        "hidden_score": 1287,
+        "hidden_avg_colors": 6.435,
+        "hidden_valid": true,
+        "hidden_runtime_ms": 266.98
+      },
+      "arm_b": {
+        "status": "VALID",
+        "selected_candidate_id": "T05_B_G10_C01",
+        "dev_score": 235,
+        "valid_count": 51,
+        "duration_sec": 2346.91,
+        "blind_selection_details": {
+          "raw_response": "SELECTED_CANDIDATE: Candidate_01\nReasoning: Candidate_01 provides a well-balanced combination of Welsh-Powell, degeneracy ordering, DSATUR with saturation buckets, and Kempe chain reduction, offering strong theoretical grounding and practical effectiveness for graph coloring within constraints.",
+          "prompt_hash": "808341fa55d2f40cd519aa3722d714371a8590b9a8a0d203e74dd37cf15aa066"
+        },
+        "hidden_score": 1330,
+        "hidden_avg_colors": 6.65,
+        "hidden_valid": true,
+        "hidden_runtime_ms": 222.28
+      },
+      "arm_c": {
+        "status": "VALID",
+        "selected_candidate_id": "T05_C_G04_C07",
+        "dev_score": 221,
+        "valid_count": 86,
+        "duration_sec": 1980.37,
+        "hidden_score": 1271,
+        "hidden_avg_colors": 6.355,
+        "hidden_valid": true,
+        "hidden_runtime_ms": 575.44
+      },
+      "checkpoints": {
+        "trial_id": 5,
+        "checkpoints": [
+          1,
+          5,
+          10,
+          20,
+          50,
+          100
+        ],
+        "Arm_A_Independent_Best_of_N": {
+          "curve": {
+            "1": null,
+            "5": 225,
+            "10": 225,
+            "20": 225,
+            "50": 222,
+            "100": 222
+          },
+          "nature": "Retrospective and descriptive; does not represent adaptive behavior."
+        },
+        "Arm_B_Blind_Iterative": {
+          "curve": {
+            "1": 224,
+            "5": 223,
+            "10": 223,
+            "20": 223,
+            "50": 223,
+            "100": 222
+          },
+          "nature": "Textual context history only; zero execution feedback."
+        },
+        "Arm_C_Amaura": {
+          "curve": {
+            "1": 232,
+            "5": 232,
+            "10": 224,
+            "20": 223,
+            "50": 221,
+            "100": 221
+          },
+          "nature": "Adaptive execution-feedback-driven discovery."
+        }
+      }
+    },
+    {
+      "trial_id": 6,
+      "seed": 30306,
+      "duration_sec": 6270.78,
+      "arm_a": {
+        "status": "VALID",
+        "selected_candidate_id": "T06_A_C030",
+        "dev_score": 222,
+        "valid_count": 49,
+        "duration_sec": 2187.07,
+        "hidden_score": 1272,
+        "hidden_avg_colors": 6.36,
+        "hidden_valid": true,
+        "hidden_runtime_ms": 1656.92
+      },
+      "arm_b": {
+        "status": "VALID",
+        "selected_candidate_id": "T06_B_G10_C01",
+        "dev_score": 223,
+        "valid_count": 88,
+        "duration_sec": 1765.95,
+        "blind_selection_details": {
+          "raw_response": "SELECTED_CANDIDATE: Candidate_01\nReasoning: Candidate_01 combines multiple strong heuristics (DSATUR, RLF, smallest-last, Welsh-Powell) with Kempe chain refinement and dynamic tie-breaking, offering a robust and well-rounded approach to graph coloring that balances solution quality and computational efficiency.",
+          "prompt_hash": "243c64a46b4328724259d65f7c142d9369aae178b2d859b4024eda0466ff658e"
+        },
+        "hidden_score": 1280,
+        "hidden_avg_colors": 6.4,
+        "hidden_valid": true,
+        "hidden_runtime_ms": 292.02
+      },
+      "arm_c": {
+        "status": "VALID",
+        "selected_candidate_id": "T06_C_G08_C06",
+        "dev_score": 221,
+        "valid_count": 93,
+        "duration_sec": 2317.75,
+        "hidden_score": 1281,
+        "hidden_avg_colors": 6.405,
+        "hidden_valid": true,
+        "hidden_runtime_ms": 247.36
+      },
+      "checkpoints": {
+        "trial_id": 6,
+        "checkpoints": [
+          1,
+          5,
+          10,
+          20,
+          50,
+          100
+        ],
+        "Arm_A_Independent_Best_of_N": {
+          "curve": {
+            "1": 228,
+            "5": 224,
+            "10": 224,
+            "20": 223,
+            "50": 222,
+            "100": 222
+          },
+          "nature": "Retrospective and descriptive; does not represent adaptive behavior."
+        },
+        "Arm_B_Blind_Iterative": {
+          "curve": {
+            "1": null,
+            "5": 230,
+            "10": 230,
+            "20": 222,
+            "50": 222,
+            "100": 222
+          },
+          "nature": "Textual context history only; zero execution feedback."
+        },
+        "Arm_C_Amaura": {
+          "curve": {
+            "1": null,
+            "5": 223,
+            "10": 223,
+            "20": 222,
+            "50": 222,
+            "100": 221
+          },
+          "nature": "Adaptive execution-feedback-driven discovery."
+        }
+      }
+    },
+    {
+      "trial_id": 7,
+      "seed": 30307,
+      "duration_sec": 5432.4,
+      "arm_a": {
+        "status": "VALID",
+        "selected_candidate_id": "T07_A_C008",
+        "dev_score": 222,
+        "valid_count": 52,
+        "duration_sec": 2177.89,
+        "hidden_score": 1257,
+        "hidden_avg_colors": 6.285,
+        "hidden_valid": true,
+        "hidden_runtime_ms": 4861.37
+      },
+      "arm_b": {
+        "status": "ARM_FAILURE_NO_VALID_CANDIDATE",
+        "selected_candidate_id": "T07_B_G10_C08",
+        "dev_score": null,
+        "valid_count": 61,
+        "duration_sec": 1425.72,
+        "blind_selection_details": {
+          "raw_response": "SELECTED_CANDIDATE: Candidate_08\nReasoning: Candidate_08 combines DSATUR and RLF heuristics with Welsh-Powell and Smallest-Last orderings, then applies Kempe chain reduction, offering a more diverse and robust set of initial colorings for better optimization.",
+          "prompt_hash": "657f35a7a5f4876cece7256e306f0d98177c50d637524022014157f90b95f0d2"
+        },
+        "hidden_score": null,
+        "hidden_avg_colors": null,
+        "hidden_valid": false,
+        "hidden_runtime_ms": 0.0
+      },
+      "arm_c": {
+        "status": "VALID",
+        "selected_candidate_id": "T07_C_G10_C03",
+        "dev_score": 222,
+        "valid_count": 94,
+        "duration_sec": 1828.79,
+        "hidden_score": 1280,
+        "hidden_avg_colors": 6.4,
+        "hidden_valid": true,
+        "hidden_runtime_ms": 443.61
+      },
+      "checkpoints": {
+        "trial_id": 7,
+        "checkpoints": [
+          1,
+          5,
+          10,
+          20,
+          50,
+          100
+        ],
+        "Arm_A_Independent_Best_of_N": {
+          "curve": {
+            "1": null,
+            "5": 231,
+            "10": 222,
+            "20": 222,
+            "50": 222,
+            "100": 222
+          },
+          "nature": "Retrospective and descriptive; does not represent adaptive behavior."
+        },
+        "Arm_B_Blind_Iterative": {
+          "curve": {
+            "1": null,
+            "5": 223,
+            "10": 223,
+            "20": 223,
+            "50": 223,
+            "100": 222
+          },
+          "nature": "Textual context history only; zero execution feedback."
+        },
+        "Arm_C_Amaura": {
+          "curve": {
+            "1": 227,
+            "5": 225,
+            "10": 225,
+            "20": 225,
+            "50": 224,
+            "100": 222
+          },
+          "nature": "Adaptive execution-feedback-driven discovery."
+        }
+      }
+    },
+    {
+      "trial_id": 8,
+      "seed": 30308,
+      "duration_sec": 4790.68,
+      "arm_a": {
+        "status": "VALID",
+        "selected_candidate_id": "T08_A_C027",
+        "dev_score": 222,
+        "valid_count": 54,
+        "duration_sec": 2186.71,
+        "hidden_score": 1297,
+        "hidden_avg_colors": 6.485,
+        "hidden_valid": true,
+        "hidden_runtime_ms": 452.26
+      },
+      "arm_b": {
+        "status": "ARM_FAILURE_NO_VALID_CANDIDATE",
+        "selected_candidate_id": "T08_B_G10_C04",
+        "dev_score": null,
+        "valid_count": 7,
+        "duration_sec": 1367.24,
+        "blind_selection_details": {
+          "raw_response": "SELECTED_CANDIDATE: Candidate_04\nReasoning: Candidate_04 balances solution quality and computational efficiency by limiting Kempe reduction iterations and random restarts, making it more suitable for larger graphs while still employing effective heuristics like DSATUR, RLF, and Kempe chain local search.",
+          "prompt_hash": "c24917e111eeb45f3fc2f9803de556764d4de5c4593e05561eb8ff617ee25632"
+        },
+        "hidden_score": null,
+        "hidden_avg_colors": null,
+        "hidden_valid": false,
+        "hidden_runtime_ms": 0.0
+      },
+      "arm_c": {
+        "status": "VALID",
+        "selected_candidate_id": "T08_C_G03_C01",
+        "dev_score": 221,
+        "valid_count": 86,
+        "duration_sec": 1236.72,
+        "hidden_score": 1282,
+        "hidden_avg_colors": 6.41,
+        "hidden_valid": true,
+        "hidden_runtime_ms": 330.41
+      },
+      "checkpoints": {
+        "trial_id": 8,
+        "checkpoints": [
+          1,
+          5,
+          10,
+          20,
+          50,
+          100
+        ],
+        "Arm_A_Independent_Best_of_N": {
+          "curve": {
+            "1": 224,
+            "5": 223,
+            "10": 223,
+            "20": 223,
+            "50": 222,
+            "100": 222
+          },
+          "nature": "Retrospective and descriptive; does not represent adaptive behavior."
+        },
+        "Arm_B_Blind_Iterative": {
+          "curve": {
+            "1": null,
+            "5": 235,
+            "10": 225,
+            "20": 225,
+            "50": 225,
+            "100": 221
+          },
+          "nature": "Textual context history only; zero execution feedback."
+        },
+        "Arm_C_Amaura": {
+          "curve": {
+            "1": 232,
+            "5": 222,
+            "10": 222,
+            "20": 222,
+            "50": 221,
+            "100": 221
+          },
+          "nature": "Adaptive execution-feedback-driven discovery."
+        }
+      }
+    },
+    {
+      "trial_id": 9,
+      "seed": 30309,
+      "duration_sec": 8359.38,
+      "arm_a": {
+        "status": "VALID",
+        "selected_candidate_id": "T09_A_C005",
+        "dev_score": 222,
+        "valid_count": 48,
+        "duration_sec": 2889.53,
+        "hidden_score": 1281,
+        "hidden_avg_colors": 6.405,
+        "hidden_valid": true,
+        "hidden_runtime_ms": 361.69
+      },
+      "arm_b": {
+        "status": "VALID",
+        "selected_candidate_id": "T09_B_G10_C05",
+        "dev_score": 224,
+        "valid_count": 89,
+        "duration_sec": 2666.33,
+        "blind_selection_details": {
+          "raw_response": "SELECTED_CANDIDATE: Candidate_05\nReasoning: Candidate_05 combines multiple strong initial coloring strategies (DSATUR, RLF, Welsh-Powell, and Smallest-Last) with Kempe chain refinement, providing robust performance across diverse graph structures while maintaining theoretical soundness and avoiding redundant code duplication seen in other candidates.",
+          "prompt_hash": "a77656dd8683339f62e5e707f4b299a7ea0e1ab252f4dd1e775194cc1fff34f4"
+        },
+        "hidden_score": 1270,
+        "hidden_avg_colors": 6.35,
+        "hidden_valid": true,
+        "hidden_runtime_ms": 515.41
+      },
+      "arm_c": {
+        "status": "VALID",
+        "selected_candidate_id": "T09_C_G02_C08",
+        "dev_score": 221,
+        "valid_count": 87,
+        "duration_sec": 2803.51,
+        "hidden_score": 1282,
+        "hidden_avg_colors": 6.41,
+        "hidden_valid": true,
+        "hidden_runtime_ms": 1096.88
+      },
+      "checkpoints": {
+        "trial_id": 9,
+        "checkpoints": [
+          1,
+          5,
+          10,
+          20,
+          50,
+          100
+        ],
+        "Arm_A_Independent_Best_of_N": {
+          "curve": {
+            "1": null,
+            "5": 222,
+            "10": 222,
+            "20": 222,
+            "50": 222,
+            "100": 222
+          },
+          "nature": "Retrospective and descriptive; does not represent adaptive behavior."
+        },
+        "Arm_B_Blind_Iterative": {
+          "curve": {
+            "1": 231,
+            "5": 226,
+            "10": 225,
+            "20": 225,
+            "50": 223,
+            "100": 223
+          },
+          "nature": "Textual context history only; zero execution feedback."
+        },
+        "Arm_C_Amaura": {
+          "curve": {
+            "1": 231,
+            "5": 222,
+            "10": 222,
+            "20": 221,
+            "50": 221,
+            "100": 221
+          },
+          "nature": "Adaptive execution-feedback-driven discovery."
+        }
+      }
+    },
+    {
+      "trial_id": 10,
+      "seed": 30310,
+      "duration_sec": 8017.08,
+      "arm_a": {
+        "status": "VALID",
+        "selected_candidate_id": "T10_A_C017",
+        "dev_score": 222,
+        "valid_count": 59,
+        "duration_sec": 3017.3,
+        "hidden_score": 1275,
+        "hidden_avg_colors": 6.375,
+        "hidden_valid": true,
+        "hidden_runtime_ms": 303.52
+      },
+      "arm_b": {
+        "status": "VALID",
+        "selected_candidate_id": "T10_B_G10_C02",
+        "dev_score": 225,
+        "valid_count": 14,
+        "duration_sec": 2029.13,
+        "blind_selection_details": {
+          "raw_response": "SELECTED_CANDIDATE: Candidate_02\nReasoning: Candidate_02 combines strong constructive heuristics (DSATUR, RLF, Welsh-Powell) with an iterated local search that actively reduces color classes via Kempe chains and includes perturbation strategies to escape local optima, offering a balanced and rigorous approach to minimizing colors.",
+          "prompt_hash": "bdf6fcde7c6dd7bc07d0079c75b670b8b98f2d6d126fd17b0f2a33c932f7e446"
+        },
+        "hidden_score": 1282,
+        "hidden_avg_colors": 6.41,
+        "hidden_valid": true,
+        "hidden_runtime_ms": 1248.98
+      },
+      "arm_c": {
+        "status": "VALID",
+        "selected_candidate_id": "T10_C_G04_C01",
+        "dev_score": 220,
+        "valid_count": 93,
+        "duration_sec": 2970.65,
+        "hidden_score": 1254,
+        "hidden_avg_colors": 6.27,
+        "hidden_valid": true,
+        "hidden_runtime_ms": 925.15
+      },
+      "checkpoints": {
+        "trial_id": 10,
+        "checkpoints": [
+          1,
+          5,
+          10,
+          20,
+          50,
+          100
+        ],
+        "Arm_A_Independent_Best_of_N": {
+          "curve": {
+            "1": 223,
+            "5": 223,
+            "10": 223,
+            "20": 222,
+            "50": 222,
+            "100": 222
+          },
+          "nature": "Retrospective and descriptive; does not represent adaptive behavior."
+        },
+        "Arm_B_Blind_Iterative": {
+          "curve": {
+            "1": null,
+            "5": 222,
+            "10": 221,
+            "20": 221,
+            "50": 221,
+            "100": 221
+          },
+          "nature": "Textual context history only; zero execution feedback."
+        },
+        "Arm_C_Amaura": {
+          "curve": {
+            "1": 233,
+            "5": 225,
+            "10": 225,
+            "20": 221,
+            "50": 220,
+            "100": 220
+          },
+          "nature": "Adaptive execution-feedback-driven discovery."
+        }
+      }
+    },
+    {
+      "trial_id": 11,
+      "seed": 30311,
+      "duration_sec": 7556.44,
+      "arm_a": {
+        "status": "VALID",
+        "selected_candidate_id": "T11_A_C080",
+        "dev_score": 222,
+        "valid_count": 56,
+        "duration_sec": 2979.28,
+        "hidden_score": 1274,
+        "hidden_avg_colors": 6.37,
+        "hidden_valid": true,
+        "hidden_runtime_ms": 286.01
+      },
+      "arm_b": {
+        "status": "VALID",
+        "selected_candidate_id": "T11_B_G10_C01",
+        "dev_score": 226,
+        "valid_count": 97,
+        "duration_sec": 2103.44,
+        "blind_selection_details": {
+          "raw_response": "SELECTED_CANDIDATE: Candidate_01\nReasoning: Candidate_01 includes a Kempe reduction step that attempts to improve the coloring by reducing the number of colors, making it more likely to produce an optimal or near-optimal solution compared to other candidates that lack this refinement.",
+          "prompt_hash": "31b77754f8da7a440cee9360951a77e339e927eb25bff0972fe1a9230d1a59d2"
+        },
+        "hidden_score": 1273,
+        "hidden_avg_colors": 6.365,
+        "hidden_valid": true,
+        "hidden_runtime_ms": 192.4
+      },
+      "arm_c": {
+        "status": "VALID",
+        "selected_candidate_id": "T11_C_G05_C09",
+        "dev_score": 219,
+        "valid_count": 83,
+        "duration_sec": 2473.72,
+        "hidden_score": 1255,
+        "hidden_avg_colors": 6.275,
+        "hidden_valid": true,
+        "hidden_runtime_ms": 1987.3
+      },
+      "checkpoints": {
+        "trial_id": 11,
+        "checkpoints": [
+          1,
+          5,
+          10,
+          20,
+          50,
+          100
+        ],
+        "Arm_A_Independent_Best_of_N": {
+          "curve": {
+            "1": 230,
+            "5": 224,
+            "10": 224,
+            "20": 224,
+            "50": 223,
+            "100": 222
+          },
+          "nature": "Retrospective and descriptive; does not represent adaptive behavior."
+        },
+        "Arm_B_Blind_Iterative": {
+          "curve": {
+            "1": null,
+            "5": 222,
+            "10": 222,
+            "20": 221,
+            "50": 221,
+            "100": 221
+          },
+          "nature": "Textual context history only; zero execution feedback."
+        },
+        "Arm_C_Amaura": {
+          "curve": {
+            "1": 247,
+            "5": 233,
+            "10": 223,
+            "20": 223,
+            "50": 219,
+            "100": 219
+          },
+          "nature": "Adaptive execution-feedback-driven discovery."
+        }
+      }
+    },
+    {
+      "trial_id": 12,
+      "seed": 30312,
+      "duration_sec": 7656.33,
+      "arm_a": {
+        "status": "VALID",
+        "selected_candidate_id": "T12_A_C100",
+        "dev_score": 221,
+        "valid_count": 51,
+        "duration_sec": 2747.01,
+        "hidden_score": 1284,
+        "hidden_avg_colors": 6.42,
+        "hidden_valid": true,
+        "hidden_runtime_ms": 397.02
+      },
+      "arm_b": {
+        "status": "ARM_FAILURE_NO_VALID_CANDIDATE",
+        "selected_candidate_id": "T12_B_G10_C07",
+        "dev_score": null,
+        "valid_count": 19,
+        "duration_sec": 2397.85,
+        "blind_selection_details": {
+          "raw_response": "SELECTED_CANDIDATE: Candidate_07\nReasoning: Candidate_07 introduces a critical iteration limit (max_passes=10) in the Kempe chain local search, ensuring termination within the 50ms time budget for N\u2264100 while preserving solution quality through proven heuristics (DSATUR, RLF, degeneracy ordering) and maintaining correctness with lightweight validation. This explicit time-bound control addresses the core challenge of balancing solution quality with strict runtime constraints, making it the most theoretically sound choice for the given problem.",
+          "prompt_hash": "25606173f4100298f42eb0d36b173647cc87f342281e6f6721b2878749709c25"
+        },
+        "hidden_score": null,
+        "hidden_avg_colors": null,
+        "hidden_valid": false,
+        "hidden_runtime_ms": 0.0
+      },
+      "arm_c": {
+        "status": "VALID",
+        "selected_candidate_id": "T12_C_G02_C09",
+        "dev_score": 220,
+        "valid_count": 90,
+        "duration_sec": 2511.47,
+        "hidden_score": 1248,
+        "hidden_avg_colors": 6.24,
+        "hidden_valid": true,
+        "hidden_runtime_ms": 3694.22
+      },
+      "checkpoints": {
+        "trial_id": 12,
+        "checkpoints": [
+          1,
+          5,
+          10,
+          20,
+          50,
+          100
+        ],
+        "Arm_A_Independent_Best_of_N": {
+          "curve": {
+            "1": 225,
+            "5": 225,
+            "10": 225,
+            "20": 222,
+            "50": 222,
+            "100": 221
+          },
+          "nature": "Retrospective and descriptive; does not represent adaptive behavior."
+        },
+        "Arm_B_Blind_Iterative": {
+          "curve": {
+            "1": null,
+            "5": 242,
+            "10": 222,
+            "20": 222,
+            "50": 222,
+            "100": 222
+          },
+          "nature": "Textual context history only; zero execution feedback."
+        },
+        "Arm_C_Amaura": {
+          "curve": {
+            "1": null,
+            "5": 225,
+            "10": 224,
+            "20": 220,
+            "50": 220,
+            "100": 220
+          },
+          "nature": "Adaptive execution-feedback-driven discovery."
+        }
+      }
+    },
+    {
+      "trial_id": 13,
+      "seed": 30313,
+      "duration_sec": 6956.87,
+      "arm_a": {
+        "status": "VALID",
+        "selected_candidate_id": "T13_A_C019",
+        "dev_score": 221,
+        "valid_count": 51,
+        "duration_sec": 2184.53,
+        "hidden_score": 1251,
+        "hidden_avg_colors": 6.255,
+        "hidden_valid": true,
+        "hidden_runtime_ms": 2629.16
+      },
+      "arm_b": {
+        "status": "VALID",
+        "selected_candidate_id": "T13_B_G10_C02",
+        "dev_score": 225,
+        "valid_count": 92,
+        "duration_sec": 2310.91,
+        "blind_selection_details": {
+          "raw_response": "SELECTED_CANDIDATE: Candidate_02\nReasoning: Candidate_02 balances exploration and exploitation effectively with 3 random restarts and a Kempe chain iteration limit of 6, providing strong solution quality without excessive computation.",
+          "prompt_hash": "3c26135a5c3551ba6403ac9290ddfa95cd8934fd94ff737abfc53ddd58e61354"
+        },
+        "hidden_score": 1278,
+        "hidden_avg_colors": 6.39,
+        "hidden_valid": true,
+        "hidden_runtime_ms": 550.36
+      },
+      "arm_c": {
+        "status": "VALID",
+        "selected_candidate_id": "T13_C_G05_C06",
+        "dev_score": 221,
+        "valid_count": 88,
+        "duration_sec": 2461.42,
+        "hidden_score": 1278,
+        "hidden_avg_colors": 6.39,
+        "hidden_valid": true,
+        "hidden_runtime_ms": 472.87
+      },
+      "checkpoints": {
+        "trial_id": 13,
+        "checkpoints": [
+          1,
+          5,
+          10,
+          20,
+          50,
+          100
+        ],
+        "Arm_A_Independent_Best_of_N": {
+          "curve": {
+            "1": 228,
+            "5": 228,
+            "10": 224,
+            "20": 221,
+            "50": 221,
+            "100": 221
+          },
+          "nature": "Retrospective and descriptive; does not represent adaptive behavior."
+        },
+        "Arm_B_Blind_Iterative": {
+          "curve": {
+            "1": null,
+            "5": 224,
+            "10": 222,
+            "20": 222,
+            "50": 222,
+            "100": 222
+          },
+          "nature": "Textual context history only; zero execution feedback."
+        },
+        "Arm_C_Amaura": {
+          "curve": {
+            "1": null,
+            "5": 227,
+            "10": 227,
+            "20": 225,
+            "50": 221,
+            "100": 221
+          },
+          "nature": "Adaptive execution-feedback-driven discovery."
+        }
+      }
+    },
+    {
+      "trial_id": 14,
+      "seed": 30314,
+      "duration_sec": 7461.65,
+      "arm_a": {
+        "status": "VALID",
+        "selected_candidate_id": "T14_A_C010",
+        "dev_score": 222,
+        "valid_count": 49,
+        "duration_sec": 2485.09,
+        "hidden_score": 1276,
+        "hidden_avg_colors": 6.38,
+        "hidden_valid": true,
+        "hidden_runtime_ms": 677.48
+      },
+      "arm_b": {
+        "status": "ARM_FAILURE_NO_VALID_CANDIDATE",
+        "selected_candidate_id": "T14_B_G10_C02",
+        "dev_score": null,
+        "valid_count": 4,
+        "duration_sec": 2666.12,
+        "blind_selection_details": {
+          "raw_response": "SELECTED_CANDIDATE: Candidate_02\nReasoning: Candidate_02 combines DSATUR with bitmask optimization, RLF with randomization for tie-breaking, smallest-last ordering, and Kempe chain refinement focused on eliminating the last color class, providing a strong balance of theoretical rigor and practical effectiveness for graph coloring.",
+          "prompt_hash": "241b8a735f8491ca864bb731b4f1cf2efad94f81ebf976def43a9cebf855d100"
+        },
+        "hidden_score": null,
+        "hidden_avg_colors": null,
+        "hidden_valid": false,
+        "hidden_runtime_ms": 0.0
+      },
+      "arm_c": {
+        "status": "VALID",
+        "selected_candidate_id": "T14_C_G02_C02",
+        "dev_score": 222,
+        "valid_count": 93,
+        "duration_sec": 2310.44,
+        "hidden_score": 1290,
+        "hidden_avg_colors": 6.45,
+        "hidden_valid": true,
+        "hidden_runtime_ms": 122.8
+      },
+      "checkpoints": {
+        "trial_id": 14,
+        "checkpoints": [
+          1,
+          5,
+          10,
+          20,
+          50,
+          100
+        ],
+        "Arm_A_Independent_Best_of_N": {
+          "curve": {
+            "1": null,
+            "5": 227,
+            "10": 222,
+            "20": 222,
+            "50": 222,
+            "100": 222
+          },
+          "nature": "Retrospective and descriptive; does not represent adaptive behavior."
+        },
+        "Arm_B_Blind_Iterative": {
+          "curve": {
+            "1": null,
+            "5": null,
+            "10": 224,
+            "20": 224,
+            "50": 224,
+            "100": 224
+          },
+          "nature": "Textual context history only; zero execution feedback."
+        },
+        "Arm_C_Amaura": {
+          "curve": {
+            "1": null,
+            "5": 223,
+            "10": 223,
+            "20": 222,
+            "50": 222,
+            "100": 222
+          },
+          "nature": "Adaptive execution-feedback-driven discovery."
+        }
+      }
+    },
+    {
+      "trial_id": 15,
+      "seed": 30315,
+      "duration_sec": 7675.22,
+      "arm_a": {
+        "status": "VALID",
+        "selected_candidate_id": "T15_A_C100",
+        "dev_score": 220,
+        "valid_count": 54,
+        "duration_sec": 2736.5,
+        "hidden_score": 1253,
+        "hidden_avg_colors": 6.265,
+        "hidden_valid": true,
+        "hidden_runtime_ms": 3432.32
+      },
+      "arm_b": {
+        "status": "ARM_FAILURE_NO_VALID_CANDIDATE",
+        "selected_candidate_id": "T15_B_G10_C07",
+        "dev_score": null,
+        "valid_count": 3,
+        "duration_sec": 2487.31,
+        "blind_selection_details": {
+          "raw_response": "SELECTED_CANDIDATE: Candidate_07\nReasoning: Candidate_07 introduces a hybrid heuristic combining DSATUR with RLF-inspired restarts and adaptive tie-breaking, enhancing solution diversity and robustness while maintaining the strong Kempe refinement and lower-bound-driven early termination found in other top candidates.",
+          "prompt_hash": "4c0193e567a90c0d3d4ddee40c6fa8fb1f513b8a8d2f31711f26de5ea488a304"
+        },
+        "hidden_score": null,
+        "hidden_avg_colors": null,
+        "hidden_valid": false,
+        "hidden_runtime_ms": 0.0
+      },
+      "arm_c": {
+        "status": "VALID",
+        "selected_candidate_id": "T15_C_G04_C08",
+        "dev_score": 221,
+        "valid_count": 86,
+        "duration_sec": 2451.41,
+        "hidden_score": 1280,
+        "hidden_avg_colors": 6.4,
+        "hidden_valid": true,
+        "hidden_runtime_ms": 1863.84
+      },
+      "checkpoints": {
+        "trial_id": 15,
+        "checkpoints": [
+          1,
+          5,
+          10,
+          20,
+          50,
+          100
+        ],
+        "Arm_A_Independent_Best_of_N": {
+          "curve": {
+            "1": 225,
+            "5": 222,
+            "10": 222,
+            "20": 222,
+            "50": 222,
+            "100": 220
+          },
+          "nature": "Retrospective and descriptive; does not represent adaptive behavior."
+        },
+        "Arm_B_Blind_Iterative": {
+          "curve": {
+            "1": null,
+            "5": 233,
+            "10": 231,
+            "20": 231,
+            "50": 231,
+            "100": 231
+          },
+          "nature": "Textual context history only; zero execution feedback."
+        },
+        "Arm_C_Amaura": {
+          "curve": {
+            "1": null,
+            "5": 228,
+            "10": 225,
+            "20": 224,
+            "50": 221,
+            "100": 221
+          },
+          "nature": "Adaptive execution-feedback-driven discovery."
+        }
+      }
+    },
+    {
+      "trial_id": 16,
+      "seed": 30316,
+      "duration_sec": 8732.19,
+      "arm_a": {
+        "status": "VALID",
+        "selected_candidate_id": "T16_A_C073",
+        "dev_score": 220,
+        "valid_count": 45,
+        "duration_sec": 2959.54,
+        "hidden_score": 1260,
+        "hidden_avg_colors": 6.3,
+        "hidden_valid": true,
+        "hidden_runtime_ms": 2054.2
+      },
+      "arm_b": {
+        "status": "ARM_FAILURE_NO_VALID_CANDIDATE",
+        "selected_candidate_id": "T16_B_G10_C07",
+        "dev_score": null,
+        "valid_count": 4,
+        "duration_sec": 2778.33,
+        "blind_selection_details": {
+          "raw_response": "SELECTED_CANDIDATE: Candidate_07\nReasoning: Candidate_07 includes an exact bitmask-based coloring subroutine for small graphs (n \u2264 20), which guarantees optimal solutions for those cases, while still employing strong heuristics (DSATUR, RLF, Kempe reduction) for larger graphs, making it theoretically superior in rigor and solution quality.",
+          "prompt_hash": "bb07d42ee50a8f7d7998c13ea008bf1d606946ead9fd0cf35c8e435f62045d48"
+        },
+        "hidden_score": null,
+        "hidden_avg_colors": null,
+        "hidden_valid": false,
+        "hidden_runtime_ms": 0.0
+      },
+      "arm_c": {
+        "status": "VALID",
+        "selected_candidate_id": "T16_C_G09_C07",
+        "dev_score": 221,
+        "valid_count": 94,
+        "duration_sec": 2994.31,
+        "hidden_score": 1263,
+        "hidden_avg_colors": 6.315,
+        "hidden_valid": true,
+        "hidden_runtime_ms": 852.07
+      },
+      "checkpoints": {
+        "trial_id": 16,
+        "checkpoints": [
+          1,
+          5,
+          10,
+          20,
+          50,
+          100
+        ],
+        "Arm_A_Independent_Best_of_N": {
+          "curve": {
+            "1": 225,
+            "5": 223,
+            "10": 223,
+            "20": 223,
+            "50": 222,
+            "100": 220
+          },
+          "nature": "Retrospective and descriptive; does not represent adaptive behavior."
+        },
+        "Arm_B_Blind_Iterative": {
+          "curve": {
+            "1": null,
+            "5": 227,
+            "10": 224,
+            "20": 224,
+            "50": 224,
+            "100": 224
+          },
+          "nature": "Textual context history only; zero execution feedback."
+        },
+        "Arm_C_Amaura": {
+          "curve": {
+            "1": null,
+            "5": 225,
+            "10": 225,
+            "20": 223,
+            "50": 223,
+            "100": 221
+          },
+          "nature": "Adaptive execution-feedback-driven discovery."
+        }
+      }
+    },
+    {
+      "trial_id": 17,
+      "seed": 30317,
+      "duration_sec": 7720.77,
+      "arm_a": {
+        "status": "VALID",
+        "selected_candidate_id": "T17_A_C062",
+        "dev_score": 222,
+        "valid_count": 61,
+        "duration_sec": 2954.52,
+        "hidden_score": 1281,
+        "hidden_avg_colors": 6.405,
+        "hidden_valid": true,
+        "hidden_runtime_ms": 351.84
+      },
+      "arm_b": {
+        "status": "VALID",
+        "selected_candidate_id": "T17_B_G10_C01",
+        "dev_score": 223,
+        "valid_count": 95,
+        "duration_sec": 2588.63,
+        "blind_selection_details": {
+          "raw_response": "SELECTED_CANDIDATE: Candidate_01\nReasoning: Candidate_01 combines multiple strong heuristics (DSATUR, RLF, Smallest-Last, Welsh-Powell) with Kempe chain improvement and deterministic tie-breaking, providing a robust and rigorous approach to graph coloring.",
+          "prompt_hash": "1a9dad3e8b42fa55a7b80798218402f8dbfc8048a075f0566de5ad8b66c46e0f"
+        },
+        "hidden_score": 1276,
+        "hidden_avg_colors": 6.38,
+        "hidden_valid": true,
+        "hidden_runtime_ms": 301.94
+      },
+      "arm_c": {
+        "status": "VALID",
+        "selected_candidate_id": "T17_C_G05_C04",
+        "dev_score": 220,
+        "valid_count": 90,
+        "duration_sec": 2177.62,
+        "hidden_score": 1283,
+        "hidden_avg_colors": 6.415,
+        "hidden_valid": true,
+        "hidden_runtime_ms": 223.78
+      },
+      "checkpoints": {
+        "trial_id": 17,
+        "checkpoints": [
+          1,
+          5,
+          10,
+          20,
+          50,
+          100
+        ],
+        "Arm_A_Independent_Best_of_N": {
+          "curve": {
+            "1": 224,
+            "5": 224,
+            "10": 224,
+            "20": 224,
+            "50": 224,
+            "100": 222
+          },
+          "nature": "Retrospective and descriptive; does not represent adaptive behavior."
+        },
+        "Arm_B_Blind_Iterative": {
+          "curve": {
+            "1": 231,
+            "5": 223,
+            "10": 223,
+            "20": 223,
+            "50": 222,
+            "100": 220
+          },
+          "nature": "Textual context history only; zero execution feedback."
+        },
+        "Arm_C_Amaura": {
+          "curve": {
+            "1": 233,
+            "5": 223,
+            "10": 222,
+            "20": 221,
+            "50": 220,
+            "100": 220
+          },
+          "nature": "Adaptive execution-feedback-driven discovery."
+        }
+      }
+    },
+    {
+      "trial_id": 18,
+      "seed": 30318,
+      "duration_sec": 8999.07,
+      "arm_a": {
+        "status": "VALID",
+        "selected_candidate_id": "T18_A_C018",
+        "dev_score": 222,
+        "valid_count": 47,
+        "duration_sec": 3572.92,
+        "hidden_score": 1273,
+        "hidden_avg_colors": 6.365,
+        "hidden_valid": true,
+        "hidden_runtime_ms": 327.55
+      },
+      "arm_b": {
+        "status": "VALID",
+        "selected_candidate_id": "T18_B_G10_C01",
+        "dev_score": 227,
+        "valid_count": 94,
+        "duration_sec": 2293.35,
+        "blind_selection_details": {
+          "raw_response": "SELECTED_CANDIDATE: Candidate_01\nReasoning: Candidate_01 uses a balanced Kempe chain local search with 15 iterations, offering a strong trade-off between solution quality and computational efficiency for n \u2264 100.",
+          "prompt_hash": "0ead54a1dd0f1d38fd6a043a23ac3caa6915721f69eda06fb3110ecc516276cc"
+        },
+        "hidden_score": 1285,
+        "hidden_avg_colors": 6.425,
+        "hidden_valid": true,
+        "hidden_runtime_ms": 264.88
+      },
+      "arm_c": {
+        "status": "VALID",
+        "selected_candidate_id": "T18_C_G05_C06",
+        "dev_score": 220,
+        "valid_count": 93,
+        "duration_sec": 3132.8,
+        "hidden_score": 1266,
+        "hidden_avg_colors": 6.33,
+        "hidden_valid": true,
+        "hidden_runtime_ms": 482.64
+      },
+      "checkpoints": {
+        "trial_id": 18,
+        "checkpoints": [
+          1,
+          5,
+          10,
+          20,
+          50,
+          100
+        ],
+        "Arm_A_Independent_Best_of_N": {
+          "curve": {
+            "1": 226,
+            "5": 223,
+            "10": 223,
+            "20": 222,
+            "50": 222,
+            "100": 222
+          },
+          "nature": "Retrospective and descriptive; does not represent adaptive behavior."
+        },
+        "Arm_B_Blind_Iterative": {
+          "curve": {
+            "1": null,
+            "5": 226,
+            "10": 226,
+            "20": 226,
+            "50": 225,
+            "100": 224
+          },
+          "nature": "Textual context history only; zero execution feedback."
+        },
+        "Arm_C_Amaura": {
+          "curve": {
+            "1": 235,
+            "5": 224,
+            "10": 224,
+            "20": 222,
+            "50": 220,
+            "100": 220
+          },
+          "nature": "Adaptive execution-feedback-driven discovery."
+        }
+      }
+    },
+    {
+      "trial_id": 19,
+      "seed": 30319,
+      "duration_sec": 7276.47,
+      "arm_a": {
+        "status": "VALID",
+        "selected_candidate_id": "T19_A_C037",
+        "dev_score": 221,
+        "valid_count": 50,
+        "duration_sec": 3106.81,
+        "hidden_score": 1278,
+        "hidden_avg_colors": 6.39,
+        "hidden_valid": true,
+        "hidden_runtime_ms": 156.23
+      },
+      "arm_b": {
+        "status": "VALID",
+        "selected_candidate_id": "T19_B_G10_C10",
+        "dev_score": 235,
+        "valid_count": 80,
+        "duration_sec": 1556.19,
+        "blind_selection_details": {
+          "raw_response": "SELECTED_CANDIDATE: Candidate_10\nReasoning: Candidate_10 includes a precomputation of neighbor sets for O(1) adjacency checks, which improves the efficiency of Kempe chain refinement without altering correctness, making it the most optimized version among the candidates.",
+          "prompt_hash": "cbd91a28a590f0b3dbf7413d44211ce5051a94a44f707d16232ce1fcd872d476"
+        },
+        "hidden_score": 1334,
+        "hidden_avg_colors": 6.67,
+        "hidden_valid": true,
+        "hidden_runtime_ms": 283.52
+      },
+      "arm_c": {
+        "status": "VALID",
+        "selected_candidate_id": "T19_C_G02_C01",
+        "dev_score": 222,
+        "valid_count": 91,
+        "duration_sec": 2613.47,
+        "hidden_score": 1269,
+        "hidden_avg_colors": 6.345,
+        "hidden_valid": true,
+        "hidden_runtime_ms": 464.11
+      },
+      "checkpoints": {
+        "trial_id": 19,
+        "checkpoints": [
+          1,
+          5,
+          10,
+          20,
+          50,
+          100
+        ],
+        "Arm_A_Independent_Best_of_N": {
+          "curve": {
+            "1": null,
+            "5": 224,
+            "10": 224,
+            "20": 223,
+            "50": 221,
+            "100": 221
+          },
+          "nature": "Retrospective and descriptive; does not represent adaptive behavior."
+        },
+        "Arm_B_Blind_Iterative": {
+          "curve": {
+            "1": 233,
+            "5": 222,
+            "10": 222,
+            "20": 222,
+            "50": 222,
+            "100": 222
+          },
+          "nature": "Textual context history only; zero execution feedback."
+        },
+        "Arm_C_Amaura": {
+          "curve": {
+            "1": 270,
+            "5": 224,
+            "10": 224,
+            "20": 222,
+            "50": 222,
+            "100": 222
+          },
+          "nature": "Adaptive execution-feedback-driven discovery."
+        }
+      }
+    },
+    {
+      "trial_id": 20,
+      "seed": 30320,
+      "duration_sec": 7587.08,
+      "arm_a": {
+        "status": "VALID",
+        "selected_candidate_id": "T20_A_C008",
+        "dev_score": 222,
+        "valid_count": 44,
+        "duration_sec": 2993.52,
+        "hidden_score": 1275,
+        "hidden_avg_colors": 6.375,
+        "hidden_valid": true,
+        "hidden_runtime_ms": 271.48
+      },
+      "arm_b": {
+        "status": "ARM_FAILURE_NO_VALID_CANDIDATE",
+        "selected_candidate_id": "T20_B_G10_C08",
+        "dev_score": null,
+        "valid_count": 5,
+        "duration_sec": 2757.17,
+        "blind_selection_details": {
+          "raw_response": "SELECTED_CANDIDATE: Candidate_08\nReasoning: Candidate_08 combines multiple strong heuristics (Welsh-Powell, DSATUR, RLF, Smallest-Last) with Kempe chain refinement and additional random restarts, providing a robust and well-rounded approach to graph coloring that balances solution quality and computational efficiency.",
+          "prompt_hash": "fc6334536eab8660d24ebb280247b649d877495ff3d488eee37b35b78afd2b44"
+        },
+        "hidden_score": null,
+        "hidden_avg_colors": null,
+        "hidden_valid": false,
+        "hidden_runtime_ms": 0.0
+      },
+      "arm_c": {
+        "status": "VALID",
+        "selected_candidate_id": "T20_C_G03_C04",
+        "dev_score": 221,
+        "valid_count": 82,
+        "duration_sec": 1836.39,
+        "hidden_score": 1277,
+        "hidden_avg_colors": 6.385,
+        "hidden_valid": true,
+        "hidden_runtime_ms": 367.39
+      },
+      "checkpoints": {
+        "trial_id": 20,
+        "checkpoints": [
+          1,
+          5,
+          10,
+          20,
+          50,
+          100
+        ],
+        "Arm_A_Independent_Best_of_N": {
+          "curve": {
+            "1": null,
+            "5": 226,
+            "10": 222,
+            "20": 222,
+            "50": 222,
+            "100": 222
+          },
+          "nature": "Retrospective and descriptive; does not represent adaptive behavior."
+        },
+        "Arm_B_Blind_Iterative": {
+          "curve": {
+            "1": null,
+            "5": 221,
+            "10": 221,
+            "20": 221,
+            "50": 221,
+            "100": 221
+          },
+          "nature": "Textual context history only; zero execution feedback."
+        },
+        "Arm_C_Amaura": {
+          "curve": {
+            "1": 224,
+            "5": 224,
+            "10": 224,
+            "20": 222,
+            "50": 221,
+            "100": 221
+          },
+          "nature": "Adaptive execution-feedback-driven discovery."
+        }
+      }
+    },
+    {
+      "trial_id": 21,
+      "seed": 30321,
+      "duration_sec": 7462.09,
+      "arm_a": {
+        "status": "VALID",
+        "selected_candidate_id": "T21_A_C026",
+        "dev_score": 222,
+        "valid_count": 43,
+        "duration_sec": 2699.75,
+        "hidden_score": 1278,
+        "hidden_avg_colors": 6.39,
+        "hidden_valid": true,
+        "hidden_runtime_ms": 1054.95
+      },
+      "arm_b": {
+        "status": "VALID",
+        "selected_candidate_id": "T21_B_G10_C01",
+        "dev_score": 227,
+        "valid_count": 96,
+        "duration_sec": 2503.13,
+        "blind_selection_details": {
+          "raw_response": "SELECTED_CANDIDATE: Candidate_01\nReasoning: Candidate_01 demonstrates strong theoretical grounding with multiple advanced heuristics (DSATUR, RLF, Smallest-Last, Welsh-Powell, randomized greedy) combined with Kempe chain reduction and early termination based on clique lower bound, offering a robust and well-structured approach to graph coloring.",
+          "prompt_hash": "fc75aa41f058b444859d5f1fa0402fe3b030dec526204dde13eba2c6357ce3f2"
+        },
+        "hidden_score": 1289,
+        "hidden_avg_colors": 6.445,
+        "hidden_valid": true,
+        "hidden_runtime_ms": 621.68
+      },
+      "arm_c": {
+        "status": "VALID",
+        "selected_candidate_id": "T21_C_G01_C07",
+        "dev_score": 222,
+        "valid_count": 78,
+        "duration_sec": 2259.21,
+        "hidden_score": 1290,
+        "hidden_avg_colors": 6.45,
+        "hidden_valid": true,
+        "hidden_runtime_ms": 329.21
+      },
+      "checkpoints": {
+        "trial_id": 21,
+        "checkpoints": [
+          1,
+          5,
+          10,
+          20,
+          50,
+          100
+        ],
+        "Arm_A_Independent_Best_of_N": {
+          "curve": {
+            "1": null,
+            "5": 229,
+            "10": 225,
+            "20": 224,
+            "50": 222,
+            "100": 222
+          },
+          "nature": "Retrospective and descriptive; does not represent adaptive behavior."
+        },
+        "Arm_B_Blind_Iterative": {
+          "curve": {
+            "1": 231,
+            "5": 223,
+            "10": 223,
+            "20": 223,
+            "50": 223,
+            "100": 223
+          },
+          "nature": "Textual context history only; zero execution feedback."
+        },
+        "Arm_C_Amaura": {
+          "curve": {
+            "1": null,
+            "5": 223,
+            "10": 222,
+            "20": 222,
+            "50": 222,
+            "100": 222
+          },
+          "nature": "Adaptive execution-feedback-driven discovery."
+        }
+      }
+    },
+    {
+      "trial_id": 22,
+      "seed": 30322,
+      "duration_sec": 6343.84,
+      "arm_a": {
+        "status": "VALID",
+        "selected_candidate_id": "T22_A_C059",
+        "dev_score": 221,
+        "valid_count": 59,
+        "duration_sec": 2609.4,
+        "hidden_score": 1275,
+        "hidden_avg_colors": 6.375,
+        "hidden_valid": true,
+        "hidden_runtime_ms": 552.43
+      },
+      "arm_b": {
+        "status": "ARM_FAILURE_NO_VALID_CANDIDATE",
+        "selected_candidate_id": "T22_B_G10_C08",
+        "dev_score": null,
+        "valid_count": 5,
+        "duration_sec": 2076.9,
+        "blind_selection_details": {
+          "raw_response": "SELECTED_CANDIDATE: Candidate_08\nReasoning: Candidate_08 introduces a bounded iteration limit (10 passes) in the Kempe chain local search, which prevents potential worst-case slowdowns while maintaining solution quality, offering a practical improvement over unbounded local search in other candidates.",
+          "prompt_hash": "3d40f93ef2a9162c84cb7789ae37520222442e53a49390e2378af23e1cd76a43"
+        },
+        "hidden_score": null,
+        "hidden_avg_colors": null,
+        "hidden_valid": false,
+        "hidden_runtime_ms": 0.0
+      },
+      "arm_c": {
+        "status": "VALID",
+        "selected_candidate_id": "T22_C_G05_C04",
+        "dev_score": 225,
+        "valid_count": 90,
+        "duration_sec": 1657.55,
+        "hidden_score": 1287,
+        "hidden_avg_colors": 6.435,
+        "hidden_valid": true,
+        "hidden_runtime_ms": 511.35
+      },
+      "checkpoints": {
+        "trial_id": 22,
+        "checkpoints": [
+          1,
+          5,
+          10,
+          20,
+          50,
+          100
+        ],
+        "Arm_A_Independent_Best_of_N": {
+          "curve": {
+            "1": 232,
+            "5": 226,
+            "10": 226,
+            "20": 223,
+            "50": 222,
+            "100": 221
+          },
+          "nature": "Retrospective and descriptive; does not represent adaptive behavior."
+        },
+        "Arm_B_Blind_Iterative": {
+          "curve": {
+            "1": null,
+            "5": 224,
+            "10": 224,
+            "20": 224,
+            "50": 224,
+            "100": 224
+          },
+          "nature": "Textual context history only; zero execution feedback."
+        },
+        "Arm_C_Amaura": {
+          "curve": {
+            "1": 235,
+            "5": 227,
+            "10": 226,
+            "20": 226,
+            "50": 225,
+            "100": 225
+          },
+          "nature": "Adaptive execution-feedback-driven discovery."
+        }
+      }
+    },
+    {
+      "trial_id": 23,
+      "seed": 30323,
+      "duration_sec": 8789.19,
+      "arm_a": {
+        "status": "VALID",
+        "selected_candidate_id": "T23_A_C066",
+        "dev_score": 222,
+        "valid_count": 45,
+        "duration_sec": 3265.91,
+        "hidden_score": 1280,
+        "hidden_avg_colors": 6.4,
+        "hidden_valid": true,
+        "hidden_runtime_ms": 296.57
+      },
+      "arm_b": {
+        "status": "VALID",
+        "selected_candidate_id": "T23_B_G10_C10",
+        "dev_score": 223,
+        "valid_count": 95,
+        "duration_sec": 2918.97,
+        "blind_selection_details": {
+          "raw_response": "SELECTED_CANDIDATE: Candidate_10\nReasoning: Candidate_10 provides the most balanced and rigorous approach by combining DSATUR with Kempe chain refinement, deterministic tie-breaking strategies, and multiple complementary heuristics (RLF, degeneracy ordering, Welsh-Powell, greedy MIS) while maintaining algorithmic clarity and avoiding excessive randomness that could compromise solution quality or reproducibility.",
+          "prompt_hash": "bb37b8aef5b8e31a720516566b1e5bf5eb4c18fe04cf11f99385968ba90a382e"
+        },
+        "hidden_score": 1264,
+        "hidden_avg_colors": 6.32,
+        "hidden_valid": true,
+        "hidden_runtime_ms": 755.46
+      },
+      "arm_c": {
+        "status": "VALID",
+        "selected_candidate_id": "T23_C_G05_C05",
+        "dev_score": 222,
+        "valid_count": 88,
+        "duration_sec": 2604.3,
+        "hidden_score": 1279,
+        "hidden_avg_colors": 6.395,
+        "hidden_valid": true,
+        "hidden_runtime_ms": 748.98
+      },
+      "checkpoints": {
+        "trial_id": 23,
+        "checkpoints": [
+          1,
+          5,
+          10,
+          20,
+          50,
+          100
+        ],
+        "Arm_A_Independent_Best_of_N": {
+          "curve": {
+            "1": null,
+            "5": 248,
+            "10": 224,
+            "20": 224,
+            "50": 223,
+            "100": 222
+          },
+          "nature": "Retrospective and descriptive; does not represent adaptive behavior."
+        },
+        "Arm_B_Blind_Iterative": {
+          "curve": {
+            "1": 223,
+            "5": 223,
+            "10": 223,
+            "20": 220,
+            "50": 220,
+            "100": 220
+          },
+          "nature": "Textual context history only; zero execution feedback."
+        },
+        "Arm_C_Amaura": {
+          "curve": {
+            "1": null,
+            "5": 231,
+            "10": 223,
+            "20": 223,
+            "50": 222,
+            "100": 222
+          },
+          "nature": "Adaptive execution-feedback-driven discovery."
+        }
+      }
+    },
+    {
+      "trial_id": 24,
+      "seed": 30324,
+      "duration_sec": 8236.99,
+      "arm_a": {
+        "status": "VALID",
+        "selected_candidate_id": "T24_A_C025",
+        "dev_score": 221,
+        "valid_count": 46,
+        "duration_sec": 3019.63,
+        "hidden_score": 1281,
+        "hidden_avg_colors": 6.405,
+        "hidden_valid": true,
+        "hidden_runtime_ms": 192.7
+      },
+      "arm_b": {
+        "status": "VALID",
+        "selected_candidate_id": "T24_B_G10_C03",
+        "dev_score": 222,
+        "valid_count": 93,
+        "duration_sec": 2770.1,
+        "blind_selection_details": {
+          "raw_response": "SELECTED_CANDIDATE: Candidate_03\nReasoning: Candidate_03 combines multiple constructive heuristics (DSATUR, RLF, Welsh-Powell, Smallest-Last) with a robust Kempe chain local search, offering strong theoretical grounding and practical effectiveness for graph coloring within constraints.",
+          "prompt_hash": "540498f8d09c77454c372c253bd3c197a8aa9735ac075426ffde6888a1368488"
+        },
+        "hidden_score": 1276,
+        "hidden_avg_colors": 6.38,
+        "hidden_valid": true,
+        "hidden_runtime_ms": 515.67
+      },
+      "arm_c": {
+        "status": "VALID",
+        "selected_candidate_id": "T24_C_G09_C02",
+        "dev_score": 220,
+        "valid_count": 83,
+        "duration_sec": 2447.25,
+        "hidden_score": 1277,
+        "hidden_avg_colors": 6.385,
+        "hidden_valid": true,
+        "hidden_runtime_ms": 617.75
+      },
+      "checkpoints": {
+        "trial_id": 24,
+        "checkpoints": [
+          1,
+          5,
+          10,
+          20,
+          50,
+          100
+        ],
+        "Arm_A_Independent_Best_of_N": {
+          "curve": {
+            "1": null,
+            "5": 225,
+            "10": 225,
+            "20": 224,
+            "50": 221,
+            "100": 221
+          },
+          "nature": "Retrospective and descriptive; does not represent adaptive behavior."
+        },
+        "Arm_B_Blind_Iterative": {
+          "curve": {
+            "1": null,
+            "5": 222,
+            "10": 222,
+            "20": 221,
+            "50": 221,
+            "100": 221
+          },
+          "nature": "Textual context history only; zero execution feedback."
+        },
+        "Arm_C_Amaura": {
+          "curve": {
+            "1": 223,
+            "5": 223,
+            "10": 223,
+            "20": 223,
+            "50": 221,
+            "100": 220
+          },
+          "nature": "Adaptive execution-feedback-driven discovery."
+        }
+      }
+    },
+    {
+      "trial_id": 25,
+      "seed": 30325,
+      "duration_sec": 9140.45,
+      "arm_a": {
+        "status": "VALID",
+        "selected_candidate_id": "T25_A_C001",
+        "dev_score": 221,
+        "valid_count": 54,
+        "duration_sec": 2966.37,
+        "hidden_score": 1280,
+        "hidden_avg_colors": 6.4,
+        "hidden_valid": true,
+        "hidden_runtime_ms": 258.82
+      },
+      "arm_b": {
+        "status": "ARM_FAILURE_NO_VALID_CANDIDATE",
+        "selected_candidate_id": "T25_B_G10_C01",
+        "dev_score": null,
+        "valid_count": 4,
+        "duration_sec": 3973.48,
+        "blind_selection_details": {
+          "raw_response": "SELECTED_CANDIDATE: Candidate_01\nReasoning: Candidate_01 combines multiple advanced heuristics (Welsh-Powell, Smallest-Last, DSATUR, RLF) with Kempe chain local search and iterated local search, using efficient data structures like adjacency sets and timestamp-based saturation updates, providing a strong balance of solution quality and computational efficiency for graph coloring.",
+          "prompt_hash": "dcac9f2d5b32dd1e962d1b77cf1602943ba76486c837b0c91d762e649256dd98"
+        },
+        "hidden_score": null,
+        "hidden_avg_colors": null,
+        "hidden_valid": false,
+        "hidden_runtime_ms": 0.0
+      },
+      "arm_c": {
+        "status": "VALID",
+        "selected_candidate_id": "T25_C_G10_C03",
+        "dev_score": 221,
+        "valid_count": 89,
+        "duration_sec": 2200.59,
+        "hidden_score": 1267,
+        "hidden_avg_colors": 6.335,
+        "hidden_valid": true,
+        "hidden_runtime_ms": 1588.6
+      },
+      "checkpoints": {
+        "trial_id": 25,
+        "checkpoints": [
+          1,
+          5,
+          10,
+          20,
+          50,
+          100
+        ],
+        "Arm_A_Independent_Best_of_N": {
+          "curve": {
+            "1": 221,
+            "5": 221,
+            "10": 221,
+            "20": 221,
+            "50": 221,
+            "100": 221
+          },
+          "nature": "Retrospective and descriptive; does not represent adaptive behavior."
+        },
+        "Arm_B_Blind_Iterative": {
+          "curve": {
+            "1": null,
+            "5": 234,
+            "10": 223,
+            "20": 223,
+            "50": 223,
+            "100": 223
+          },
+          "nature": "Textual context history only; zero execution feedback."
+        },
+        "Arm_C_Amaura": {
+          "curve": {
+            "1": 231,
+            "5": 230,
+            "10": 227,
+            "20": 222,
+            "50": 222,
+            "100": 221
+          },
+          "nature": "Adaptive execution-feedback-driven discovery."
+        }
+      }
+    },
+    {
+      "trial_id": 26,
+      "seed": 30326,
+      "duration_sec": 9070.84,
+      "arm_a": {
+        "status": "VALID",
+        "selected_candidate_id": "T26_A_C043",
+        "dev_score": 222,
+        "valid_count": 40,
+        "duration_sec": 3209.64,
+        "hidden_score": 1248,
+        "hidden_avg_colors": 6.24,
+        "hidden_valid": true,
+        "hidden_runtime_ms": 2711.65
+      },
+      "arm_b": {
+        "status": "VALID",
+        "selected_candidate_id": "T26_B_G10_C03",
+        "dev_score": 227,
+        "valid_count": 80,
+        "duration_sec": 2657.22,
+        "blind_selection_details": {
+          "raw_response": "SELECTED_CANDIDATE: Candidate_03\nReasoning: Candidate_03 balances solution quality and runtime efficiency by using three strong heuristics (DSATUR, Welsh-Powell, Smallest-Last) with Kempe refinement and a reduced iteration limit (min(5, n)), making it likely to stay under 50ms while producing competitive colorings.",
+          "prompt_hash": "ca72c515811b1794e0295f552bc8041b0bacdae1b7bf2e9158e815cc074cc7ac"
+        },
+        "hidden_score": 1311,
+        "hidden_avg_colors": 6.555,
+        "hidden_valid": true,
+        "hidden_runtime_ms": 409.01
+      },
+      "arm_c": {
+        "status": "VALID",
+        "selected_candidate_id": "T26_C_G02_C08",
+        "dev_score": 220,
+        "valid_count": 94,
+        "duration_sec": 3203.97,
+        "hidden_score": 1251,
+        "hidden_avg_colors": 6.255,
+        "hidden_valid": true,
+        "hidden_runtime_ms": 3861.59
+      },
+      "checkpoints": {
+        "trial_id": 26,
+        "checkpoints": [
+          1,
+          5,
+          10,
+          20,
+          50,
+          100
+        ],
+        "Arm_A_Independent_Best_of_N": {
+          "curve": {
+            "1": null,
+            "5": 226,
+            "10": 223,
+            "20": 223,
+            "50": 222,
+            "100": 222
+          },
+          "nature": "Retrospective and descriptive; does not represent adaptive behavior."
+        },
+        "Arm_B_Blind_Iterative": {
+          "curve": {
+            "1": null,
+            "5": 222,
+            "10": 222,
+            "20": 222,
+            "50": 222,
+            "100": 222
+          },
+          "nature": "Textual context history only; zero execution feedback."
+        },
+        "Arm_C_Amaura": {
+          "curve": {
+            "1": 224,
+            "5": 224,
+            "10": 224,
+            "20": 220,
+            "50": 220,
+            "100": 220
+          },
+          "nature": "Adaptive execution-feedback-driven discovery."
+        }
+      }
+    },
+    {
+      "trial_id": 27,
+      "seed": 30327,
+      "duration_sec": 7794.67,
+      "arm_a": {
+        "status": "VALID",
+        "selected_candidate_id": "T27_A_C034",
+        "dev_score": 222,
+        "valid_count": 51,
+        "duration_sec": 2903.01,
+        "hidden_score": 1271,
+        "hidden_avg_colors": 6.355,
+        "hidden_valid": true,
+        "hidden_runtime_ms": 732.93
+      },
+      "arm_b": {
+        "status": "VALID",
+        "selected_candidate_id": "T27_B_G10_C01",
+        "dev_score": 222,
+        "valid_count": 86,
+        "duration_sec": 2480.32,
+        "blind_selection_details": {
+          "raw_response": "SELECTED_CANDIDATE: Candidate_01\nReasoning: Candidate_01 includes a Kempe chain-based local search that attempts to reduce color classes by swapping colors in components, which can lead to better solutions than the heuristics alone, while maintaining efficiency through iteration limits and early termination.",
+          "prompt_hash": "52815048b9bc01adf214ea9316d8753cb5dd9fc6f1017e133865391c46827036"
+        },
+        "hidden_score": 1280,
+        "hidden_avg_colors": 6.4,
+        "hidden_valid": true,
+        "hidden_runtime_ms": 477.69
+      },
+      "arm_c": {
+        "status": "VALID",
+        "selected_candidate_id": "T27_C_G08_C10",
+        "dev_score": 221,
+        "valid_count": 89,
+        "duration_sec": 2411.34,
+        "hidden_score": 1269,
+        "hidden_avg_colors": 6.345,
+        "hidden_valid": true,
+        "hidden_runtime_ms": 1020.34
+      },
+      "checkpoints": {
+        "trial_id": 27,
+        "checkpoints": [
+          1,
+          5,
+          10,
+          20,
+          50,
+          100
+        ],
+        "Arm_A_Independent_Best_of_N": {
+          "curve": {
+            "1": null,
+            "5": 226,
+            "10": 223,
+            "20": 223,
+            "50": 222,
+            "100": 222
+          },
+          "nature": "Retrospective and descriptive; does not represent adaptive behavior."
+        },
+        "Arm_B_Blind_Iterative": {
+          "curve": {
+            "1": 223,
+            "5": 223,
+            "10": 223,
+            "20": 223,
+            "50": 222,
+            "100": 222
+          },
+          "nature": "Textual context history only; zero execution feedback."
+        },
+        "Arm_C_Amaura": {
+          "curve": {
+            "1": null,
+            "5": 224,
+            "10": 224,
+            "20": 223,
+            "50": 222,
+            "100": 221
+          },
+          "nature": "Adaptive execution-feedback-driven discovery."
+        }
+      }
+    },
+    {
+      "trial_id": 28,
+      "seed": 30328,
+      "duration_sec": 8329.88,
+      "arm_a": {
+        "status": "VALID",
+        "selected_candidate_id": "T28_A_C029",
+        "dev_score": 222,
+        "valid_count": 41,
+        "duration_sec": 3165.63,
+        "hidden_score": 1267,
+        "hidden_avg_colors": 6.335,
+        "hidden_valid": true,
+        "hidden_runtime_ms": 1863.9
+      },
+      "arm_b": {
+        "status": "VALID",
+        "selected_candidate_id": "T28_B_G10_C03",
+        "dev_score": 222,
+        "valid_count": 89,
+        "duration_sec": 2592.99,
+        "blind_selection_details": {
+          "raw_response": "SELECTED_CANDIDATE: Candidate_03\nReasoning: Candidate_03 incorporates multi-start restarts for DSATUR and RLF heuristics, increasing solution diversity and robustness while maintaining the effective Kempe chain local search, offering a stronger theoretical foundation for improved coloring quality.",
+          "prompt_hash": "72df6fc661655305b4dd6fb3f284e87a392c5b8207e39647c8fcaa1d2a4adaa5"
+        },
+        "hidden_score": 1270,
+        "hidden_avg_colors": 6.35,
+        "hidden_valid": true,
+        "hidden_runtime_ms": 1088.27
+      },
+      "arm_c": {
+        "status": "VALID",
+        "selected_candidate_id": "T28_C_G04_C09",
+        "dev_score": 221,
+        "valid_count": 94,
+        "duration_sec": 2571.26,
+        "hidden_score": 1279,
+        "hidden_avg_colors": 6.395,
+        "hidden_valid": true,
+        "hidden_runtime_ms": 693.77
+      },
+      "checkpoints": {
+        "trial_id": 28,
+        "checkpoints": [
+          1,
+          5,
+          10,
+          20,
+          50,
+          100
+        ],
+        "Arm_A_Independent_Best_of_N": {
+          "curve": {
+            "1": 232,
+            "5": 228,
+            "10": 225,
+            "20": 225,
+            "50": 222,
+            "100": 222
+          },
+          "nature": "Retrospective and descriptive; does not represent adaptive behavior."
+        },
+        "Arm_B_Blind_Iterative": {
+          "curve": {
+            "1": null,
+            "5": 225,
+            "10": 224,
+            "20": 224,
+            "50": 222,
+            "100": 221
+          },
+          "nature": "Textual context history only; zero execution feedback."
+        },
+        "Arm_C_Amaura": {
+          "curve": {
+            "1": 225,
+            "5": 223,
+            "10": 223,
+            "20": 222,
+            "50": 221,
+            "100": 221
+          },
+          "nature": "Adaptive execution-feedback-driven discovery."
+        }
+      }
+    },
+    {
+      "trial_id": 29,
+      "seed": 30329,
+      "duration_sec": 9403.23,
+      "arm_a": {
+        "status": "VALID",
+        "selected_candidate_id": "T29_A_C040",
+        "dev_score": 220,
+        "valid_count": 55,
+        "duration_sec": 3114.18,
+        "hidden_score": 1243,
+        "hidden_avg_colors": 6.215,
+        "hidden_valid": true,
+        "hidden_runtime_ms": 2849.98
+      },
+      "arm_b": {
+        "status": "ARM_FAILURE_NO_VALID_CANDIDATE",
+        "selected_candidate_id": "T29_B_G10_C01",
+        "dev_score": null,
+        "valid_count": 6,
+        "duration_sec": 3677.37,
+        "blind_selection_details": {
+          "raw_response": "SELECTED_CANDIDATE: Candidate_01\nReasoning: Candidate_01 integrates multiple advanced heuristics (DSATUR, RLF, smallest-last ordering) with Kempe chain reduction and rigorous validation, offering the strongest theoretical guarantees for near-optimal coloring while maintaining practical efficiency.",
+          "prompt_hash": "8b270a19e9670101446dfb355410b726266630b79eeded82f50b3198ec1d0e15"
+        },
+        "hidden_score": null,
+        "hidden_avg_colors": null,
+        "hidden_valid": false,
+        "hidden_runtime_ms": 0.0
+      },
+      "arm_c": {
+        "status": "VALID",
+        "selected_candidate_id": "T29_C_G02_C08",
+        "dev_score": 222,
+        "valid_count": 95,
+        "duration_sec": 2611.67,
+        "hidden_score": 1280,
+        "hidden_avg_colors": 6.4,
+        "hidden_valid": true,
+        "hidden_runtime_ms": 647.32
+      },
+      "checkpoints": {
+        "trial_id": 29,
+        "checkpoints": [
+          1,
+          5,
+          10,
+          20,
+          50,
+          100
+        ],
+        "Arm_A_Independent_Best_of_N": {
+          "curve": {
+            "1": null,
+            "5": 223,
+            "10": 223,
+            "20": 223,
+            "50": 220,
+            "100": 220
+          },
+          "nature": "Retrospective and descriptive; does not represent adaptive behavior."
+        },
+        "Arm_B_Blind_Iterative": {
+          "curve": {
+            "1": 231,
+            "5": 228,
+            "10": 225,
+            "20": 225,
+            "50": 225,
+            "100": 225
+          },
+          "nature": "Textual context history only; zero execution feedback."
+        },
+        "Arm_C_Amaura": {
+          "curve": {
+            "1": 232,
+            "5": 232,
+            "10": 224,
+            "20": 222,
+            "50": 222,
+            "100": 222
+          },
+          "nature": "Adaptive execution-feedback-driven discovery."
+        }
+      }
+    },
+    {
+      "trial_id": 30,
+      "seed": 30330,
+      "duration_sec": 8933.99,
+      "arm_a": {
+        "status": "VALID",
+        "selected_candidate_id": "T30_A_C014",
+        "dev_score": 223,
+        "valid_count": 54,
+        "duration_sec": 3199.71,
+        "hidden_score": 1272,
+        "hidden_avg_colors": 6.36,
+        "hidden_valid": true,
+        "hidden_runtime_ms": 619.9
+      },
+      "arm_b": {
+        "status": "ARM_FAILURE_NO_VALID_CANDIDATE",
+        "selected_candidate_id": "T30_B_G10_C08",
+        "dev_score": null,
+        "valid_count": 74,
+        "duration_sec": 3212.99,
+        "blind_selection_details": {
+          "raw_response": "SELECTED_CANDIDATE: Candidate_08\nReasoning: Candidate_08 uses degeneracy ordering for a tight initial upper bound and integrates DSATUR with Kempe refinement in a structured improvement loop, offering a strong balance of theoretical rigor and practical effectiveness for graph coloring within constraints.",
+          "prompt_hash": "f317186d3f738fbeceeffed184e312927c66cf85f109cc7886de8d9cda25f075"
+        },
+        "hidden_score": null,
+        "hidden_avg_colors": null,
+        "hidden_valid": false,
+        "hidden_runtime_ms": 0.0
+      },
+      "arm_c": {
+        "status": "VALID",
+        "selected_candidate_id": "T30_C_G10_C02",
+        "dev_score": 221,
+        "valid_count": 85,
+        "duration_sec": 2521.29,
+        "hidden_score": 1263,
+        "hidden_avg_colors": 6.315,
+        "hidden_valid": true,
+        "hidden_runtime_ms": 759.57
+      },
+      "checkpoints": {
+        "trial_id": 30,
+        "checkpoints": [
+          1,
+          5,
+          10,
+          20,
+          50,
+          100
+        ],
+        "Arm_A_Independent_Best_of_N": {
+          "curve": {
+            "1": 232,
+            "5": 225,
+            "10": 224,
+            "20": 223,
+            "50": 223,
+            "100": 223
+          },
+          "nature": "Retrospective and descriptive; does not represent adaptive behavior."
+        },
+        "Arm_B_Blind_Iterative": {
+          "curve": {
+            "1": 230,
+            "5": 224,
+            "10": 224,
+            "20": 220,
+            "50": 219,
+            "100": 219
+          },
+          "nature": "Textual context history only; zero execution feedback."
+        },
+        "Arm_C_Amaura": {
+          "curve": {
+            "1": null,
+            "5": 231,
+            "10": 223,
+            "20": 222,
+            "50": 222,
+            "100": 221
+          },
+          "nature": "Adaptive execution-feedback-driven discovery."
+        }
+      }
+    }
+  ]
+}

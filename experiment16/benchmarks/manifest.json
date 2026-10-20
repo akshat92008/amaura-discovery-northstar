@@ -1,0 +1,26 @@
+{
+  "dev_static": {
+    "instances": 20,
+    "sha256": "eb1c82179fd725b797444ca89913143469a4b19faebbff93d10e7cf401d14c14"
+  },
+  "dev_dynamic": {
+    "traces": 2,
+    "sha256": "a27458997cf8e8d95fd6803475249fc5f29872c0710da93b55d662a568790aed"
+  },
+  "val_static": {
+    "instances": 20,
+    "sha256": "a39b3beecc28d0dc2958c8cac04a45b0287f1ee6388434f8f6c0c2fb7d9fbf38"
+  },
+  "val_dynamic": {
+    "traces": 2,
+    "sha256": "b4aedf0503ec73973b17383507dec96720ae900c8401a20559900720d898c7f6"
+  },
+  "hidden_static": {
+    "instances": 55,
+    "sha256": "71b263f8e6bea8e94601d9eea954576b798adafd4104edf93a6b9fbad6969ffd"
+  },
+  "hidden_dynamic": {
+    "traces": 10,
+    "sha256": "9903e076c62d1aacc5e3c3437ed82030e46fbea0bdaebe78e9f2efef6ba2f4f7"
+  }
+}

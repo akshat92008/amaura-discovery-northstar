@@ -1,0 +1,10456 @@
+[
+  {
+    "instance_id": "dev_uniform_01",
+    "family": "Uniform",
+    "n_pods": 45,
+    "m_nodes": 10,
+    "nodes": [
+      {
+        "id": 0,
+        "type": "compute_opt",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 1.3
+      },
+      {
+        "id": 1,
+        "type": "standard_m",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 0.8
+      },
+      {
+        "id": 2,
+        "type": "compute_opt",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 1.3
+      },
+      {
+        "id": 3,
+        "type": "compute_opt",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 1.3
+      },
+      {
+        "id": 4,
+        "type": "mem_opt",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.4
+      },
+      {
+        "id": 5,
+        "type": "mem_opt",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.4
+      },
+      {
+        "id": 6,
+        "type": "compute_opt",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 1.3
+      },
+      {
+        "id": 7,
+        "type": "standard_l",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.6
+      },
+      {
+        "id": 8,
+        "type": "mem_opt",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.4
+      },
+      {
+        "id": 9,
+        "type": "mem_opt",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.4
+      }
+    ],
+    "pods": [
+      {
+        "id": 0,
+        "cpu": 1.4,
+        "mem": 13.3
+      },
+      {
+        "id": 1,
+        "cpu": 4.0,
+        "mem": 18.2
+      },
+      {
+        "id": 2,
+        "cpu": 1.9,
+        "mem": 18.1
+      },
+      {
+        "id": 3,
+        "cpu": 2.2,
+        "mem": 16.0
+      },
+      {
+        "id": 4,
+        "cpu": 4.4,
+        "mem": 15.0
+      },
+      {
+        "id": 5,
+        "cpu": 4.9,
+        "mem": 11.2
+      },
+      {
+        "id": 6,
+        "cpu": 4.0,
+        "mem": 5.2
+      },
+      {
+        "id": 7,
+        "cpu": 1.1,
+        "mem": 1.8
+      },
+      {
+        "id": 8,
+        "cpu": 5.0,
+        "mem": 11.7
+      },
+      {
+        "id": 9,
+        "cpu": 3.0,
+        "mem": 4.6
+      },
+      {
+        "id": 10,
+        "cpu": 5.0,
+        "mem": 19.0
+      },
+      {
+        "id": 11,
+        "cpu": 2.5,
+        "mem": 1.7
+      },
+      {
+        "id": 12,
+        "cpu": 0.8,
+        "mem": 14.6
+      },
+      {
+        "id": 13,
+        "cpu": 4.8,
+        "mem": 8.5
+      },
+      {
+        "id": 14,
+        "cpu": 3.4,
+        "mem": 3.7
+      },
+      {
+        "id": 15,
+        "cpu": 4.3,
+        "mem": 1.8
+      },
+      {
+        "id": 16,
+        "cpu": 3.8,
+        "mem": 2.2
+      },
+      {
+        "id": 17,
+        "cpu": 4.0,
+        "mem": 5.3
+      },
+      {
+        "id": 18,
+        "cpu": 3.7,
+        "mem": 11.7
+      },
+      {
+        "id": 19,
+        "cpu": 4.7,
+        "mem": 5.0
+      },
+      {
+        "id": 20,
+        "cpu": 4.0,
+        "mem": 10.0
+      },
+      {
+        "id": 21,
+        "cpu": 3.8,
+        "mem": 19.3
+      },
+      {
+        "id": 22,
+        "cpu": 0.8,
+        "mem": 19.1
+      },
+      {
+        "id": 23,
+        "cpu": 1.3,
+        "mem": 6.9
+      },
+      {
+        "id": 24,
+        "cpu": 3.1,
+        "mem": 10.1
+      },
+      {
+        "id": 25,
+        "cpu": 4.6,
+        "mem": 6.3
+      },
+      {
+        "id": 26,
+        "cpu": 1.9,
+        "mem": 8.5
+      },
+      {
+        "id": 27,
+        "cpu": 4.7,
+        "mem": 8.8
+      },
+      {
+        "id": 28,
+        "cpu": 2.4,
+        "mem": 7.9
+      },
+      {
+        "id": 29,
+        "cpu": 3.2,
+        "mem": 13.4
+      },
+      {
+        "id": 30,
+        "cpu": 5.1,
+        "mem": 19.4
+      },
+      {
+        "id": 31,
+        "cpu": 4.4,
+        "mem": 17.4
+      },
+      {
+        "id": 32,
+        "cpu": 2.2,
+        "mem": 5.0
+      },
+      {
+        "id": 33,
+        "cpu": 1.5,
+        "mem": 4.6
+      },
+      {
+        "id": 34,
+        "cpu": 4.7,
+        "mem": 7.7
+      },
+      {
+        "id": 35,
+        "cpu": 3.6,
+        "mem": 15.6
+      },
+      {
+        "id": 36,
+        "cpu": 2.2,
+        "mem": 10.5
+      },
+      {
+        "id": 37,
+        "cpu": 3.9,
+        "mem": 19.5
+      },
+      {
+        "id": 38,
+        "cpu": 0.6,
+        "mem": 11.0
+      },
+      {
+        "id": 39,
+        "cpu": 2.5,
+        "mem": 2.3
+      },
+      {
+        "id": 40,
+        "cpu": 3.9,
+        "mem": 5.5
+      },
+      {
+        "id": 41,
+        "cpu": 2.9,
+        "mem": 2.8
+      },
+      {
+        "id": 42,
+        "cpu": 3.1,
+        "mem": 9.7
+      },
+      {
+        "id": 43,
+        "cpu": 2.4,
+        "mem": 5.9
+      },
+      {
+        "id": 44,
+        "cpu": 1.8,
+        "mem": 18.8
+      }
+    ],
+    "total_cluster_cpu": 240.0,
+    "total_cluster_mem": 960.0,
+    "total_pod_cpu": 143.5,
+    "total_pod_mem": 454.6
+  },
+  {
+    "instance_id": "dev_uniform_02",
+    "family": "Uniform",
+    "n_pods": 34,
+    "m_nodes": 13,
+    "nodes": [
+      {
+        "id": 0,
+        "type": "standard_l",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.6
+      },
+      {
+        "id": 1,
+        "type": "general_s",
+        "cpu_capacity": 8.0,
+        "mem_capacity": 32.0,
+        "cost_per_hour": 0.4
+      },
+      {
+        "id": 2,
+        "type": "standard_l",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.6
+      },
+      {
+        "id": 3,
+        "type": "standard_m",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 0.8
+      },
+      {
+        "id": 4,
+        "type": "compute_opt",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 1.3
+      },
+      {
+        "id": 5,
+        "type": "general_s",
+        "cpu_capacity": 8.0,
+        "mem_capacity": 32.0,
+        "cost_per_hour": 0.4
+      },
+      {
+        "id": 6,
+        "type": "standard_l",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.6
+      },
+      {
+        "id": 7,
+        "type": "standard_l",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.6
+      },
+      {
+        "id": 8,
+        "type": "standard_m",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 0.8
+      },
+      {
+        "id": 9,
+        "type": "general_s",
+        "cpu_capacity": 8.0,
+        "mem_capacity": 32.0,
+        "cost_per_hour": 0.4
+      },
+      {
+        "id": 10,
+        "type": "compute_opt",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 1.3
+      },
+      {
+        "id": 11,
+        "type": "compute_opt",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 1.3
+      },
+      {
+        "id": 12,
+        "type": "compute_opt",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 1.3
+      }
+    ],
+    "pods": [
+      {
+        "id": 0,
+        "cpu": 3.1,
+        "mem": 25.4
+      },
+      {
+        "id": 1,
+        "cpu": 6.0,
+        "mem": 22.4
+      },
+      {
+        "id": 2,
+        "cpu": 2.9,
+        "mem": 15.0
+      },
+      {
+        "id": 3,
+        "cpu": 3.9,
+        "mem": 12.0
+      },
+      {
+        "id": 4,
+        "cpu": 2.5,
+        "mem": 4.9
+      },
+      {
+        "id": 5,
+        "cpu": 7.1,
+        "mem": 27.3
+      },
+      {
+        "id": 6,
+        "cpu": 2.3,
+        "mem": 5.2
+      },
+      {
+        "id": 7,
+        "cpu": 2.5,
+        "mem": 12.9
+      },
+      {
+        "id": 8,
+        "cpu": 5.9,
+        "mem": 25.9
+      },
+      {
+        "id": 9,
+        "cpu": 6.3,
+        "mem": 28.5
+      },
+      {
+        "id": 10,
+        "cpu": 6.0,
+        "mem": 15.3
+      },
+      {
+        "id": 11,
+        "cpu": 1.6,
+        "mem": 5.2
+      },
+      {
+        "id": 12,
+        "cpu": 3.0,
+        "mem": 21.1
+      },
+      {
+        "id": 13,
+        "cpu": 6.6,
+        "mem": 24.4
+      },
+      {
+        "id": 14,
+        "cpu": 5.2,
+        "mem": 12.6
+      },
+      {
+        "id": 15,
+        "cpu": 1.8,
+        "mem": 6.5
+      },
+      {
+        "id": 16,
+        "cpu": 4.8,
+        "mem": 28.9
+      },
+      {
+        "id": 17,
+        "cpu": 1.0,
+        "mem": 23.5
+      },
+      {
+        "id": 18,
+        "cpu": 6.6,
+        "mem": 24.4
+      },
+      {
+        "id": 19,
+        "cpu": 3.0,
+        "mem": 3.8
+      },
+      {
+        "id": 20,
+        "cpu": 6.2,
+        "mem": 6.2
+      },
+      {
+        "id": 21,
+        "cpu": 6.4,
+        "mem": 17.0
+      },
+      {
+        "id": 22,
+        "cpu": 2.4,
+        "mem": 24.0
+      },
+      {
+        "id": 23,
+        "cpu": 1.5,
+        "mem": 22.7
+      },
+      {
+        "id": 24,
+        "cpu": 5.9,
+        "mem": 7.7
+      },
+      {
+        "id": 25,
+        "cpu": 1.0,
+        "mem": 26.4
+      },
+      {
+        "id": 26,
+        "cpu": 1.9,
+        "mem": 28.9
+      },
+      {
+        "id": 27,
+        "cpu": 5.7,
+        "mem": 28.7
+      },
+      {
+        "id": 28,
+        "cpu": 6.0,
+        "mem": 4.5
+      },
+      {
+        "id": 29,
+        "cpu": 4.7,
+        "mem": 2.9
+      },
+      {
+        "id": 30,
+        "cpu": 3.9,
+        "mem": 26.1
+      },
+      {
+        "id": 31,
+        "cpu": 4.8,
+        "mem": 14.6
+      },
+      {
+        "id": 32,
+        "cpu": 7.0,
+        "mem": 28.7
+      },
+      {
+        "id": 33,
+        "cpu": 2.5,
+        "mem": 11.7
+      }
+    ],
+    "total_cluster_cpu": 312.0,
+    "total_cluster_mem": 992.0,
+    "total_pod_cpu": 142.0,
+    "total_pod_mem": 595.3
+  },
+  {
+    "instance_id": "dev_uniform_03",
+    "family": "Uniform",
+    "n_pods": 32,
+    "m_nodes": 14,
+    "nodes": [
+      {
+        "id": 0,
+        "type": "standard_m",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 0.8
+      },
+      {
+        "id": 1,
+        "type": "general_s",
+        "cpu_capacity": 8.0,
+        "mem_capacity": 32.0,
+        "cost_per_hour": 0.4
+      },
+      {
+        "id": 2,
+        "type": "standard_l",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.6
+      },
+      {
+        "id": 3,
+        "type": "mem_opt",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.4
+      },
+      {
+        "id": 4,
+        "type": "general_s",
+        "cpu_capacity": 8.0,
+        "mem_capacity": 32.0,
+        "cost_per_hour": 0.4
+      },
+      {
+        "id": 5,
+        "type": "compute_opt",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 1.3
+      },
+      {
+        "id": 6,
+        "type": "mem_opt",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.4
+      },
+      {
+        "id": 7,
+        "type": "compute_opt",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 1.3
+      },
+      {
+        "id": 8,
+        "type": "general_s",
+        "cpu_capacity": 8.0,
+        "mem_capacity": 32.0,
+        "cost_per_hour": 0.4
+      },
+      {
+        "id": 9,
+        "type": "standard_l",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.6
+      },
+      {
+        "id": 10,
+        "type": "mem_opt",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.4
+      },
+      {
+        "id": 11,
+        "type": "mem_opt",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.4
+      },
+      {
+        "id": 12,
+        "type": "standard_l",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.6
+      },
+      {
+        "id": 13,
+        "type": "mem_opt",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.4
+      }
+    ],
+    "pods": [
+      {
+        "id": 0,
+        "cpu": 4.0,
+        "mem": 3.0
+      },
+      {
+        "id": 1,
+        "cpu": 6.5,
+        "mem": 20.3
+      },
+      {
+        "id": 2,
+        "cpu": 1.7,
+        "mem": 23.2
+      },
+      {
+        "id": 3,
+        "cpu": 5.3,
+        "mem": 24.7
+      },
+      {
+        "id": 4,
+        "cpu": 5.0,
+        "mem": 25.9
+      },
+      {
+        "id": 5,
+        "cpu": 4.6,
+        "mem": 8.4
+      },
+      {
+        "id": 6,
+        "cpu": 4.5,
+        "mem": 26.8
+      },
+      {
+        "id": 7,
+        "cpu": 1.6,
+        "mem": 28.8
+      },
+      {
+        "id": 8,
+        "cpu": 4.4,
+        "mem": 12.9
+      },
+      {
+        "id": 9,
+        "cpu": 1.0,
+        "mem": 20.5
+      },
+      {
+        "id": 10,
+        "cpu": 6.0,
+        "mem": 12.9
+      },
+      {
+        "id": 11,
+        "cpu": 7.4,
+        "mem": 10.4
+      },
+      {
+        "id": 12,
+        "cpu": 4.7,
+        "mem": 22.4
+      },
+      {
+        "id": 13,
+        "cpu": 1.2,
+        "mem": 7.9
+      },
+      {
+        "id": 14,
+        "cpu": 7.8,
+        "mem": 21.5
+      },
+      {
+        "id": 15,
+        "cpu": 7.1,
+        "mem": 17.0
+      },
+      {
+        "id": 16,
+        "cpu": 5.8,
+        "mem": 26.3
+      },
+      {
+        "id": 17,
+        "cpu": 2.3,
+        "mem": 20.6
+      },
+      {
+        "id": 18,
+        "cpu": 3.5,
+        "mem": 12.8
+      },
+      {
+        "id": 19,
+        "cpu": 4.4,
+        "mem": 20.6
+      },
+      {
+        "id": 20,
+        "cpu": 4.7,
+        "mem": 10.0
+      },
+      {
+        "id": 21,
+        "cpu": 7.2,
+        "mem": 3.7
+      },
+      {
+        "id": 22,
+        "cpu": 4.0,
+        "mem": 14.6
+      },
+      {
+        "id": 23,
+        "cpu": 5.1,
+        "mem": 11.0
+      },
+      {
+        "id": 24,
+        "cpu": 7.3,
+        "mem": 23.1
+      },
+      {
+        "id": 25,
+        "cpu": 5.5,
+        "mem": 21.3
+      },
+      {
+        "id": 26,
+        "cpu": 7.5,
+        "mem": 5.2
+      },
+      {
+        "id": 27,
+        "cpu": 7.3,
+        "mem": 6.2
+      },
+      {
+        "id": 28,
+        "cpu": 1.5,
+        "mem": 28.4
+      },
+      {
+        "id": 29,
+        "cpu": 7.2,
+        "mem": 25.3
+      },
+      {
+        "id": 30,
+        "cpu": 3.8,
+        "mem": 19.8
+      },
+      {
+        "id": 31,
+        "cpu": 6.9,
+        "mem": 27.4
+      }
+    ],
+    "total_cluster_cpu": 280.0,
+    "total_cluster_mem": 1312.0,
+    "total_pod_cpu": 156.8,
+    "total_pod_mem": 562.9
+  },
+  {
+    "instance_id": "dev_uniform_04",
+    "family": "Uniform",
+    "n_pods": 61,
+    "m_nodes": 15,
+    "nodes": [
+      {
+        "id": 0,
+        "type": "standard_m",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 0.8
+      },
+      {
+        "id": 1,
+        "type": "general_s",
+        "cpu_capacity": 8.0,
+        "mem_capacity": 32.0,
+        "cost_per_hour": 0.4
+      },
+      {
+        "id": 2,
+        "type": "compute_opt",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 1.3
+      },
+      {
+        "id": 3,
+        "type": "compute_opt",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 1.3
+      },
+      {
+        "id": 4,
+        "type": "mem_opt",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.4
+      },
+      {
+        "id": 5,
+        "type": "standard_l",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.6
+      },
+      {
+        "id": 6,
+        "type": "standard_l",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.6
+      },
+      {
+        "id": 7,
+        "type": "compute_opt",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 1.3
+      },
+      {
+        "id": 8,
+        "type": "compute_opt",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 1.3
+      },
+      {
+        "id": 9,
+        "type": "compute_opt",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 1.3
+      },
+      {
+        "id": 10,
+        "type": "standard_l",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.6
+      },
+      {
+        "id": 11,
+        "type": "mem_opt",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.4
+      },
+      {
+        "id": 12,
+        "type": "standard_l",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.6
+      },
+      {
+        "id": 13,
+        "type": "mem_opt",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.4
+      },
+      {
+        "id": 14,
+        "type": "general_s",
+        "cpu_capacity": 8.0,
+        "mem_capacity": 32.0,
+        "cost_per_hour": 0.4
+      }
+    ],
+    "pods": [
+      {
+        "id": 0,
+        "cpu": 2.2,
+        "mem": 4.7
+      },
+      {
+        "id": 1,
+        "cpu": 1.7,
+        "mem": 13.1
+      },
+      {
+        "id": 2,
+        "cpu": 5.3,
+        "mem": 21.3
+      },
+      {
+        "id": 3,
+        "cpu": 5.7,
+        "mem": 22.3
+      },
+      {
+        "id": 4,
+        "cpu": 5.5,
+        "mem": 11.3
+      },
+      {
+        "id": 5,
+        "cpu": 4.5,
+        "mem": 20.9
+      },
+      {
+        "id": 6,
+        "cpu": 3.5,
+        "mem": 13.7
+      },
+      {
+        "id": 7,
+        "cpu": 3.4,
+        "mem": 15.4
+      },
+      {
+        "id": 8,
+        "cpu": 6.0,
+        "mem": 22.0
+      },
+      {
+        "id": 9,
+        "cpu": 5.7,
+        "mem": 12.9
+      },
+      {
+        "id": 10,
+        "cpu": 5.5,
+        "mem": 11.3
+      },
+      {
+        "id": 11,
+        "cpu": 5.0,
+        "mem": 10.4
+      },
+      {
+        "id": 12,
+        "cpu": 2.1,
+        "mem": 3.5
+      },
+      {
+        "id": 13,
+        "cpu": 0.8,
+        "mem": 15.2
+      },
+      {
+        "id": 14,
+        "cpu": 2.8,
+        "mem": 14.8
+      },
+      {
+        "id": 15,
+        "cpu": 1.6,
+        "mem": 23.2
+      },
+      {
+        "id": 16,
+        "cpu": 2.1,
+        "mem": 23.8
+      },
+      {
+        "id": 17,
+        "cpu": 0.9,
+        "mem": 23.6
+      },
+      {
+        "id": 18,
+        "cpu": 4.1,
+        "mem": 12.3
+      },
+      {
+        "id": 19,
+        "cpu": 1.3,
+        "mem": 15.9
+      },
+      {
+        "id": 20,
+        "cpu": 5.6,
+        "mem": 19.2
+      },
+      {
+        "id": 21,
+        "cpu": 5.3,
+        "mem": 3.7
+      },
+      {
+        "id": 22,
+        "cpu": 3.7,
+        "mem": 21.6
+      },
+      {
+        "id": 23,
+        "cpu": 2.2,
+        "mem": 4.7
+      },
+      {
+        "id": 24,
+        "cpu": 3.3,
+        "mem": 16.4
+      },
+      {
+        "id": 25,
+        "cpu": 3.5,
+        "mem": 3.5
+      },
+      {
+        "id": 26,
+        "cpu": 4.1,
+        "mem": 6.5
+      },
+      {
+        "id": 27,
+        "cpu": 3.9,
+        "mem": 15.5
+      },
+      {
+        "id": 28,
+        "cpu": 1.5,
+        "mem": 9.9
+      },
+      {
+        "id": 29,
+        "cpu": 4.1,
+        "mem": 22.0
+      },
+      {
+        "id": 30,
+        "cpu": 3.5,
+        "mem": 6.7
+      },
+      {
+        "id": 31,
+        "cpu": 4.6,
+        "mem": 14.1
+      },
+      {
+        "id": 32,
+        "cpu": 5.7,
+        "mem": 17.3
+      },
+      {
+        "id": 33,
+        "cpu": 2.5,
+        "mem": 9.3
+      },
+      {
+        "id": 34,
+        "cpu": 2.7,
+        "mem": 10.7
+      },
+      {
+        "id": 35,
+        "cpu": 2.4,
+        "mem": 16.0
+      },
+      {
+        "id": 36,
+        "cpu": 2.5,
+        "mem": 5.6
+      },
+      {
+        "id": 37,
+        "cpu": 4.4,
+        "mem": 19.5
+      },
+      {
+        "id": 38,
+        "cpu": 3.0,
+        "mem": 2.1
+      },
+      {
+        "id": 39,
+        "cpu": 3.8,
+        "mem": 14.2
+      },
+      {
+        "id": 40,
+        "cpu": 4.1,
+        "mem": 22.0
+      },
+      {
+        "id": 41,
+        "cpu": 2.6,
+        "mem": 21.1
+      },
+      {
+        "id": 42,
+        "cpu": 2.3,
+        "mem": 4.1
+      },
+      {
+        "id": 43,
+        "cpu": 2.5,
+        "mem": 1.6
+      },
+      {
+        "id": 44,
+        "cpu": 5.6,
+        "mem": 18.3
+      },
+      {
+        "id": 45,
+        "cpu": 5.6,
+        "mem": 13.2
+      },
+      {
+        "id": 46,
+        "cpu": 2.2,
+        "mem": 15.5
+      },
+      {
+        "id": 47,
+        "cpu": 3.3,
+        "mem": 1.5
+      },
+      {
+        "id": 48,
+        "cpu": 1.4,
+        "mem": 17.7
+      },
+      {
+        "id": 49,
+        "cpu": 0.8,
+        "mem": 5.3
+      },
+      {
+        "id": 50,
+        "cpu": 1.2,
+        "mem": 13.5
+      },
+      {
+        "id": 51,
+        "cpu": 2.0,
+        "mem": 15.8
+      },
+      {
+        "id": 52,
+        "cpu": 1.4,
+        "mem": 10.2
+      },
+      {
+        "id": 53,
+        "cpu": 3.5,
+        "mem": 3.8
+      },
+      {
+        "id": 54,
+        "cpu": 1.1,
+        "mem": 10.1
+      },
+      {
+        "id": 55,
+        "cpu": 5.6,
+        "mem": 3.5
+      },
+      {
+        "id": 56,
+        "cpu": 3.5,
+        "mem": 18.8
+      },
+      {
+        "id": 57,
+        "cpu": 2.7,
+        "mem": 10.8
+      },
+      {
+        "id": 58,
+        "cpu": 1.1,
+        "mem": 23.0
+      },
+      {
+        "id": 59,
+        "cpu": 1.7,
+        "mem": 16.1
+      },
+      {
+        "id": 60,
+        "cpu": 4.4,
+        "mem": 10.3
+      }
+    ],
+    "total_cluster_cpu": 368.0,
+    "total_cluster_mem": 1344.0,
+    "total_pod_cpu": 200.6,
+    "total_pod_mem": 806.3
+  },
+  {
+    "instance_id": "dev_uniform_05",
+    "family": "Uniform",
+    "n_pods": 49,
+    "m_nodes": 13,
+    "nodes": [
+      {
+        "id": 0,
+        "type": "standard_m",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 0.8
+      },
+      {
+        "id": 1,
+        "type": "mem_opt",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.4
+      },
+      {
+        "id": 2,
+        "type": "mem_opt",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.4
+      },
+      {
+        "id": 3,
+        "type": "general_s",
+        "cpu_capacity": 8.0,
+        "mem_capacity": 32.0,
+        "cost_per_hour": 0.4
+      },
+      {
+        "id": 4,
+        "type": "compute_opt",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 1.3
+      },
+      {
+        "id": 5,
+        "type": "mem_opt",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.4
+      },
+      {
+        "id": 6,
+        "type": "general_s",
+        "cpu_capacity": 8.0,
+        "mem_capacity": 32.0,
+        "cost_per_hour": 0.4
+      },
+      {
+        "id": 7,
+        "type": "standard_l",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.6
+      },
+      {
+        "id": 8,
+        "type": "general_s",
+        "cpu_capacity": 8.0,
+        "mem_capacity": 32.0,
+        "cost_per_hour": 0.4
+      },
+      {
+        "id": 9,
+        "type": "standard_m",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 0.8
+      },
+      {
+        "id": 10,
+        "type": "general_s",
+        "cpu_capacity": 8.0,
+        "mem_capacity": 32.0,
+        "cost_per_hour": 0.4
+      },
+      {
+        "id": 11,
+        "type": "standard_l",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.6
+      },
+      {
+        "id": 12,
+        "type": "standard_m",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 0.8
+      }
+    ],
+    "pods": [
+      {
+        "id": 0,
+        "cpu": 2.8,
+        "mem": 19.0
+      },
+      {
+        "id": 1,
+        "cpu": 2.1,
+        "mem": 8.1
+      },
+      {
+        "id": 2,
+        "cpu": 3.8,
+        "mem": 19.1
+      },
+      {
+        "id": 3,
+        "cpu": 4.0,
+        "mem": 1.6
+      },
+      {
+        "id": 4,
+        "cpu": 4.2,
+        "mem": 12.0
+      },
+      {
+        "id": 5,
+        "cpu": 4.6,
+        "mem": 6.6
+      },
+      {
+        "id": 6,
+        "cpu": 1.2,
+        "mem": 11.0
+      },
+      {
+        "id": 7,
+        "cpu": 0.9,
+        "mem": 13.7
+      },
+      {
+        "id": 8,
+        "cpu": 4.4,
+        "mem": 7.1
+      },
+      {
+        "id": 9,
+        "cpu": 2.5,
+        "mem": 16.3
+      },
+      {
+        "id": 10,
+        "cpu": 0.9,
+        "mem": 11.7
+      },
+      {
+        "id": 11,
+        "cpu": 2.6,
+        "mem": 2.5
+      },
+      {
+        "id": 12,
+        "cpu": 4.8,
+        "mem": 4.4
+      },
+      {
+        "id": 13,
+        "cpu": 1.6,
+        "mem": 2.4
+      },
+      {
+        "id": 14,
+        "cpu": 2.0,
+        "mem": 3.1
+      },
+      {
+        "id": 15,
+        "cpu": 1.1,
+        "mem": 16.2
+      },
+      {
+        "id": 16,
+        "cpu": 1.0,
+        "mem": 3.6
+      },
+      {
+        "id": 17,
+        "cpu": 2.7,
+        "mem": 12.0
+      },
+      {
+        "id": 18,
+        "cpu": 1.6,
+        "mem": 3.4
+      },
+      {
+        "id": 19,
+        "cpu": 3.9,
+        "mem": 6.5
+      },
+      {
+        "id": 20,
+        "cpu": 4.8,
+        "mem": 13.5
+      },
+      {
+        "id": 21,
+        "cpu": 1.4,
+        "mem": 9.2
+      },
+      {
+        "id": 22,
+        "cpu": 3.9,
+        "mem": 11.4
+      },
+      {
+        "id": 23,
+        "cpu": 2.5,
+        "mem": 3.0
+      },
+      {
+        "id": 24,
+        "cpu": 4.2,
+        "mem": 9.5
+      },
+      {
+        "id": 25,
+        "cpu": 3.9,
+        "mem": 7.1
+      },
+      {
+        "id": 26,
+        "cpu": 3.2,
+        "mem": 14.7
+      },
+      {
+        "id": 27,
+        "cpu": 2.4,
+        "mem": 9.7
+      },
+      {
+        "id": 28,
+        "cpu": 3.1,
+        "mem": 2.8
+      },
+      {
+        "id": 29,
+        "cpu": 1.2,
+        "mem": 17.6
+      },
+      {
+        "id": 30,
+        "cpu": 3.1,
+        "mem": 16.3
+      },
+      {
+        "id": 31,
+        "cpu": 1.3,
+        "mem": 16.9
+      },
+      {
+        "id": 32,
+        "cpu": 1.7,
+        "mem": 7.2
+      },
+      {
+        "id": 33,
+        "cpu": 3.0,
+        "mem": 1.6
+      },
+      {
+        "id": 34,
+        "cpu": 2.8,
+        "mem": 6.5
+      },
+      {
+        "id": 35,
+        "cpu": 3.3,
+        "mem": 12.0
+      },
+      {
+        "id": 36,
+        "cpu": 1.1,
+        "mem": 14.4
+      },
+      {
+        "id": 37,
+        "cpu": 3.6,
+        "mem": 7.6
+      },
+      {
+        "id": 38,
+        "cpu": 0.8,
+        "mem": 16.3
+      },
+      {
+        "id": 39,
+        "cpu": 2.2,
+        "mem": 18.8
+      },
+      {
+        "id": 40,
+        "cpu": 2.9,
+        "mem": 3.0
+      },
+      {
+        "id": 41,
+        "cpu": 2.1,
+        "mem": 17.5
+      },
+      {
+        "id": 42,
+        "cpu": 4.2,
+        "mem": 12.5
+      },
+      {
+        "id": 43,
+        "cpu": 4.2,
+        "mem": 14.0
+      },
+      {
+        "id": 44,
+        "cpu": 1.7,
+        "mem": 9.2
+      },
+      {
+        "id": 45,
+        "cpu": 2.9,
+        "mem": 14.6
+      },
+      {
+        "id": 46,
+        "cpu": 3.6,
+        "mem": 3.9
+      },
+      {
+        "id": 47,
+        "cpu": 3.0,
+        "mem": 12.1
+      },
+      {
+        "id": 48,
+        "cpu": 3.8,
+        "mem": 2.0
+      }
+    ],
+    "total_cluster_cpu": 224.0,
+    "total_cluster_mem": 1024.0,
+    "total_pod_cpu": 134.6,
+    "total_pod_mem": 485.2
+  },
+  {
+    "instance_id": "dev_cpu_heavy_01",
+    "family": "CPU_Heavy",
+    "n_pods": 52,
+    "m_nodes": 10,
+    "nodes": [
+      {
+        "id": 0,
+        "type": "mem_opt",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.4
+      },
+      {
+        "id": 1,
+        "type": "general_s",
+        "cpu_capacity": 8.0,
+        "mem_capacity": 32.0,
+        "cost_per_hour": 0.4
+      },
+      {
+        "id": 2,
+        "type": "mem_opt",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.4
+      },
+      {
+        "id": 3,
+        "type": "standard_m",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 0.8
+      },
+      {
+        "id": 4,
+        "type": "standard_m",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 0.8
+      },
+      {
+        "id": 5,
+        "type": "mem_opt",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.4
+      },
+      {
+        "id": 6,
+        "type": "compute_opt",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 1.3
+      },
+      {
+        "id": 7,
+        "type": "compute_opt",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 1.3
+      },
+      {
+        "id": 8,
+        "type": "general_s",
+        "cpu_capacity": 8.0,
+        "mem_capacity": 32.0,
+        "cost_per_hour": 0.4
+      },
+      {
+        "id": 9,
+        "type": "standard_m",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 0.8
+      }
+    ],
+    "pods": [
+      {
+        "id": 0,
+        "cpu": 3.1,
+        "mem": 1.5
+      },
+      {
+        "id": 1,
+        "cpu": 2.6,
+        "mem": 1.0
+      },
+      {
+        "id": 2,
+        "cpu": 1.7,
+        "mem": 1.4
+      },
+      {
+        "id": 3,
+        "cpu": 1.8,
+        "mem": 1.0
+      },
+      {
+        "id": 4,
+        "cpu": 1.9,
+        "mem": 1.4
+      },
+      {
+        "id": 5,
+        "cpu": 3.0,
+        "mem": 1.0
+      },
+      {
+        "id": 6,
+        "cpu": 1.2,
+        "mem": 1.0
+      },
+      {
+        "id": 7,
+        "cpu": 1.2,
+        "mem": 1.0
+      },
+      {
+        "id": 8,
+        "cpu": 2.2,
+        "mem": 1.5
+      },
+      {
+        "id": 9,
+        "cpu": 2.8,
+        "mem": 1.0
+      },
+      {
+        "id": 10,
+        "cpu": 1.6,
+        "mem": 1.5
+      },
+      {
+        "id": 11,
+        "cpu": 2.2,
+        "mem": 1.5
+      },
+      {
+        "id": 12,
+        "cpu": 1.2,
+        "mem": 1.3
+      },
+      {
+        "id": 13,
+        "cpu": 1.7,
+        "mem": 1.2
+      },
+      {
+        "id": 14,
+        "cpu": 1.6,
+        "mem": 1.0
+      },
+      {
+        "id": 15,
+        "cpu": 2.4,
+        "mem": 1.0
+      },
+      {
+        "id": 16,
+        "cpu": 2.8,
+        "mem": 1.1
+      },
+      {
+        "id": 17,
+        "cpu": 0.8,
+        "mem": 1.0
+      },
+      {
+        "id": 18,
+        "cpu": 2.6,
+        "mem": 1.0
+      },
+      {
+        "id": 19,
+        "cpu": 3.0,
+        "mem": 1.0
+      },
+      {
+        "id": 20,
+        "cpu": 3.1,
+        "mem": 1.0
+      },
+      {
+        "id": 21,
+        "cpu": 1.4,
+        "mem": 1.1
+      },
+      {
+        "id": 22,
+        "cpu": 1.1,
+        "mem": 1.0
+      },
+      {
+        "id": 23,
+        "cpu": 2.5,
+        "mem": 1.0
+      },
+      {
+        "id": 24,
+        "cpu": 3.1,
+        "mem": 1.2
+      },
+      {
+        "id": 25,
+        "cpu": 3.1,
+        "mem": 1.2
+      },
+      {
+        "id": 26,
+        "cpu": 2.3,
+        "mem": 1.0
+      },
+      {
+        "id": 27,
+        "cpu": 3.1,
+        "mem": 1.5
+      },
+      {
+        "id": 28,
+        "cpu": 2.0,
+        "mem": 1.5
+      },
+      {
+        "id": 29,
+        "cpu": 2.6,
+        "mem": 1.0
+      },
+      {
+        "id": 30,
+        "cpu": 2.4,
+        "mem": 1.5
+      },
+      {
+        "id": 31,
+        "cpu": 2.3,
+        "mem": 1.0
+      },
+      {
+        "id": 32,
+        "cpu": 1.0,
+        "mem": 1.3
+      },
+      {
+        "id": 33,
+        "cpu": 2.2,
+        "mem": 1.0
+      },
+      {
+        "id": 34,
+        "cpu": 1.2,
+        "mem": 1.3
+      },
+      {
+        "id": 35,
+        "cpu": 3.1,
+        "mem": 1.4
+      },
+      {
+        "id": 36,
+        "cpu": 2.0,
+        "mem": 1.0
+      },
+      {
+        "id": 37,
+        "cpu": 1.3,
+        "mem": 1.0
+      },
+      {
+        "id": 38,
+        "cpu": 1.3,
+        "mem": 1.5
+      },
+      {
+        "id": 39,
+        "cpu": 2.0,
+        "mem": 1.4
+      },
+      {
+        "id": 40,
+        "cpu": 1.5,
+        "mem": 1.1
+      },
+      {
+        "id": 41,
+        "cpu": 1.2,
+        "mem": 1.0
+      },
+      {
+        "id": 42,
+        "cpu": 0.8,
+        "mem": 1.0
+      },
+      {
+        "id": 43,
+        "cpu": 1.5,
+        "mem": 1.2
+      },
+      {
+        "id": 44,
+        "cpu": 2.4,
+        "mem": 1.1
+      },
+      {
+        "id": 45,
+        "cpu": 1.4,
+        "mem": 1.0
+      },
+      {
+        "id": 46,
+        "cpu": 3.0,
+        "mem": 1.4
+      },
+      {
+        "id": 47,
+        "cpu": 1.4,
+        "mem": 1.5
+      },
+      {
+        "id": 48,
+        "cpu": 1.5,
+        "mem": 1.0
+      },
+      {
+        "id": 49,
+        "cpu": 2.6,
+        "mem": 1.1
+      },
+      {
+        "id": 50,
+        "cpu": 2.8,
+        "mem": 1.1
+      },
+      {
+        "id": 51,
+        "cpu": 0.9,
+        "mem": 1.0
+      }
+    ],
+    "total_cluster_cpu": 176.0,
+    "total_cluster_mem": 768.0,
+    "total_pod_cpu": 105.5,
+    "total_pod_mem": 60.8
+  },
+  {
+    "instance_id": "dev_cpu_heavy_02",
+    "family": "CPU_Heavy",
+    "n_pods": 34,
+    "m_nodes": 15,
+    "nodes": [
+      {
+        "id": 0,
+        "type": "general_s",
+        "cpu_capacity": 8.0,
+        "mem_capacity": 32.0,
+        "cost_per_hour": 0.4
+      },
+      {
+        "id": 1,
+        "type": "standard_l",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.6
+      },
+      {
+        "id": 2,
+        "type": "standard_m",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 0.8
+      },
+      {
+        "id": 3,
+        "type": "general_s",
+        "cpu_capacity": 8.0,
+        "mem_capacity": 32.0,
+        "cost_per_hour": 0.4
+      },
+      {
+        "id": 4,
+        "type": "standard_m",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 0.8
+      },
+      {
+        "id": 5,
+        "type": "standard_m",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 0.8
+      },
+      {
+        "id": 6,
+        "type": "general_s",
+        "cpu_capacity": 8.0,
+        "mem_capacity": 32.0,
+        "cost_per_hour": 0.4
+      },
+      {
+        "id": 7,
+        "type": "compute_opt",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 1.3
+      },
+      {
+        "id": 8,
+        "type": "standard_m",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 0.8
+      },
+      {
+        "id": 9,
+        "type": "mem_opt",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.4
+      },
+      {
+        "id": 10,
+        "type": "standard_m",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 0.8
+      },
+      {
+        "id": 11,
+        "type": "mem_opt",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.4
+      },
+      {
+        "id": 12,
+        "type": "mem_opt",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.4
+      },
+      {
+        "id": 13,
+        "type": "standard_m",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 0.8
+      },
+      {
+        "id": 14,
+        "type": "compute_opt",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 1.3
+      }
+    ],
+    "pods": [
+      {
+        "id": 0,
+        "cpu": 6.0,
+        "mem": 2.3
+      },
+      {
+        "id": 1,
+        "cpu": 3.0,
+        "mem": 3.6
+      },
+      {
+        "id": 2,
+        "cpu": 4.5,
+        "mem": 2.9
+      },
+      {
+        "id": 3,
+        "cpu": 3.5,
+        "mem": 2.6
+      },
+      {
+        "id": 4,
+        "cpu": 5.4,
+        "mem": 1.4
+      },
+      {
+        "id": 5,
+        "cpu": 7.1,
+        "mem": 1.8
+      },
+      {
+        "id": 6,
+        "cpu": 6.8,
+        "mem": 1.9
+      },
+      {
+        "id": 7,
+        "cpu": 2.0,
+        "mem": 2.2
+      },
+      {
+        "id": 8,
+        "cpu": 6.2,
+        "mem": 2.8
+      },
+      {
+        "id": 9,
+        "cpu": 5.0,
+        "mem": 2.0
+      },
+      {
+        "id": 10,
+        "cpu": 6.8,
+        "mem": 2.1
+      },
+      {
+        "id": 11,
+        "cpu": 3.9,
+        "mem": 1.3
+      },
+      {
+        "id": 12,
+        "cpu": 4.5,
+        "mem": 3.1
+      },
+      {
+        "id": 13,
+        "cpu": 5.5,
+        "mem": 2.7
+      },
+      {
+        "id": 14,
+        "cpu": 7.1,
+        "mem": 1.4
+      },
+      {
+        "id": 15,
+        "cpu": 3.1,
+        "mem": 1.0
+      },
+      {
+        "id": 16,
+        "cpu": 3.3,
+        "mem": 2.3
+      },
+      {
+        "id": 17,
+        "cpu": 4.9,
+        "mem": 2.7
+      },
+      {
+        "id": 18,
+        "cpu": 3.6,
+        "mem": 1.4
+      },
+      {
+        "id": 19,
+        "cpu": 6.3,
+        "mem": 1.7
+      },
+      {
+        "id": 20,
+        "cpu": 3.9,
+        "mem": 2.3
+      },
+      {
+        "id": 21,
+        "cpu": 2.1,
+        "mem": 1.1
+      },
+      {
+        "id": 22,
+        "cpu": 2.2,
+        "mem": 2.1
+      },
+      {
+        "id": 23,
+        "cpu": 2.2,
+        "mem": 3.7
+      },
+      {
+        "id": 24,
+        "cpu": 4.9,
+        "mem": 3.2
+      },
+      {
+        "id": 25,
+        "cpu": 5.4,
+        "mem": 1.9
+      },
+      {
+        "id": 26,
+        "cpu": 5.8,
+        "mem": 3.0
+      },
+      {
+        "id": 27,
+        "cpu": 5.4,
+        "mem": 2.3
+      },
+      {
+        "id": 28,
+        "cpu": 4.4,
+        "mem": 3.0
+      },
+      {
+        "id": 29,
+        "cpu": 4.6,
+        "mem": 2.4
+      },
+      {
+        "id": 30,
+        "cpu": 4.0,
+        "mem": 2.6
+      },
+      {
+        "id": 31,
+        "cpu": 5.6,
+        "mem": 2.1
+      },
+      {
+        "id": 32,
+        "cpu": 3.3,
+        "mem": 2.9
+      },
+      {
+        "id": 33,
+        "cpu": 6.3,
+        "mem": 3.6
+      }
+    ],
+    "total_cluster_cpu": 264.0,
+    "total_cluster_mem": 1120.0,
+    "total_pod_cpu": 158.6,
+    "total_pod_mem": 79.4
+  },
+  {
+    "instance_id": "dev_cpu_heavy_03",
+    "family": "CPU_Heavy",
+    "n_pods": 33,
+    "m_nodes": 15,
+    "nodes": [
+      {
+        "id": 0,
+        "type": "mem_opt",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.4
+      },
+      {
+        "id": 1,
+        "type": "standard_m",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 0.8
+      },
+      {
+        "id": 2,
+        "type": "compute_opt",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 1.3
+      },
+      {
+        "id": 3,
+        "type": "standard_m",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 0.8
+      },
+      {
+        "id": 4,
+        "type": "standard_m",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 0.8
+      },
+      {
+        "id": 5,
+        "type": "compute_opt",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 1.3
+      },
+      {
+        "id": 6,
+        "type": "standard_m",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 0.8
+      },
+      {
+        "id": 7,
+        "type": "standard_m",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 0.8
+      },
+      {
+        "id": 8,
+        "type": "standard_m",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 0.8
+      },
+      {
+        "id": 9,
+        "type": "compute_opt",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 1.3
+      },
+      {
+        "id": 10,
+        "type": "standard_l",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.6
+      },
+      {
+        "id": 11,
+        "type": "compute_opt",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 1.3
+      },
+      {
+        "id": 12,
+        "type": "mem_opt",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.4
+      },
+      {
+        "id": 13,
+        "type": "standard_m",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 0.8
+      },
+      {
+        "id": 14,
+        "type": "compute_opt",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 1.3
+      }
+    ],
+    "pods": [
+      {
+        "id": 0,
+        "cpu": 8.1,
+        "mem": 2.9
+      },
+      {
+        "id": 1,
+        "cpu": 4.8,
+        "mem": 1.6
+      },
+      {
+        "id": 2,
+        "cpu": 6.3,
+        "mem": 3.1
+      },
+      {
+        "id": 3,
+        "cpu": 4.1,
+        "mem": 2.2
+      },
+      {
+        "id": 4,
+        "cpu": 3.3,
+        "mem": 1.3
+      },
+      {
+        "id": 5,
+        "cpu": 6.0,
+        "mem": 2.6
+      },
+      {
+        "id": 6,
+        "cpu": 7.9,
+        "mem": 2.3
+      },
+      {
+        "id": 7,
+        "cpu": 3.4,
+        "mem": 1.6
+      },
+      {
+        "id": 8,
+        "cpu": 4.7,
+        "mem": 3.6
+      },
+      {
+        "id": 9,
+        "cpu": 3.3,
+        "mem": 5.0
+      },
+      {
+        "id": 10,
+        "cpu": 3.2,
+        "mem": 3.2
+      },
+      {
+        "id": 11,
+        "cpu": 6.6,
+        "mem": 1.3
+      },
+      {
+        "id": 12,
+        "cpu": 7.6,
+        "mem": 4.3
+      },
+      {
+        "id": 13,
+        "cpu": 3.4,
+        "mem": 2.5
+      },
+      {
+        "id": 14,
+        "cpu": 5.6,
+        "mem": 4.6
+      },
+      {
+        "id": 15,
+        "cpu": 9.9,
+        "mem": 3.1
+      },
+      {
+        "id": 16,
+        "cpu": 4.6,
+        "mem": 2.7
+      },
+      {
+        "id": 17,
+        "cpu": 8.5,
+        "mem": 4.3
+      },
+      {
+        "id": 18,
+        "cpu": 7.0,
+        "mem": 3.9
+      },
+      {
+        "id": 19,
+        "cpu": 8.3,
+        "mem": 4.0
+      },
+      {
+        "id": 20,
+        "cpu": 8.5,
+        "mem": 3.9
+      },
+      {
+        "id": 21,
+        "cpu": 3.3,
+        "mem": 2.5
+      },
+      {
+        "id": 22,
+        "cpu": 4.5,
+        "mem": 3.3
+      },
+      {
+        "id": 23,
+        "cpu": 5.2,
+        "mem": 2.1
+      },
+      {
+        "id": 24,
+        "cpu": 8.7,
+        "mem": 2.0
+      },
+      {
+        "id": 25,
+        "cpu": 7.0,
+        "mem": 3.0
+      },
+      {
+        "id": 26,
+        "cpu": 4.3,
+        "mem": 4.2
+      },
+      {
+        "id": 27,
+        "cpu": 3.0,
+        "mem": 4.2
+      },
+      {
+        "id": 28,
+        "cpu": 9.9,
+        "mem": 4.4
+      },
+      {
+        "id": 29,
+        "cpu": 8.6,
+        "mem": 3.2
+      },
+      {
+        "id": 30,
+        "cpu": 8.8,
+        "mem": 2.4
+      },
+      {
+        "id": 31,
+        "cpu": 9.0,
+        "mem": 4.6
+      },
+      {
+        "id": 32,
+        "cpu": 4.0,
+        "mem": 4.5
+      }
+    ],
+    "total_cluster_cpu": 336.0,
+    "total_cluster_mem": 1152.0,
+    "total_pod_cpu": 201.4,
+    "total_pod_mem": 104.4
+  },
+  {
+    "instance_id": "dev_cpu_heavy_04",
+    "family": "CPU_Heavy",
+    "n_pods": 54,
+    "m_nodes": 15,
+    "nodes": [
+      {
+        "id": 0,
+        "type": "standard_l",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.6
+      },
+      {
+        "id": 1,
+        "type": "mem_opt",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.4
+      },
+      {
+        "id": 2,
+        "type": "compute_opt",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 1.3
+      },
+      {
+        "id": 3,
+        "type": "standard_m",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 0.8
+      },
+      {
+        "id": 4,
+        "type": "compute_opt",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 1.3
+      },
+      {
+        "id": 5,
+        "type": "standard_l",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.6
+      },
+      {
+        "id": 6,
+        "type": "compute_opt",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 1.3
+      },
+      {
+        "id": 7,
+        "type": "compute_opt",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 1.3
+      },
+      {
+        "id": 8,
+        "type": "compute_opt",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 1.3
+      },
+      {
+        "id": 9,
+        "type": "mem_opt",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.4
+      },
+      {
+        "id": 10,
+        "type": "mem_opt",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.4
+      },
+      {
+        "id": 11,
+        "type": "general_s",
+        "cpu_capacity": 8.0,
+        "mem_capacity": 32.0,
+        "cost_per_hour": 0.4
+      },
+      {
+        "id": 12,
+        "type": "mem_opt",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.4
+      },
+      {
+        "id": 13,
+        "type": "standard_l",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.6
+      },
+      {
+        "id": 14,
+        "type": "standard_l",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.6
+      }
+    ],
+    "pods": [
+      {
+        "id": 0,
+        "cpu": 2.3,
+        "mem": 1.2
+      },
+      {
+        "id": 1,
+        "cpu": 2.9,
+        "mem": 3.1
+      },
+      {
+        "id": 2,
+        "cpu": 3.5,
+        "mem": 2.9
+      },
+      {
+        "id": 3,
+        "cpu": 4.2,
+        "mem": 3.2
+      },
+      {
+        "id": 4,
+        "cpu": 5.3,
+        "mem": 2.4
+      },
+      {
+        "id": 5,
+        "cpu": 6.2,
+        "mem": 1.0
+      },
+      {
+        "id": 6,
+        "cpu": 3.1,
+        "mem": 2.3
+      },
+      {
+        "id": 7,
+        "cpu": 3.9,
+        "mem": 2.5
+      },
+      {
+        "id": 8,
+        "cpu": 5.2,
+        "mem": 2.9
+      },
+      {
+        "id": 9,
+        "cpu": 6.5,
+        "mem": 2.2
+      },
+      {
+        "id": 10,
+        "cpu": 1.9,
+        "mem": 1.5
+      },
+      {
+        "id": 11,
+        "cpu": 3.4,
+        "mem": 3.2
+      },
+      {
+        "id": 12,
+        "cpu": 4.7,
+        "mem": 1.0
+      },
+      {
+        "id": 13,
+        "cpu": 4.9,
+        "mem": 1.0
+      },
+      {
+        "id": 14,
+        "cpu": 5.0,
+        "mem": 1.0
+      },
+      {
+        "id": 15,
+        "cpu": 4.2,
+        "mem": 1.4
+      },
+      {
+        "id": 16,
+        "cpu": 3.8,
+        "mem": 1.4
+      },
+      {
+        "id": 17,
+        "cpu": 5.4,
+        "mem": 1.2
+      },
+      {
+        "id": 18,
+        "cpu": 3.8,
+        "mem": 2.0
+      },
+      {
+        "id": 19,
+        "cpu": 5.1,
+        "mem": 1.6
+      },
+      {
+        "id": 20,
+        "cpu": 3.1,
+        "mem": 2.7
+      },
+      {
+        "id": 21,
+        "cpu": 6.0,
+        "mem": 1.0
+      },
+      {
+        "id": 22,
+        "cpu": 2.9,
+        "mem": 1.2
+      },
+      {
+        "id": 23,
+        "cpu": 3.1,
+        "mem": 1.8
+      },
+      {
+        "id": 24,
+        "cpu": 6.3,
+        "mem": 1.0
+      },
+      {
+        "id": 25,
+        "cpu": 5.5,
+        "mem": 2.4
+      },
+      {
+        "id": 26,
+        "cpu": 4.6,
+        "mem": 1.0
+      },
+      {
+        "id": 27,
+        "cpu": 5.7,
+        "mem": 1.1
+      },
+      {
+        "id": 28,
+        "cpu": 6.6,
+        "mem": 3.1
+      },
+      {
+        "id": 29,
+        "cpu": 5.3,
+        "mem": 2.4
+      },
+      {
+        "id": 30,
+        "cpu": 3.0,
+        "mem": 2.8
+      },
+      {
+        "id": 31,
+        "cpu": 5.9,
+        "mem": 1.0
+      },
+      {
+        "id": 32,
+        "cpu": 5.7,
+        "mem": 3.1
+      },
+      {
+        "id": 33,
+        "cpu": 1.9,
+        "mem": 1.8
+      },
+      {
+        "id": 34,
+        "cpu": 1.7,
+        "mem": 1.8
+      },
+      {
+        "id": 35,
+        "cpu": 2.3,
+        "mem": 3.0
+      },
+      {
+        "id": 36,
+        "cpu": 1.9,
+        "mem": 2.1
+      },
+      {
+        "id": 37,
+        "cpu": 6.5,
+        "mem": 1.1
+      },
+      {
+        "id": 38,
+        "cpu": 4.6,
+        "mem": 1.6
+      },
+      {
+        "id": 39,
+        "cpu": 2.5,
+        "mem": 2.2
+      },
+      {
+        "id": 40,
+        "cpu": 4.1,
+        "mem": 2.2
+      },
+      {
+        "id": 41,
+        "cpu": 3.2,
+        "mem": 1.5
+      },
+      {
+        "id": 42,
+        "cpu": 1.8,
+        "mem": 2.6
+      },
+      {
+        "id": 43,
+        "cpu": 4.6,
+        "mem": 2.2
+      },
+      {
+        "id": 44,
+        "cpu": 6.5,
+        "mem": 1.0
+      },
+      {
+        "id": 45,
+        "cpu": 4.3,
+        "mem": 1.1
+      },
+      {
+        "id": 46,
+        "cpu": 2.8,
+        "mem": 3.0
+      },
+      {
+        "id": 47,
+        "cpu": 6.2,
+        "mem": 1.0
+      },
+      {
+        "id": 48,
+        "cpu": 3.1,
+        "mem": 1.6
+      },
+      {
+        "id": 49,
+        "cpu": 3.1,
+        "mem": 2.9
+      },
+      {
+        "id": 50,
+        "cpu": 1.9,
+        "mem": 2.6
+      },
+      {
+        "id": 51,
+        "cpu": 5.2,
+        "mem": 1.8
+      },
+      {
+        "id": 52,
+        "cpu": 4.8,
+        "mem": 1.5
+      },
+      {
+        "id": 53,
+        "cpu": 3.5,
+        "mem": 2.6
+      }
+    ],
+    "total_cluster_cpu": 376.0,
+    "total_cluster_mem": 1440.0,
+    "total_pod_cpu": 225.5,
+    "total_pod_mem": 104.8
+  },
+  {
+    "instance_id": "dev_cpu_heavy_05",
+    "family": "CPU_Heavy",
+    "n_pods": 60,
+    "m_nodes": 12,
+    "nodes": [
+      {
+        "id": 0,
+        "type": "general_s",
+        "cpu_capacity": 8.0,
+        "mem_capacity": 32.0,
+        "cost_per_hour": 0.4
+      },
+      {
+        "id": 1,
+        "type": "standard_m",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 0.8
+      },
+      {
+        "id": 2,
+        "type": "standard_l",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.6
+      },
+      {
+        "id": 3,
+        "type": "standard_l",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.6
+      },
+      {
+        "id": 4,
+        "type": "standard_l",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.6
+      },
+      {
+        "id": 5,
+        "type": "mem_opt",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.4
+      },
+      {
+        "id": 6,
+        "type": "standard_l",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.6
+      },
+      {
+        "id": 7,
+        "type": "mem_opt",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.4
+      },
+      {
+        "id": 8,
+        "type": "general_s",
+        "cpu_capacity": 8.0,
+        "mem_capacity": 32.0,
+        "cost_per_hour": 0.4
+      },
+      {
+        "id": 9,
+        "type": "standard_l",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.6
+      },
+      {
+        "id": 10,
+        "type": "mem_opt",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.4
+      },
+      {
+        "id": 11,
+        "type": "mem_opt",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.4
+      }
+    ],
+    "pods": [
+      {
+        "id": 0,
+        "cpu": 1.6,
+        "mem": 1.4
+      },
+      {
+        "id": 1,
+        "cpu": 3.5,
+        "mem": 1.0
+      },
+      {
+        "id": 2,
+        "cpu": 1.9,
+        "mem": 1.0
+      },
+      {
+        "id": 3,
+        "cpu": 2.9,
+        "mem": 1.5
+      },
+      {
+        "id": 4,
+        "cpu": 3.8,
+        "mem": 1.0
+      },
+      {
+        "id": 5,
+        "cpu": 3.6,
+        "mem": 1.7
+      },
+      {
+        "id": 6,
+        "cpu": 1.3,
+        "mem": 1.6
+      },
+      {
+        "id": 7,
+        "cpu": 3.1,
+        "mem": 1.0
+      },
+      {
+        "id": 8,
+        "cpu": 1.0,
+        "mem": 1.0
+      },
+      {
+        "id": 9,
+        "cpu": 1.6,
+        "mem": 2.0
+      },
+      {
+        "id": 10,
+        "cpu": 2.0,
+        "mem": 1.0
+      },
+      {
+        "id": 11,
+        "cpu": 2.6,
+        "mem": 1.0
+      },
+      {
+        "id": 12,
+        "cpu": 2.4,
+        "mem": 1.9
+      },
+      {
+        "id": 13,
+        "cpu": 2.2,
+        "mem": 1.8
+      },
+      {
+        "id": 14,
+        "cpu": 2.9,
+        "mem": 1.1
+      },
+      {
+        "id": 15,
+        "cpu": 2.0,
+        "mem": 1.2
+      },
+      {
+        "id": 16,
+        "cpu": 2.7,
+        "mem": 1.0
+      },
+      {
+        "id": 17,
+        "cpu": 1.2,
+        "mem": 1.8
+      },
+      {
+        "id": 18,
+        "cpu": 3.6,
+        "mem": 1.6
+      },
+      {
+        "id": 19,
+        "cpu": 1.5,
+        "mem": 1.0
+      },
+      {
+        "id": 20,
+        "cpu": 3.0,
+        "mem": 1.3
+      },
+      {
+        "id": 21,
+        "cpu": 2.5,
+        "mem": 1.8
+      },
+      {
+        "id": 22,
+        "cpu": 2.0,
+        "mem": 1.0
+      },
+      {
+        "id": 23,
+        "cpu": 3.3,
+        "mem": 1.0
+      },
+      {
+        "id": 24,
+        "cpu": 3.0,
+        "mem": 1.0
+      },
+      {
+        "id": 25,
+        "cpu": 2.8,
+        "mem": 1.0
+      },
+      {
+        "id": 26,
+        "cpu": 2.4,
+        "mem": 1.3
+      },
+      {
+        "id": 27,
+        "cpu": 2.1,
+        "mem": 1.3
+      },
+      {
+        "id": 28,
+        "cpu": 2.5,
+        "mem": 1.5
+      },
+      {
+        "id": 29,
+        "cpu": 3.0,
+        "mem": 1.2
+      },
+      {
+        "id": 30,
+        "cpu": 3.6,
+        "mem": 1.2
+      },
+      {
+        "id": 31,
+        "cpu": 1.7,
+        "mem": 1.0
+      },
+      {
+        "id": 32,
+        "cpu": 1.8,
+        "mem": 1.2
+      },
+      {
+        "id": 33,
+        "cpu": 2.3,
+        "mem": 1.6
+      },
+      {
+        "id": 34,
+        "cpu": 3.3,
+        "mem": 1.1
+      },
+      {
+        "id": 35,
+        "cpu": 3.1,
+        "mem": 1.6
+      },
+      {
+        "id": 36,
+        "cpu": 1.4,
+        "mem": 1.3
+      },
+      {
+        "id": 37,
+        "cpu": 2.1,
+        "mem": 1.0
+      },
+      {
+        "id": 38,
+        "cpu": 3.5,
+        "mem": 1.0
+      },
+      {
+        "id": 39,
+        "cpu": 3.0,
+        "mem": 1.9
+      },
+      {
+        "id": 40,
+        "cpu": 3.6,
+        "mem": 1.0
+      },
+      {
+        "id": 41,
+        "cpu": 2.5,
+        "mem": 1.6
+      },
+      {
+        "id": 42,
+        "cpu": 1.0,
+        "mem": 1.8
+      },
+      {
+        "id": 43,
+        "cpu": 1.7,
+        "mem": 1.1
+      },
+      {
+        "id": 44,
+        "cpu": 3.7,
+        "mem": 1.8
+      },
+      {
+        "id": 45,
+        "cpu": 2.3,
+        "mem": 1.3
+      },
+      {
+        "id": 46,
+        "cpu": 2.4,
+        "mem": 1.9
+      },
+      {
+        "id": 47,
+        "cpu": 2.4,
+        "mem": 1.1
+      },
+      {
+        "id": 48,
+        "cpu": 1.2,
+        "mem": 1.8
+      },
+      {
+        "id": 49,
+        "cpu": 3.0,
+        "mem": 1.0
+      },
+      {
+        "id": 50,
+        "cpu": 2.9,
+        "mem": 1.7
+      },
+      {
+        "id": 51,
+        "cpu": 2.9,
+        "mem": 1.9
+      },
+      {
+        "id": 52,
+        "cpu": 3.3,
+        "mem": 1.0
+      },
+      {
+        "id": 53,
+        "cpu": 1.5,
+        "mem": 1.4
+      },
+      {
+        "id": 54,
+        "cpu": 3.7,
+        "mem": 1.0
+      },
+      {
+        "id": 55,
+        "cpu": 3.2,
+        "mem": 1.2
+      },
+      {
+        "id": 56,
+        "cpu": 3.3,
+        "mem": 1.0
+      },
+      {
+        "id": 57,
+        "cpu": 3.6,
+        "mem": 1.0
+      },
+      {
+        "id": 58,
+        "cpu": 3.3,
+        "mem": 1.7
+      },
+      {
+        "id": 59,
+        "cpu": 2.3,
+        "mem": 2.0
+      }
+    ],
+    "total_cluster_cpu": 256.0,
+    "total_cluster_mem": 1280.0,
+    "total_pod_cpu": 153.6,
+    "total_pod_mem": 80.2
+  },
+  {
+    "instance_id": "dev_memory_heavy_01",
+    "family": "Memory_Heavy",
+    "n_pods": 49,
+    "m_nodes": 9,
+    "nodes": [
+      {
+        "id": 0,
+        "type": "general_s",
+        "cpu_capacity": 8.0,
+        "mem_capacity": 32.0,
+        "cost_per_hour": 0.4
+      },
+      {
+        "id": 1,
+        "type": "standard_l",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.6
+      },
+      {
+        "id": 2,
+        "type": "standard_l",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.6
+      },
+      {
+        "id": 3,
+        "type": "general_s",
+        "cpu_capacity": 8.0,
+        "mem_capacity": 32.0,
+        "cost_per_hour": 0.4
+      },
+      {
+        "id": 4,
+        "type": "mem_opt",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.4
+      },
+      {
+        "id": 5,
+        "type": "general_s",
+        "cpu_capacity": 8.0,
+        "mem_capacity": 32.0,
+        "cost_per_hour": 0.4
+      },
+      {
+        "id": 6,
+        "type": "general_s",
+        "cpu_capacity": 8.0,
+        "mem_capacity": 32.0,
+        "cost_per_hour": 0.4
+      },
+      {
+        "id": 7,
+        "type": "mem_opt",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.4
+      },
+      {
+        "id": 8,
+        "type": "compute_opt",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 1.3
+      }
+    ],
+    "pods": [
+      {
+        "id": 0,
+        "cpu": 0.5,
+        "mem": 4.1
+      },
+      {
+        "id": 1,
+        "cpu": 0.5,
+        "mem": 8.1
+      },
+      {
+        "id": 2,
+        "cpu": 0.5,
+        "mem": 11.8
+      },
+      {
+        "id": 3,
+        "cpu": 0.5,
+        "mem": 11.1
+      },
+      {
+        "id": 4,
+        "cpu": 0.5,
+        "mem": 9.0
+      },
+      {
+        "id": 5,
+        "cpu": 0.5,
+        "mem": 8.8
+      },
+      {
+        "id": 6,
+        "cpu": 0.5,
+        "mem": 11.6
+      },
+      {
+        "id": 7,
+        "cpu": 0.5,
+        "mem": 4.6
+      },
+      {
+        "id": 8,
+        "cpu": 0.5,
+        "mem": 13.0
+      },
+      {
+        "id": 9,
+        "cpu": 0.5,
+        "mem": 10.6
+      },
+      {
+        "id": 10,
+        "cpu": 0.5,
+        "mem": 7.5
+      },
+      {
+        "id": 11,
+        "cpu": 0.5,
+        "mem": 13.5
+      },
+      {
+        "id": 12,
+        "cpu": 0.5,
+        "mem": 13.7
+      },
+      {
+        "id": 13,
+        "cpu": 0.5,
+        "mem": 7.0
+      },
+      {
+        "id": 14,
+        "cpu": 0.5,
+        "mem": 7.0
+      },
+      {
+        "id": 15,
+        "cpu": 0.5,
+        "mem": 6.4
+      },
+      {
+        "id": 16,
+        "cpu": 0.5,
+        "mem": 5.0
+      },
+      {
+        "id": 17,
+        "cpu": 0.5,
+        "mem": 4.5
+      },
+      {
+        "id": 18,
+        "cpu": 0.5,
+        "mem": 7.3
+      },
+      {
+        "id": 19,
+        "cpu": 0.5,
+        "mem": 7.9
+      },
+      {
+        "id": 20,
+        "cpu": 0.5,
+        "mem": 9.9
+      },
+      {
+        "id": 21,
+        "cpu": 0.5,
+        "mem": 6.5
+      },
+      {
+        "id": 22,
+        "cpu": 0.5,
+        "mem": 11.4
+      },
+      {
+        "id": 23,
+        "cpu": 0.5,
+        "mem": 5.9
+      },
+      {
+        "id": 24,
+        "cpu": 0.5,
+        "mem": 7.6
+      },
+      {
+        "id": 25,
+        "cpu": 0.5,
+        "mem": 4.6
+      },
+      {
+        "id": 26,
+        "cpu": 0.5,
+        "mem": 5.2
+      },
+      {
+        "id": 27,
+        "cpu": 0.5,
+        "mem": 3.9
+      },
+      {
+        "id": 28,
+        "cpu": 0.5,
+        "mem": 5.9
+      },
+      {
+        "id": 29,
+        "cpu": 0.5,
+        "mem": 6.2
+      },
+      {
+        "id": 30,
+        "cpu": 0.5,
+        "mem": 8.2
+      },
+      {
+        "id": 31,
+        "cpu": 0.5,
+        "mem": 12.6
+      },
+      {
+        "id": 32,
+        "cpu": 0.5,
+        "mem": 3.8
+      },
+      {
+        "id": 33,
+        "cpu": 0.5,
+        "mem": 5.1
+      },
+      {
+        "id": 34,
+        "cpu": 0.5,
+        "mem": 5.9
+      },
+      {
+        "id": 35,
+        "cpu": 0.5,
+        "mem": 12.5
+      },
+      {
+        "id": 36,
+        "cpu": 0.5,
+        "mem": 9.2
+      },
+      {
+        "id": 37,
+        "cpu": 0.5,
+        "mem": 13.6
+      },
+      {
+        "id": 38,
+        "cpu": 0.5,
+        "mem": 13.5
+      },
+      {
+        "id": 39,
+        "cpu": 0.5,
+        "mem": 12.8
+      },
+      {
+        "id": 40,
+        "cpu": 0.5,
+        "mem": 6.2
+      },
+      {
+        "id": 41,
+        "cpu": 0.5,
+        "mem": 9.4
+      },
+      {
+        "id": 42,
+        "cpu": 0.5,
+        "mem": 13.8
+      },
+      {
+        "id": 43,
+        "cpu": 0.5,
+        "mem": 5.4
+      },
+      {
+        "id": 44,
+        "cpu": 0.5,
+        "mem": 8.3
+      },
+      {
+        "id": 45,
+        "cpu": 0.5,
+        "mem": 13.1
+      },
+      {
+        "id": 46,
+        "cpu": 0.5,
+        "mem": 8.4
+      },
+      {
+        "id": 47,
+        "cpu": 0.5,
+        "mem": 12.4
+      },
+      {
+        "id": 48,
+        "cpu": 0.5,
+        "mem": 8.3
+      }
+    ],
+    "total_cluster_cpu": 160.0,
+    "total_cluster_mem": 704.0,
+    "total_pod_cpu": 24.5,
+    "total_pod_mem": 422.1
+  },
+  {
+    "instance_id": "dev_memory_heavy_02",
+    "family": "Memory_Heavy",
+    "n_pods": 56,
+    "m_nodes": 9,
+    "nodes": [
+      {
+        "id": 0,
+        "type": "compute_opt",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 1.3
+      },
+      {
+        "id": 1,
+        "type": "standard_m",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 0.8
+      },
+      {
+        "id": 2,
+        "type": "standard_l",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.6
+      },
+      {
+        "id": 3,
+        "type": "standard_l",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.6
+      },
+      {
+        "id": 4,
+        "type": "mem_opt",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.4
+      },
+      {
+        "id": 5,
+        "type": "mem_opt",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.4
+      },
+      {
+        "id": 6,
+        "type": "compute_opt",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 1.3
+      },
+      {
+        "id": 7,
+        "type": "general_s",
+        "cpu_capacity": 8.0,
+        "mem_capacity": 32.0,
+        "cost_per_hour": 0.4
+      },
+      {
+        "id": 8,
+        "type": "mem_opt",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.4
+      }
+    ],
+    "pods": [
+      {
+        "id": 0,
+        "cpu": 0.5,
+        "mem": 12.9
+      },
+      {
+        "id": 1,
+        "cpu": 0.5,
+        "mem": 6.0
+      },
+      {
+        "id": 2,
+        "cpu": 0.5,
+        "mem": 13.1
+      },
+      {
+        "id": 3,
+        "cpu": 0.5,
+        "mem": 9.5
+      },
+      {
+        "id": 4,
+        "cpu": 0.5,
+        "mem": 4.0
+      },
+      {
+        "id": 5,
+        "cpu": 0.5,
+        "mem": 5.5
+      },
+      {
+        "id": 6,
+        "cpu": 0.5,
+        "mem": 13.5
+      },
+      {
+        "id": 7,
+        "cpu": 0.5,
+        "mem": 12.3
+      },
+      {
+        "id": 8,
+        "cpu": 0.5,
+        "mem": 7.4
+      },
+      {
+        "id": 9,
+        "cpu": 0.5,
+        "mem": 11.3
+      },
+      {
+        "id": 10,
+        "cpu": 0.5,
+        "mem": 3.6
+      },
+      {
+        "id": 11,
+        "cpu": 0.5,
+        "mem": 13.4
+      },
+      {
+        "id": 12,
+        "cpu": 0.5,
+        "mem": 5.8
+      },
+      {
+        "id": 13,
+        "cpu": 0.5,
+        "mem": 12.6
+      },
+      {
+        "id": 14,
+        "cpu": 0.5,
+        "mem": 6.1
+      },
+      {
+        "id": 15,
+        "cpu": 0.5,
+        "mem": 12.1
+      },
+      {
+        "id": 16,
+        "cpu": 0.5,
+        "mem": 13.1
+      },
+      {
+        "id": 17,
+        "cpu": 0.5,
+        "mem": 4.7
+      },
+      {
+        "id": 18,
+        "cpu": 0.5,
+        "mem": 10.8
+      },
+      {
+        "id": 19,
+        "cpu": 0.5,
+        "mem": 6.9
+      },
+      {
+        "id": 20,
+        "cpu": 0.5,
+        "mem": 11.3
+      },
+      {
+        "id": 21,
+        "cpu": 0.5,
+        "mem": 4.0
+      },
+      {
+        "id": 22,
+        "cpu": 0.5,
+        "mem": 4.2
+      },
+      {
+        "id": 23,
+        "cpu": 0.5,
+        "mem": 13.4
+      },
+      {
+        "id": 24,
+        "cpu": 0.5,
+        "mem": 13.1
+      },
+      {
+        "id": 25,
+        "cpu": 0.5,
+        "mem": 12.1
+      },
+      {
+        "id": 26,
+        "cpu": 0.5,
+        "mem": 9.7
+      },
+      {
+        "id": 27,
+        "cpu": 0.5,
+        "mem": 7.3
+      },
+      {
+        "id": 28,
+        "cpu": 0.5,
+        "mem": 8.5
+      },
+      {
+        "id": 29,
+        "cpu": 0.5,
+        "mem": 10.5
+      },
+      {
+        "id": 30,
+        "cpu": 0.5,
+        "mem": 7.3
+      },
+      {
+        "id": 31,
+        "cpu": 0.5,
+        "mem": 7.6
+      },
+      {
+        "id": 32,
+        "cpu": 0.5,
+        "mem": 7.0
+      },
+      {
+        "id": 33,
+        "cpu": 0.5,
+        "mem": 7.2
+      },
+      {
+        "id": 34,
+        "cpu": 0.5,
+        "mem": 11.8
+      },
+      {
+        "id": 35,
+        "cpu": 0.5,
+        "mem": 9.6
+      },
+      {
+        "id": 36,
+        "cpu": 0.5,
+        "mem": 8.6
+      },
+      {
+        "id": 37,
+        "cpu": 0.5,
+        "mem": 12.4
+      },
+      {
+        "id": 38,
+        "cpu": 0.5,
+        "mem": 10.4
+      },
+      {
+        "id": 39,
+        "cpu": 0.5,
+        "mem": 12.4
+      },
+      {
+        "id": 40,
+        "cpu": 0.5,
+        "mem": 11.8
+      },
+      {
+        "id": 41,
+        "cpu": 0.5,
+        "mem": 12.8
+      },
+      {
+        "id": 42,
+        "cpu": 0.5,
+        "mem": 9.6
+      },
+      {
+        "id": 43,
+        "cpu": 0.5,
+        "mem": 10.0
+      },
+      {
+        "id": 44,
+        "cpu": 0.5,
+        "mem": 10.0
+      },
+      {
+        "id": 45,
+        "cpu": 0.5,
+        "mem": 12.2
+      },
+      {
+        "id": 46,
+        "cpu": 0.5,
+        "mem": 9.2
+      },
+      {
+        "id": 47,
+        "cpu": 0.5,
+        "mem": 10.4
+      },
+      {
+        "id": 48,
+        "cpu": 0.5,
+        "mem": 6.6
+      },
+      {
+        "id": 49,
+        "cpu": 0.5,
+        "mem": 8.7
+      },
+      {
+        "id": 50,
+        "cpu": 0.5,
+        "mem": 7.8
+      },
+      {
+        "id": 51,
+        "cpu": 0.5,
+        "mem": 13.1
+      },
+      {
+        "id": 52,
+        "cpu": 0.5,
+        "mem": 5.6
+      },
+      {
+        "id": 53,
+        "cpu": 0.5,
+        "mem": 7.4
+      },
+      {
+        "id": 54,
+        "cpu": 0.5,
+        "mem": 3.6
+      },
+      {
+        "id": 55,
+        "cpu": 0.5,
+        "mem": 6.7
+      }
+    ],
+    "total_cluster_cpu": 200.0,
+    "total_cluster_mem": 864.0,
+    "total_pod_cpu": 28.0,
+    "total_pod_mem": 518.5
+  },
+  {
+    "instance_id": "dev_memory_heavy_03",
+    "family": "Memory_Heavy",
+    "n_pods": 47,
+    "m_nodes": 13,
+    "nodes": [
+      {
+        "id": 0,
+        "type": "general_s",
+        "cpu_capacity": 8.0,
+        "mem_capacity": 32.0,
+        "cost_per_hour": 0.4
+      },
+      {
+        "id": 1,
+        "type": "general_s",
+        "cpu_capacity": 8.0,
+        "mem_capacity": 32.0,
+        "cost_per_hour": 0.4
+      },
+      {
+        "id": 2,
+        "type": "compute_opt",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 1.3
+      },
+      {
+        "id": 3,
+        "type": "standard_l",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.6
+      },
+      {
+        "id": 4,
+        "type": "standard_l",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.6
+      },
+      {
+        "id": 5,
+        "type": "general_s",
+        "cpu_capacity": 8.0,
+        "mem_capacity": 32.0,
+        "cost_per_hour": 0.4
+      },
+      {
+        "id": 6,
+        "type": "mem_opt",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.4
+      },
+      {
+        "id": 7,
+        "type": "standard_m",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 0.8
+      },
+      {
+        "id": 8,
+        "type": "standard_l",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.6
+      },
+      {
+        "id": 9,
+        "type": "compute_opt",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 1.3
+      },
+      {
+        "id": 10,
+        "type": "compute_opt",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 1.3
+      },
+      {
+        "id": 11,
+        "type": "standard_l",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.6
+      },
+      {
+        "id": 12,
+        "type": "mem_opt",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.4
+      }
+    ],
+    "pods": [
+      {
+        "id": 0,
+        "cpu": 0.9,
+        "mem": 13.1
+      },
+      {
+        "id": 1,
+        "cpu": 0.5,
+        "mem": 12.2
+      },
+      {
+        "id": 2,
+        "cpu": 0.8,
+        "mem": 6.4
+      },
+      {
+        "id": 3,
+        "cpu": 0.5,
+        "mem": 8.8
+      },
+      {
+        "id": 4,
+        "cpu": 0.8,
+        "mem": 14.3
+      },
+      {
+        "id": 5,
+        "cpu": 0.9,
+        "mem": 13.4
+      },
+      {
+        "id": 6,
+        "cpu": 0.5,
+        "mem": 7.5
+      },
+      {
+        "id": 7,
+        "cpu": 0.6,
+        "mem": 14.5
+      },
+      {
+        "id": 8,
+        "cpu": 0.9,
+        "mem": 11.8
+      },
+      {
+        "id": 9,
+        "cpu": 0.8,
+        "mem": 13.2
+      },
+      {
+        "id": 10,
+        "cpu": 0.9,
+        "mem": 14.5
+      },
+      {
+        "id": 11,
+        "cpu": 0.6,
+        "mem": 20.7
+      },
+      {
+        "id": 12,
+        "cpu": 0.5,
+        "mem": 20.6
+      },
+      {
+        "id": 13,
+        "cpu": 0.5,
+        "mem": 15.4
+      },
+      {
+        "id": 14,
+        "cpu": 0.5,
+        "mem": 6.1
+      },
+      {
+        "id": 15,
+        "cpu": 0.6,
+        "mem": 22.7
+      },
+      {
+        "id": 16,
+        "cpu": 0.5,
+        "mem": 8.9
+      },
+      {
+        "id": 17,
+        "cpu": 0.5,
+        "mem": 10.6
+      },
+      {
+        "id": 18,
+        "cpu": 0.7,
+        "mem": 21.7
+      },
+      {
+        "id": 19,
+        "cpu": 0.5,
+        "mem": 14.3
+      },
+      {
+        "id": 20,
+        "cpu": 0.5,
+        "mem": 14.7
+      },
+      {
+        "id": 21,
+        "cpu": 0.5,
+        "mem": 18.9
+      },
+      {
+        "id": 22,
+        "cpu": 0.5,
+        "mem": 10.0
+      },
+      {
+        "id": 23,
+        "cpu": 0.5,
+        "mem": 7.2
+      },
+      {
+        "id": 24,
+        "cpu": 0.8,
+        "mem": 8.8
+      },
+      {
+        "id": 25,
+        "cpu": 0.5,
+        "mem": 18.5
+      },
+      {
+        "id": 26,
+        "cpu": 0.6,
+        "mem": 14.7
+      },
+      {
+        "id": 27,
+        "cpu": 0.6,
+        "mem": 13.8
+      },
+      {
+        "id": 28,
+        "cpu": 0.9,
+        "mem": 16.6
+      },
+      {
+        "id": 29,
+        "cpu": 0.6,
+        "mem": 7.9
+      },
+      {
+        "id": 30,
+        "cpu": 0.6,
+        "mem": 10.7
+      },
+      {
+        "id": 31,
+        "cpu": 0.9,
+        "mem": 21.8
+      },
+      {
+        "id": 32,
+        "cpu": 0.5,
+        "mem": 10.7
+      },
+      {
+        "id": 33,
+        "cpu": 0.6,
+        "mem": 19.8
+      },
+      {
+        "id": 34,
+        "cpu": 0.5,
+        "mem": 22.0
+      },
+      {
+        "id": 35,
+        "cpu": 0.5,
+        "mem": 15.5
+      },
+      {
+        "id": 36,
+        "cpu": 0.5,
+        "mem": 23.0
+      },
+      {
+        "id": 37,
+        "cpu": 0.5,
+        "mem": 18.6
+      },
+      {
+        "id": 38,
+        "cpu": 0.5,
+        "mem": 7.8
+      },
+      {
+        "id": 39,
+        "cpu": 0.5,
+        "mem": 9.7
+      },
+      {
+        "id": 40,
+        "cpu": 0.5,
+        "mem": 13.1
+      },
+      {
+        "id": 41,
+        "cpu": 0.5,
+        "mem": 16.0
+      },
+      {
+        "id": 42,
+        "cpu": 0.5,
+        "mem": 19.7
+      },
+      {
+        "id": 43,
+        "cpu": 0.6,
+        "mem": 20.5
+      },
+      {
+        "id": 44,
+        "cpu": 0.8,
+        "mem": 10.0
+      },
+      {
+        "id": 45,
+        "cpu": 0.8,
+        "mem": 21.8
+      },
+      {
+        "id": 46,
+        "cpu": 0.5,
+        "mem": 9.5
+      }
+    ],
+    "total_cluster_cpu": 296.0,
+    "total_cluster_mem": 1120.0,
+    "total_pod_cpu": 28.8,
+    "total_pod_mem": 672.0
+  },
+  {
+    "instance_id": "dev_memory_heavy_04",
+    "family": "Memory_Heavy",
+    "n_pods": 62,
+    "m_nodes": 8,
+    "nodes": [
+      {
+        "id": 0,
+        "type": "compute_opt",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 1.3
+      },
+      {
+        "id": 1,
+        "type": "general_s",
+        "cpu_capacity": 8.0,
+        "mem_capacity": 32.0,
+        "cost_per_hour": 0.4
+      },
+      {
+        "id": 2,
+        "type": "standard_l",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.6
+      },
+      {
+        "id": 3,
+        "type": "standard_m",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 0.8
+      },
+      {
+        "id": 4,
+        "type": "mem_opt",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.4
+      },
+      {
+        "id": 5,
+        "type": "mem_opt",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.4
+      },
+      {
+        "id": 6,
+        "type": "compute_opt",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 1.3
+      },
+      {
+        "id": 7,
+        "type": "standard_m",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 0.8
+      }
+    ],
+    "pods": [
+      {
+        "id": 0,
+        "cpu": 0.5,
+        "mem": 6.3
+      },
+      {
+        "id": 1,
+        "cpu": 0.5,
+        "mem": 6.8
+      },
+      {
+        "id": 2,
+        "cpu": 0.5,
+        "mem": 6.0
+      },
+      {
+        "id": 3,
+        "cpu": 0.5,
+        "mem": 9.7
+      },
+      {
+        "id": 4,
+        "cpu": 0.5,
+        "mem": 8.2
+      },
+      {
+        "id": 5,
+        "cpu": 0.5,
+        "mem": 9.8
+      },
+      {
+        "id": 6,
+        "cpu": 0.5,
+        "mem": 3.3
+      },
+      {
+        "id": 7,
+        "cpu": 0.5,
+        "mem": 3.9
+      },
+      {
+        "id": 8,
+        "cpu": 0.5,
+        "mem": 3.7
+      },
+      {
+        "id": 9,
+        "cpu": 0.5,
+        "mem": 8.3
+      },
+      {
+        "id": 10,
+        "cpu": 0.5,
+        "mem": 6.6
+      },
+      {
+        "id": 11,
+        "cpu": 0.5,
+        "mem": 10.1
+      },
+      {
+        "id": 12,
+        "cpu": 0.5,
+        "mem": 5.7
+      },
+      {
+        "id": 13,
+        "cpu": 0.5,
+        "mem": 9.9
+      },
+      {
+        "id": 14,
+        "cpu": 0.5,
+        "mem": 3.1
+      },
+      {
+        "id": 15,
+        "cpu": 0.5,
+        "mem": 2.6
+      },
+      {
+        "id": 16,
+        "cpu": 0.5,
+        "mem": 9.4
+      },
+      {
+        "id": 17,
+        "cpu": 0.5,
+        "mem": 2.7
+      },
+      {
+        "id": 18,
+        "cpu": 0.5,
+        "mem": 5.2
+      },
+      {
+        "id": 19,
+        "cpu": 0.5,
+        "mem": 10.2
+      },
+      {
+        "id": 20,
+        "cpu": 0.5,
+        "mem": 6.7
+      },
+      {
+        "id": 21,
+        "cpu": 0.5,
+        "mem": 7.6
+      },
+      {
+        "id": 22,
+        "cpu": 0.5,
+        "mem": 8.5
+      },
+      {
+        "id": 23,
+        "cpu": 0.5,
+        "mem": 5.7
+      },
+      {
+        "id": 24,
+        "cpu": 0.5,
+        "mem": 7.6
+      },
+      {
+        "id": 25,
+        "cpu": 0.5,
+        "mem": 5.4
+      },
+      {
+        "id": 26,
+        "cpu": 0.5,
+        "mem": 9.4
+      },
+      {
+        "id": 27,
+        "cpu": 0.5,
+        "mem": 3.3
+      },
+      {
+        "id": 28,
+        "cpu": 0.5,
+        "mem": 5.9
+      },
+      {
+        "id": 29,
+        "cpu": 0.5,
+        "mem": 6.9
+      },
+      {
+        "id": 30,
+        "cpu": 0.5,
+        "mem": 4.6
+      },
+      {
+        "id": 31,
+        "cpu": 0.5,
+        "mem": 8.4
+      },
+      {
+        "id": 32,
+        "cpu": 0.5,
+        "mem": 4.9
+      },
+      {
+        "id": 33,
+        "cpu": 0.5,
+        "mem": 7.2
+      },
+      {
+        "id": 34,
+        "cpu": 0.5,
+        "mem": 8.6
+      },
+      {
+        "id": 35,
+        "cpu": 0.5,
+        "mem": 9.2
+      },
+      {
+        "id": 36,
+        "cpu": 0.5,
+        "mem": 4.2
+      },
+      {
+        "id": 37,
+        "cpu": 0.5,
+        "mem": 4.3
+      },
+      {
+        "id": 38,
+        "cpu": 0.5,
+        "mem": 8.2
+      },
+      {
+        "id": 39,
+        "cpu": 0.5,
+        "mem": 3.0
+      },
+      {
+        "id": 40,
+        "cpu": 0.5,
+        "mem": 4.0
+      },
+      {
+        "id": 41,
+        "cpu": 0.5,
+        "mem": 3.9
+      },
+      {
+        "id": 42,
+        "cpu": 0.5,
+        "mem": 9.0
+      },
+      {
+        "id": 43,
+        "cpu": 0.5,
+        "mem": 6.1
+      },
+      {
+        "id": 44,
+        "cpu": 0.5,
+        "mem": 7.1
+      },
+      {
+        "id": 45,
+        "cpu": 0.5,
+        "mem": 9.3
+      },
+      {
+        "id": 46,
+        "cpu": 0.5,
+        "mem": 6.2
+      },
+      {
+        "id": 47,
+        "cpu": 0.5,
+        "mem": 6.4
+      },
+      {
+        "id": 48,
+        "cpu": 0.5,
+        "mem": 3.7
+      },
+      {
+        "id": 49,
+        "cpu": 0.5,
+        "mem": 7.0
+      },
+      {
+        "id": 50,
+        "cpu": 0.5,
+        "mem": 5.2
+      },
+      {
+        "id": 51,
+        "cpu": 0.5,
+        "mem": 7.1
+      },
+      {
+        "id": 52,
+        "cpu": 0.5,
+        "mem": 9.7
+      },
+      {
+        "id": 53,
+        "cpu": 0.5,
+        "mem": 6.4
+      },
+      {
+        "id": 54,
+        "cpu": 0.5,
+        "mem": 5.9
+      },
+      {
+        "id": 55,
+        "cpu": 0.5,
+        "mem": 4.3
+      },
+      {
+        "id": 56,
+        "cpu": 0.5,
+        "mem": 5.4
+      },
+      {
+        "id": 57,
+        "cpu": 0.5,
+        "mem": 5.7
+      },
+      {
+        "id": 58,
+        "cpu": 0.5,
+        "mem": 9.3
+      },
+      {
+        "id": 59,
+        "cpu": 0.5,
+        "mem": 5.9
+      },
+      {
+        "id": 60,
+        "cpu": 0.5,
+        "mem": 8.5
+      },
+      {
+        "id": 61,
+        "cpu": 0.5,
+        "mem": 6.3
+      }
+    ],
+    "total_cluster_cpu": 168.0,
+    "total_cluster_mem": 672.0,
+    "total_pod_cpu": 31.0,
+    "total_pod_mem": 403.5
+  },
+  {
+    "instance_id": "dev_memory_heavy_05",
+    "family": "Memory_Heavy",
+    "n_pods": 39,
+    "m_nodes": 9,
+    "nodes": [
+      {
+        "id": 0,
+        "type": "mem_opt",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.4
+      },
+      {
+        "id": 1,
+        "type": "general_s",
+        "cpu_capacity": 8.0,
+        "mem_capacity": 32.0,
+        "cost_per_hour": 0.4
+      },
+      {
+        "id": 2,
+        "type": "mem_opt",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.4
+      },
+      {
+        "id": 3,
+        "type": "standard_m",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 0.8
+      },
+      {
+        "id": 4,
+        "type": "standard_m",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 0.8
+      },
+      {
+        "id": 5,
+        "type": "compute_opt",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 1.3
+      },
+      {
+        "id": 6,
+        "type": "mem_opt",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.4
+      },
+      {
+        "id": 7,
+        "type": "general_s",
+        "cpu_capacity": 8.0,
+        "mem_capacity": 32.0,
+        "cost_per_hour": 0.4
+      },
+      {
+        "id": 8,
+        "type": "compute_opt",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 1.3
+      }
+    ],
+    "pods": [
+      {
+        "id": 0,
+        "cpu": 0.6,
+        "mem": 13.2
+      },
+      {
+        "id": 1,
+        "cpu": 0.5,
+        "mem": 8.7
+      },
+      {
+        "id": 2,
+        "cpu": 0.5,
+        "mem": 4.8
+      },
+      {
+        "id": 3,
+        "cpu": 0.7,
+        "mem": 14.6
+      },
+      {
+        "id": 4,
+        "cpu": 0.6,
+        "mem": 7.8
+      },
+      {
+        "id": 5,
+        "cpu": 0.5,
+        "mem": 13.1
+      },
+      {
+        "id": 6,
+        "cpu": 0.6,
+        "mem": 5.9
+      },
+      {
+        "id": 7,
+        "cpu": 0.6,
+        "mem": 15.2
+      },
+      {
+        "id": 8,
+        "cpu": 0.6,
+        "mem": 8.3
+      },
+      {
+        "id": 9,
+        "cpu": 0.6,
+        "mem": 14.3
+      },
+      {
+        "id": 10,
+        "cpu": 0.6,
+        "mem": 13.0
+      },
+      {
+        "id": 11,
+        "cpu": 0.5,
+        "mem": 13.6
+      },
+      {
+        "id": 12,
+        "cpu": 0.5,
+        "mem": 13.4
+      },
+      {
+        "id": 13,
+        "cpu": 0.6,
+        "mem": 13.7
+      },
+      {
+        "id": 14,
+        "cpu": 0.6,
+        "mem": 13.0
+      },
+      {
+        "id": 15,
+        "cpu": 0.6,
+        "mem": 9.6
+      },
+      {
+        "id": 16,
+        "cpu": 0.5,
+        "mem": 5.1
+      },
+      {
+        "id": 17,
+        "cpu": 0.5,
+        "mem": 13.8
+      },
+      {
+        "id": 18,
+        "cpu": 0.6,
+        "mem": 15.9
+      },
+      {
+        "id": 19,
+        "cpu": 0.6,
+        "mem": 6.3
+      },
+      {
+        "id": 20,
+        "cpu": 0.5,
+        "mem": 16.9
+      },
+      {
+        "id": 21,
+        "cpu": 0.5,
+        "mem": 5.8
+      },
+      {
+        "id": 22,
+        "cpu": 0.6,
+        "mem": 15.5
+      },
+      {
+        "id": 23,
+        "cpu": 0.6,
+        "mem": 15.1
+      },
+      {
+        "id": 24,
+        "cpu": 0.5,
+        "mem": 10.1
+      },
+      {
+        "id": 25,
+        "cpu": 0.5,
+        "mem": 8.5
+      },
+      {
+        "id": 26,
+        "cpu": 0.6,
+        "mem": 13.6
+      },
+      {
+        "id": 27,
+        "cpu": 0.6,
+        "mem": 5.5
+      },
+      {
+        "id": 28,
+        "cpu": 0.5,
+        "mem": 10.0
+      },
+      {
+        "id": 29,
+        "cpu": 0.6,
+        "mem": 13.8
+      },
+      {
+        "id": 30,
+        "cpu": 0.5,
+        "mem": 5.1
+      },
+      {
+        "id": 31,
+        "cpu": 0.5,
+        "mem": 14.8
+      },
+      {
+        "id": 32,
+        "cpu": 0.6,
+        "mem": 13.7
+      },
+      {
+        "id": 33,
+        "cpu": 0.5,
+        "mem": 4.9
+      },
+      {
+        "id": 34,
+        "cpu": 0.5,
+        "mem": 5.5
+      },
+      {
+        "id": 35,
+        "cpu": 0.5,
+        "mem": 14.7
+      },
+      {
+        "id": 36,
+        "cpu": 0.5,
+        "mem": 13.0
+      },
+      {
+        "id": 37,
+        "cpu": 0.5,
+        "mem": 5.9
+      },
+      {
+        "id": 38,
+        "cpu": 0.5,
+        "mem": 6.7
+      }
+    ],
+    "total_cluster_cpu": 160.0,
+    "total_cluster_mem": 704.0,
+    "total_pod_cpu": 21.5,
+    "total_pod_mem": 422.4
+  },
+  {
+    "instance_id": "dev_bimodal_01",
+    "family": "Bimodal",
+    "n_pods": 61,
+    "m_nodes": 14,
+    "nodes": [
+      {
+        "id": 0,
+        "type": "standard_m",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 0.8
+      },
+      {
+        "id": 1,
+        "type": "standard_m",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 0.8
+      },
+      {
+        "id": 2,
+        "type": "general_s",
+        "cpu_capacity": 8.0,
+        "mem_capacity": 32.0,
+        "cost_per_hour": 0.4
+      },
+      {
+        "id": 3,
+        "type": "standard_l",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.6
+      },
+      {
+        "id": 4,
+        "type": "standard_m",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 0.8
+      },
+      {
+        "id": 5,
+        "type": "mem_opt",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.4
+      },
+      {
+        "id": 6,
+        "type": "standard_m",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 0.8
+      },
+      {
+        "id": 7,
+        "type": "standard_l",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.6
+      },
+      {
+        "id": 8,
+        "type": "standard_l",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.6
+      },
+      {
+        "id": 9,
+        "type": "general_s",
+        "cpu_capacity": 8.0,
+        "mem_capacity": 32.0,
+        "cost_per_hour": 0.4
+      },
+      {
+        "id": 10,
+        "type": "mem_opt",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.4
+      },
+      {
+        "id": 11,
+        "type": "standard_l",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.6
+      },
+      {
+        "id": 12,
+        "type": "mem_opt",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.4
+      },
+      {
+        "id": 13,
+        "type": "compute_opt",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 1.3
+      }
+    ],
+    "pods": [
+      {
+        "id": 0,
+        "cpu": 0.5,
+        "mem": 2.8
+      },
+      {
+        "id": 1,
+        "cpu": 10.3,
+        "mem": 31.0
+      },
+      {
+        "id": 2,
+        "cpu": 9.4,
+        "mem": 30.6
+      },
+      {
+        "id": 3,
+        "cpu": 8.0,
+        "mem": 40.9
+      },
+      {
+        "id": 4,
+        "cpu": 11.3,
+        "mem": 30.4
+      },
+      {
+        "id": 5,
+        "cpu": 1.1,
+        "mem": 1.2
+      },
+      {
+        "id": 6,
+        "cpu": 0.8,
+        "mem": 1.9
+      },
+      {
+        "id": 7,
+        "cpu": 1.0,
+        "mem": 1.0
+      },
+      {
+        "id": 8,
+        "cpu": 0.7,
+        "mem": 1.5
+      },
+      {
+        "id": 9,
+        "cpu": 1.0,
+        "mem": 1.8
+      },
+      {
+        "id": 10,
+        "cpu": 0.7,
+        "mem": 1.7
+      },
+      {
+        "id": 11,
+        "cpu": 0.6,
+        "mem": 2.8
+      },
+      {
+        "id": 12,
+        "cpu": 9.6,
+        "mem": 31.3
+      },
+      {
+        "id": 13,
+        "cpu": 0.5,
+        "mem": 1.4
+      },
+      {
+        "id": 14,
+        "cpu": 0.5,
+        "mem": 2.6
+      },
+      {
+        "id": 15,
+        "cpu": 0.7,
+        "mem": 3.1
+      },
+      {
+        "id": 16,
+        "cpu": 6.9,
+        "mem": 29.9
+      },
+      {
+        "id": 17,
+        "cpu": 1.1,
+        "mem": 2.0
+      },
+      {
+        "id": 18,
+        "cpu": 1.0,
+        "mem": 3.2
+      },
+      {
+        "id": 19,
+        "cpu": 0.7,
+        "mem": 2.8
+      },
+      {
+        "id": 20,
+        "cpu": 1.0,
+        "mem": 2.9
+      },
+      {
+        "id": 21,
+        "cpu": 0.8,
+        "mem": 2.0
+      },
+      {
+        "id": 22,
+        "cpu": 0.9,
+        "mem": 1.0
+      },
+      {
+        "id": 23,
+        "cpu": 1.1,
+        "mem": 1.6
+      },
+      {
+        "id": 24,
+        "cpu": 1.1,
+        "mem": 2.0
+      },
+      {
+        "id": 25,
+        "cpu": 0.5,
+        "mem": 2.1
+      },
+      {
+        "id": 26,
+        "cpu": 10.9,
+        "mem": 28.0
+      },
+      {
+        "id": 27,
+        "cpu": 1.1,
+        "mem": 2.2
+      },
+      {
+        "id": 28,
+        "cpu": 1.1,
+        "mem": 1.4
+      },
+      {
+        "id": 29,
+        "cpu": 8.6,
+        "mem": 26.4
+      },
+      {
+        "id": 30,
+        "cpu": 1.0,
+        "mem": 1.7
+      },
+      {
+        "id": 31,
+        "cpu": 0.5,
+        "mem": 1.0
+      },
+      {
+        "id": 32,
+        "cpu": 0.5,
+        "mem": 1.8
+      },
+      {
+        "id": 33,
+        "cpu": 1.1,
+        "mem": 3.0
+      },
+      {
+        "id": 34,
+        "cpu": 0.6,
+        "mem": 1.0
+      },
+      {
+        "id": 35,
+        "cpu": 1.1,
+        "mem": 2.9
+      },
+      {
+        "id": 36,
+        "cpu": 0.6,
+        "mem": 2.0
+      },
+      {
+        "id": 37,
+        "cpu": 8.7,
+        "mem": 37.5
+      },
+      {
+        "id": 38,
+        "cpu": 1.1,
+        "mem": 1.1
+      },
+      {
+        "id": 39,
+        "cpu": 0.5,
+        "mem": 3.3
+      },
+      {
+        "id": 40,
+        "cpu": 1.1,
+        "mem": 2.5
+      },
+      {
+        "id": 41,
+        "cpu": 0.7,
+        "mem": 2.4
+      },
+      {
+        "id": 42,
+        "cpu": 0.9,
+        "mem": 1.0
+      },
+      {
+        "id": 43,
+        "cpu": 13.1,
+        "mem": 36.2
+      },
+      {
+        "id": 44,
+        "cpu": 12.1,
+        "mem": 41.7
+      },
+      {
+        "id": 45,
+        "cpu": 0.9,
+        "mem": 1.9
+      },
+      {
+        "id": 46,
+        "cpu": 0.9,
+        "mem": 1.7
+      },
+      {
+        "id": 47,
+        "cpu": 0.5,
+        "mem": 2.5
+      },
+      {
+        "id": 48,
+        "cpu": 1.2,
+        "mem": 1.9
+      },
+      {
+        "id": 49,
+        "cpu": 0.8,
+        "mem": 3.0
+      },
+      {
+        "id": 50,
+        "cpu": 0.6,
+        "mem": 3.0
+      },
+      {
+        "id": 51,
+        "cpu": 1.1,
+        "mem": 1.5
+      },
+      {
+        "id": 52,
+        "cpu": 0.6,
+        "mem": 1.9
+      },
+      {
+        "id": 53,
+        "cpu": 1.2,
+        "mem": 2.4
+      },
+      {
+        "id": 54,
+        "cpu": 1.1,
+        "mem": 1.5
+      },
+      {
+        "id": 55,
+        "cpu": 10.0,
+        "mem": 45.7
+      },
+      {
+        "id": 56,
+        "cpu": 0.7,
+        "mem": 1.3
+      },
+      {
+        "id": 57,
+        "cpu": 7.3,
+        "mem": 31.6
+      },
+      {
+        "id": 58,
+        "cpu": 0.8,
+        "mem": 1.3
+      },
+      {
+        "id": 59,
+        "cpu": 1.1,
+        "mem": 2.4
+      },
+      {
+        "id": 60,
+        "cpu": 7.4,
+        "mem": 42.0
+      }
+    ],
+    "total_cluster_cpu": 288.0,
+    "total_cluster_mem": 1280.0,
+    "total_pod_cpu": 173.3,
+    "total_pod_mem": 578.2
+  },
+  {
+    "instance_id": "dev_bimodal_02",
+    "family": "Bimodal",
+    "n_pods": 57,
+    "m_nodes": 11,
+    "nodes": [
+      {
+        "id": 0,
+        "type": "mem_opt",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.4
+      },
+      {
+        "id": 1,
+        "type": "mem_opt",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.4
+      },
+      {
+        "id": 2,
+        "type": "general_s",
+        "cpu_capacity": 8.0,
+        "mem_capacity": 32.0,
+        "cost_per_hour": 0.4
+      },
+      {
+        "id": 3,
+        "type": "general_s",
+        "cpu_capacity": 8.0,
+        "mem_capacity": 32.0,
+        "cost_per_hour": 0.4
+      },
+      {
+        "id": 4,
+        "type": "general_s",
+        "cpu_capacity": 8.0,
+        "mem_capacity": 32.0,
+        "cost_per_hour": 0.4
+      },
+      {
+        "id": 5,
+        "type": "standard_m",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 0.8
+      },
+      {
+        "id": 6,
+        "type": "mem_opt",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.4
+      },
+      {
+        "id": 7,
+        "type": "standard_l",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.6
+      },
+      {
+        "id": 8,
+        "type": "general_s",
+        "cpu_capacity": 8.0,
+        "mem_capacity": 32.0,
+        "cost_per_hour": 0.4
+      },
+      {
+        "id": 9,
+        "type": "standard_m",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 0.8
+      },
+      {
+        "id": 10,
+        "type": "mem_opt",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.4
+      }
+    ],
+    "pods": [
+      {
+        "id": 0,
+        "cpu": 0.5,
+        "mem": 1.0
+      },
+      {
+        "id": 1,
+        "cpu": 5.6,
+        "mem": 13.6
+      },
+      {
+        "id": 2,
+        "cpu": 0.5,
+        "mem": 1.0
+      },
+      {
+        "id": 3,
+        "cpu": 3.8,
+        "mem": 17.9
+      },
+      {
+        "id": 4,
+        "cpu": 0.5,
+        "mem": 1.0
+      },
+      {
+        "id": 5,
+        "cpu": 0.5,
+        "mem": 1.3
+      },
+      {
+        "id": 6,
+        "cpu": 0.5,
+        "mem": 1.0
+      },
+      {
+        "id": 7,
+        "cpu": 4.7,
+        "mem": 12.4
+      },
+      {
+        "id": 8,
+        "cpu": 0.5,
+        "mem": 1.0
+      },
+      {
+        "id": 9,
+        "cpu": 0.5,
+        "mem": 1.0
+      },
+      {
+        "id": 10,
+        "cpu": 3.3,
+        "mem": 21.5
+      },
+      {
+        "id": 11,
+        "cpu": 5.4,
+        "mem": 16.4
+      },
+      {
+        "id": 12,
+        "cpu": 0.5,
+        "mem": 1.4
+      },
+      {
+        "id": 13,
+        "cpu": 0.5,
+        "mem": 1.2
+      },
+      {
+        "id": 14,
+        "cpu": 0.5,
+        "mem": 1.0
+      },
+      {
+        "id": 15,
+        "cpu": 0.5,
+        "mem": 1.4
+      },
+      {
+        "id": 16,
+        "cpu": 5.6,
+        "mem": 15.2
+      },
+      {
+        "id": 17,
+        "cpu": 0.5,
+        "mem": 1.0
+      },
+      {
+        "id": 18,
+        "cpu": 0.5,
+        "mem": 1.0
+      },
+      {
+        "id": 19,
+        "cpu": 4.4,
+        "mem": 19.4
+      },
+      {
+        "id": 20,
+        "cpu": 3.3,
+        "mem": 19.2
+      },
+      {
+        "id": 21,
+        "cpu": 0.5,
+        "mem": 1.1
+      },
+      {
+        "id": 22,
+        "cpu": 0.5,
+        "mem": 1.0
+      },
+      {
+        "id": 23,
+        "cpu": 0.5,
+        "mem": 1.2
+      },
+      {
+        "id": 24,
+        "cpu": 0.5,
+        "mem": 1.0
+      },
+      {
+        "id": 25,
+        "cpu": 0.5,
+        "mem": 1.5
+      },
+      {
+        "id": 26,
+        "cpu": 0.5,
+        "mem": 1.0
+      },
+      {
+        "id": 27,
+        "cpu": 4.9,
+        "mem": 14.9
+      },
+      {
+        "id": 28,
+        "cpu": 5.3,
+        "mem": 14.3
+      },
+      {
+        "id": 29,
+        "cpu": 5.0,
+        "mem": 15.2
+      },
+      {
+        "id": 30,
+        "cpu": 5.1,
+        "mem": 15.1
+      },
+      {
+        "id": 31,
+        "cpu": 0.5,
+        "mem": 1.5
+      },
+      {
+        "id": 32,
+        "cpu": 0.5,
+        "mem": 1.0
+      },
+      {
+        "id": 33,
+        "cpu": 3.8,
+        "mem": 19.1
+      },
+      {
+        "id": 34,
+        "cpu": 0.5,
+        "mem": 1.3
+      },
+      {
+        "id": 35,
+        "cpu": 0.5,
+        "mem": 1.0
+      },
+      {
+        "id": 36,
+        "cpu": 4.2,
+        "mem": 14.0
+      },
+      {
+        "id": 37,
+        "cpu": 0.5,
+        "mem": 1.4
+      },
+      {
+        "id": 38,
+        "cpu": 0.5,
+        "mem": 1.4
+      },
+      {
+        "id": 39,
+        "cpu": 0.5,
+        "mem": 1.0
+      },
+      {
+        "id": 40,
+        "cpu": 0.5,
+        "mem": 1.4
+      },
+      {
+        "id": 41,
+        "cpu": 5.4,
+        "mem": 20.0
+      },
+      {
+        "id": 42,
+        "cpu": 0.5,
+        "mem": 1.5
+      },
+      {
+        "id": 43,
+        "cpu": 0.5,
+        "mem": 1.0
+      },
+      {
+        "id": 44,
+        "cpu": 0.5,
+        "mem": 1.0
+      },
+      {
+        "id": 45,
+        "cpu": 0.5,
+        "mem": 1.0
+      },
+      {
+        "id": 46,
+        "cpu": 5.8,
+        "mem": 13.4
+      },
+      {
+        "id": 47,
+        "cpu": 0.5,
+        "mem": 1.0
+      },
+      {
+        "id": 48,
+        "cpu": 0.5,
+        "mem": 1.0
+      },
+      {
+        "id": 49,
+        "cpu": 0.5,
+        "mem": 1.0
+      },
+      {
+        "id": 50,
+        "cpu": 0.5,
+        "mem": 1.0
+      },
+      {
+        "id": 51,
+        "cpu": 0.5,
+        "mem": 1.0
+      },
+      {
+        "id": 52,
+        "cpu": 0.5,
+        "mem": 1.1
+      },
+      {
+        "id": 53,
+        "cpu": 5.2,
+        "mem": 14.0
+      },
+      {
+        "id": 54,
+        "cpu": 0.5,
+        "mem": 1.0
+      },
+      {
+        "id": 55,
+        "cpu": 0.6,
+        "mem": 1.0
+      },
+      {
+        "id": 56,
+        "cpu": 0.5,
+        "mem": 1.0
+      }
+    ],
+    "total_cluster_cpu": 160.0,
+    "total_cluster_mem": 896.0,
+    "total_pod_cpu": 100.9,
+    "total_pod_mem": 320.3
+  },
+  {
+    "instance_id": "dev_bimodal_03",
+    "family": "Bimodal",
+    "n_pods": 64,
+    "m_nodes": 12,
+    "nodes": [
+      {
+        "id": 0,
+        "type": "mem_opt",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.4
+      },
+      {
+        "id": 1,
+        "type": "compute_opt",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 1.3
+      },
+      {
+        "id": 2,
+        "type": "standard_m",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 0.8
+      },
+      {
+        "id": 3,
+        "type": "standard_m",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 0.8
+      },
+      {
+        "id": 4,
+        "type": "compute_opt",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 1.3
+      },
+      {
+        "id": 5,
+        "type": "standard_m",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 0.8
+      },
+      {
+        "id": 6,
+        "type": "mem_opt",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.4
+      },
+      {
+        "id": 7,
+        "type": "mem_opt",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.4
+      },
+      {
+        "id": 8,
+        "type": "mem_opt",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.4
+      },
+      {
+        "id": 9,
+        "type": "general_s",
+        "cpu_capacity": 8.0,
+        "mem_capacity": 32.0,
+        "cost_per_hour": 0.4
+      },
+      {
+        "id": 10,
+        "type": "general_s",
+        "cpu_capacity": 8.0,
+        "mem_capacity": 32.0,
+        "cost_per_hour": 0.4
+      },
+      {
+        "id": 11,
+        "type": "standard_m",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 0.8
+      }
+    ],
+    "pods": [
+      {
+        "id": 0,
+        "cpu": 0.5,
+        "mem": 1.5
+      },
+      {
+        "id": 1,
+        "cpu": 0.5,
+        "mem": 1.6
+      },
+      {
+        "id": 2,
+        "cpu": 7.5,
+        "mem": 17.0
+      },
+      {
+        "id": 3,
+        "cpu": 0.5,
+        "mem": 1.8
+      },
+      {
+        "id": 4,
+        "cpu": 6.9,
+        "mem": 25.9
+      },
+      {
+        "id": 5,
+        "cpu": 0.5,
+        "mem": 1.3
+      },
+      {
+        "id": 6,
+        "cpu": 5.1,
+        "mem": 25.5
+      },
+      {
+        "id": 7,
+        "cpu": 0.5,
+        "mem": 1.0
+      },
+      {
+        "id": 8,
+        "cpu": 6.1,
+        "mem": 30.5
+      },
+      {
+        "id": 9,
+        "cpu": 3.9,
+        "mem": 18.1
+      },
+      {
+        "id": 10,
+        "cpu": 4.2,
+        "mem": 23.0
+      },
+      {
+        "id": 11,
+        "cpu": 0.6,
+        "mem": 1.1
+      },
+      {
+        "id": 12,
+        "cpu": 4.1,
+        "mem": 21.3
+      },
+      {
+        "id": 13,
+        "cpu": 4.7,
+        "mem": 24.7
+      },
+      {
+        "id": 14,
+        "cpu": 0.6,
+        "mem": 1.5
+      },
+      {
+        "id": 15,
+        "cpu": 0.6,
+        "mem": 1.0
+      },
+      {
+        "id": 16,
+        "cpu": 0.5,
+        "mem": 1.3
+      },
+      {
+        "id": 17,
+        "cpu": 0.5,
+        "mem": 1.6
+      },
+      {
+        "id": 18,
+        "cpu": 3.9,
+        "mem": 15.9
+      },
+      {
+        "id": 19,
+        "cpu": 5.8,
+        "mem": 16.1
+      },
+      {
+        "id": 20,
+        "cpu": 0.7,
+        "mem": 1.7
+      },
+      {
+        "id": 21,
+        "cpu": 6.1,
+        "mem": 24.4
+      },
+      {
+        "id": 22,
+        "cpu": 0.5,
+        "mem": 1.4
+      },
+      {
+        "id": 23,
+        "cpu": 0.5,
+        "mem": 1.0
+      },
+      {
+        "id": 24,
+        "cpu": 0.6,
+        "mem": 1.0
+      },
+      {
+        "id": 25,
+        "cpu": 0.5,
+        "mem": 1.0
+      },
+      {
+        "id": 26,
+        "cpu": 0.7,
+        "mem": 1.0
+      },
+      {
+        "id": 27,
+        "cpu": 0.5,
+        "mem": 1.4
+      },
+      {
+        "id": 28,
+        "cpu": 0.6,
+        "mem": 1.6
+      },
+      {
+        "id": 29,
+        "cpu": 0.5,
+        "mem": 1.0
+      },
+      {
+        "id": 30,
+        "cpu": 4.0,
+        "mem": 29.8
+      },
+      {
+        "id": 31,
+        "cpu": 0.6,
+        "mem": 1.3
+      },
+      {
+        "id": 32,
+        "cpu": 0.5,
+        "mem": 1.0
+      },
+      {
+        "id": 33,
+        "cpu": 0.5,
+        "mem": 1.7
+      },
+      {
+        "id": 34,
+        "cpu": 0.5,
+        "mem": 1.7
+      },
+      {
+        "id": 35,
+        "cpu": 3.9,
+        "mem": 24.5
+      },
+      {
+        "id": 36,
+        "cpu": 4.3,
+        "mem": 19.4
+      },
+      {
+        "id": 37,
+        "cpu": 0.7,
+        "mem": 1.0
+      },
+      {
+        "id": 38,
+        "cpu": 0.5,
+        "mem": 1.0
+      },
+      {
+        "id": 39,
+        "cpu": 0.5,
+        "mem": 1.0
+      },
+      {
+        "id": 40,
+        "cpu": 0.5,
+        "mem": 1.2
+      },
+      {
+        "id": 41,
+        "cpu": 7.6,
+        "mem": 24.8
+      },
+      {
+        "id": 42,
+        "cpu": 0.6,
+        "mem": 1.6
+      },
+      {
+        "id": 43,
+        "cpu": 0.6,
+        "mem": 1.3
+      },
+      {
+        "id": 44,
+        "cpu": 0.6,
+        "mem": 1.4
+      },
+      {
+        "id": 45,
+        "cpu": 0.5,
+        "mem": 1.9
+      },
+      {
+        "id": 46,
+        "cpu": 0.5,
+        "mem": 1.0
+      },
+      {
+        "id": 47,
+        "cpu": 0.5,
+        "mem": 1.0
+      },
+      {
+        "id": 48,
+        "cpu": 0.5,
+        "mem": 1.0
+      },
+      {
+        "id": 49,
+        "cpu": 6.9,
+        "mem": 19.7
+      },
+      {
+        "id": 50,
+        "cpu": 6.1,
+        "mem": 18.3
+      },
+      {
+        "id": 51,
+        "cpu": 0.5,
+        "mem": 1.3
+      },
+      {
+        "id": 52,
+        "cpu": 0.7,
+        "mem": 1.4
+      },
+      {
+        "id": 53,
+        "cpu": 0.5,
+        "mem": 1.4
+      },
+      {
+        "id": 54,
+        "cpu": 0.5,
+        "mem": 1.2
+      },
+      {
+        "id": 55,
+        "cpu": 7.2,
+        "mem": 23.0
+      },
+      {
+        "id": 56,
+        "cpu": 0.6,
+        "mem": 1.0
+      },
+      {
+        "id": 57,
+        "cpu": 6.4,
+        "mem": 24.9
+      },
+      {
+        "id": 58,
+        "cpu": 0.5,
+        "mem": 1.0
+      },
+      {
+        "id": 59,
+        "cpu": 0.5,
+        "mem": 1.7
+      },
+      {
+        "id": 60,
+        "cpu": 0.5,
+        "mem": 1.0
+      },
+      {
+        "id": 61,
+        "cpu": 0.5,
+        "mem": 1.4
+      },
+      {
+        "id": 62,
+        "cpu": 0.5,
+        "mem": 1.8
+      },
+      {
+        "id": 63,
+        "cpu": 0.5,
+        "mem": 1.6
+      }
+    ],
+    "total_cluster_cpu": 208.0,
+    "total_cluster_mem": 960.0,
+    "total_pod_cpu": 129.0,
+    "total_pod_mem": 485.5
+  },
+  {
+    "instance_id": "dev_bimodal_04",
+    "family": "Bimodal",
+    "n_pods": 45,
+    "m_nodes": 16,
+    "nodes": [
+      {
+        "id": 0,
+        "type": "mem_opt",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.4
+      },
+      {
+        "id": 1,
+        "type": "standard_l",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.6
+      },
+      {
+        "id": 2,
+        "type": "compute_opt",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 1.3
+      },
+      {
+        "id": 3,
+        "type": "mem_opt",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.4
+      },
+      {
+        "id": 4,
+        "type": "standard_m",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 0.8
+      },
+      {
+        "id": 5,
+        "type": "mem_opt",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.4
+      },
+      {
+        "id": 6,
+        "type": "standard_m",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 0.8
+      },
+      {
+        "id": 7,
+        "type": "general_s",
+        "cpu_capacity": 8.0,
+        "mem_capacity": 32.0,
+        "cost_per_hour": 0.4
+      },
+      {
+        "id": 8,
+        "type": "compute_opt",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 1.3
+      },
+      {
+        "id": 9,
+        "type": "mem_opt",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.4
+      },
+      {
+        "id": 10,
+        "type": "general_s",
+        "cpu_capacity": 8.0,
+        "mem_capacity": 32.0,
+        "cost_per_hour": 0.4
+      },
+      {
+        "id": 11,
+        "type": "mem_opt",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.4
+      },
+      {
+        "id": 12,
+        "type": "standard_m",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 0.8
+      },
+      {
+        "id": 13,
+        "type": "compute_opt",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 1.3
+      },
+      {
+        "id": 14,
+        "type": "standard_l",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.6
+      },
+      {
+        "id": 15,
+        "type": "compute_opt",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 1.3
+      }
+    ],
+    "pods": [
+      {
+        "id": 0,
+        "cpu": 11.5,
+        "mem": 50.6
+      },
+      {
+        "id": 1,
+        "cpu": 1.5,
+        "mem": 1.7
+      },
+      {
+        "id": 2,
+        "cpu": 1.2,
+        "mem": 1.3
+      },
+      {
+        "id": 3,
+        "cpu": 1.4,
+        "mem": 3.6
+      },
+      {
+        "id": 4,
+        "cpu": 0.5,
+        "mem": 1.1
+      },
+      {
+        "id": 5,
+        "cpu": 15.1,
+        "mem": 33.1
+      },
+      {
+        "id": 6,
+        "cpu": 1.1,
+        "mem": 3.5
+      },
+      {
+        "id": 7,
+        "cpu": 9.8,
+        "mem": 54.3
+      },
+      {
+        "id": 8,
+        "cpu": 14.0,
+        "mem": 61.6
+      },
+      {
+        "id": 9,
+        "cpu": 0.7,
+        "mem": 2.2
+      },
+      {
+        "id": 10,
+        "cpu": 0.9,
+        "mem": 4.0
+      },
+      {
+        "id": 11,
+        "cpu": 0.8,
+        "mem": 1.1
+      },
+      {
+        "id": 12,
+        "cpu": 14.4,
+        "mem": 56.7
+      },
+      {
+        "id": 13,
+        "cpu": 15.9,
+        "mem": 51.7
+      },
+      {
+        "id": 14,
+        "cpu": 0.6,
+        "mem": 1.5
+      },
+      {
+        "id": 15,
+        "cpu": 0.8,
+        "mem": 1.6
+      },
+      {
+        "id": 16,
+        "cpu": 0.6,
+        "mem": 3.7
+      },
+      {
+        "id": 17,
+        "cpu": 10.9,
+        "mem": 32.3
+      },
+      {
+        "id": 18,
+        "cpu": 1.2,
+        "mem": 1.3
+      },
+      {
+        "id": 19,
+        "cpu": 0.7,
+        "mem": 3.7
+      },
+      {
+        "id": 20,
+        "cpu": 9.4,
+        "mem": 37.3
+      },
+      {
+        "id": 21,
+        "cpu": 0.5,
+        "mem": 2.6
+      },
+      {
+        "id": 22,
+        "cpu": 1.4,
+        "mem": 3.5
+      },
+      {
+        "id": 23,
+        "cpu": 0.7,
+        "mem": 3.9
+      },
+      {
+        "id": 24,
+        "cpu": 12.9,
+        "mem": 53.1
+      },
+      {
+        "id": 25,
+        "cpu": 14.4,
+        "mem": 55.0
+      },
+      {
+        "id": 26,
+        "cpu": 1.5,
+        "mem": 2.0
+      },
+      {
+        "id": 27,
+        "cpu": 1.3,
+        "mem": 1.9
+      },
+      {
+        "id": 28,
+        "cpu": 1.0,
+        "mem": 1.3
+      },
+      {
+        "id": 29,
+        "cpu": 1.3,
+        "mem": 3.7
+      },
+      {
+        "id": 30,
+        "cpu": 1.0,
+        "mem": 2.7
+      },
+      {
+        "id": 31,
+        "cpu": 1.2,
+        "mem": 1.2
+      },
+      {
+        "id": 32,
+        "cpu": 0.7,
+        "mem": 1.3
+      },
+      {
+        "id": 33,
+        "cpu": 1.1,
+        "mem": 1.3
+      },
+      {
+        "id": 34,
+        "cpu": 1.1,
+        "mem": 3.0
+      },
+      {
+        "id": 35,
+        "cpu": 1.2,
+        "mem": 2.6
+      },
+      {
+        "id": 36,
+        "cpu": 1.1,
+        "mem": 2.2
+      },
+      {
+        "id": 37,
+        "cpu": 0.5,
+        "mem": 2.8
+      },
+      {
+        "id": 38,
+        "cpu": 1.5,
+        "mem": 2.0
+      },
+      {
+        "id": 39,
+        "cpu": 0.8,
+        "mem": 3.2
+      },
+      {
+        "id": 40,
+        "cpu": 14.7,
+        "mem": 53.3
+      },
+      {
+        "id": 41,
+        "cpu": 1.5,
+        "mem": 2.7
+      },
+      {
+        "id": 42,
+        "cpu": 0.8,
+        "mem": 2.0
+      },
+      {
+        "id": 43,
+        "cpu": 8.7,
+        "mem": 40.5
+      },
+      {
+        "id": 44,
+        "cpu": 0.8,
+        "mem": 3.8
+      }
+    ],
+    "total_cluster_cpu": 336.0,
+    "total_cluster_mem": 1408.0,
+    "total_pod_cpu": 184.7,
+    "total_pod_mem": 659.5
+  },
+  {
+    "instance_id": "dev_bimodal_05",
+    "family": "Bimodal",
+    "n_pods": 52,
+    "m_nodes": 11,
+    "nodes": [
+      {
+        "id": 0,
+        "type": "standard_m",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 0.8
+      },
+      {
+        "id": 1,
+        "type": "mem_opt",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.4
+      },
+      {
+        "id": 2,
+        "type": "standard_l",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.6
+      },
+      {
+        "id": 3,
+        "type": "standard_m",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 0.8
+      },
+      {
+        "id": 4,
+        "type": "standard_m",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 0.8
+      },
+      {
+        "id": 5,
+        "type": "standard_l",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.6
+      },
+      {
+        "id": 6,
+        "type": "compute_opt",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 1.3
+      },
+      {
+        "id": 7,
+        "type": "mem_opt",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.4
+      },
+      {
+        "id": 8,
+        "type": "standard_m",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 0.8
+      },
+      {
+        "id": 9,
+        "type": "mem_opt",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.4
+      },
+      {
+        "id": 10,
+        "type": "general_s",
+        "cpu_capacity": 8.0,
+        "mem_capacity": 32.0,
+        "cost_per_hour": 0.4
+      }
+    ],
+    "pods": [
+      {
+        "id": 0,
+        "cpu": 0.6,
+        "mem": 1.0
+      },
+      {
+        "id": 1,
+        "cpu": 0.5,
+        "mem": 1.0
+      },
+      {
+        "id": 2,
+        "cpu": 6.7,
+        "mem": 29.2
+      },
+      {
+        "id": 3,
+        "cpu": 0.5,
+        "mem": 1.5
+      },
+      {
+        "id": 4,
+        "cpu": 0.5,
+        "mem": 1.4
+      },
+      {
+        "id": 5,
+        "cpu": 6.0,
+        "mem": 22.4
+      },
+      {
+        "id": 6,
+        "cpu": 0.6,
+        "mem": 2.0
+      },
+      {
+        "id": 7,
+        "cpu": 5.8,
+        "mem": 27.4
+      },
+      {
+        "id": 8,
+        "cpu": 0.5,
+        "mem": 1.0
+      },
+      {
+        "id": 9,
+        "cpu": 0.6,
+        "mem": 1.0
+      },
+      {
+        "id": 10,
+        "cpu": 7.9,
+        "mem": 29.4
+      },
+      {
+        "id": 11,
+        "cpu": 6.8,
+        "mem": 21.8
+      },
+      {
+        "id": 12,
+        "cpu": 0.7,
+        "mem": 1.0
+      },
+      {
+        "id": 13,
+        "cpu": 4.3,
+        "mem": 23.9
+      },
+      {
+        "id": 14,
+        "cpu": 0.5,
+        "mem": 1.8
+      },
+      {
+        "id": 15,
+        "cpu": 0.5,
+        "mem": 1.2
+      },
+      {
+        "id": 16,
+        "cpu": 0.5,
+        "mem": 1.0
+      },
+      {
+        "id": 17,
+        "cpu": 0.5,
+        "mem": 1.7
+      },
+      {
+        "id": 18,
+        "cpu": 0.7,
+        "mem": 1.4
+      },
+      {
+        "id": 19,
+        "cpu": 0.6,
+        "mem": 1.0
+      },
+      {
+        "id": 20,
+        "cpu": 0.5,
+        "mem": 2.0
+      },
+      {
+        "id": 21,
+        "cpu": 5.4,
+        "mem": 24.7
+      },
+      {
+        "id": 22,
+        "cpu": 0.5,
+        "mem": 1.7
+      },
+      {
+        "id": 23,
+        "cpu": 7.2,
+        "mem": 17.6
+      },
+      {
+        "id": 24,
+        "cpu": 4.9,
+        "mem": 17.9
+      },
+      {
+        "id": 25,
+        "cpu": 0.5,
+        "mem": 1.0
+      },
+      {
+        "id": 26,
+        "cpu": 0.6,
+        "mem": 1.7
+      },
+      {
+        "id": 27,
+        "cpu": 5.6,
+        "mem": 23.7
+      },
+      {
+        "id": 28,
+        "cpu": 0.5,
+        "mem": 1.0
+      },
+      {
+        "id": 29,
+        "cpu": 0.5,
+        "mem": 1.1
+      },
+      {
+        "id": 30,
+        "cpu": 7.7,
+        "mem": 27.8
+      },
+      {
+        "id": 31,
+        "cpu": 7.3,
+        "mem": 18.0
+      },
+      {
+        "id": 32,
+        "cpu": 0.7,
+        "mem": 1.0
+      },
+      {
+        "id": 33,
+        "cpu": 0.5,
+        "mem": 1.7
+      },
+      {
+        "id": 34,
+        "cpu": 0.5,
+        "mem": 2.0
+      },
+      {
+        "id": 35,
+        "cpu": 0.5,
+        "mem": 1.0
+      },
+      {
+        "id": 36,
+        "cpu": 7.9,
+        "mem": 27.8
+      },
+      {
+        "id": 37,
+        "cpu": 0.5,
+        "mem": 1.0
+      },
+      {
+        "id": 38,
+        "cpu": 0.5,
+        "mem": 1.1
+      },
+      {
+        "id": 39,
+        "cpu": 5.8,
+        "mem": 30.7
+      },
+      {
+        "id": 40,
+        "cpu": 7.6,
+        "mem": 30.3
+      },
+      {
+        "id": 41,
+        "cpu": 0.5,
+        "mem": 2.1
+      },
+      {
+        "id": 42,
+        "cpu": 6.9,
+        "mem": 28.0
+      },
+      {
+        "id": 43,
+        "cpu": 0.6,
+        "mem": 1.2
+      },
+      {
+        "id": 44,
+        "cpu": 0.5,
+        "mem": 1.4
+      },
+      {
+        "id": 45,
+        "cpu": 0.7,
+        "mem": 1.0
+      },
+      {
+        "id": 46,
+        "cpu": 0.5,
+        "mem": 1.7
+      },
+      {
+        "id": 47,
+        "cpu": 0.7,
+        "mem": 1.2
+      },
+      {
+        "id": 48,
+        "cpu": 0.7,
+        "mem": 1.7
+      },
+      {
+        "id": 49,
+        "cpu": 0.5,
+        "mem": 1.0
+      },
+      {
+        "id": 50,
+        "cpu": 0.7,
+        "mem": 1.2
+      },
+      {
+        "id": 51,
+        "cpu": 8.2,
+        "mem": 26.4
+      }
+    ],
+    "total_cluster_cpu": 216.0,
+    "total_cluster_mem": 992.0,
+    "total_pod_cpu": 131.5,
+    "total_pod_mem": 473.8
+  },
+  {
+    "instance_id": "dev_anti_correlated_01",
+    "family": "Anti_Correlated",
+    "n_pods": 65,
+    "m_nodes": 14,
+    "nodes": [
+      {
+        "id": 0,
+        "type": "compute_opt",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 1.3
+      },
+      {
+        "id": 1,
+        "type": "standard_m",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 0.8
+      },
+      {
+        "id": 2,
+        "type": "general_s",
+        "cpu_capacity": 8.0,
+        "mem_capacity": 32.0,
+        "cost_per_hour": 0.4
+      },
+      {
+        "id": 3,
+        "type": "standard_m",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 0.8
+      },
+      {
+        "id": 4,
+        "type": "standard_m",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 0.8
+      },
+      {
+        "id": 5,
+        "type": "compute_opt",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 1.3
+      },
+      {
+        "id": 6,
+        "type": "mem_opt",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.4
+      },
+      {
+        "id": 7,
+        "type": "standard_m",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 0.8
+      },
+      {
+        "id": 8,
+        "type": "mem_opt",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.4
+      },
+      {
+        "id": 9,
+        "type": "standard_m",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 0.8
+      },
+      {
+        "id": 10,
+        "type": "standard_l",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.6
+      },
+      {
+        "id": 11,
+        "type": "standard_m",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 0.8
+      },
+      {
+        "id": 12,
+        "type": "compute_opt",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 1.3
+      },
+      {
+        "id": 13,
+        "type": "standard_m",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 0.8
+      }
+    ],
+    "pods": [
+      {
+        "id": 0,
+        "cpu": 4.9,
+        "mem": 2.3
+      },
+      {
+        "id": 1,
+        "cpu": 4.0,
+        "mem": 2.4
+      },
+      {
+        "id": 2,
+        "cpu": 3.5,
+        "mem": 1.9
+      },
+      {
+        "id": 3,
+        "cpu": 0.5,
+        "mem": 15.9
+      },
+      {
+        "id": 4,
+        "cpu": 0.5,
+        "mem": 18.3
+      },
+      {
+        "id": 5,
+        "cpu": 0.5,
+        "mem": 13.6
+      },
+      {
+        "id": 6,
+        "cpu": 4.7,
+        "mem": 1.0
+      },
+      {
+        "id": 7,
+        "cpu": 0.8,
+        "mem": 10.2
+      },
+      {
+        "id": 8,
+        "cpu": 3.3,
+        "mem": 1.4
+      },
+      {
+        "id": 9,
+        "cpu": 0.8,
+        "mem": 18.5
+      },
+      {
+        "id": 10,
+        "cpu": 0.5,
+        "mem": 19.2
+      },
+      {
+        "id": 11,
+        "cpu": 5.1,
+        "mem": 1.3
+      },
+      {
+        "id": 12,
+        "cpu": 0.5,
+        "mem": 16.3
+      },
+      {
+        "id": 13,
+        "cpu": 0.7,
+        "mem": 22.7
+      },
+      {
+        "id": 14,
+        "cpu": 6.3,
+        "mem": 1.1
+      },
+      {
+        "id": 15,
+        "cpu": 6.1,
+        "mem": 1.0
+      },
+      {
+        "id": 16,
+        "cpu": 0.5,
+        "mem": 13.8
+      },
+      {
+        "id": 17,
+        "cpu": 3.8,
+        "mem": 1.9
+      },
+      {
+        "id": 18,
+        "cpu": 4.6,
+        "mem": 2.5
+      },
+      {
+        "id": 19,
+        "cpu": 5.6,
+        "mem": 1.1
+      },
+      {
+        "id": 20,
+        "cpu": 0.8,
+        "mem": 16.0
+      },
+      {
+        "id": 21,
+        "cpu": 5.3,
+        "mem": 1.9
+      },
+      {
+        "id": 22,
+        "cpu": 0.7,
+        "mem": 17.5
+      },
+      {
+        "id": 23,
+        "cpu": 0.5,
+        "mem": 20.7
+      },
+      {
+        "id": 24,
+        "cpu": 0.6,
+        "mem": 19.6
+      },
+      {
+        "id": 25,
+        "cpu": 0.5,
+        "mem": 18.9
+      },
+      {
+        "id": 26,
+        "cpu": 4.3,
+        "mem": 2.1
+      },
+      {
+        "id": 27,
+        "cpu": 0.5,
+        "mem": 24.1
+      },
+      {
+        "id": 28,
+        "cpu": 4.4,
+        "mem": 1.9
+      },
+      {
+        "id": 29,
+        "cpu": 5.8,
+        "mem": 2.4
+      },
+      {
+        "id": 30,
+        "cpu": 3.9,
+        "mem": 1.0
+      },
+      {
+        "id": 31,
+        "cpu": 0.6,
+        "mem": 20.7
+      },
+      {
+        "id": 32,
+        "cpu": 0.5,
+        "mem": 11.6
+      },
+      {
+        "id": 33,
+        "cpu": 0.8,
+        "mem": 14.9
+      },
+      {
+        "id": 34,
+        "cpu": 0.8,
+        "mem": 22.5
+      },
+      {
+        "id": 35,
+        "cpu": 0.5,
+        "mem": 20.6
+      },
+      {
+        "id": 36,
+        "cpu": 4.6,
+        "mem": 1.7
+      },
+      {
+        "id": 37,
+        "cpu": 3.3,
+        "mem": 1.9
+      },
+      {
+        "id": 38,
+        "cpu": 0.7,
+        "mem": 13.5
+      },
+      {
+        "id": 39,
+        "cpu": 3.2,
+        "mem": 2.4
+      },
+      {
+        "id": 40,
+        "cpu": 2.8,
+        "mem": 1.9
+      },
+      {
+        "id": 41,
+        "cpu": 0.5,
+        "mem": 17.5
+      },
+      {
+        "id": 42,
+        "cpu": 5.2,
+        "mem": 2.1
+      },
+      {
+        "id": 43,
+        "cpu": 5.8,
+        "mem": 1.7
+      },
+      {
+        "id": 44,
+        "cpu": 0.5,
+        "mem": 10.5
+      },
+      {
+        "id": 45,
+        "cpu": 0.5,
+        "mem": 24.1
+      },
+      {
+        "id": 46,
+        "cpu": 4.4,
+        "mem": 2.0
+      },
+      {
+        "id": 47,
+        "cpu": 5.4,
+        "mem": 1.6
+      },
+      {
+        "id": 48,
+        "cpu": 5.6,
+        "mem": 1.3
+      },
+      {
+        "id": 49,
+        "cpu": 3.3,
+        "mem": 1.1
+      },
+      {
+        "id": 50,
+        "cpu": 3.5,
+        "mem": 1.9
+      },
+      {
+        "id": 51,
+        "cpu": 0.8,
+        "mem": 14.4
+      },
+      {
+        "id": 52,
+        "cpu": 0.6,
+        "mem": 15.7
+      },
+      {
+        "id": 53,
+        "cpu": 5.6,
+        "mem": 1.8
+      },
+      {
+        "id": 54,
+        "cpu": 0.6,
+        "mem": 14.0
+      },
+      {
+        "id": 55,
+        "cpu": 2.6,
+        "mem": 1.2
+      },
+      {
+        "id": 56,
+        "cpu": 5.6,
+        "mem": 1.6
+      },
+      {
+        "id": 57,
+        "cpu": 4.0,
+        "mem": 1.0
+      },
+      {
+        "id": 58,
+        "cpu": 2.6,
+        "mem": 1.0
+      },
+      {
+        "id": 59,
+        "cpu": 3.7,
+        "mem": 2.0
+      },
+      {
+        "id": 60,
+        "cpu": 0.5,
+        "mem": 19.8
+      },
+      {
+        "id": 61,
+        "cpu": 0.5,
+        "mem": 20.6
+      },
+      {
+        "id": 62,
+        "cpu": 0.5,
+        "mem": 12.6
+      },
+      {
+        "id": 63,
+        "cpu": 4.4,
+        "mem": 1.9
+      },
+      {
+        "id": 64,
+        "cpu": 0.6,
+        "mem": 15.0
+      }
+    ],
+    "total_cluster_cpu": 280.0,
+    "total_cluster_mem": 1056.0,
+    "total_pod_cpu": 169.6,
+    "total_pod_mem": 590.6
+  },
+  {
+    "instance_id": "dev_anti_correlated_02",
+    "family": "Anti_Correlated",
+    "n_pods": 54,
+    "m_nodes": 11,
+    "nodes": [
+      {
+        "id": 0,
+        "type": "standard_m",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 0.8
+      },
+      {
+        "id": 1,
+        "type": "compute_opt",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 1.3
+      },
+      {
+        "id": 2,
+        "type": "compute_opt",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 1.3
+      },
+      {
+        "id": 3,
+        "type": "compute_opt",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 1.3
+      },
+      {
+        "id": 4,
+        "type": "compute_opt",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 1.3
+      },
+      {
+        "id": 5,
+        "type": "standard_l",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.6
+      },
+      {
+        "id": 6,
+        "type": "compute_opt",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 1.3
+      },
+      {
+        "id": 7,
+        "type": "compute_opt",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 1.3
+      },
+      {
+        "id": 8,
+        "type": "mem_opt",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.4
+      },
+      {
+        "id": 9,
+        "type": "standard_m",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 0.8
+      },
+      {
+        "id": 10,
+        "type": "mem_opt",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.4
+      }
+    ],
+    "pods": [
+      {
+        "id": 0,
+        "cpu": 6.7,
+        "mem": 2.1
+      },
+      {
+        "id": 1,
+        "cpu": 0.9,
+        "mem": 12.3
+      },
+      {
+        "id": 2,
+        "cpu": 6.9,
+        "mem": 1.1
+      },
+      {
+        "id": 3,
+        "cpu": 0.5,
+        "mem": 30.2
+      },
+      {
+        "id": 4,
+        "cpu": 5.0,
+        "mem": 2.1
+      },
+      {
+        "id": 5,
+        "cpu": 5.3,
+        "mem": 1.3
+      },
+      {
+        "id": 6,
+        "cpu": 6.7,
+        "mem": 2.7
+      },
+      {
+        "id": 7,
+        "cpu": 4.2,
+        "mem": 1.0
+      },
+      {
+        "id": 8,
+        "cpu": 0.5,
+        "mem": 21.1
+      },
+      {
+        "id": 9,
+        "cpu": 3.0,
+        "mem": 1.6
+      },
+      {
+        "id": 10,
+        "cpu": 0.7,
+        "mem": 28.7
+      },
+      {
+        "id": 11,
+        "cpu": 0.5,
+        "mem": 18.7
+      },
+      {
+        "id": 12,
+        "cpu": 7.0,
+        "mem": 1.7
+      },
+      {
+        "id": 13,
+        "cpu": 0.7,
+        "mem": 15.1
+      },
+      {
+        "id": 14,
+        "cpu": 0.9,
+        "mem": 14.8
+      },
+      {
+        "id": 15,
+        "cpu": 5.4,
+        "mem": 1.3
+      },
+      {
+        "id": 16,
+        "cpu": 3.1,
+        "mem": 1.4
+      },
+      {
+        "id": 17,
+        "cpu": 0.5,
+        "mem": 15.6
+      },
+      {
+        "id": 18,
+        "cpu": 0.5,
+        "mem": 29.8
+      },
+      {
+        "id": 19,
+        "cpu": 3.0,
+        "mem": 2.2
+      },
+      {
+        "id": 20,
+        "cpu": 5.2,
+        "mem": 1.6
+      },
+      {
+        "id": 21,
+        "cpu": 3.3,
+        "mem": 1.3
+      },
+      {
+        "id": 22,
+        "cpu": 0.5,
+        "mem": 16.8
+      },
+      {
+        "id": 23,
+        "cpu": 6.3,
+        "mem": 2.0
+      },
+      {
+        "id": 24,
+        "cpu": 0.5,
+        "mem": 13.4
+      },
+      {
+        "id": 25,
+        "cpu": 6.4,
+        "mem": 1.5
+      },
+      {
+        "id": 26,
+        "cpu": 4.2,
+        "mem": 1.8
+      },
+      {
+        "id": 27,
+        "cpu": 5.4,
+        "mem": 2.7
+      },
+      {
+        "id": 28,
+        "cpu": 0.5,
+        "mem": 18.9
+      },
+      {
+        "id": 29,
+        "cpu": 0.6,
+        "mem": 24.5
+      },
+      {
+        "id": 30,
+        "cpu": 7.3,
+        "mem": 2.0
+      },
+      {
+        "id": 31,
+        "cpu": 1.0,
+        "mem": 20.5
+      },
+      {
+        "id": 32,
+        "cpu": 6.1,
+        "mem": 1.3
+      },
+      {
+        "id": 33,
+        "cpu": 4.9,
+        "mem": 1.4
+      },
+      {
+        "id": 34,
+        "cpu": 4.9,
+        "mem": 2.1
+      },
+      {
+        "id": 35,
+        "cpu": 3.0,
+        "mem": 2.7
+      },
+      {
+        "id": 36,
+        "cpu": 0.9,
+        "mem": 25.4
+      },
+      {
+        "id": 37,
+        "cpu": 0.5,
+        "mem": 28.5
+      },
+      {
+        "id": 38,
+        "cpu": 4.0,
+        "mem": 2.3
+      },
+      {
+        "id": 39,
+        "cpu": 0.6,
+        "mem": 28.2
+      },
+      {
+        "id": 40,
+        "cpu": 0.8,
+        "mem": 28.2
+      },
+      {
+        "id": 41,
+        "cpu": 5.6,
+        "mem": 2.5
+      },
+      {
+        "id": 42,
+        "cpu": 0.8,
+        "mem": 19.9
+      },
+      {
+        "id": 43,
+        "cpu": 0.8,
+        "mem": 21.4
+      },
+      {
+        "id": 44,
+        "cpu": 0.9,
+        "mem": 16.6
+      },
+      {
+        "id": 45,
+        "cpu": 4.3,
+        "mem": 1.6
+      },
+      {
+        "id": 46,
+        "cpu": 4.9,
+        "mem": 1.7
+      },
+      {
+        "id": 47,
+        "cpu": 5.0,
+        "mem": 1.4
+      },
+      {
+        "id": 48,
+        "cpu": 3.1,
+        "mem": 1.7
+      },
+      {
+        "id": 49,
+        "cpu": 0.5,
+        "mem": 13.0
+      },
+      {
+        "id": 50,
+        "cpu": 0.8,
+        "mem": 20.5
+      },
+      {
+        "id": 51,
+        "cpu": 4.2,
+        "mem": 1.9
+      },
+      {
+        "id": 52,
+        "cpu": 7.6,
+        "mem": 1.1
+      },
+      {
+        "id": 53,
+        "cpu": 6.5,
+        "mem": 2.2
+      }
+    ],
+    "total_cluster_cpu": 288.0,
+    "total_cluster_mem": 896.0,
+    "total_pod_cpu": 173.9,
+    "total_pod_mem": 537.4
+  },
+  {
+    "instance_id": "dev_anti_correlated_03",
+    "family": "Anti_Correlated",
+    "n_pods": 61,
+    "m_nodes": 9,
+    "nodes": [
+      {
+        "id": 0,
+        "type": "standard_m",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 0.8
+      },
+      {
+        "id": 1,
+        "type": "general_s",
+        "cpu_capacity": 8.0,
+        "mem_capacity": 32.0,
+        "cost_per_hour": 0.4
+      },
+      {
+        "id": 2,
+        "type": "standard_m",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 0.8
+      },
+      {
+        "id": 3,
+        "type": "general_s",
+        "cpu_capacity": 8.0,
+        "mem_capacity": 32.0,
+        "cost_per_hour": 0.4
+      },
+      {
+        "id": 4,
+        "type": "standard_l",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.6
+      },
+      {
+        "id": 5,
+        "type": "compute_opt",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 1.3
+      },
+      {
+        "id": 6,
+        "type": "standard_l",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.6
+      },
+      {
+        "id": 7,
+        "type": "standard_l",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.6
+      },
+      {
+        "id": 8,
+        "type": "compute_opt",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 1.3
+      }
+    ],
+    "pods": [
+      {
+        "id": 0,
+        "cpu": 3.8,
+        "mem": 1.4
+      },
+      {
+        "id": 1,
+        "cpu": 0.5,
+        "mem": 9.3
+      },
+      {
+        "id": 2,
+        "cpu": 0.5,
+        "mem": 17.2
+      },
+      {
+        "id": 3,
+        "cpu": 3.9,
+        "mem": 1.0
+      },
+      {
+        "id": 4,
+        "cpu": 0.5,
+        "mem": 13.0
+      },
+      {
+        "id": 5,
+        "cpu": 0.5,
+        "mem": 13.7
+      },
+      {
+        "id": 6,
+        "cpu": 2.3,
+        "mem": 1.1
+      },
+      {
+        "id": 7,
+        "cpu": 0.5,
+        "mem": 16.6
+      },
+      {
+        "id": 8,
+        "cpu": 2.1,
+        "mem": 1.4
+      },
+      {
+        "id": 9,
+        "cpu": 2.1,
+        "mem": 1.0
+      },
+      {
+        "id": 10,
+        "cpu": 0.5,
+        "mem": 17.1
+      },
+      {
+        "id": 11,
+        "cpu": 2.4,
+        "mem": 1.5
+      },
+      {
+        "id": 12,
+        "cpu": 0.5,
+        "mem": 10.6
+      },
+      {
+        "id": 13,
+        "cpu": 0.5,
+        "mem": 18.5
+      },
+      {
+        "id": 14,
+        "cpu": 3.8,
+        "mem": 1.0
+      },
+      {
+        "id": 15,
+        "cpu": 2.7,
+        "mem": 1.0
+      },
+      {
+        "id": 16,
+        "cpu": 3.7,
+        "mem": 1.0
+      },
+      {
+        "id": 17,
+        "cpu": 0.5,
+        "mem": 14.4
+      },
+      {
+        "id": 18,
+        "cpu": 1.8,
+        "mem": 1.0
+      },
+      {
+        "id": 19,
+        "cpu": 2.5,
+        "mem": 1.7
+      },
+      {
+        "id": 20,
+        "cpu": 3.9,
+        "mem": 1.4
+      },
+      {
+        "id": 21,
+        "cpu": 4.6,
+        "mem": 1.6
+      },
+      {
+        "id": 22,
+        "cpu": 2.8,
+        "mem": 1.0
+      },
+      {
+        "id": 23,
+        "cpu": 3.6,
+        "mem": 1.6
+      },
+      {
+        "id": 24,
+        "cpu": 0.5,
+        "mem": 14.4
+      },
+      {
+        "id": 25,
+        "cpu": 3.8,
+        "mem": 1.5
+      },
+      {
+        "id": 26,
+        "cpu": 0.5,
+        "mem": 14.8
+      },
+      {
+        "id": 27,
+        "cpu": 4.2,
+        "mem": 1.0
+      },
+      {
+        "id": 28,
+        "cpu": 3.3,
+        "mem": 1.0
+      },
+      {
+        "id": 29,
+        "cpu": 3.6,
+        "mem": 1.3
+      },
+      {
+        "id": 30,
+        "cpu": 3.1,
+        "mem": 1.6
+      },
+      {
+        "id": 31,
+        "cpu": 3.4,
+        "mem": 1.4
+      },
+      {
+        "id": 32,
+        "cpu": 2.6,
+        "mem": 1.6
+      },
+      {
+        "id": 33,
+        "cpu": 4.4,
+        "mem": 1.4
+      },
+      {
+        "id": 34,
+        "cpu": 0.5,
+        "mem": 17.9
+      },
+      {
+        "id": 35,
+        "cpu": 0.5,
+        "mem": 18.4
+      },
+      {
+        "id": 36,
+        "cpu": 0.5,
+        "mem": 15.8
+      },
+      {
+        "id": 37,
+        "cpu": 0.5,
+        "mem": 9.6
+      },
+      {
+        "id": 38,
+        "cpu": 0.5,
+        "mem": 14.1
+      },
+      {
+        "id": 39,
+        "cpu": 3.0,
+        "mem": 1.1
+      },
+      {
+        "id": 40,
+        "cpu": 1.8,
+        "mem": 1.6
+      },
+      {
+        "id": 41,
+        "cpu": 3.9,
+        "mem": 1.3
+      },
+      {
+        "id": 42,
+        "cpu": 0.6,
+        "mem": 10.4
+      },
+      {
+        "id": 43,
+        "cpu": 0.5,
+        "mem": 11.5
+      },
+      {
+        "id": 44,
+        "cpu": 2.1,
+        "mem": 1.1
+      },
+      {
+        "id": 45,
+        "cpu": 3.2,
+        "mem": 1.7
+      },
+      {
+        "id": 46,
+        "cpu": 2.2,
+        "mem": 1.5
+      },
+      {
+        "id": 47,
+        "cpu": 0.6,
+        "mem": 13.4
+      },
+      {
+        "id": 48,
+        "cpu": 2.3,
+        "mem": 1.6
+      },
+      {
+        "id": 49,
+        "cpu": 0.5,
+        "mem": 12.6
+      },
+      {
+        "id": 50,
+        "cpu": 0.5,
+        "mem": 18.3
+      },
+      {
+        "id": 51,
+        "cpu": 4.5,
+        "mem": 1.6
+      },
+      {
+        "id": 52,
+        "cpu": 3.5,
+        "mem": 1.2
+      },
+      {
+        "id": 53,
+        "cpu": 0.5,
+        "mem": 9.6
+      },
+      {
+        "id": 54,
+        "cpu": 4.6,
+        "mem": 1.3
+      },
+      {
+        "id": 55,
+        "cpu": 1.9,
+        "mem": 1.0
+      },
+      {
+        "id": 56,
+        "cpu": 2.2,
+        "mem": 1.0
+      },
+      {
+        "id": 57,
+        "cpu": 0.5,
+        "mem": 13.2
+      },
+      {
+        "id": 58,
+        "cpu": 3.3,
+        "mem": 1.5
+      },
+      {
+        "id": 59,
+        "cpu": 4.0,
+        "mem": 1.0
+      },
+      {
+        "id": 60,
+        "cpu": 0.5,
+        "mem": 15.1
+      }
+    ],
+    "total_cluster_cpu": 208.0,
+    "total_cluster_mem": 704.0,
+    "total_pod_cpu": 129.1,
+    "total_pod_mem": 387.5
+  },
+  {
+    "instance_id": "dev_anti_correlated_04",
+    "family": "Anti_Correlated",
+    "n_pods": 55,
+    "m_nodes": 12,
+    "nodes": [
+      {
+        "id": 0,
+        "type": "standard_l",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.6
+      },
+      {
+        "id": 1,
+        "type": "general_s",
+        "cpu_capacity": 8.0,
+        "mem_capacity": 32.0,
+        "cost_per_hour": 0.4
+      },
+      {
+        "id": 2,
+        "type": "compute_opt",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 1.3
+      },
+      {
+        "id": 3,
+        "type": "mem_opt",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.4
+      },
+      {
+        "id": 4,
+        "type": "compute_opt",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 1.3
+      },
+      {
+        "id": 5,
+        "type": "mem_opt",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.4
+      },
+      {
+        "id": 6,
+        "type": "standard_l",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.6
+      },
+      {
+        "id": 7,
+        "type": "standard_m",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 0.8
+      },
+      {
+        "id": 8,
+        "type": "standard_m",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 0.8
+      },
+      {
+        "id": 9,
+        "type": "standard_l",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.6
+      },
+      {
+        "id": 10,
+        "type": "compute_opt",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 1.3
+      },
+      {
+        "id": 11,
+        "type": "mem_opt",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.4
+      }
+    ],
+    "pods": [
+      {
+        "id": 0,
+        "cpu": 1.0,
+        "mem": 23.7
+      },
+      {
+        "id": 1,
+        "cpu": 0.6,
+        "mem": 27.0
+      },
+      {
+        "id": 2,
+        "cpu": 6.9,
+        "mem": 1.4
+      },
+      {
+        "id": 3,
+        "cpu": 0.7,
+        "mem": 30.2
+      },
+      {
+        "id": 4,
+        "cpu": 0.5,
+        "mem": 15.6
+      },
+      {
+        "id": 5,
+        "cpu": 0.8,
+        "mem": 22.3
+      },
+      {
+        "id": 6,
+        "cpu": 3.8,
+        "mem": 1.3
+      },
+      {
+        "id": 7,
+        "cpu": 6.3,
+        "mem": 2.4
+      },
+      {
+        "id": 8,
+        "cpu": 5.5,
+        "mem": 1.5
+      },
+      {
+        "id": 9,
+        "cpu": 3.2,
+        "mem": 1.6
+      },
+      {
+        "id": 10,
+        "cpu": 0.5,
+        "mem": 22.0
+      },
+      {
+        "id": 11,
+        "cpu": 0.8,
+        "mem": 16.8
+      },
+      {
+        "id": 12,
+        "cpu": 6.0,
+        "mem": 1.5
+      },
+      {
+        "id": 13,
+        "cpu": 0.7,
+        "mem": 26.0
+      },
+      {
+        "id": 14,
+        "cpu": 7.6,
+        "mem": 2.5
+      },
+      {
+        "id": 15,
+        "cpu": 4.2,
+        "mem": 2.5
+      },
+      {
+        "id": 16,
+        "cpu": 0.8,
+        "mem": 15.8
+      },
+      {
+        "id": 17,
+        "cpu": 0.5,
+        "mem": 11.8
+      },
+      {
+        "id": 18,
+        "cpu": 0.6,
+        "mem": 12.9
+      },
+      {
+        "id": 19,
+        "cpu": 5.1,
+        "mem": 2.5
+      },
+      {
+        "id": 20,
+        "cpu": 0.8,
+        "mem": 19.6
+      },
+      {
+        "id": 21,
+        "cpu": 0.7,
+        "mem": 22.6
+      },
+      {
+        "id": 22,
+        "cpu": 5.4,
+        "mem": 2.5
+      },
+      {
+        "id": 23,
+        "cpu": 5.2,
+        "mem": 2.7
+      },
+      {
+        "id": 24,
+        "cpu": 5.3,
+        "mem": 1.4
+      },
+      {
+        "id": 25,
+        "cpu": 0.5,
+        "mem": 14.5
+      },
+      {
+        "id": 26,
+        "cpu": 0.5,
+        "mem": 16.3
+      },
+      {
+        "id": 27,
+        "cpu": 6.1,
+        "mem": 2.2
+      },
+      {
+        "id": 28,
+        "cpu": 0.8,
+        "mem": 14.2
+      },
+      {
+        "id": 29,
+        "cpu": 0.6,
+        "mem": 24.1
+      },
+      {
+        "id": 30,
+        "cpu": 0.6,
+        "mem": 24.7
+      },
+      {
+        "id": 31,
+        "cpu": 6.2,
+        "mem": 2.7
+      },
+      {
+        "id": 32,
+        "cpu": 4.6,
+        "mem": 2.8
+      },
+      {
+        "id": 33,
+        "cpu": 6.9,
+        "mem": 2.6
+      },
+      {
+        "id": 34,
+        "cpu": 0.7,
+        "mem": 12.3
+      },
+      {
+        "id": 35,
+        "cpu": 0.5,
+        "mem": 27.6
+      },
+      {
+        "id": 36,
+        "cpu": 0.6,
+        "mem": 24.0
+      },
+      {
+        "id": 37,
+        "cpu": 0.6,
+        "mem": 17.8
+      },
+      {
+        "id": 38,
+        "cpu": 0.9,
+        "mem": 19.9
+      },
+      {
+        "id": 39,
+        "cpu": 3.2,
+        "mem": 2.8
+      },
+      {
+        "id": 40,
+        "cpu": 0.7,
+        "mem": 15.6
+      },
+      {
+        "id": 41,
+        "cpu": 0.5,
+        "mem": 28.4
+      },
+      {
+        "id": 42,
+        "cpu": 0.8,
+        "mem": 28.4
+      },
+      {
+        "id": 43,
+        "cpu": 5.8,
+        "mem": 1.3
+      },
+      {
+        "id": 44,
+        "cpu": 0.7,
+        "mem": 13.4
+      },
+      {
+        "id": 45,
+        "cpu": 3.2,
+        "mem": 1.1
+      },
+      {
+        "id": 46,
+        "cpu": 0.5,
+        "mem": 12.2
+      },
+      {
+        "id": 47,
+        "cpu": 0.5,
+        "mem": 18.5
+      },
+      {
+        "id": 48,
+        "cpu": 4.5,
+        "mem": 2.1
+      },
+      {
+        "id": 49,
+        "cpu": 3.9,
+        "mem": 1.7
+      },
+      {
+        "id": 50,
+        "cpu": 0.5,
+        "mem": 12.0
+      },
+      {
+        "id": 51,
+        "cpu": 6.6,
+        "mem": 1.9
+      },
+      {
+        "id": 52,
+        "cpu": 6.4,
+        "mem": 1.0
+      },
+      {
+        "id": 53,
+        "cpu": 0.5,
+        "mem": 23.1
+      },
+      {
+        "id": 54,
+        "cpu": 0.6,
+        "mem": 12.7
+      }
+    ],
+    "total_cluster_cpu": 280.0,
+    "total_cluster_mem": 1120.0,
+    "total_pod_cpu": 142.5,
+    "total_pod_mem": 672.0
+  },
+  {
+    "instance_id": "dev_anti_correlated_05",
+    "family": "Anti_Correlated",
+    "n_pods": 31,
+    "m_nodes": 10,
+    "nodes": [
+      {
+        "id": 0,
+        "type": "compute_opt",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 1.3
+      },
+      {
+        "id": 1,
+        "type": "general_s",
+        "cpu_capacity": 8.0,
+        "mem_capacity": 32.0,
+        "cost_per_hour": 0.4
+      },
+      {
+        "id": 2,
+        "type": "mem_opt",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.4
+      },
+      {
+        "id": 3,
+        "type": "mem_opt",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.4
+      },
+      {
+        "id": 4,
+        "type": "compute_opt",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 1.3
+      },
+      {
+        "id": 5,
+        "type": "general_s",
+        "cpu_capacity": 8.0,
+        "mem_capacity": 32.0,
+        "cost_per_hour": 0.4
+      },
+      {
+        "id": 6,
+        "type": "general_s",
+        "cpu_capacity": 8.0,
+        "mem_capacity": 32.0,
+        "cost_per_hour": 0.4
+      },
+      {
+        "id": 7,
+        "type": "standard_m",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 0.8
+      },
+      {
+        "id": 8,
+        "type": "compute_opt",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 1.3
+      },
+      {
+        "id": 9,
+        "type": "general_s",
+        "cpu_capacity": 8.0,
+        "mem_capacity": 32.0,
+        "cost_per_hour": 0.4
+      }
+    ],
+    "pods": [
+      {
+        "id": 0,
+        "cpu": 6.8,
+        "mem": 1.0
+      },
+      {
+        "id": 1,
+        "cpu": 0.5,
+        "mem": 27.2
+      },
+      {
+        "id": 2,
+        "cpu": 0.5,
+        "mem": 17.7
+      },
+      {
+        "id": 3,
+        "cpu": 0.5,
+        "mem": 23.6
+      },
+      {
+        "id": 4,
+        "cpu": 0.8,
+        "mem": 26.2
+      },
+      {
+        "id": 5,
+        "cpu": 0.5,
+        "mem": 12.4
+      },
+      {
+        "id": 6,
+        "cpu": 0.6,
+        "mem": 14.7
+      },
+      {
+        "id": 7,
+        "cpu": 0.5,
+        "mem": 17.2
+      },
+      {
+        "id": 8,
+        "cpu": 0.9,
+        "mem": 27.1
+      },
+      {
+        "id": 9,
+        "cpu": 6.3,
+        "mem": 2.4
+      },
+      {
+        "id": 10,
+        "cpu": 0.6,
+        "mem": 20.2
+      },
+      {
+        "id": 11,
+        "cpu": 0.5,
+        "mem": 14.1
+      },
+      {
+        "id": 12,
+        "cpu": 4.4,
+        "mem": 1.7
+      },
+      {
+        "id": 13,
+        "cpu": 4.8,
+        "mem": 2.5
+      },
+      {
+        "id": 14,
+        "cpu": 0.5,
+        "mem": 13.6
+      },
+      {
+        "id": 15,
+        "cpu": 0.5,
+        "mem": 15.2
+      },
+      {
+        "id": 16,
+        "cpu": 0.6,
+        "mem": 24.1
+      },
+      {
+        "id": 17,
+        "cpu": 0.7,
+        "mem": 18.7
+      },
+      {
+        "id": 18,
+        "cpu": 3.5,
+        "mem": 2.0
+      },
+      {
+        "id": 19,
+        "cpu": 3.6,
+        "mem": 1.7
+      },
+      {
+        "id": 20,
+        "cpu": 0.8,
+        "mem": 29.6
+      },
+      {
+        "id": 21,
+        "cpu": 7.1,
+        "mem": 2.4
+      },
+      {
+        "id": 22,
+        "cpu": 6.5,
+        "mem": 1.9
+      },
+      {
+        "id": 23,
+        "cpu": 3.8,
+        "mem": 2.5
+      },
+      {
+        "id": 24,
+        "cpu": 6.7,
+        "mem": 1.2
+      },
+      {
+        "id": 25,
+        "cpu": 0.5,
+        "mem": 13.9
+      },
+      {
+        "id": 26,
+        "cpu": 5.8,
+        "mem": 1.8
+      },
+      {
+        "id": 27,
+        "cpu": 0.5,
+        "mem": 13.6
+      },
+      {
+        "id": 28,
+        "cpu": 0.5,
+        "mem": 30.1
+      },
+      {
+        "id": 29,
+        "cpu": 5.9,
+        "mem": 1.8
+      },
+      {
+        "id": 30,
+        "cpu": 2.9,
+        "mem": 1.7
+      }
+    ],
+    "total_cluster_cpu": 176.0,
+    "total_cluster_mem": 640.0,
+    "total_pod_cpu": 78.6,
+    "total_pod_mem": 383.8
+  },
+  {
+    "instance_id": "dev_correlated_01",
+    "family": "Correlated",
+    "n_pods": 46,
+    "m_nodes": 9,
+    "nodes": [
+      {
+        "id": 0,
+        "type": "mem_opt",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.4
+      },
+      {
+        "id": 1,
+        "type": "mem_opt",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.4
+      },
+      {
+        "id": 2,
+        "type": "general_s",
+        "cpu_capacity": 8.0,
+        "mem_capacity": 32.0,
+        "cost_per_hour": 0.4
+      },
+      {
+        "id": 3,
+        "type": "compute_opt",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 1.3
+      },
+      {
+        "id": 4,
+        "type": "compute_opt",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 1.3
+      },
+      {
+        "id": 5,
+        "type": "mem_opt",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.4
+      },
+      {
+        "id": 6,
+        "type": "standard_m",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 0.8
+      },
+      {
+        "id": 7,
+        "type": "standard_m",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 0.8
+      },
+      {
+        "id": 8,
+        "type": "standard_m",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 0.8
+      }
+    ],
+    "pods": [
+      {
+        "id": 0,
+        "cpu": 1.3,
+        "mem": 5.6
+      },
+      {
+        "id": 1,
+        "cpu": 3.2,
+        "mem": 13.4
+      },
+      {
+        "id": 2,
+        "cpu": 3.4,
+        "mem": 13.2
+      },
+      {
+        "id": 3,
+        "cpu": 2.4,
+        "mem": 10.2
+      },
+      {
+        "id": 4,
+        "cpu": 3.4,
+        "mem": 13.5
+      },
+      {
+        "id": 5,
+        "cpu": 0.8,
+        "mem": 3.3
+      },
+      {
+        "id": 6,
+        "cpu": 2.0,
+        "mem": 8.5
+      },
+      {
+        "id": 7,
+        "cpu": 3.0,
+        "mem": 11.7
+      },
+      {
+        "id": 8,
+        "cpu": 1.9,
+        "mem": 8.2
+      },
+      {
+        "id": 9,
+        "cpu": 3.0,
+        "mem": 12.1
+      },
+      {
+        "id": 10,
+        "cpu": 2.6,
+        "mem": 10.3
+      },
+      {
+        "id": 11,
+        "cpu": 2.0,
+        "mem": 7.7
+      },
+      {
+        "id": 12,
+        "cpu": 1.4,
+        "mem": 5.2
+      },
+      {
+        "id": 13,
+        "cpu": 0.9,
+        "mem": 3.3
+      },
+      {
+        "id": 14,
+        "cpu": 2.1,
+        "mem": 8.0
+      },
+      {
+        "id": 15,
+        "cpu": 2.0,
+        "mem": 8.1
+      },
+      {
+        "id": 16,
+        "cpu": 3.1,
+        "mem": 12.7
+      },
+      {
+        "id": 17,
+        "cpu": 2.4,
+        "mem": 10.0
+      },
+      {
+        "id": 18,
+        "cpu": 2.2,
+        "mem": 9.1
+      },
+      {
+        "id": 19,
+        "cpu": 1.8,
+        "mem": 7.4
+      },
+      {
+        "id": 20,
+        "cpu": 3.8,
+        "mem": 14.7
+      },
+      {
+        "id": 21,
+        "cpu": 1.6,
+        "mem": 6.7
+      },
+      {
+        "id": 22,
+        "cpu": 1.9,
+        "mem": 7.5
+      },
+      {
+        "id": 23,
+        "cpu": 2.6,
+        "mem": 10.9
+      },
+      {
+        "id": 24,
+        "cpu": 2.2,
+        "mem": 9.0
+      },
+      {
+        "id": 25,
+        "cpu": 3.2,
+        "mem": 13.1
+      },
+      {
+        "id": 26,
+        "cpu": 3.2,
+        "mem": 13.2
+      },
+      {
+        "id": 27,
+        "cpu": 1.9,
+        "mem": 8.0
+      },
+      {
+        "id": 28,
+        "cpu": 1.1,
+        "mem": 4.3
+      },
+      {
+        "id": 29,
+        "cpu": 3.0,
+        "mem": 11.9
+      },
+      {
+        "id": 30,
+        "cpu": 1.1,
+        "mem": 4.2
+      },
+      {
+        "id": 31,
+        "cpu": 2.9,
+        "mem": 11.4
+      },
+      {
+        "id": 32,
+        "cpu": 2.7,
+        "mem": 11.0
+      },
+      {
+        "id": 33,
+        "cpu": 1.2,
+        "mem": 4.4
+      },
+      {
+        "id": 34,
+        "cpu": 2.4,
+        "mem": 9.6
+      },
+      {
+        "id": 35,
+        "cpu": 1.5,
+        "mem": 6.3
+      },
+      {
+        "id": 36,
+        "cpu": 1.3,
+        "mem": 5.3
+      },
+      {
+        "id": 37,
+        "cpu": 2.6,
+        "mem": 10.7
+      },
+      {
+        "id": 38,
+        "cpu": 1.4,
+        "mem": 5.6
+      },
+      {
+        "id": 39,
+        "cpu": 1.2,
+        "mem": 4.9
+      },
+      {
+        "id": 40,
+        "cpu": 1.7,
+        "mem": 7.2
+      },
+      {
+        "id": 41,
+        "cpu": 0.9,
+        "mem": 3.4
+      },
+      {
+        "id": 42,
+        "cpu": 2.5,
+        "mem": 10.6
+      },
+      {
+        "id": 43,
+        "cpu": 2.9,
+        "mem": 11.8
+      },
+      {
+        "id": 44,
+        "cpu": 3.6,
+        "mem": 14.9
+      },
+      {
+        "id": 45,
+        "cpu": 1.4,
+        "mem": 5.3
+      }
+    ],
+    "total_cluster_cpu": 168.0,
+    "total_cluster_mem": 736.0,
+    "total_pod_cpu": 100.7,
+    "total_pod_mem": 407.4
+  },
+  {
+    "instance_id": "dev_correlated_02",
+    "family": "Correlated",
+    "n_pods": 62,
+    "m_nodes": 8,
+    "nodes": [
+      {
+        "id": 0,
+        "type": "mem_opt",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.4
+      },
+      {
+        "id": 1,
+        "type": "compute_opt",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 1.3
+      },
+      {
+        "id": 2,
+        "type": "mem_opt",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.4
+      },
+      {
+        "id": 3,
+        "type": "general_s",
+        "cpu_capacity": 8.0,
+        "mem_capacity": 32.0,
+        "cost_per_hour": 0.4
+      },
+      {
+        "id": 4,
+        "type": "standard_l",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.6
+      },
+      {
+        "id": 5,
+        "type": "general_s",
+        "cpu_capacity": 8.0,
+        "mem_capacity": 32.0,
+        "cost_per_hour": 0.4
+      },
+      {
+        "id": 6,
+        "type": "general_s",
+        "cpu_capacity": 8.0,
+        "mem_capacity": 32.0,
+        "cost_per_hour": 0.4
+      },
+      {
+        "id": 7,
+        "type": "standard_m",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 0.8
+      }
+    ],
+    "pods": [
+      {
+        "id": 0,
+        "cpu": 0.5,
+        "mem": 1.9
+      },
+      {
+        "id": 1,
+        "cpu": 1.1,
+        "mem": 4.5
+      },
+      {
+        "id": 2,
+        "cpu": 1.4,
+        "mem": 5.9
+      },
+      {
+        "id": 3,
+        "cpu": 2.0,
+        "mem": 7.6
+      },
+      {
+        "id": 4,
+        "cpu": 1.3,
+        "mem": 5.2
+      },
+      {
+        "id": 5,
+        "cpu": 1.4,
+        "mem": 5.5
+      },
+      {
+        "id": 6,
+        "cpu": 0.5,
+        "mem": 1.4
+      },
+      {
+        "id": 7,
+        "cpu": 1.5,
+        "mem": 5.7
+      },
+      {
+        "id": 8,
+        "cpu": 0.6,
+        "mem": 2.4
+      },
+      {
+        "id": 9,
+        "cpu": 1.8,
+        "mem": 7.2
+      },
+      {
+        "id": 10,
+        "cpu": 1.2,
+        "mem": 4.8
+      },
+      {
+        "id": 11,
+        "cpu": 1.0,
+        "mem": 3.7
+      },
+      {
+        "id": 12,
+        "cpu": 1.9,
+        "mem": 7.8
+      },
+      {
+        "id": 13,
+        "cpu": 1.8,
+        "mem": 6.9
+      },
+      {
+        "id": 14,
+        "cpu": 2.0,
+        "mem": 7.6
+      },
+      {
+        "id": 15,
+        "cpu": 1.5,
+        "mem": 6.4
+      },
+      {
+        "id": 16,
+        "cpu": 1.9,
+        "mem": 7.6
+      },
+      {
+        "id": 17,
+        "cpu": 0.5,
+        "mem": 1.1
+      },
+      {
+        "id": 18,
+        "cpu": 1.8,
+        "mem": 7.3
+      },
+      {
+        "id": 19,
+        "cpu": 0.5,
+        "mem": 1.9
+      },
+      {
+        "id": 20,
+        "cpu": 1.1,
+        "mem": 4.2
+      },
+      {
+        "id": 21,
+        "cpu": 0.7,
+        "mem": 2.8
+      },
+      {
+        "id": 22,
+        "cpu": 1.6,
+        "mem": 6.7
+      },
+      {
+        "id": 23,
+        "cpu": 1.7,
+        "mem": 6.7
+      },
+      {
+        "id": 24,
+        "cpu": 2.1,
+        "mem": 8.3
+      },
+      {
+        "id": 25,
+        "cpu": 2.1,
+        "mem": 8.5
+      },
+      {
+        "id": 26,
+        "cpu": 1.6,
+        "mem": 6.4
+      },
+      {
+        "id": 27,
+        "cpu": 0.8,
+        "mem": 3.5
+      },
+      {
+        "id": 28,
+        "cpu": 1.0,
+        "mem": 3.9
+      },
+      {
+        "id": 29,
+        "cpu": 0.5,
+        "mem": 1.0
+      },
+      {
+        "id": 30,
+        "cpu": 0.5,
+        "mem": 1.7
+      },
+      {
+        "id": 31,
+        "cpu": 2.0,
+        "mem": 8.3
+      },
+      {
+        "id": 32,
+        "cpu": 1.5,
+        "mem": 5.8
+      },
+      {
+        "id": 33,
+        "cpu": 1.6,
+        "mem": 6.6
+      },
+      {
+        "id": 34,
+        "cpu": 0.5,
+        "mem": 1.3
+      },
+      {
+        "id": 35,
+        "cpu": 0.7,
+        "mem": 3.0
+      },
+      {
+        "id": 36,
+        "cpu": 2.1,
+        "mem": 8.5
+      },
+      {
+        "id": 37,
+        "cpu": 0.8,
+        "mem": 3.5
+      },
+      {
+        "id": 38,
+        "cpu": 2.2,
+        "mem": 8.7
+      },
+      {
+        "id": 39,
+        "cpu": 0.5,
+        "mem": 1.1
+      },
+      {
+        "id": 40,
+        "cpu": 1.6,
+        "mem": 6.5
+      },
+      {
+        "id": 41,
+        "cpu": 0.9,
+        "mem": 3.5
+      },
+      {
+        "id": 42,
+        "cpu": 0.9,
+        "mem": 3.8
+      },
+      {
+        "id": 43,
+        "cpu": 1.9,
+        "mem": 7.7
+      },
+      {
+        "id": 44,
+        "cpu": 1.0,
+        "mem": 4.4
+      },
+      {
+        "id": 45,
+        "cpu": 2.1,
+        "mem": 8.3
+      },
+      {
+        "id": 46,
+        "cpu": 2.1,
+        "mem": 8.0
+      },
+      {
+        "id": 47,
+        "cpu": 0.6,
+        "mem": 2.3
+      },
+      {
+        "id": 48,
+        "cpu": 1.4,
+        "mem": 5.7
+      },
+      {
+        "id": 49,
+        "cpu": 1.1,
+        "mem": 4.2
+      },
+      {
+        "id": 50,
+        "cpu": 0.5,
+        "mem": 1.9
+      },
+      {
+        "id": 51,
+        "cpu": 1.6,
+        "mem": 6.5
+      },
+      {
+        "id": 52,
+        "cpu": 1.5,
+        "mem": 6.2
+      },
+      {
+        "id": 53,
+        "cpu": 1.5,
+        "mem": 5.9
+      },
+      {
+        "id": 54,
+        "cpu": 1.3,
+        "mem": 5.1
+      },
+      {
+        "id": 55,
+        "cpu": 1.6,
+        "mem": 6.0
+      },
+      {
+        "id": 56,
+        "cpu": 0.8,
+        "mem": 3.0
+      },
+      {
+        "id": 57,
+        "cpu": 2.2,
+        "mem": 8.7
+      },
+      {
+        "id": 58,
+        "cpu": 1.9,
+        "mem": 7.3
+      },
+      {
+        "id": 59,
+        "cpu": 1.8,
+        "mem": 6.8
+      },
+      {
+        "id": 60,
+        "cpu": 0.5,
+        "mem": 1.5
+      },
+      {
+        "id": 61,
+        "cpu": 2.1,
+        "mem": 8.2
+      }
+    ],
+    "total_cluster_cpu": 136.0,
+    "total_cluster_mem": 608.0,
+    "total_pod_cpu": 82.7,
+    "total_pod_mem": 324.4
+  },
+  {
+    "instance_id": "dev_correlated_03",
+    "family": "Correlated",
+    "n_pods": 45,
+    "m_nodes": 8,
+    "nodes": [
+      {
+        "id": 0,
+        "type": "compute_opt",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 1.3
+      },
+      {
+        "id": 1,
+        "type": "standard_m",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 0.8
+      },
+      {
+        "id": 2,
+        "type": "standard_l",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.6
+      },
+      {
+        "id": 3,
+        "type": "standard_m",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 0.8
+      },
+      {
+        "id": 4,
+        "type": "standard_m",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 0.8
+      },
+      {
+        "id": 5,
+        "type": "general_s",
+        "cpu_capacity": 8.0,
+        "mem_capacity": 32.0,
+        "cost_per_hour": 0.4
+      },
+      {
+        "id": 6,
+        "type": "mem_opt",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.4
+      },
+      {
+        "id": 7,
+        "type": "general_s",
+        "cpu_capacity": 8.0,
+        "mem_capacity": 32.0,
+        "cost_per_hour": 0.4
+      }
+    ],
+    "pods": [
+      {
+        "id": 0,
+        "cpu": 2.3,
+        "mem": 9.6
+      },
+      {
+        "id": 1,
+        "cpu": 1.9,
+        "mem": 7.9
+      },
+      {
+        "id": 2,
+        "cpu": 2.1,
+        "mem": 8.6
+      },
+      {
+        "id": 3,
+        "cpu": 2.9,
+        "mem": 11.7
+      },
+      {
+        "id": 4,
+        "cpu": 2.3,
+        "mem": 8.6
+      },
+      {
+        "id": 5,
+        "cpu": 2.4,
+        "mem": 9.7
+      },
+      {
+        "id": 6,
+        "cpu": 2.9,
+        "mem": 11.4
+      },
+      {
+        "id": 7,
+        "cpu": 0.6,
+        "mem": 2.6
+      },
+      {
+        "id": 8,
+        "cpu": 3.3,
+        "mem": 13.0
+      },
+      {
+        "id": 9,
+        "cpu": 2.7,
+        "mem": 11.1
+      },
+      {
+        "id": 10,
+        "cpu": 1.2,
+        "mem": 4.4
+      },
+      {
+        "id": 11,
+        "cpu": 2.2,
+        "mem": 9.3
+      },
+      {
+        "id": 12,
+        "cpu": 2.9,
+        "mem": 11.8
+      },
+      {
+        "id": 13,
+        "cpu": 3.3,
+        "mem": 13.3
+      },
+      {
+        "id": 14,
+        "cpu": 0.8,
+        "mem": 3.2
+      },
+      {
+        "id": 15,
+        "cpu": 1.3,
+        "mem": 5.3
+      },
+      {
+        "id": 16,
+        "cpu": 3.0,
+        "mem": 11.9
+      },
+      {
+        "id": 17,
+        "cpu": 1.3,
+        "mem": 5.3
+      },
+      {
+        "id": 18,
+        "cpu": 3.1,
+        "mem": 12.7
+      },
+      {
+        "id": 19,
+        "cpu": 2.0,
+        "mem": 8.1
+      },
+      {
+        "id": 20,
+        "cpu": 1.0,
+        "mem": 3.6
+      },
+      {
+        "id": 21,
+        "cpu": 2.9,
+        "mem": 11.6
+      },
+      {
+        "id": 22,
+        "cpu": 2.8,
+        "mem": 11.4
+      },
+      {
+        "id": 23,
+        "cpu": 0.8,
+        "mem": 2.6
+      },
+      {
+        "id": 24,
+        "cpu": 0.7,
+        "mem": 3.0
+      },
+      {
+        "id": 25,
+        "cpu": 3.2,
+        "mem": 12.4
+      },
+      {
+        "id": 26,
+        "cpu": 2.8,
+        "mem": 11.5
+      },
+      {
+        "id": 27,
+        "cpu": 0.9,
+        "mem": 3.5
+      },
+      {
+        "id": 28,
+        "cpu": 0.7,
+        "mem": 3.2
+      },
+      {
+        "id": 29,
+        "cpu": 0.6,
+        "mem": 2.5
+      },
+      {
+        "id": 30,
+        "cpu": 0.6,
+        "mem": 2.9
+      },
+      {
+        "id": 31,
+        "cpu": 1.8,
+        "mem": 6.8
+      },
+      {
+        "id": 32,
+        "cpu": 0.5,
+        "mem": 2.2
+      },
+      {
+        "id": 33,
+        "cpu": 1.0,
+        "mem": 4.3
+      },
+      {
+        "id": 34,
+        "cpu": 2.1,
+        "mem": 8.1
+      },
+      {
+        "id": 35,
+        "cpu": 1.1,
+        "mem": 4.6
+      },
+      {
+        "id": 36,
+        "cpu": 2.8,
+        "mem": 11.2
+      },
+      {
+        "id": 37,
+        "cpu": 2.5,
+        "mem": 9.5
+      },
+      {
+        "id": 38,
+        "cpu": 2.0,
+        "mem": 7.9
+      },
+      {
+        "id": 39,
+        "cpu": 3.2,
+        "mem": 13.1
+      },
+      {
+        "id": 40,
+        "cpu": 2.0,
+        "mem": 8.4
+      },
+      {
+        "id": 41,
+        "cpu": 1.7,
+        "mem": 7.2
+      },
+      {
+        "id": 42,
+        "cpu": 1.7,
+        "mem": 7.2
+      },
+      {
+        "id": 43,
+        "cpu": 0.8,
+        "mem": 3.2
+      },
+      {
+        "id": 44,
+        "cpu": 1.0,
+        "mem": 4.1
+      }
+    ],
+    "total_cluster_cpu": 144.0,
+    "total_cluster_mem": 576.0,
+    "total_pod_cpu": 85.7,
+    "total_pod_mem": 345.5
+  },
+  {
+    "instance_id": "dev_correlated_04",
+    "family": "Correlated",
+    "n_pods": 61,
+    "m_nodes": 13,
+    "nodes": [
+      {
+        "id": 0,
+        "type": "mem_opt",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.4
+      },
+      {
+        "id": 1,
+        "type": "compute_opt",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 1.3
+      },
+      {
+        "id": 2,
+        "type": "compute_opt",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 1.3
+      },
+      {
+        "id": 3,
+        "type": "general_s",
+        "cpu_capacity": 8.0,
+        "mem_capacity": 32.0,
+        "cost_per_hour": 0.4
+      },
+      {
+        "id": 4,
+        "type": "compute_opt",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 1.3
+      },
+      {
+        "id": 5,
+        "type": "compute_opt",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 1.3
+      },
+      {
+        "id": 6,
+        "type": "general_s",
+        "cpu_capacity": 8.0,
+        "mem_capacity": 32.0,
+        "cost_per_hour": 0.4
+      },
+      {
+        "id": 7,
+        "type": "mem_opt",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.4
+      },
+      {
+        "id": 8,
+        "type": "mem_opt",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.4
+      },
+      {
+        "id": 9,
+        "type": "general_s",
+        "cpu_capacity": 8.0,
+        "mem_capacity": 32.0,
+        "cost_per_hour": 0.4
+      },
+      {
+        "id": 10,
+        "type": "general_s",
+        "cpu_capacity": 8.0,
+        "mem_capacity": 32.0,
+        "cost_per_hour": 0.4
+      },
+      {
+        "id": 11,
+        "type": "mem_opt",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.4
+      },
+      {
+        "id": 12,
+        "type": "general_s",
+        "cpu_capacity": 8.0,
+        "mem_capacity": 32.0,
+        "cost_per_hour": 0.4
+      }
+    ],
+    "pods": [
+      {
+        "id": 0,
+        "cpu": 3.4,
+        "mem": 13.4
+      },
+      {
+        "id": 1,
+        "cpu": 3.6,
+        "mem": 14.8
+      },
+      {
+        "id": 2,
+        "cpu": 0.6,
+        "mem": 2.1
+      },
+      {
+        "id": 3,
+        "cpu": 3.9,
+        "mem": 15.1
+      },
+      {
+        "id": 4,
+        "cpu": 1.7,
+        "mem": 6.4
+      },
+      {
+        "id": 5,
+        "cpu": 4.0,
+        "mem": 15.6
+      },
+      {
+        "id": 6,
+        "cpu": 4.0,
+        "mem": 15.8
+      },
+      {
+        "id": 7,
+        "cpu": 3.2,
+        "mem": 12.8
+      },
+      {
+        "id": 8,
+        "cpu": 2.9,
+        "mem": 11.2
+      },
+      {
+        "id": 9,
+        "cpu": 3.7,
+        "mem": 14.9
+      },
+      {
+        "id": 10,
+        "cpu": 0.7,
+        "mem": 2.6
+      },
+      {
+        "id": 11,
+        "cpu": 2.2,
+        "mem": 8.9
+      },
+      {
+        "id": 12,
+        "cpu": 1.1,
+        "mem": 4.6
+      },
+      {
+        "id": 13,
+        "cpu": 1.1,
+        "mem": 4.6
+      },
+      {
+        "id": 14,
+        "cpu": 0.7,
+        "mem": 2.4
+      },
+      {
+        "id": 15,
+        "cpu": 0.9,
+        "mem": 3.8
+      },
+      {
+        "id": 16,
+        "cpu": 0.7,
+        "mem": 2.4
+      },
+      {
+        "id": 17,
+        "cpu": 2.8,
+        "mem": 11.3
+      },
+      {
+        "id": 18,
+        "cpu": 2.0,
+        "mem": 7.7
+      },
+      {
+        "id": 19,
+        "cpu": 1.5,
+        "mem": 5.5
+      },
+      {
+        "id": 20,
+        "cpu": 1.5,
+        "mem": 6.1
+      },
+      {
+        "id": 21,
+        "cpu": 0.7,
+        "mem": 2.8
+      },
+      {
+        "id": 22,
+        "cpu": 1.2,
+        "mem": 5.2
+      },
+      {
+        "id": 23,
+        "cpu": 1.9,
+        "mem": 7.4
+      },
+      {
+        "id": 24,
+        "cpu": 2.5,
+        "mem": 10.0
+      },
+      {
+        "id": 25,
+        "cpu": 0.7,
+        "mem": 3.0
+      },
+      {
+        "id": 26,
+        "cpu": 3.6,
+        "mem": 14.6
+      },
+      {
+        "id": 27,
+        "cpu": 3.2,
+        "mem": 13.1
+      },
+      {
+        "id": 28,
+        "cpu": 2.4,
+        "mem": 9.6
+      },
+      {
+        "id": 29,
+        "cpu": 2.0,
+        "mem": 8.5
+      },
+      {
+        "id": 30,
+        "cpu": 1.6,
+        "mem": 6.1
+      },
+      {
+        "id": 31,
+        "cpu": 0.7,
+        "mem": 2.5
+      },
+      {
+        "id": 32,
+        "cpu": 1.0,
+        "mem": 3.6
+      },
+      {
+        "id": 33,
+        "cpu": 2.9,
+        "mem": 12.1
+      },
+      {
+        "id": 34,
+        "cpu": 2.9,
+        "mem": 11.2
+      },
+      {
+        "id": 35,
+        "cpu": 1.7,
+        "mem": 7.0
+      },
+      {
+        "id": 36,
+        "cpu": 3.6,
+        "mem": 14.1
+      },
+      {
+        "id": 37,
+        "cpu": 4.0,
+        "mem": 16.1
+      },
+      {
+        "id": 38,
+        "cpu": 0.7,
+        "mem": 3.3
+      },
+      {
+        "id": 39,
+        "cpu": 3.9,
+        "mem": 15.3
+      },
+      {
+        "id": 40,
+        "cpu": 1.5,
+        "mem": 6.6
+      },
+      {
+        "id": 41,
+        "cpu": 2.7,
+        "mem": 10.4
+      },
+      {
+        "id": 42,
+        "cpu": 3.8,
+        "mem": 15.1
+      },
+      {
+        "id": 43,
+        "cpu": 2.3,
+        "mem": 9.3
+      },
+      {
+        "id": 44,
+        "cpu": 1.0,
+        "mem": 4.2
+      },
+      {
+        "id": 45,
+        "cpu": 3.8,
+        "mem": 15.6
+      },
+      {
+        "id": 46,
+        "cpu": 4.0,
+        "mem": 15.7
+      },
+      {
+        "id": 47,
+        "cpu": 3.2,
+        "mem": 13.0
+      },
+      {
+        "id": 48,
+        "cpu": 2.0,
+        "mem": 7.5
+      },
+      {
+        "id": 49,
+        "cpu": 1.1,
+        "mem": 4.8
+      },
+      {
+        "id": 50,
+        "cpu": 1.4,
+        "mem": 5.0
+      },
+      {
+        "id": 51,
+        "cpu": 2.1,
+        "mem": 8.8
+      },
+      {
+        "id": 52,
+        "cpu": 3.7,
+        "mem": 14.6
+      },
+      {
+        "id": 53,
+        "cpu": 1.9,
+        "mem": 8.0
+      },
+      {
+        "id": 54,
+        "cpu": 4.0,
+        "mem": 15.7
+      },
+      {
+        "id": 55,
+        "cpu": 2.0,
+        "mem": 7.5
+      },
+      {
+        "id": 56,
+        "cpu": 1.0,
+        "mem": 4.0
+      },
+      {
+        "id": 57,
+        "cpu": 3.4,
+        "mem": 13.2
+      },
+      {
+        "id": 58,
+        "cpu": 3.6,
+        "mem": 14.0
+      },
+      {
+        "id": 59,
+        "cpu": 0.8,
+        "mem": 3.4
+      },
+      {
+        "id": 60,
+        "cpu": 2.9,
+        "mem": 11.5
+      }
+    ],
+    "total_cluster_cpu": 232.0,
+    "total_cluster_mem": 928.0,
+    "total_pod_cpu": 139.6,
+    "total_pod_mem": 555.4
+  },
+  {
+    "instance_id": "dev_correlated_05",
+    "family": "Correlated",
+    "n_pods": 55,
+    "m_nodes": 9,
+    "nodes": [
+      {
+        "id": 0,
+        "type": "standard_l",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.6
+      },
+      {
+        "id": 1,
+        "type": "general_s",
+        "cpu_capacity": 8.0,
+        "mem_capacity": 32.0,
+        "cost_per_hour": 0.4
+      },
+      {
+        "id": 2,
+        "type": "mem_opt",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.4
+      },
+      {
+        "id": 3,
+        "type": "standard_m",
+        "cpu_capacity": 16.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 0.8
+      },
+      {
+        "id": 4,
+        "type": "compute_opt",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 1.3
+      },
+      {
+        "id": 5,
+        "type": "standard_l",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 128.0,
+        "cost_per_hour": 1.6
+      },
+      {
+        "id": 6,
+        "type": "general_s",
+        "cpu_capacity": 8.0,
+        "mem_capacity": 32.0,
+        "cost_per_hour": 0.4
+      },
+      {
+        "id": 7,
+        "type": "general_s",
+        "cpu_capacity": 8.0,
+        "mem_capacity": 32.0,
+        "cost_per_hour": 0.4
+      },
+      {
+        "id": 8,
+        "type": "compute_opt",
+        "cpu_capacity": 32.0,
+        "mem_capacity": 64.0,
+        "cost_per_hour": 1.3
+      }
+    ],
+    "pods": [
+      {
+        "id": 0,
+        "cpu": 0.7,
+        "mem": 2.8
+      },
+      {
+        "id": 1,
+        "cpu": 0.8,
+        "mem": 3.2
+      },
+      {
+        "id": 2,
+        "cpu": 1.1,
+        "mem": 4.3
+      },
+      {
+        "id": 3,
+        "cpu": 2.8,
+        "mem": 10.9
+      },
+      {
+        "id": 4,
+        "cpu": 2.3,
+        "mem": 9.1
+      },
+      {
+        "id": 5,
+        "cpu": 1.0,
+        "mem": 3.5
+      },
+      {
+        "id": 6,
+        "cpu": 2.0,
+        "mem": 7.8
+      },
+      {
+        "id": 7,
+        "cpu": 1.3,
+        "mem": 4.8
+      },
+      {
+        "id": 8,
+        "cpu": 2.5,
+        "mem": 10.2
+      },
+      {
+        "id": 9,
+        "cpu": 0.8,
+        "mem": 3.0
+      },
+      {
+        "id": 10,
+        "cpu": 0.5,
+        "mem": 2.2
+      },
+      {
+        "id": 11,
+        "cpu": 2.3,
+        "mem": 9.2
+      },
+      {
+        "id": 12,
+        "cpu": 2.0,
+        "mem": 8.3
+      },
+      {
+        "id": 13,
+        "cpu": 2.6,
+        "mem": 10.5
+      },
+      {
+        "id": 14,
+        "cpu": 2.7,
+        "mem": 10.6
+      },
+      {
+        "id": 15,
+        "cpu": 2.2,
+        "mem": 9.1
+      },
+      {
+        "id": 16,
+        "cpu": 2.6,
+        "mem": 10.1
+      },
+      {
+        "id": 17,
+        "cpu": 3.2,
+        "mem": 12.8
+      },
+      {
+        "id": 18,
+        "cpu": 1.0,
+        "mem": 4.1
+      },
+      {
+        "id": 19,
+        "cpu": 2.1,
+        "mem": 8.6
+      },
+      {
+        "id": 20,
+        "cpu": 2.8,
+        "mem": 11.1
+      },
+      {
+        "id": 21,
+        "cpu": 1.6,
+        "mem": 6.7
+      },
+      {
+        "id": 22,
+        "cpu": 2.8,
+        "mem": 11.2
+      },
+      {
+        "id": 23,
+        "cpu": 3.3,
+        "mem": 13.3
+      },
+      {
+        "id": 24,
+        "cpu": 3.3,
+        "mem": 13.5
+      },
+      {
+        "id": 25,
+        "cpu": 1.7,
+        "mem": 6.4
+      },
+      {
+        "id": 26,
+        "cpu": 1.5,
+        "mem": 5.7
+      },
+      {
+        "id": 27,
+        "cpu": 1.9,
+        "mem": 7.8
+      },
+      {
+        "id": 28,
+        "cpu": 2.1,
+        "mem": 8.3
+      },
+      {
+        "id": 29,
+        "cpu": 0.6,
+        "mem": 2.1
+      },
+      {
+        "id": 30,
+        "cpu": 1.4,
+        "mem": 5.8
+      },
+      {
+        "id": 31,
+        "cpu": 0.8,
+        "mem": 3.2
+      },
+      {
+        "id": 32,
+        "cpu": 3.1,
+        "mem": 12.5
+      },
+      {
+        "id": 33,
+        "cpu": 1.0,
+        "mem": 3.6
+      },
+      {
+        "id": 34,
+        "cpu": 1.6,
+        "mem": 6.9
+      },
+      {
+        "id": 35,
+        "cpu": 3.0,
+        "mem": 11.8
+      },
+      {
+        "id": 36,
+        "cpu": 0.5,
+        "mem": 1.6
+      },
+      {
+        "id": 37,
+        "cpu": 1.9,
+        "mem": 7.6
+      },
+      {
+        "id": 38,
+        "cpu": 1.1,
+        "mem": 4.3
+      },
+      {
+        "id": 39,
+        "cpu": 3.0,
+        "mem": 11.9
+      },
+      {
+        "id": 40,
+        "cpu": 1.0,
+        "mem": 4.0
+      },
+      {
+        "id": 41,
+        "cpu": 2.6,
+        "mem": 10.1
+      },
+      {
+        "id": 42,
+        "cpu": 2.7,
+        "mem": 11.0
+      },
+      {
+        "id": 43,
+        "cpu": 2.0,
+        "mem": 8.0
+      },
+      {
+        "id": 44,
+        "cpu": 1.3,
+        "mem": 5.5
+      },
+      {
+        "id": 45,
+        "cpu": 1.7,
+        "mem": 7.1
+      },
+      {
+        "id": 46,
+        "cpu": 0.6,
+        "mem": 2.5
+      },
+      {
+        "id": 47,
+        "cpu": 1.6,
+        "mem": 6.1
+      },
+      {
+        "id": 48,
+        "cpu": 1.7,
+        "mem": 6.8
+      },
+      {
+        "id": 49,
+        "cpu": 2.3,
+        "mem": 9.4
+      },
+      {
+        "id": 50,
+        "cpu": 2.7,
+        "mem": 10.4
+      },
+      {
+        "id": 51,
+        "cpu": 1.0,
+        "mem": 4.1
+      },
+      {
+        "id": 52,
+        "cpu": 1.2,
+        "mem": 4.9
+      },
+      {
+        "id": 53,
+        "cpu": 1.8,
+        "mem": 7.3
+      },
+      {
+        "id": 54,
+        "cpu": 1.5,
+        "mem": 5.9
+      }
+    ],
+    "total_cluster_cpu": 184.0,
+    "total_cluster_mem": 672.0,
+    "total_pod_cpu": 101.2,
+    "total_pod_mem": 403.5
+  }
+]

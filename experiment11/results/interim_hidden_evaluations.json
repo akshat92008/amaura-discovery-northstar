@@ -1,0 +1,58 @@
+{
+  "metadata": {
+    "experiment": "Amaura Experiment #11: Clean QD Confirmation",
+    "status": "Interim Evaluation (Trials 1 & 2)",
+    "note": "Search paused at Call 64 due to OmniRoute Claude-Sonnet-4-6 quota exhaustion. Trials 1 and 2 are 100% complete.",
+    "hidden_instances": 120,
+    "baselines": {
+      "NEH": 531943,
+      "IG": 531354
+    }
+  },
+  "evaluations": [
+    {
+      "candidate_id": "T1_A_C02",
+      "condition": "A",
+      "trial_idx": 0,
+      "dev_makespan": 85978,
+      "hidden_makespan": 529559,
+      "hidden_mean": 4413.0,
+      "status": "VALID",
+      "eval_runtime_ms": 32390.0,
+      "beats_neh": true,
+      "beats_ig": true
+    },
+    {
+      "candidate_id": "T1_C_C09",
+      "condition": "C",
+      "trial_idx": 0,
+      "dev_makespan": 85871,
+      "hidden_makespan": 999999,
+      "hidden_mean": 999999.0,
+      "status": "INVALID",
+      "error": "Scale-aware Timeout: instance #45 took 2394.3ms > limit 2000.0ms (n=100, m=5)"
+    },
+    {
+      "candidate_id": "T2_A_C13",
+      "condition": "A",
+      "trial_idx": 1,
+      "dev_makespan": 86042,
+      "hidden_makespan": 529047,
+      "hidden_mean": 4408.7,
+      "status": "VALID",
+      "eval_runtime_ms": 52550.0,
+      "beats_neh": true,
+      "beats_ig": true
+    },
+    {
+      "candidate_id": "T2_C_C08",
+      "condition": "C",
+      "trial_idx": 1,
+      "dev_makespan": 85902,
+      "hidden_makespan": 999999,
+      "hidden_mean": 999999.0,
+      "status": "INVALID",
+      "error": "Scale-aware Timeout: instance #45 took 2064.9ms > limit 2000.0ms (n=100, m=5)"
+    }
+  ]
+}

@@ -1,0 +1,74 @@
+{
+  "all_instances_valid": true,
+  "baseline_eval_scores": {
+    "neh_classical": 3495.0
+  },
+  "beats_baseline": true,
+  "champion_eval_score": 3474.6,
+  "champion_method_id": "neh_ls_insertion",
+  "champion_version": "1.0.0",
+  "eval_instance_count": 5,
+  "evaluation_timestamp": "2026-10-19T16:08:03Z",
+  "instance_scores": [
+    1119.0,
+    2857.0,
+    6096.0,
+    1047.0,
+    6254.0
+  ],
+  "matched_baseline_score": 3495.0,
+  "matched_champion_score": 3474.6,
+  "matched_instance_count": 5,
+  "matched_relative_gap": -0.005837,
+  "per_instance_details": [
+    {
+      "champion_is_valid": true,
+      "champion_runtime_ms": 3.83,
+      "champion_score": 1119.0,
+      "champion_status": "SUCCESS",
+      "instance_id": "pfsp_0000",
+      "primary_baseline_score": 1119.0,
+      "primary_baseline_status": "SUCCESS"
+    },
+    {
+      "champion_is_valid": true,
+      "champion_runtime_ms": 45.5,
+      "champion_score": 2857.0,
+      "champion_status": "SUCCESS",
+      "instance_id": "pfsp_0001",
+      "primary_baseline_score": 2871.0,
+      "primary_baseline_status": "SUCCESS"
+    },
+    {
+      "champion_is_valid": true,
+      "champion_runtime_ms": 953.38,
+      "champion_score": 6096.0,
+      "champion_status": "SUCCESS",
+      "instance_id": "pfsp_0002",
+      "primary_baseline_score": 6165.0,
+      "primary_baseline_status": "SUCCESS"
+    },
+    {
+      "champion_is_valid": true,
+      "champion_runtime_ms": 3.65,
+      "champion_score": 1047.0,
+      "champion_status": "SUCCESS",
+      "instance_id": "pfsp_0003",
+      "primary_baseline_score": 1051.0,
+      "primary_baseline_status": "SUCCESS"
+    },
+    {
+      "champion_is_valid": true,
+      "champion_runtime_ms": 943.94,
+      "champion_score": 6254.0,
+      "champion_status": "SUCCESS",
+      "instance_id": "pfsp_0004",
+      "primary_baseline_score": 6269.0,
+      "primary_baseline_status": "SUCCESS"
+    }
+  ],
+  "relative_gap": -0.005837,
+  "status": "COMPLETED",
+  "total_runtime_ms": 1950.3,
+  "valid_instance_count": 5
+}

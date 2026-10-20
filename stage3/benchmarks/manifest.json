@@ -1,0 +1,27 @@
+{
+  "generator_seed": 303,
+  "files": {
+    "graph_coloring_pilot": {
+      "path": "stage3/benchmarks/graph_coloring/pilot.json",
+      "count": 24,
+      "sha256": "f7b838413fdca15c755fc0763e0e3d84fbacf949bae9aea9d574b004e6f3efe0"
+    },
+    "graph_coloring_dev": {
+      "path": "stage3/benchmarks/graph_coloring/dev.json",
+      "count": 40,
+      "sha256": "be32be00851ab62507d0ec856f8fdc1c2653ca0ab05d411ae089f10640c3d77f"
+    },
+    "graph_coloring_hidden": {
+      "path": "stage3/benchmarks/graph_coloring/hidden.json",
+      "count": 200,
+      "sha256": "54bbad239a22626ec4fa2d227ad0ce0acc7a1e6776f331cd5aa91c563a7591ff"
+    },
+    "graph_coloring_sealed": {
+      "path": "stage3/benchmarks/graph_coloring/sealed.json",
+      "count": 40,
+      "sha256": "862e278f84fae2e695dc26d63f18c9c59abbce8dfbe40d6268c7486db9676388"
+    }
+  },
+  "total_hidden_vertices": 15086,
+  "s_penalty_verified": 15087
+}

@@ -1,0 +1,41 @@
+{
+  "experiment_id": "Amaura_Experiment_14",
+  "domain": "Kubernetes-Style Cloud Pod Scheduling Simulation",
+  "objective": "Minimize total cluster operational cost (active node cost + resource fragmentation penalty + unscheduled penalty)",
+  "objective_formula": "Cost = Sum_active(cost_j * (1.0 + 0.2 * |u_cpu/C_cpu - u_mem/C_mem|)) + 1000.0 * N_unscheduled",
+  "model": "nvidia/nvidia/nemotron-3-super-120b-a12b",
+  "api_base_url": "http://127.0.0.1:20128/v1/chat/completions",
+  "api_key": "",
+  "temperature": 0.6,
+  "max_completion_tokens": 4096,
+  "conditions": [
+    "N15",
+    "N30",
+    "N60"
+  ],
+  "budgets": {
+    "N15": 15,
+    "N30": 30,
+    "N60": 60
+  },
+  "num_trials_per_budget": 5,
+  "total_trials": 15,
+  "total_llm_calls": 525,
+  "max_concurrency": 5,
+  "computational_budget": {
+    "scale_aware_timeout_base_ms": 1000.0,
+    "scale_aware_timeout_per_nm_ms": 1.0,
+    "formula": "T(n_pods, m_nodes) = 1000.0 + 1.0 * (n_pods * m_nodes) ms",
+    "sigalrm_interrupt_sec": 10
+  },
+  "quality_control": {
+    "max_invalid_rate_threshold": 0.15,
+    "max_truncation_rate_threshold": 0.05
+  },
+  "benchmark_split": {
+    "dev_instances": 30,
+    "dev_seed": 1042,
+    "hidden_instances": 120,
+    "hidden_seed": 70099
+  }
+}

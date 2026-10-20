@@ -1,0 +1,57 @@
+{
+  "metadata": {
+    "description": "Diagnostic evaluation with relaxed timeouts to assess raw solution quality on 120 hidden instances without cutoff artifacts",
+    "baselines": {
+      "NEH": 531943,
+      "IG": 531354
+    }
+  },
+  "results": [
+    {
+      "candidate_id": "T1_A_C02",
+      "condition": "A",
+      "trial": 1,
+      "dev_makespan": 85978,
+      "strict_hidden_makespan": 529559,
+      "unconstrained_hidden_makespan": 529598,
+      "unconstrained_mean": 4413.3,
+      "runtime_sec": 32.14,
+      "avg_ms_per_instance": 267.8
+    },
+    {
+      "candidate_id": "T1_C_C09",
+      "condition": "C",
+      "trial": 1,
+      "dev_makespan": 85871,
+      "strict_hidden_makespan": 999999,
+      "unconstrained_hidden_makespan": 528330,
+      "unconstrained_mean": 4402.8,
+      "runtime_sec": 118.82,
+      "avg_ms_per_instance": 990.2,
+      "delta_vs_condition_a": -1268
+    },
+    {
+      "candidate_id": "T2_A_C13",
+      "condition": "A",
+      "trial": 2,
+      "dev_makespan": 86042,
+      "strict_hidden_makespan": 529047,
+      "unconstrained_hidden_makespan": 529047,
+      "unconstrained_mean": 4408.7,
+      "runtime_sec": 52.72,
+      "avg_ms_per_instance": 439.3
+    },
+    {
+      "candidate_id": "T2_C_C08",
+      "condition": "C",
+      "trial": 2,
+      "dev_makespan": 85902,
+      "strict_hidden_makespan": 999999,
+      "unconstrained_hidden_makespan": 529031,
+      "unconstrained_mean": 4408.6,
+      "runtime_sec": 117.25,
+      "avg_ms_per_instance": 977.1,
+      "delta_vs_condition_a": -16
+    }
+  ]
+}

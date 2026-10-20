@@ -1,0 +1,45 @@
+{
+  "generator_seed": 42,
+  "files": {
+    "graph_coloring_pilot": {
+      "path": "stage2/benchmarks/graph_coloring/pilot.json",
+      "count": 24,
+      "sha256": "cac1c8135338c3aacd085cb4e174075f5e6ae5e4219ff6d729c5881a6959a7cc"
+    },
+    "graph_coloring_dev": {
+      "path": "stage2/benchmarks/graph_coloring/dev.json",
+      "count": 40,
+      "sha256": "f6abd587016ea296288aab58a874e7266430131844eeec511eace862199de2fc"
+    },
+    "graph_coloring_hidden": {
+      "path": "stage2/benchmarks/graph_coloring/hidden.json",
+      "count": 200,
+      "sha256": "708bdc3b9904e43ea21a1103388bd4c7f7ab1470475a6537212957882777cae0"
+    },
+    "graph_coloring_sealed": {
+      "path": "stage2/benchmarks/graph_coloring/sealed.json",
+      "count": 40,
+      "sha256": "5649d9c1f333478bc52a075ffa5a8afc7f9ecd7321b60cd1a3130cc1603dea15"
+    },
+    "pfsp_pilot": {
+      "path": "stage2/benchmarks/pfsp/pilot.json",
+      "count": 24,
+      "sha256": "a15d7d1fc4021c27a3c17942067d7f808a8c555d7e539fe5b8e6a2bf24f2e92a"
+    },
+    "pfsp_dev": {
+      "path": "stage2/benchmarks/pfsp/dev.json",
+      "count": 36,
+      "sha256": "59b967b3fde14e121c524a7a48a41ef7a046685d391ba2207e2a15fe4d46ff10"
+    },
+    "pfsp_hidden": {
+      "path": "stage2/benchmarks/pfsp/hidden.json",
+      "count": 204,
+      "sha256": "2edf8b994f7993bc7bd9160463d4c78c38b1f49f9c87cbae682c43cf45b02a09"
+    },
+    "pfsp_sealed": {
+      "path": "stage2/benchmarks/pfsp/sealed.json",
+      "count": 36,
+      "sha256": "2f450676400f71f9085f0c3e3866c112ed3256d78bb5736d1a1f979a56460bbb"
+    }
+  }
+}

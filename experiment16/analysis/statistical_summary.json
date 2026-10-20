@@ -1,0 +1,151 @@
+{
+  "metadata": {
+    "experiment_id": "Amaura_Experiment_16",
+    "timestamp": "2026-10-04T14:51:55Z",
+    "total_solvers": 13,
+    "solvers": [
+      "Trial_1",
+      "Trial_2",
+      "Trial_3",
+      "Trial_4",
+      "Trial_5",
+      "Policy_A_T4_C01",
+      "Policy_B_N60_T4_C51",
+      "kube_binpacking",
+      "kube_default",
+      "first_fit",
+      "best_fit",
+      "best_fit_decreasing",
+      "worst_fit"
+    ]
+  },
+  "dynamic_comparisons": {
+    "kube_binpacking": {
+      "label_a": "Trial_1",
+      "label_b": "kube_binpacking",
+      "n_instances": 10,
+      "mean_a": 1250.9207300000003,
+      "mean_b": 1256.2585199999999,
+      "mean_diff": -5.3378,
+      "median_diff": -2.5817,
+      "mean_pct_reduction": 0.61,
+      "ci_95": [
+        -9.7599,
+        -1.597
+      ],
+      "p_value": 0.01953125,
+      "wins": 9,
+      "ties": 0,
+      "losses": 1
+    },
+    "Policy_A_T4_C01": {
+      "label_a": "Trial_1",
+      "label_b": "Policy_A_T4_C01",
+      "n_instances": 10,
+      "mean_a": 1250.9207300000003,
+      "mean_b": 1287.67339,
+      "mean_diff": -36.7527,
+      "median_diff": -12.5233,
+      "mean_pct_reduction": 3.49,
+      "ci_95": [
+        -67.0717,
+        -10.8606
+      ],
+      "p_value": 0.00390625,
+      "wins": 9,
+      "ties": 1,
+      "losses": 0
+    },
+    "Policy_B_N60_T4_C51": {
+      "label_a": "Trial_1",
+      "label_b": "Policy_B_N60_T4_C51",
+      "n_instances": 10,
+      "mean_a": 1250.9207300000003,
+      "mean_b": 1287.67339,
+      "mean_diff": -36.7527,
+      "median_diff": -12.5233,
+      "mean_pct_reduction": 3.49,
+      "ci_95": [
+        -67.0717,
+        -10.8606
+      ],
+      "p_value": 0.00390625,
+      "wins": 9,
+      "ties": 1,
+      "losses": 0
+    },
+    "kube_default": {
+      "label_a": "Trial_1",
+      "label_b": "kube_default",
+      "n_instances": 10,
+      "mean_a": 1250.9207300000003,
+      "mean_b": 8702.55717,
+      "mean_diff": -7451.6364,
+      "median_diff": -2302.8484,
+      "mean_pct_reduction": 82.57,
+      "ci_95": [
+        -15660.1394,
+        -1421.3441
+      ],
+      "p_value": 0.001953125,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+    },
+    "best_fit": {
+      "label_a": "Trial_1",
+      "label_b": "best_fit",
+      "n_instances": 10,
+      "mean_a": 1250.9207300000003,
+      "mean_b": 1260.8238,
+      "mean_diff": -9.9031,
+      "median_diff": -5.8582,
+      "mean_pct_reduction": 1.79,
+      "ci_95": [
+        -17.0212,
+        -3.5109
+      ],
+      "p_value": 0.02734375,
+      "wins": 7,
+      "ties": 1,
+      "losses": 2
+    },
+    "first_fit": {
+      "label_a": "Trial_1",
+      "label_b": "first_fit",
+      "n_instances": 10,
+      "mean_a": 1250.9207300000003,
+      "mean_b": 1252.28935,
+      "mean_diff": -1.3686,
+      "median_diff": 0.3689,
+      "mean_pct_reduction": -0.61,
+      "ci_95": [
+        -4.6586,
+        1.1911
+      ],
+      "p_value": 0.8203125,
+      "wins": 4,
+      "ties": 1,
+      "losses": 5
+    },
+    "worst_fit": {
+      "label_a": "Trial_1",
+      "label_b": "worst_fit",
+      "n_instances": 10,
+      "mean_a": 1250.9207300000003,
+      "mean_b": 8679.54686,
+      "mean_diff": -7428.6261,
+      "median_diff": -2299.1219,
+      "mean_pct_reduction": 82.55,
+      "ci_95": [
+        -15606.2643,
+        -1420.2909
+      ],
+      "p_value": 0.001953125,
+      "wins": 10,
+      "ties": 0,
+      "losses": 0
+    }
+  },
+  "static_comparisons": {}
+}

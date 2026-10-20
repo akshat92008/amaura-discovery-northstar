@@ -1,0 +1,35 @@
+{
+  "experiment_id": "Amaura_Experiment_16",
+  "name": "Churn-Aware Dynamic Policy Discovery",
+  "domain": "Continuous Dynamic Cloud Pod Scheduling with Asynchronous Workload Churn",
+  "primary_objective": "Minimize total infrastructure cost: sum(node_active_hours * 4.08) + 1000.0 * N_unscheduled",
+  "secondary_objective": "Preserve static packing efficiency under batch allocation",
+  "model": "nvidia/nvidia/nemotron-3-super-120b-a12b",
+  "api_base_url": "http://127.0.0.1:20128/v1/chat/completions",
+  "api_key": "",
+  "temperature": 0.6,
+  "max_completion_tokens": 4096,
+  "search_architecture": "Independent Best-of-N Conceptual Sampling",
+  "num_trials": 5,
+  "candidates_per_trial": 60,
+  "total_candidates": 300,
+  "max_concurrency": 5,
+  "computational_budget": {
+    "scale_aware_timeout_base_ms": 2000.0,
+    "scale_aware_timeout_per_nm_ms": 1.0,
+    "sigalrm_interrupt_sec": 120
+  },
+  "quality_control": {
+    "max_invalid_rate_threshold": 0.15,
+    "max_truncation_rate_threshold": 0.05
+  },
+  "benchmarks": {
+    "dev_dynamic": "experiment16/benchmarks/dev/mode_a_dynamic.json",
+    "dev_static": "experiment16/benchmarks/dev/mode_b_static.json",
+    "val_dynamic": "experiment16/benchmarks/val/mode_a_dynamic.json",
+    "val_static": "experiment16/benchmarks/val/mode_b_static.json",
+    "hidden_dynamic": "experiment16/benchmarks/hidden/mode_a_dynamic.json",
+    "hidden_static": "experiment16/benchmarks/hidden/mode_b_static.json",
+    "manifest": "experiment16/benchmarks/manifest.json"
+  }
+}

@@ -1,0 +1,134 @@
+# Expert Prompt: Permutation Flow Shop Scheduling Problem (PFSP)
+
+You are a world-class operations research scientist, scheduling theorist, and algorithm engineer.
+Your objective is to author a state-of-the-art metaheuristic algorithm in pure Python for the **Permutation Flow Shop Scheduling Problem** ($Fm \mid prmu \mid C_{\max}$), drawing directly from landmark peer-reviewed literature.
+
+---
+
+## 1. Problem Specification
+
+- **Target Function**: `def schedule_flowshop(times: list[list[int]]) -> list[int]:`
+- **Objective**: Minimize total completion time (makespan $C_{\max}$) of $N$ jobs across $M$ machines in an identical machine processing sequence:
+  $$\min_{\pi \in \Pi} C_{\max}(\pi)$$
+- **Input Format**:
+  - `times: list[list[int]]`: A 2D grid of dimensions $N \times M$, where:
+    - $N = \text{len}(times)$ is the number of jobs.
+    - $M = \text{len}(times[0])$ is the number of machines.
+    - `times[i][j]` is the non-negative integer processing time of job $i$ on machine $j$.
+- **Output Format**:
+  - Return `list[int]`: A permutation $\pi = [\pi_0, \pi_1, \dots, \pi_{N-1}]$ of the job indices $\{0, 1, \dots, N-1\}$ specifying the exact execution sequence on all machines.
+- **Constraints & Execution Budget**:
+  - Problem size: $N \le 120$ jobs, $M \le 20$ machines.
+  - Strict Execution Budget: **< 50 milliseconds** per instance.
+  - Allowed Libraries: Python standard library **`math`** and **`random`** only. No external packages.
+
+---
+
+## 2. Mathematical Formulation & Flow Shop Dynamics
+
+For a permutation sequence $\pi = (\pi_0, \pi_1, \dots, \pi_{N-1})$, the completion time $C(\pi_i, j)$ of job $\pi_i$ on machine $j$ ($0 \le i < N$, $0 \le j < M$) is defined recursively:
+$$C(\pi_0, 0) = p_{\pi_0, 0}$$
+$$C(\pi_i, 0) = C(\pi_{i-1}, 0) + p_{\pi_i, 0} \quad \forall i \in \{1, \dots, N-1\}$$
+$$C(\pi_0, j) = C(\pi_0, j-1) + p_{\pi_0, j} \quad \forall j \in \{1, \dots, M-1\}$$
+$$C(\pi_i, j) = \max\left(C(\pi_{i-1}, j), C(\pi_i, j-1)\right) + p_{\pi_i, j} \quad \forall i \ge 1, j \ge 1$$
+$$\text{Makespan: } C_{\max}(\pi) = C(\pi_{N-1}, M-1)$$
+
+---
+
+## 3. Literature Foundations & Algorithmic Principles
+
+Your implementation must draw directly upon established, peer-reviewed PFSP algorithms:
+
+### A. Nawaz-Enscore-Ham Constructive Heuristic (NEH, 1983)
+- Widely recognized as the premier constructive heuristic for flow shop makespan minimization.
+- **Step 1 (Job Priority Ranking)**:
+  Compute total processing time for each job across all machines:
+  $$P_i = \sum_{j=0}^{M-1} p_{i, j}$$
+  Sort jobs in non-increasing order of $P_i$: $\sigma = (j_0, j_1, \dots, j_{N-1})$ such that $P_{j_0} \ge P_{j_1} \ge \dots \ge P_{j_{N-1}}$.
+- **Step 2 (Initial Pair)**:
+  Take the first two jobs $j_0$ and $j_1$. Evaluate both candidate sequences $(j_0, j_1)$ and $(j_1, j_0)$, and retain the sequence with the lower makespan.
+- **Step 3 (Greedy Insertion Loop)**:
+  For $k = 2, 3, \dots, N-1$:
+  - Take job $j_k$. Test inserting $j_k$ into all $k+1$ possible positions (index $0, 1, \dots, k$) of the current partial schedule of length $k$.
+  - Place $j_k$ permanently into the position that minimizes the makespan of the resulting partial schedule of length $k+1$. Break ties in favor of earlier positions.
+
+### B. Taillard's Acceleration Scheme (Taillard, 1990)
+- Naive evaluation of all $k+1$ insertion positions takes $O(k \cdot M^2)$ or $O(k^2 \cdot M)$ time, leading to an overall $O(N^3 \cdot M)$ complexity.
+- **Taillard's forward-backward tail decomposition** evaluates **all $k+1$ insertion positions in $O(k \cdot M)$ total time**, achieving an order-of-magnitude speedup:
+  1. **Forward Completion Matrix $e[r][m]$** ($0 \le r < k, 0 \le m < M$):
+     Compute forward completion times of the current partial schedule $\pi = (\pi_0, \dots, \pi_{k-1})$:
+     $$e[r][0] = e[r-1][0] + p_{\pi_r, 0} \quad (\text{with } e[-1][m] = 0)$$
+     $$e[r][m] = \max(e[r-1][m], e[r][m-1]) + p_{\pi_r, m}$$
+  2. **Backward Tail Matrix $q[r][m]$** ($0 \le r \le k, 0 \le m < M$):
+     $q[r][m]$ represents the time required from the start of processing the $r$-th job on machine $m$ to the end of the partial schedule.
+     Initialize $q[k][m] = 0$ for all $m$. Compute backward for $r = k-1, k-2, \dots, 0$:
+     $$q[r][M-1] = q[r+1][M-1] + p_{\pi_r, M-1}$$
+     $$q[r][m] = \max(q[r+1][m], q[r][m+1]) + p_{\pi_r, m}$$
+  3. **$O(M)$ Insertion Makespan Evaluation**:
+     When inserting candidate job $x$ at index $i \in \{0, 1, \dots, k\}$ (between $\pi_{i-1}$ and $\pi_i$):
+     Compute forward vector $f[m]$ for job $x$ on machines $m = 0, \dots, M-1$:
+     $$f[0] = e[i-1][0] + p_{x, 0} \quad (\text{where } e[-1][m] = 0)$$
+     $$f[m] = \max(f[m-1], e[i-1][m]) + p_{x, m}$$
+     The makespan of the sequence with $x$ inserted at position $i$ is:
+     $$C_{\max}^{(i)} = \max_{m=0}^{M-1} (f[m] + q[i][m])$$
+- Evaluating all $k+1$ positions thus requires only $O(k \cdot M)$ operations.
+
+### C. Slope Matching & Alternative Priority Orderings
+- **Palmer's Slope Index (Palmer, 1965)**:
+  Jobs with greater processing times on later machines should be scheduled earlier to mitigate front delays and idle time:
+  $$S_i = \sum_{j=0}^{M-1} (2j - M + 1) \cdot p_{i, j}$$
+  Sorting jobs descending by $S_i$ provides an effective alternative priority order.
+- **Campbell-Dudek-Smith (CDS, 1970)**:
+  Decomposes the $M$-machine problem into $M-1$ auxiliary two-machine subproblems solved via Johnson's Rule (1954):
+  $$p'_{i, 1} = \sum_{m=0}^{l-1} p_{i, m}, \quad p'_{i, 2} = \sum_{m=M-l}^{M-1} p_{i, m} \quad \text{for } l = 1, \dots, M-1$$
+
+### D. Iterated Greedy Metaheuristic (IG, Ruiz & Stützle 2007)
+- The state-of-the-art metaheuristic for PFSP makespan minimization.
+- **Algorithm Loop**:
+  1. **Initialization**: Generate initial sequence $\pi$ using NEH with Taillard acceleration. Set $\pi^* \leftarrow \pi$.
+  2. **Destruction Phase**: Randomly extract $d$ jobs (typically $d \in \{3, 4\}$) without replacement from $\pi$, leaving a partial sequence $\pi_D$ of size $N - d$ and a list of extracted jobs $R$.
+  3. **Reconstruction Phase**: Sequentially re-insert each job in $R$ back into $\pi_D$ using the NEH insertion mechanism accelerated by Taillard's scheme.
+  4. **Acceptance Criterion (Metropolis Condition)**:
+     - If $C_{\max}(\pi_{\text{new}}) < C_{\max}(\pi)$: accept $\pi \leftarrow \pi_{\text{new}}$.
+     - If $C_{\max}(\pi_{\text{new}}) < C_{\max}(\pi^*)$: update $\pi^* \leftarrow \pi_{\text{new}}$.
+     - Otherwise, accept $\pi \leftarrow \pi_{\text{new}}$ with probability:
+       $$\exp\left( -\frac{C_{\max}(\pi_{\text{new}}) - C_{\max}(\pi)}{T} \right)$$
+       where temperature $T = T_{\text{param}} \cdot \frac{\sum_{i=0}^{N-1}\sum_{j=0}^{M-1} p_{i, j}}{10 \cdot N \cdot M}$, with $T_{\text{param}} \approx 0.5$.
+
+### E. Taillard Lower Bounds & Idle Time Mitigation
+- Machine bottleneck lower bound (Taillard 1993):
+  $$LB_m = \min_{i} \sum_{l=0}^{m-1} p_{i, l} + \sum_{i=0}^{N-1} p_{i, m} + \min_{i} \sum_{l=m+1}^{M-1} p_{i, l}$$
+  $$LB = \max_{0 \le m < M} LB_m$$
+- Serves as a theoretical floor to terminate early if $C_{\max}(\pi) == LB$.
+
+---
+
+## 4. Recommended High-Performance Pipeline (< 50ms)
+
+For $N \le 120$ and $M \le 20$:
+1. **Initial Solution via Accelerated NEH**:
+   - Sort jobs by total processing time $P_i$ descending.
+   - Insert jobs iteratively using Taillard's forward-backward tail scheme ($\approx 5\text{--}8\text{ ms}$).
+2. **Iterated Greedy (IG) Refinement**:
+   - Set destruction size $d = 3$ or $d = 4$.
+   - Run IG iterations using Taillard-accelerated reinsertion. Each iteration requires $\approx 0.2\text{--}0.4\text{ ms}$.
+   - Calibrate the iteration count (e.g., 40--80 iterations) to guarantee completion within $40\text{ ms}$.
+3. **Data Structure Optimizations**:
+   - Use flat, preallocated 1D or 2D lists (`[0] * M`) to minimize Python object creation and GC overhead.
+   - Cache job processing arrays to eliminate repeated nested list index lookups.
+
+---
+
+## 5. Implementation Requirements
+
+- Wrap the solution strictly in Python code fences:
+  ```python
+  import math
+  import random
+
+  def schedule_flowshop(times: list[list[int]]) -> list[int]:
+      # Implementation here
+  ```
+- **Self-contained**: Include makespan evaluators, Taillard acceleration matrices, NEH construction, and IG loop in the single file.
+- **Standard Library Only**: Only `math` and `random` may be imported.
+- **Guaranteed Budget**: Strictly complete within 50ms for $N \le 120, M \le 20$. Handle edge cases gracefully ($N = 0 \to []$, $N = 1 \to [0]$, $M = 1 \to \text{sort by } p_{i, 0}$).

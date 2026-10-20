@@ -1,0 +1,8 @@
+Algorithm,Dev Excess %,Hidden Overall Excess %,Hidden Avg Bins,Runtime ms,Hidden_uniform_Excess_%,Hidden_weibull_Excess_%,Hidden_bimodal_Excess_%,Hidden_triplets_Excess_%
+Human Baseline (Best Fit),8.80%,8.14%,65.58,21.50,7.73%,4.68%,10.97%,8.80%
+Exp #2 Qwen 1.5B (Frozen),10.28%,8.75%,65.95,18.14,9.19%,5.38%,11.02%,8.93%
+Exp #3 Claude Single-Chain (Frozen),8.71%,8.15%,65.59,30.15,7.78%,4.68%,10.97%,8.80%
+Exp #4 Population Champion,8.71%,8.15%,65.58,30.08,7.82%,4.62%,10.97%,8.80%
+Exp #4 Island A Champion,8.71%,8.15%,65.58,30.14,7.82%,4.62%,10.97%,8.80%
+Exp #4 Island B Champion,8.71%,8.15%,65.58,29.42,7.82%,4.62%,10.97%,8.80%
+Exp #4 Island C Champion,8.71%,8.15%,65.58,28.85,7.82%,4.62%,10.97%,8.80%

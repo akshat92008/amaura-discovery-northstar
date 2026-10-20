@@ -1,0 +1,77 @@
+{
+  "trial_id": 25,
+  "seed": 30325,
+  "duration_sec": 0.66,
+  "arm_a": {
+    "status": "ARM_FAILURE_NO_VALID_CANDIDATE",
+    "selected_candidate_id": null,
+    "selected_candidate_code": null,
+    "dev_score": null,
+    "valid_count": 0,
+    "duration_sec": 0.25
+  },
+  "arm_b": {
+    "status": "ARM_FAILURE_NO_VALID_CANDIDATE",
+    "selected_candidate_id": "T25_B_G10_C01",
+    "selected_candidate_code": "",
+    "dev_score": null,
+    "valid_count": 0,
+    "duration_sec": 0.2,
+    "blind_selection_details": {
+      "raw_response": "",
+      "prompt_hash": "c23537386675b0894fcb868a25c22506f95c6d77a092061ee11b35e26501999d"
+    }
+  },
+  "arm_c": {
+    "status": "ARM_FAILURE_NO_VALID_CANDIDATE",
+    "selected_candidate_id": null,
+    "selected_candidate_code": null,
+    "dev_score": null,
+    "valid_count": 0,
+    "duration_sec": 0.2
+  },
+  "checkpoints": {
+    "trial_id": 25,
+    "checkpoints": [
+      1,
+      5,
+      10,
+      20,
+      50,
+      100
+    ],
+    "Arm_A_Independent_Best_of_N": {
+      "curve": {
+        "1": null,
+        "5": null,
+        "10": null,
+        "20": null,
+        "50": null,
+        "100": null
+      },
+      "nature": "Retrospective and descriptive; does not represent adaptive behavior."
+    },
+    "Arm_B_Blind_Iterative": {
+      "curve": {
+        "1": null,
+        "5": null,
+        "10": null,
+        "20": null,
+        "50": null,
+        "100": null
+      },
+      "nature": "Textual context history only; zero execution feedback."
+    },
+    "Arm_C_Amaura": {
+      "curve": {
+        "1": null,
+        "5": null,
+        "10": null,
+        "20": null,
+        "50": null,
+        "100": null
+      },
+      "nature": "Adaptive execution-feedback-driven discovery."
+    }
+  }
+}

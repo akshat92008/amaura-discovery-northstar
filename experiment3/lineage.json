@@ -1,0 +1,14 @@
+[
+  {
+    "generation": 0,
+    "candidate_id": "ss_1_10bb4fc00f2d",
+    "excess_pct": 8.7979,
+    "event": "initial_seed_from_single_shot"
+  },
+  {
+    "generation": 1,
+    "candidate_id": "it_1_9593d03a8fb4",
+    "excess_pct": 8.7108,
+    "event": "new_champion_discovered"
+  }
+]

@@ -1,0 +1,50 @@
+{
+  "experiment": "ai_discovery_pilot_v2_20261020",
+  "timestamp": "2026-10-20T00:46:00Z",
+  "files": {
+    "PROTOCOL.md": {
+      "sha256": "2717ed2ad01ca3b7da13e89123ec33bb495cc8459fa1180de1f9aefd8b73c635",
+      "size_bytes": 5815
+    },
+    "CANDIDATE_SPACE.md": {
+      "sha256": "44d75915f2e13f6b81912aa930078cda30eaa5124d832fd30ffe308076646fcc",
+      "size_bytes": 3959
+    },
+    "generate_datasets.py": {
+      "sha256": "794979a8aaf70344d7da1f557a28360072bfe4e1bf947680da27e34e584771eb",
+      "size_bytes": 4664
+    },
+    "seed_manifest.json": {
+      "sha256": "4418ec84d2f717b1c3f6af3cbaf0c43c5c167e37515c5862cafd81bb3d4fdc42",
+      "size_bytes": 2681
+    },
+    "data/dev_instances.json": {
+      "sha256": "a036d4aff75cf88de2b9a4c8bb846649f2e44c479ad7fc341311897fe8b47d97",
+      "size_bytes": 170041
+    },
+    "data/holdout_instances.json": {
+      "sha256": "8c4e8995896a75ebd98a52079c756a34d3daad1ece0a54c2be55c7e6a4f8be66",
+      "size_bytes": 291631
+    },
+    "run_records.jsonl": {
+      "sha256": "2e816c7157b02f6df95a8ec33f6b2285c76b84d9180713b4bbd01e82878da1f5",
+      "size_bytes": 56217
+    },
+    "development_results.json": {
+      "sha256": "ec373b7c9e1165797e1d4d557d054bcd7cf2d61b6f1f16658890df11d4ea77fb",
+      "size_bytes": 28590
+    },
+    "final_results.json": {
+      "sha256": "bcc53b1b29753c68e49c98686b93316f1ad270e78b672f1d5dc698ef5c4a74fb",
+      "size_bytes": 10459
+    },
+    "AUDIT_REPORT.md": {
+      "sha256": "93f508639a8a0f2cacc31ae601a95a0357933cd652ea8eccd150cf8b70688fc2",
+      "size_bytes": 14478
+    },
+    "DECISION_MEMO.md": {
+      "sha256": "2429461818ea6ac2fd679f9684c971d98fde29f95d2f27d4234c78272800d6d6",
+      "size_bytes": 6514
+    }
+  }
+}

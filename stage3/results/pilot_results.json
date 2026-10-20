@@ -1,0 +1,304 @@
+{
+  "timestamp": "2026-10-07T11:00:00Z",
+  "model": "nvidia/nvidia/nemotron-3-super-120b-a12b",
+  "t_pilot_trials": 3,
+  "total_runtime_sec": 19346.8,
+  "total_calls": 900,
+  "total_prompt_tokens": 6186914,
+  "total_completion_tokens": 2236654,
+  "total_cost_usd": 52.1106,
+  "firewall_verification": {
+    "probe_attempted": true,
+    "access_blocked": true,
+    "evidence": "PermissionError raised on pilot_firewall_probe call in PILOT_RUNNING"
+  },
+  "slot_accounting": {
+    "total_slots": 900,
+    "valid_slots": 504,
+    "overall_failure_rate": 0.44,
+    "valid_by_arm": {
+      "Arm_A": 160,
+      "Arm_B": 70,
+      "Arm_C": 274
+    },
+    "valid_rate_by_arm": {
+      "Arm_A": 0.5333,
+      "Arm_B": 0.2333,
+      "Arm_C": 0.9133
+    }
+  },
+  "score_distribution": {
+    "mean": 226.27,
+    "std": 7.32,
+    "cv": 0.0323,
+    "min": 220,
+    "max": 278,
+    "rel_range": 0.2563,
+    "saturation_rate": 0.0079
+  },
+  "n_modification_criteria": {
+    "crit_1_fail_rate_gt_40pct": true,
+    "crit_2_eval_gt_5min": true,
+    "crit_3_cv_lt_0005": false,
+    "crit_4_saturation_gt_90pct": false,
+    "n_modified": false,
+    "frozen_n": 100
+  },
+  "power_planning": {
+    "pilot_differences_pilot_set": [
+      -2,
+      -2,
+      -3
+    ],
+    "pilot_differences_dev_set": [
+      -2,
+      0,
+      -1
+    ],
+    "mean_delta_pilot_set": -2.3333,
+    "s_delta": 0.5774,
+    "delta_practical": 1.0,
+    "t_raw_planned": 3,
+    "t_bounded_final": 20,
+    "preregistered_default_target": 30
+  },
+  "trials": [
+    {
+      "trial_id": 1,
+      "seed": 30301,
+      "duration_sec": 5975.3,
+      "arm_a": {
+        "status": "VALID",
+        "selected_candidate_id": "T01_A_C046",
+        "dev_score": 222,
+        "pilot_score": 134,
+        "pilot_avg_colors": 5.5833,
+        "pilot_valid": true,
+        "valid_count": 56,
+        "duration_sec": 2347.5
+      },
+      "arm_b": {
+        "status": "ARM_FAILURE_NO_VALID_CANDIDATE",
+        "selected_candidate_id": "T01_B_G10_C01",
+        "dev_score": null,
+        "pilot_score": null,
+        "pilot_avg_colors": null,
+        "pilot_valid": false,
+        "valid_count": 8,
+        "duration_sec": 1541.0
+      },
+      "arm_c": {
+        "status": "VALID",
+        "selected_candidate_id": "T01_C_G06_C02",
+        "dev_score": 220,
+        "pilot_score": 132,
+        "pilot_avg_colors": 5.5,
+        "pilot_valid": true,
+        "valid_count": 94,
+        "duration_sec": 2086.8
+      },
+      "checkpoints": {
+        "trial_id": 1,
+        "checkpoints": [
+          1,
+          5,
+          10,
+          20,
+          50,
+          100
+        ],
+        "Arm_A_Independent_Best_of_N": {
+          "curve": {
+            "1": null,
+            "5": 225,
+            "10": 224,
+            "20": 223,
+            "50": 222,
+            "100": 222
+          },
+          "nature": "Retrospective and descriptive; does not represent adaptive behavior."
+        },
+        "Arm_B_Blind_Iterative": {
+          "curve": {
+            "1": null,
+            "5": 225,
+            "10": 225,
+            "20": 225,
+            "50": 225,
+            "100": 225
+          },
+          "nature": "Textual context history only; zero execution feedback."
+        },
+        "Arm_C_Amaura": {
+          "curve": {
+            "1": 225,
+            "5": 225,
+            "10": 225,
+            "20": 222,
+            "50": 222,
+            "100": 220
+          },
+          "nature": "Adaptive execution-feedback-driven discovery."
+        }
+      }
+    },
+    {
+      "trial_id": 2,
+      "seed": 30302,
+      "duration_sec": 7521.5,
+      "arm_a": {
+        "status": "VALID",
+        "selected_candidate_id": "T02_A_C048",
+        "dev_score": 221,
+        "pilot_score": 133,
+        "pilot_avg_colors": 5.5417,
+        "pilot_valid": true,
+        "valid_count": 51,
+        "duration_sec": 2850.1
+      },
+      "arm_b": {
+        "status": "VALID",
+        "selected_candidate_id": "T02_B_G10_C08",
+        "dev_score": 225,
+        "pilot_score": 133,
+        "pilot_avg_colors": 5.5417,
+        "pilot_valid": true,
+        "valid_count": 60,
+        "duration_sec": 2312.7
+      },
+      "arm_c": {
+        "status": "VALID",
+        "selected_candidate_id": "T02_C_G03_C09",
+        "dev_score": 221,
+        "pilot_score": 131,
+        "pilot_avg_colors": 5.4583,
+        "pilot_valid": true,
+        "valid_count": 91,
+        "duration_sec": 2358.7
+      },
+      "checkpoints": {
+        "trial_id": 2,
+        "checkpoints": [
+          1,
+          5,
+          10,
+          20,
+          50,
+          100
+        ],
+        "Arm_A_Independent_Best_of_N": {
+          "curve": {
+            "1": 231,
+            "5": 231,
+            "10": 224,
+            "20": 223,
+            "50": 221,
+            "100": 221
+          },
+          "nature": "Retrospective and descriptive; does not represent adaptive behavior."
+        },
+        "Arm_B_Blind_Iterative": {
+          "curve": {
+            "1": null,
+            "5": 224,
+            "10": 222,
+            "20": 222,
+            "50": 222,
+            "100": 222
+          },
+          "nature": "Textual context history only; zero execution feedback."
+        },
+        "Arm_C_Amaura": {
+          "curve": {
+            "1": 223,
+            "5": 223,
+            "10": 223,
+            "20": 222,
+            "50": 221,
+            "100": 221
+          },
+          "nature": "Adaptive execution-feedback-driven discovery."
+        }
+      }
+    },
+    {
+      "trial_id": 3,
+      "seed": 30303,
+      "duration_sec": 5850.0,
+      "arm_a": {
+        "status": "VALID",
+        "selected_candidate_id": "T03_A_C007",
+        "dev_score": 222,
+        "pilot_score": 134,
+        "pilot_avg_colors": 5.5833,
+        "pilot_valid": true,
+        "valid_count": 53,
+        "duration_sec": 2212.9
+      },
+      "arm_b": {
+        "status": "ARM_FAILURE_NO_VALID_CANDIDATE",
+        "selected_candidate_id": "T03_B_G10_C01",
+        "dev_score": null,
+        "pilot_score": 141,
+        "pilot_avg_colors": 5.875,
+        "pilot_valid": true,
+        "valid_count": 2,
+        "duration_sec": 1712.7
+      },
+      "arm_c": {
+        "status": "VALID",
+        "selected_candidate_id": "T03_C_G09_C07",
+        "dev_score": 221,
+        "pilot_score": 131,
+        "pilot_avg_colors": 5.4583,
+        "pilot_valid": true,
+        "valid_count": 89,
+        "duration_sec": 1924.4
+      },
+      "checkpoints": {
+        "trial_id": 3,
+        "checkpoints": [
+          1,
+          5,
+          10,
+          20,
+          50,
+          100
+        ],
+        "Arm_A_Independent_Best_of_N": {
+          "curve": {
+            "1": 234,
+            "5": 224,
+            "10": 222,
+            "20": 222,
+            "50": 222,
+            "100": 222
+          },
+          "nature": "Retrospective and descriptive; does not represent adaptive behavior."
+        },
+        "Arm_B_Blind_Iterative": {
+          "curve": {
+            "1": null,
+            "5": null,
+            "10": 227,
+            "20": 227,
+            "50": 227,
+            "100": 227
+          },
+          "nature": "Textual context history only; zero execution feedback."
+        },
+        "Arm_C_Amaura": {
+          "curve": {
+            "1": null,
+            "5": 232,
+            "10": 224,
+            "20": 223,
+            "50": 222,
+            "100": 221
+          },
+          "nature": "Adaptive execution-feedback-driven discovery."
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "Ablation_1_Portfolio_Only": {
+    "dev_total_colors": 216,
+    "dev_runtime_ms": 31.55,
+    "hidden_total_colors": 1010,
+    "hidden_runtime_ms": 174.88,
+    "dev_valid": true,
+    "hidden_valid": true
+  },
+  "Ablation_2_Portfolio_Plus_Restarts": {
+    "dev_total_colors": 213,
+    "dev_runtime_ms": 81.99,
+    "hidden_total_colors": 997,
+    "hidden_runtime_ms": 468.7,
+    "dev_valid": true,
+    "hidden_valid": true
+  },
+  "Ablation_3_Portfolio_Restarts_Kempe_NoSqueeze": {
+    "dev_total_colors": 211,
+    "dev_runtime_ms": 228.45,
+    "hidden_total_colors": 986,
+    "hidden_runtime_ms": 1223.81,
+    "dev_valid": true,
+    "hidden_valid": true
+  },
+  "Ablation_4_Full_Champion": {
+    "dev_total_colors": 211,
+    "dev_runtime_ms": 298.66,
+    "hidden_total_colors": 987,
+    "hidden_runtime_ms": 1538.67,
+    "dev_valid": true,
+    "hidden_valid": true
+  },
+  "Ablation_5_No_RLF": {
+    "dev_total_colors": 211,
+    "dev_runtime_ms": 242.21,
+    "hidden_total_colors": 994,
+    "hidden_runtime_ms": 1187.63,
+    "dev_valid": true,
+    "hidden_valid": true
+  },
+  "Ablation_6_No_DSATUR": {
+    "dev_total_colors": 216,
+    "dev_runtime_ms": 140.29,
+    "hidden_total_colors": 991,
+    "hidden_runtime_ms": 773.56,
+    "dev_valid": true,
+    "hidden_valid": true
+  },
+  "Ablation_7_Single_DSATUR_Plus_LocalSearch": {
+    "dev_total_colors": 216,
+    "dev_runtime_ms": 48.18,
+    "hidden_total_colors": 1024,
+    "hidden_runtime_ms": 228.33,
+    "dev_valid": true,
+    "hidden_valid": true
+  }
+}

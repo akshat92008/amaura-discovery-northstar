@@ -1,0 +1,462 @@
+{
+  "champion": {
+    "candidate_id": "init_Island_B_6_60dfff26e2f6",
+    "parent_id": "root",
+    "island": "Island_B",
+    "generation": 0,
+    "type": "initial",
+    "model": "antigravity/claude-sonnet-4-6",
+    "provider": "omniroute/antigravity",
+    "prompt_hash": "60dfff26e2f6",
+    "response_hash": "24eda16b9482",
+    "candidate_hash": "e3a3f9e95838",
+    "structural_hash": "fa8233f5adbb",
+    "generated_code": "def priority(item: float, remaining_capacity: float, bin_capacity: float) -> float:\n    \"\"\"\n    Given an incoming item and the remaining_capacity of a candidate open bin,\n    compute a priority score (float). The item will be placed into the\n    feasible bin with the HIGHEST priority score.\n    \"\"\"\n    import math\n    \n    # Remaining space after placing item\n    leftover = remaining_capacity - item\n    \n    # Utilization after placement (how full the bin becomes)\n    fill_ratio = (bin_capacity - leftover) / bin_capacity\n    \n    # Penalize \"awkward\" leftover gaps that are hard to fill\n    # A leftover near 0 is great (bin nearly full)\n    # A leftover that's a significant fraction is bad if it's too small to be useful\n    # but large enough to waste space\n    \n    # Normalize leftover\n    leftover_ratio = leftover / bin_capacity\n    \n    # Penalty for creating a gap that's hard to fill:\n    # Small gaps (< ~10% of capacity) are fine - bin is nearly full\n    # Large gaps (> ~50% of capacity) are okay - still room for more items\n    # Medium gaps (~20-40%) are worst - might be hard to fill exactly\n    \n    # Use a smooth penalty: penalize gaps in the \"awkward\" middle range\n    # The ideal is leftover = 0 (perfect fit) or leftover large enough to be useful\n    \n    # Primary score: prefer bins where item fits tightly (Best Fit style)\n    # but also consider whether leftover is \"useful\"\n    \n    # Penalty inspired by: gaps near 1/3 or 1/4 of bin are hardest to fill\n    # because they need specific item sizes\n    awkward_penalty = 0.0\n    if leftover_ratio > 0.01:  # not a near-perfect fit\n        # Penalize if leftover is in a range that's hard to fill\n        # (too small for most items but not negligible)\n        # Use a sinusoidal penalty that peaks at awkward fractions\n        awkward_penalty = math.exp(-((leftover_ratio - 0.25) ** 2) / (2 * 0.1 ** 2)) * 0.3\n        awkward_penalty += math.exp(-((leftover_ratio - 0.15) ** 2) / (2 * 0.08 ** 2)) * 0.2\n    \n    # Main priority: higher fill ratio is better, minus awkward penalty\n    score = fill_ratio - awkward_penalty\n    \n    return score",
+    "explanation": "The algorithm extends Best Fit by adding a Gaussian penalty for \"awkward\" leftover gaps (around 15-25% of bin capacity) that are statistically hard to fill with future items, thus preferring placements that either nearly fill a bin or leave enough space to accommodate a wider range of subsequent items.",
+    "is_valid": true,
+    "excess_pct": 8.7108,
+    "avg_bins": 49.92,
+    "runtime_ms": 7.92,
+    "error": null,
+    "prompt_tokens": 2459,
+    "completion_tokens": 699
+  },
+  "island_champions": {
+    "Island_A": {
+      "candidate_id": "init_Island_B_6_60dfff26e2f6",
+      "parent_id": "root",
+      "island": "Island_B",
+      "generation": 0,
+      "type": "initial",
+      "model": "antigravity/claude-sonnet-4-6",
+      "provider": "omniroute/antigravity",
+      "prompt_hash": "60dfff26e2f6",
+      "response_hash": "24eda16b9482",
+      "candidate_hash": "e3a3f9e95838",
+      "structural_hash": "fa8233f5adbb",
+      "generated_code": "def priority(item: float, remaining_capacity: float, bin_capacity: float) -> float:\n    \"\"\"\n    Given an incoming item and the remaining_capacity of a candidate open bin,\n    compute a priority score (float). The item will be placed into the\n    feasible bin with the HIGHEST priority score.\n    \"\"\"\n    import math\n    \n    # Remaining space after placing item\n    leftover = remaining_capacity - item\n    \n    # Utilization after placement (how full the bin becomes)\n    fill_ratio = (bin_capacity - leftover) / bin_capacity\n    \n    # Penalize \"awkward\" leftover gaps that are hard to fill\n    # A leftover near 0 is great (bin nearly full)\n    # A leftover that's a significant fraction is bad if it's too small to be useful\n    # but large enough to waste space\n    \n    # Normalize leftover\n    leftover_ratio = leftover / bin_capacity\n    \n    # Penalty for creating a gap that's hard to fill:\n    # Small gaps (< ~10% of capacity) are fine - bin is nearly full\n    # Large gaps (> ~50% of capacity) are okay - still room for more items\n    # Medium gaps (~20-40%) are worst - might be hard to fill exactly\n    \n    # Use a smooth penalty: penalize gaps in the \"awkward\" middle range\n    # The ideal is leftover = 0 (perfect fit) or leftover large enough to be useful\n    \n    # Primary score: prefer bins where item fits tightly (Best Fit style)\n    # but also consider whether leftover is \"useful\"\n    \n    # Penalty inspired by: gaps near 1/3 or 1/4 of bin are hardest to fill\n    # because they need specific item sizes\n    awkward_penalty = 0.0\n    if leftover_ratio > 0.01:  # not a near-perfect fit\n        # Penalize if leftover is in a range that's hard to fill\n        # (too small for most items but not negligible)\n        # Use a sinusoidal penalty that peaks at awkward fractions\n        awkward_penalty = math.exp(-((leftover_ratio - 0.25) ** 2) / (2 * 0.1 ** 2)) * 0.3\n        awkward_penalty += math.exp(-((leftover_ratio - 0.15) ** 2) / (2 * 0.08 ** 2)) * 0.2\n    \n    # Main priority: higher fill ratio is better, minus awkward penalty\n    score = fill_ratio - awkward_penalty\n    \n    return score",
+      "explanation": "The algorithm extends Best Fit by adding a Gaussian penalty for \"awkward\" leftover gaps (around 15-25% of bin capacity) that are statistically hard to fill with future items, thus preferring placements that either nearly fill a bin or leave enough space to accommodate a wider range of subsequent items.",
+      "is_valid": true,
+      "excess_pct": 8.7108,
+      "avg_bins": 49.92,
+      "runtime_ms": 7.92,
+      "error": null,
+      "prompt_tokens": 2459,
+      "completion_tokens": 699
+    },
+    "Island_B": {
+      "candidate_id": "init_Island_B_6_60dfff26e2f6",
+      "parent_id": "root",
+      "island": "Island_B",
+      "generation": 0,
+      "type": "initial",
+      "model": "antigravity/claude-sonnet-4-6",
+      "provider": "omniroute/antigravity",
+      "prompt_hash": "60dfff26e2f6",
+      "response_hash": "24eda16b9482",
+      "candidate_hash": "e3a3f9e95838",
+      "structural_hash": "fa8233f5adbb",
+      "generated_code": "def priority(item: float, remaining_capacity: float, bin_capacity: float) -> float:\n    \"\"\"\n    Given an incoming item and the remaining_capacity of a candidate open bin,\n    compute a priority score (float). The item will be placed into the\n    feasible bin with the HIGHEST priority score.\n    \"\"\"\n    import math\n    \n    # Remaining space after placing item\n    leftover = remaining_capacity - item\n    \n    # Utilization after placement (how full the bin becomes)\n    fill_ratio = (bin_capacity - leftover) / bin_capacity\n    \n    # Penalize \"awkward\" leftover gaps that are hard to fill\n    # A leftover near 0 is great (bin nearly full)\n    # A leftover that's a significant fraction is bad if it's too small to be useful\n    # but large enough to waste space\n    \n    # Normalize leftover\n    leftover_ratio = leftover / bin_capacity\n    \n    # Penalty for creating a gap that's hard to fill:\n    # Small gaps (< ~10% of capacity) are fine - bin is nearly full\n    # Large gaps (> ~50% of capacity) are okay - still room for more items\n    # Medium gaps (~20-40%) are worst - might be hard to fill exactly\n    \n    # Use a smooth penalty: penalize gaps in the \"awkward\" middle range\n    # The ideal is leftover = 0 (perfect fit) or leftover large enough to be useful\n    \n    # Primary score: prefer bins where item fits tightly (Best Fit style)\n    # but also consider whether leftover is \"useful\"\n    \n    # Penalty inspired by: gaps near 1/3 or 1/4 of bin are hardest to fill\n    # because they need specific item sizes\n    awkward_penalty = 0.0\n    if leftover_ratio > 0.01:  # not a near-perfect fit\n        # Penalize if leftover is in a range that's hard to fill\n        # (too small for most items but not negligible)\n        # Use a sinusoidal penalty that peaks at awkward fractions\n        awkward_penalty = math.exp(-((leftover_ratio - 0.25) ** 2) / (2 * 0.1 ** 2)) * 0.3\n        awkward_penalty += math.exp(-((leftover_ratio - 0.15) ** 2) / (2 * 0.08 ** 2)) * 0.2\n    \n    # Main priority: higher fill ratio is better, minus awkward penalty\n    score = fill_ratio - awkward_penalty\n    \n    return score",
+      "explanation": "The algorithm extends Best Fit by adding a Gaussian penalty for \"awkward\" leftover gaps (around 15-25% of bin capacity) that are statistically hard to fill with future items, thus preferring placements that either nearly fill a bin or leave enough space to accommodate a wider range of subsequent items.",
+      "is_valid": true,
+      "excess_pct": 8.7108,
+      "avg_bins": 49.92,
+      "runtime_ms": 7.92,
+      "error": null,
+      "prompt_tokens": 2459,
+      "completion_tokens": 699
+    },
+    "Island_C": {
+      "candidate_id": "init_Island_B_6_60dfff26e2f6",
+      "parent_id": "root",
+      "island": "Island_B",
+      "generation": 0,
+      "type": "initial",
+      "model": "antigravity/claude-sonnet-4-6",
+      "provider": "omniroute/antigravity",
+      "prompt_hash": "60dfff26e2f6",
+      "response_hash": "24eda16b9482",
+      "candidate_hash": "e3a3f9e95838",
+      "structural_hash": "fa8233f5adbb",
+      "generated_code": "def priority(item: float, remaining_capacity: float, bin_capacity: float) -> float:\n    \"\"\"\n    Given an incoming item and the remaining_capacity of a candidate open bin,\n    compute a priority score (float). The item will be placed into the\n    feasible bin with the HIGHEST priority score.\n    \"\"\"\n    import math\n    \n    # Remaining space after placing item\n    leftover = remaining_capacity - item\n    \n    # Utilization after placement (how full the bin becomes)\n    fill_ratio = (bin_capacity - leftover) / bin_capacity\n    \n    # Penalize \"awkward\" leftover gaps that are hard to fill\n    # A leftover near 0 is great (bin nearly full)\n    # A leftover that's a significant fraction is bad if it's too small to be useful\n    # but large enough to waste space\n    \n    # Normalize leftover\n    leftover_ratio = leftover / bin_capacity\n    \n    # Penalty for creating a gap that's hard to fill:\n    # Small gaps (< ~10% of capacity) are fine - bin is nearly full\n    # Large gaps (> ~50% of capacity) are okay - still room for more items\n    # Medium gaps (~20-40%) are worst - might be hard to fill exactly\n    \n    # Use a smooth penalty: penalize gaps in the \"awkward\" middle range\n    # The ideal is leftover = 0 (perfect fit) or leftover large enough to be useful\n    \n    # Primary score: prefer bins where item fits tightly (Best Fit style)\n    # but also consider whether leftover is \"useful\"\n    \n    # Penalty inspired by: gaps near 1/3 or 1/4 of bin are hardest to fill\n    # because they need specific item sizes\n    awkward_penalty = 0.0\n    if leftover_ratio > 0.01:  # not a near-perfect fit\n        # Penalize if leftover is in a range that's hard to fill\n        # (too small for most items but not negligible)\n        # Use a sinusoidal penalty that peaks at awkward fractions\n        awkward_penalty = math.exp(-((leftover_ratio - 0.25) ** 2) / (2 * 0.1 ** 2)) * 0.3\n        awkward_penalty += math.exp(-((leftover_ratio - 0.15) ** 2) / (2 * 0.08 ** 2)) * 0.2\n    \n    # Main priority: higher fill ratio is better, minus awkward penalty\n    score = fill_ratio - awkward_penalty\n    \n    return score",
+      "explanation": "The algorithm extends Best Fit by adding a Gaussian penalty for \"awkward\" leftover gaps (around 15-25% of bin capacity) that are statistically hard to fill with future items, thus preferring placements that either nearly fill a bin or leave enough space to accommodate a wider range of subsequent items.",
+      "is_valid": true,
+      "excess_pct": 8.7108,
+      "avg_bins": 49.92,
+      "runtime_ms": 7.92,
+      "error": null,
+      "prompt_tokens": 2459,
+      "completion_tokens": 699
+    }
+  },
+  "migrations": [
+    {
+      "generation": 10,
+      "A_to_B": {
+        "candidate_id": "init_Island_A_1_da6b01df8125",
+        "score": 8.7979,
+        "accepted": true
+      },
+      "B_to_C": {
+        "candidate_id": "init_Island_B_6_60dfff26e2f6",
+        "score": 8.7108,
+        "accepted": true
+      },
+      "C_to_A": {
+        "candidate_id": "init_Island_C_9_da6b01df8125",
+        "score": 8.7979,
+        "accepted": true
+      }
+    },
+    {
+      "generation": 20,
+      "A_to_B": {
+        "candidate_id": "init_Island_A_1_da6b01df8125",
+        "score": 8.7979,
+        "accepted": true
+      },
+      "B_to_C": {
+        "candidate_id": "init_Island_B_6_60dfff26e2f6",
+        "score": 8.7108,
+        "accepted": false
+      },
+      "C_to_A": {
+        "candidate_id": "init_Island_B_6_60dfff26e2f6",
+        "score": 8.7108,
+        "accepted": true
+      }
+    }
+  ],
+  "diversity_progression": [
+    {
+      "generation": 1,
+      "unique_structures": 12,
+      "island_bests": {
+        "Island_A": 8.7979,
+        "Island_B": 8.7108,
+        "Island_C": 8.7979
+      },
+      "global_best": 8.7108,
+      "champion_id": "init_Island_B_6_60dfff26e2f6"
+    },
+    {
+      "generation": 2,
+      "unique_structures": 12,
+      "island_bests": {
+        "Island_A": 8.7979,
+        "Island_B": 8.7108,
+        "Island_C": 8.7979
+      },
+      "global_best": 8.7108,
+      "champion_id": "init_Island_B_6_60dfff26e2f6"
+    },
+    {
+      "generation": 3,
+      "unique_structures": 12,
+      "island_bests": {
+        "Island_A": 8.7979,
+        "Island_B": 8.7108,
+        "Island_C": 8.7979
+      },
+      "global_best": 8.7108,
+      "champion_id": "init_Island_B_6_60dfff26e2f6"
+    },
+    {
+      "generation": 4,
+      "unique_structures": 12,
+      "island_bests": {
+        "Island_A": 8.7979,
+        "Island_B": 8.7108,
+        "Island_C": 8.7979
+      },
+      "global_best": 8.7108,
+      "champion_id": "init_Island_B_6_60dfff26e2f6"
+    },
+    {
+      "generation": 5,
+      "unique_structures": 12,
+      "island_bests": {
+        "Island_A": 8.7979,
+        "Island_B": 8.7108,
+        "Island_C": 8.7979
+      },
+      "global_best": 8.7108,
+      "champion_id": "init_Island_B_6_60dfff26e2f6"
+    },
+    {
+      "generation": 6,
+      "unique_structures": 12,
+      "island_bests": {
+        "Island_A": 8.7979,
+        "Island_B": 8.7108,
+        "Island_C": 8.7979
+      },
+      "global_best": 8.7108,
+      "champion_id": "init_Island_B_6_60dfff26e2f6"
+    },
+    {
+      "generation": 7,
+      "unique_structures": 12,
+      "island_bests": {
+        "Island_A": 8.7979,
+        "Island_B": 8.7108,
+        "Island_C": 8.7979
+      },
+      "global_best": 8.7108,
+      "champion_id": "init_Island_B_6_60dfff26e2f6"
+    },
+    {
+      "generation": 8,
+      "unique_structures": 12,
+      "island_bests": {
+        "Island_A": 8.7979,
+        "Island_B": 8.7108,
+        "Island_C": 8.7979
+      },
+      "global_best": 8.7108,
+      "champion_id": "init_Island_B_6_60dfff26e2f6"
+    },
+    {
+      "generation": 9,
+      "unique_structures": 12,
+      "island_bests": {
+        "Island_A": 8.7979,
+        "Island_B": 8.7108,
+        "Island_C": 8.7979
+      },
+      "global_best": 8.7108,
+      "champion_id": "init_Island_B_6_60dfff26e2f6"
+    },
+    {
+      "generation": 10,
+      "unique_structures": 12,
+      "island_bests": {
+        "Island_A": 8.7979,
+        "Island_B": 8.7108,
+        "Island_C": 8.7979
+      },
+      "global_best": 8.7108,
+      "champion_id": "init_Island_B_6_60dfff26e2f6"
+    },
+    {
+      "generation": 11,
+      "unique_structures": 11,
+      "island_bests": {
+        "Island_A": 8.7979,
+        "Island_B": 8.7108,
+        "Island_C": 8.7108
+      },
+      "global_best": 8.7108,
+      "champion_id": "init_Island_B_6_60dfff26e2f6"
+    },
+    {
+      "generation": 12,
+      "unique_structures": 11,
+      "island_bests": {
+        "Island_A": 8.7979,
+        "Island_B": 8.7108,
+        "Island_C": 8.7108
+      },
+      "global_best": 8.7108,
+      "champion_id": "init_Island_B_6_60dfff26e2f6"
+    },
+    {
+      "generation": 13,
+      "unique_structures": 11,
+      "island_bests": {
+        "Island_A": 8.7979,
+        "Island_B": 8.7108,
+        "Island_C": 8.7108
+      },
+      "global_best": 8.7108,
+      "champion_id": "init_Island_B_6_60dfff26e2f6"
+    },
+    {
+      "generation": 14,
+      "unique_structures": 11,
+      "island_bests": {
+        "Island_A": 8.7979,
+        "Island_B": 8.7108,
+        "Island_C": 8.7108
+      },
+      "global_best": 8.7108,
+      "champion_id": "init_Island_B_6_60dfff26e2f6"
+    },
+    {
+      "generation": 15,
+      "unique_structures": 11,
+      "island_bests": {
+        "Island_A": 8.7979,
+        "Island_B": 8.7108,
+        "Island_C": 8.7108
+      },
+      "global_best": 8.7108,
+      "champion_id": "init_Island_B_6_60dfff26e2f6"
+    },
+    {
+      "generation": 16,
+      "unique_structures": 11,
+      "island_bests": {
+        "Island_A": 8.7979,
+        "Island_B": 8.7108,
+        "Island_C": 8.7108
+      },
+      "global_best": 8.7108,
+      "champion_id": "init_Island_B_6_60dfff26e2f6"
+    },
+    {
+      "generation": 17,
+      "unique_structures": 11,
+      "island_bests": {
+        "Island_A": 8.7979,
+        "Island_B": 8.7108,
+        "Island_C": 8.7108
+      },
+      "global_best": 8.7108,
+      "champion_id": "init_Island_B_6_60dfff26e2f6"
+    },
+    {
+      "generation": 18,
+      "unique_structures": 11,
+      "island_bests": {
+        "Island_A": 8.7979,
+        "Island_B": 8.7108,
+        "Island_C": 8.7108
+      },
+      "global_best": 8.7108,
+      "champion_id": "init_Island_B_6_60dfff26e2f6"
+    },
+    {
+      "generation": 19,
+      "unique_structures": 11,
+      "island_bests": {
+        "Island_A": 8.7979,
+        "Island_B": 8.7108,
+        "Island_C": 8.7108
+      },
+      "global_best": 8.7108,
+      "champion_id": "init_Island_B_6_60dfff26e2f6"
+    },
+    {
+      "generation": 20,
+      "unique_structures": 11,
+      "island_bests": {
+        "Island_A": 8.7979,
+        "Island_B": 8.7108,
+        "Island_C": 8.7108
+      },
+      "global_best": 8.7108,
+      "champion_id": "init_Island_B_6_60dfff26e2f6"
+    },
+    {
+      "generation": 21,
+      "unique_structures": 10,
+      "island_bests": {
+        "Island_A": 8.7108,
+        "Island_B": 8.7108,
+        "Island_C": 8.7108
+      },
+      "global_best": 8.7108,
+      "champion_id": "init_Island_B_6_60dfff26e2f6"
+    },
+    {
+      "generation": 22,
+      "unique_structures": 10,
+      "island_bests": {
+        "Island_A": 8.7108,
+        "Island_B": 8.7108,
+        "Island_C": 8.7108
+      },
+      "global_best": 8.7108,
+      "champion_id": "init_Island_B_6_60dfff26e2f6"
+    },
+    {
+      "generation": 23,
+      "unique_structures": 9,
+      "island_bests": {
+        "Island_A": 8.7108,
+        "Island_B": 8.7108,
+        "Island_C": 8.7108
+      },
+      "global_best": 8.7108,
+      "champion_id": "init_Island_B_6_60dfff26e2f6"
+    },
+    {
+      "generation": 24,
+      "unique_structures": 9,
+      "island_bests": {
+        "Island_A": 8.7108,
+        "Island_B": 8.7108,
+        "Island_C": 8.7108
+      },
+      "global_best": 8.7108,
+      "champion_id": "init_Island_B_6_60dfff26e2f6"
+    },
+    {
+      "generation": 25,
+      "unique_structures": 9,
+      "island_bests": {
+        "Island_A": 8.7108,
+        "Island_B": 8.7108,
+        "Island_C": 8.7108
+      },
+      "global_best": 8.7108,
+      "champion_id": "init_Island_B_6_60dfff26e2f6"
+    },
+    {
+      "generation": 26,
+      "unique_structures": 9,
+      "island_bests": {
+        "Island_A": 8.7108,
+        "Island_B": 8.7108,
+        "Island_C": 8.7108
+      },
+      "global_best": 8.7108,
+      "champion_id": "init_Island_B_6_60dfff26e2f6"
+    },
+    {
+      "generation": 27,
+      "unique_structures": 9,
+      "island_bests": {
+        "Island_A": 8.7108,
+        "Island_B": 8.7108,
+        "Island_C": 8.7108
+      },
+      "global_best": 8.7108,
+      "champion_id": "init_Island_B_6_60dfff26e2f6"
+    },
+    {
+      "generation": 28,
+      "unique_structures": 9,
+      "island_bests": {
+        "Island_A": 8.7108,
+        "Island_B": 8.7108,
+        "Island_C": 8.7108
+      },
+      "global_best": 8.7108,
+      "champion_id": "init_Island_B_6_60dfff26e2f6"
+    },
+    {
+      "generation": 29,
+      "unique_structures": 9,
+      "island_bests": {
+        "Island_A": 8.7108,
+        "Island_B": 8.7108,
+        "Island_C": 8.7108
+      },
+      "global_best": 8.7108,
+      "champion_id": "init_Island_B_6_60dfff26e2f6"
+    },
+    {
+      "generation": 30,
+      "unique_structures": 9,
+      "island_bests": {
+        "Island_A": 8.7108,
+        "Island_B": 8.7108,
+        "Island_C": 8.7108
+      },
+      "global_best": 8.7108,
+      "champion_id": "init_Island_B_6_60dfff26e2f6"
+    }
+  ]
+}

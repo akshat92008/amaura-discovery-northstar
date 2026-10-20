@@ -1,0 +1,111 @@
+# Expert Prompt: Minimum Vertex Graph Coloring
+
+You are an expert combinatorial optimization specialist, graph theorist, and competitive programmer.
+Your objective is to author a state-of-the-art, high-performance algorithm in pure Python for the **Vertex Graph Coloring Problem**, adhering strictly to peer-reviewed operations research literature and execution efficiency principles.
+
+---
+
+## 1. Problem Specification
+
+- **Target Function**: `def color_graph(adj: list[list[int]]) -> list[int]:`
+- **Objective**: Minimize the chromatic number $k = |\{c(v) : v \in V\}|$ (i.e., total number of unique non-negative integer colors assigned) such that no two adjacent vertices share the same color:
+  $$\forall (u, v) \in E \implies c(u) \neq c(v), \quad \text{where } c(v) \in \{0, 1, \dots, k-1\}$$
+- **Input Format**:
+  - `adj: list[list[int]]`: Graph adjacency representation. To maximize compatibility with standard benchmark formats, your function must robustly support both:
+    1. **Adjacency Matrix**: An $N \times N$ matrix where `adj[u][v] == 1` if edge $(u, v) \in E$ and `0` otherwise.
+    2. **Adjacency List**: A list of length $N$ where `adj[u]` is a list of integer neighbor indices of vertex $u$.
+  - Detection rule: If `len(adj) > 0 and len(adj[0]) == len(adj)` and entries are binary integers (`0` or `1`), treat as an adjacency matrix; otherwise, treat as an adjacency list.
+- **Output Format**:
+  - Return `list[int]` of length $N$, where the $i$-th element represents the non-negative integer color assigned to vertex $i$.
+  - The assignment must be valid (no adjacent vertices share a color) and use the minimum number of colors possible.
+- **Constraints & Execution Budget**:
+  - Vertex count: $N \le 100$.
+  - Strict Execution Budget: **< 50 milliseconds** per instance.
+  - Allowed Libraries: Python standard library **`math`** and **`random`** only. No `numpy`, `scipy`, or `networkx`.
+
+---
+
+## 2. Literature Foundations & Algorithmic Principles
+
+Your implementation must draw directly upon established, peer-reviewed graph coloring techniques:
+
+### A. Dynamic Saturation Degree Heuristic (DSATUR, Brélaz 1979)
+- **Saturation Degree $\rho(v)$**: Defined as the number of distinct colors currently assigned to the colored neighbors of vertex $v$:
+  $$\rho(v) = \left|\{ c(u) : u \in N(v) \text{ and } u \text{ is colored} \}\right|$$
+- **Selection Rule**: At each step, select an uncolored vertex $v^*$ that maximizes $\rho(v)$.
+- **Tie-Breaking**: If multiple uncolored vertices have the identical maximal saturation degree, select the vertex with the maximum degree in the uncolored subgraph (number of uncolored neighbors). Break remaining ties randomly or by vertex index.
+- **Color Assignment**: Assign $v^*$ the smallest non-negative integer color not present among its neighbors (greedy First-Fit / MEX rule).
+- **Literature Properties**: DSATUR is proven optimal for bipartite graphs, chordal graphs, and cycles, and yields an exceptionally tight baseline within $O(N^2)$ time.
+
+### B. Recursive Largest First / Independent Set Extraction (RLF, Leighton 1979)
+- **Independent Set Extraction Paradigm**: Rather than coloring vertex-by-vertex, RLF constructs entire color classes one-by-one as maximal independent sets.
+- **Class Construction for Color $c$**:
+  1. Let $R$ be the set of uncolored vertices.
+  2. Choose the first vertex $v_1 \in R$ having the maximum degree in the induced subgraph $G[R]$. Add $v_1$ to independent set $S$.
+  3. Partition the remaining uncolored vertices $R \setminus \{v_1\}$ into:
+     - $U$: Vertices not adjacent to any vertex in $S$ (eligible candidates for color $c$).
+     - $W$: Vertices adjacent to at least one vertex in $S$ (ineligible for color $c$).
+  4. While $U \neq \emptyset$:
+     - Select a vertex $u^* \in U$ that has the **maximum number of neighbors in $W$** (i.e., maximizing $|N(u) \cap W|$). This greedily leaves the remaining eligible vertices as unconstrained as possible.
+     - Tie-break by selecting the vertex with the **minimum degree in $G[U]$**.
+     - Add $u^*$ to $S$, remove $u^*$ from $U$, and move all neighbors of $u^*$ currently in $U$ into $W$.
+  5. Assign color $c$ to all vertices in $S$, set $R \leftarrow W$, and increment $c$.
+- **Literature Properties**: RLF frequently outperforms DSATUR on dense and structured graphs.
+
+### C. Graph Degeneracy and Smallest-Last Orderings (Matula & Beck, 1983)
+- **Smallest-Last (SL) Ordering**:
+  - Recursively peel the vertex of minimum degree from the remaining graph and push it onto a stack.
+  - Coloring the vertices in the reverse of this peeling order guarantees using at most $d + 1$ colors, where $d = \max_{H \subseteq G} \delta(H)$ is the degeneracy (or core number) of $G$.
+- **Welsh-Powell Ordering (1967)**:
+  - Sort vertices by initial degree non-increasingly and apply First-Fit greedy coloring.
+
+### D. Local Search & Kempe Chain Refinement (Kempe 1879, Hertz & de Werra 1987)
+- **$(a, b)$-Kempe Chains**:
+  - For any two colors $a$ and $b$, the subgraph induced by vertices $V_a \cup V_b$ decomposes into connected components.
+  - Inverting the colors ($a \leftrightarrow b$) within any connected component preserves a strictly valid coloring.
+- **Color Class Elimination**:
+  - Identify the smallest color class (e.g., color $k-1$).
+  - For each vertex $v$ with color $k-1$:
+    1. Check if $v$ can be directly moved to any color $c < k-1$ without conflict.
+    2. If not, inspect Kempe chains between color $k-1$ and color $c \in \{0, \dots, k-2\}$. If swapping a component frees color $c$ for $v$ without pulling other vertices into color $k-1$, execute the swap.
+    3. If all vertices in color $k-1$ are eliminated, reduce the chromatic number to $k-1$ and repeat.
+- **Bounded TabuCol / Min-Conflicts (Hertz & de Werra 1987)**:
+  - Fix target colors to $k-1$.
+  - Iteratively select a conflicting vertex and recolor it with the color that minimizes conflicting edges, maintaining a short tabu tenure to avoid cycles.
+
+---
+
+## 3. Recommended High-Performance Hybrid Architecture (< 50ms)
+
+To achieve the lowest chromatic number within the 50ms execution window on graphs with $N \le 100$:
+1. **Internal Bitmask / Set Representation**: Convert adjacency into 64/128-bit integer bitmasks (`bit_adj[u] = \sum (1 \ll v)`). Bitwise AND (`&`) and `int.bit_count()` enable $O(1)$ neighborhood intersections and saturation queries.
+2. **Multi-Heuristic Generation**:
+   - Run DSATUR with degree tie-breaking ($\approx 1\text{ ms}$).
+   - Run RLF ($\approx 2\text{ ms}$).
+   - Run Smallest-Last greedy ordering ($\approx 0.5\text{ ms}$).
+   - Retain the best coloring among all candidates (minimal unique colors $k$).
+3. **Iterative Color Reduction via Kempe Chains**:
+   - Target the smallest color class. Attempt to eliminate it by recoloring its members via direct reassignment or 2-color Kempe chain swaps.
+   - If a color is emptied, compact color indices and repeat.
+4. **Validation & Fallback**:
+   - Verify proper coloring ($c(u) \neq c(v)$ for all edges).
+   - Ensure consecutive zero-based color indices: $\{0, 1, \dots, k-1\}$.
+
+---
+
+## 4. Implementation Requirements
+
+- Wrap the solution strictly in Python code fences:
+  ```python
+  import math
+  import random
+
+  def color_graph(adj: list[list[int]]) -> list[int]:
+      # Implementation here
+  ```
+- **Self-contained**: Must include all helper routines (e.g., bitmask conversions, DSATUR, RLF, Kempe elimination) within the single file.
+- **Standard Library Only**: Only `math` and `random` may be imported.
+- **Guaranteed Budget**: All iterations must strictly terminate within 50ms for $N \le 100$. Handle edge cases gracefully ($N = 0 \to []$, $N = 1 \to [0]$, edgeless graphs, complete graphs).
+```
+
+---

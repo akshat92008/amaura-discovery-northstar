@@ -1,0 +1,179 @@
+{
+  "metadata": {
+    "hidden_benchmark_instances": 120,
+    "evaluation_timestamp": "2026-10-03T08:47:21Z"
+  },
+  "evaluations": {
+    "A": [
+      {
+        "candidate_id": "T1_A_C04",
+        "condition": "A",
+        "trial_idx": 0,
+        "validity": false,
+        "hidden_total_makespan": 999999,
+        "hidden_mean_makespan": 999999.0,
+        "instance_makespans": [],
+        "runtime_ms": 306.9,
+        "error": "Hard Timeout Exceeded: instance took 306.9ms > limit 300.0ms"
+      },
+      {
+        "candidate_id": "T2_A_C15",
+        "condition": "A",
+        "trial_idx": 1,
+        "validity": false,
+        "hidden_total_makespan": 999999,
+        "hidden_mean_makespan": 999999.0,
+        "instance_makespans": [],
+        "runtime_ms": 336.38,
+        "error": "Hard Timeout Exceeded: instance took 336.4ms > limit 300.0ms"
+      },
+      {
+        "candidate_id": "T3_A_C13",
+        "condition": "A",
+        "trial_idx": 2,
+        "validity": false,
+        "hidden_total_makespan": 999999,
+        "hidden_mean_makespan": 999999.0,
+        "instance_makespans": [],
+        "runtime_ms": 300.38,
+        "error": "Hard Timeout Exceeded: instance took 300.4ms > limit 300.0ms"
+      },
+      {
+        "candidate_id": "T4_A_C01",
+        "condition": "A",
+        "trial_idx": 3,
+        "validity": false,
+        "hidden_total_makespan": 999999,
+        "hidden_mean_makespan": 999999.0,
+        "instance_makespans": [],
+        "runtime_ms": 363.03,
+        "error": "Hard Timeout Exceeded: instance took 363.0ms > limit 300.0ms"
+      },
+      {
+        "candidate_id": "T5_A_C04",
+        "condition": "A",
+        "trial_idx": 4,
+        "validity": false,
+        "hidden_total_makespan": 999999,
+        "hidden_mean_makespan": 999999.0,
+        "instance_makespans": [],
+        "runtime_ms": 310.03,
+        "error": "Hard Timeout Exceeded: instance took 310.0ms > limit 300.0ms"
+      }
+    ],
+    "B": [
+      {
+        "candidate_id": "T1_B_C01",
+        "condition": "B",
+        "trial_idx": 0,
+        "validity": false,
+        "hidden_total_makespan": 999999,
+        "hidden_mean_makespan": 999999.0,
+        "instance_makespans": [],
+        "runtime_ms": 728.63,
+        "error": "Hard Timeout Exceeded: instance took 728.6ms > limit 300.0ms"
+      },
+      {
+        "candidate_id": "T2_B_C04",
+        "condition": "B",
+        "trial_idx": 1,
+        "validity": false,
+        "hidden_total_makespan": 999999,
+        "hidden_mean_makespan": 999999.0,
+        "instance_makespans": [],
+        "runtime_ms": 304.43,
+        "error": "Hard Timeout Exceeded: instance took 304.4ms > limit 300.0ms"
+      },
+      {
+        "candidate_id": "T3_B_C04",
+        "condition": "B",
+        "trial_idx": 2,
+        "validity": false,
+        "hidden_total_makespan": 999999,
+        "hidden_mean_makespan": 999999.0,
+        "instance_makespans": [],
+        "runtime_ms": 301.75,
+        "error": "Hard Timeout Exceeded: instance took 301.8ms > limit 300.0ms"
+      },
+      {
+        "candidate_id": "T4_B_C04",
+        "condition": "B",
+        "trial_idx": 3,
+        "validity": false,
+        "hidden_total_makespan": 999999,
+        "hidden_mean_makespan": 999999.0,
+        "instance_makespans": [],
+        "runtime_ms": 305.95,
+        "error": "Hard Timeout Exceeded: instance took 305.9ms > limit 300.0ms"
+      },
+      {
+        "candidate_id": "T5_B_C01",
+        "condition": "B",
+        "trial_idx": 4,
+        "validity": false,
+        "hidden_total_makespan": 999999,
+        "hidden_mean_makespan": 999999.0,
+        "instance_makespans": [],
+        "runtime_ms": 565.13,
+        "error": "Hard Timeout Exceeded: instance took 565.1ms > limit 300.0ms"
+      }
+    ],
+    "C": [
+      {
+        "candidate_id": "T1_C_C04",
+        "condition": "C",
+        "trial_idx": 0,
+        "validity": false,
+        "hidden_total_makespan": 999999,
+        "hidden_mean_makespan": 999999.0,
+        "instance_makespans": [],
+        "runtime_ms": 312.23,
+        "error": "Hard Timeout Exceeded: instance took 312.2ms > limit 300.0ms"
+      },
+      {
+        "candidate_id": "T2_C_C01",
+        "condition": "C",
+        "trial_idx": 1,
+        "validity": false,
+        "hidden_total_makespan": 999999,
+        "hidden_mean_makespan": 999999.0,
+        "instance_makespans": [],
+        "runtime_ms": 557.23,
+        "error": "Hard Timeout Exceeded: instance took 557.2ms > limit 300.0ms"
+      },
+      {
+        "candidate_id": "T3_C_C05",
+        "condition": "C",
+        "trial_idx": 2,
+        "validity": false,
+        "hidden_total_makespan": 999999,
+        "hidden_mean_makespan": 999999.0,
+        "instance_makespans": [],
+        "runtime_ms": 338.39,
+        "error": "Hard Timeout Exceeded: instance took 338.4ms > limit 300.0ms"
+      },
+      {
+        "candidate_id": "T4_C_C01",
+        "condition": "C",
+        "trial_idx": 3,
+        "validity": false,
+        "hidden_total_makespan": 999999,
+        "hidden_mean_makespan": 999999.0,
+        "instance_makespans": [],
+        "runtime_ms": 347.71,
+        "error": "Hard Timeout Exceeded: instance took 347.7ms > limit 300.0ms"
+      },
+      {
+        "candidate_id": "T5_C_C04",
+        "condition": "C",
+        "trial_idx": 4,
+        "validity": false,
+        "hidden_total_makespan": 999999,
+        "hidden_mean_makespan": 999999.0,
+        "instance_makespans": [],
+        "runtime_ms": 320.4,
+        "error": "Hard Timeout Exceeded: instance took 320.4ms > limit 300.0ms"
+      }
+    ]
+  }
+}

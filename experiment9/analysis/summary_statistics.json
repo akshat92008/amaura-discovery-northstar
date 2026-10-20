@@ -1,0 +1,306 @@
+{
+  "metadata": {
+    "experiment": "Amaura Experiment #9: PFSP Algorithm Discovery",
+    "trials": 5,
+    "calls_per_condition_per_trial": 15,
+    "total_calls": 225,
+    "invalid_calls": 207,
+    "invalid_rate": 0.92,
+    "model": "antigravity/claude-sonnet-4-6"
+  },
+  "classical_baselines": {
+    "dev": {
+      "palmer": {
+        "is_valid": true,
+        "total_makespan": 91150,
+        "mean_makespan": 3038.33,
+        "runtime_ms": 8.59
+      },
+      "cds": {
+        "is_valid": true,
+        "total_makespan": 89725,
+        "mean_makespan": 2990.83,
+        "runtime_ms": 16.77
+      },
+      "neh": {
+        "is_valid": true,
+        "total_makespan": 86643,
+        "mean_makespan": 2888.1,
+        "runtime_ms": 321.11
+      },
+      "iterated_greedy": {
+        "is_valid": true,
+        "total_makespan": 86325,
+        "mean_makespan": 2877.5,
+        "runtime_ms": 1330.56
+      }
+    },
+    "hidden": {
+      "palmer": {
+        "is_valid": true,
+        "total_makespan": 552715,
+        "mean_makespan": 4605.96,
+        "runtime_ms": 9.34
+      },
+      "cds": {
+        "is_valid": true,
+        "total_makespan": 547633,
+        "mean_makespan": 4563.61,
+        "runtime_ms": 85.9
+      },
+      "neh": {
+        "is_valid": true,
+        "total_makespan": 531943,
+        "mean_makespan": 4432.86,
+        "runtime_ms": 5039.62
+      },
+      "iterated_greedy": {
+        "is_valid": true,
+        "total_makespan": 530529,
+        "mean_makespan": 4421.07,
+        "runtime_ms": 10184.29
+      }
+    }
+  },
+  "condition_statistics": {
+    "A": {
+      "dev": {
+        "scores": [
+          86237,
+          86213,
+          86225,
+          86065,
+          86288
+        ],
+        "mean": 86205.6,
+        "std": 83.62894235849214,
+        "min": 86065,
+        "max": 86288,
+        "median": 86225.0
+      },
+      "hidden": {
+        "scores": [
+          999999,
+          999999,
+          999999,
+          999999,
+          999999
+        ],
+        "mean": 999999.0,
+        "std": 0.0,
+        "min": 999999,
+        "max": 999999,
+        "median": 999999.0,
+        "validity_rate": 0.0,
+        "mean_runtime_ms": 323.344,
+        "gap_vs_neh_percent": 87.99
+      }
+    },
+    "B": {
+      "dev": {
+        "scores": [
+          999999,
+          86237,
+          86237,
+          86281,
+          999999
+        ],
+        "mean": 451750.6,
+        "std": 500480.026649216,
+        "min": 86237,
+        "max": 999999,
+        "median": 86281.0
+      },
+      "hidden": {
+        "scores": [
+          999999,
+          999999,
+          999999,
+          999999,
+          999999
+        ],
+        "mean": 999999.0,
+        "std": 0.0,
+        "min": 999999,
+        "max": 999999,
+        "median": 999999.0,
+        "validity_rate": 0.0,
+        "mean_runtime_ms": 441.178,
+        "gap_vs_neh_percent": 87.99
+      }
+    },
+    "C": {
+      "dev": {
+        "scores": [
+          86281,
+          999999,
+          86238,
+          999999,
+          86300
+        ],
+        "mean": 451763.4,
+        "std": 500468.3420829933,
+        "min": 86238,
+        "max": 999999,
+        "median": 86300.0
+      },
+      "hidden": {
+        "scores": [
+          999999,
+          999999,
+          999999,
+          999999,
+          999999
+        ],
+        "mean": 999999.0,
+        "std": 0.0,
+        "min": 999999,
+        "max": 999999,
+        "median": 999999.0,
+        "validity_rate": 0.0,
+        "mean_runtime_ms": 375.192,
+        "gap_vs_neh_percent": 87.99
+      }
+    }
+  },
+  "statistical_tests": {
+    "trial_level_wilcoxon": {
+      "C_vs_A": {
+        "p_val_raw": 1.0,
+        "p_val_adj": 1.0,
+        "cohens_d": 0.0
+      },
+      "C_vs_B": {
+        "p_val_raw": 1.0,
+        "p_val_adj": 1.0,
+        "cohens_d": 0.0
+      },
+      "A_vs_B": {
+        "p_val_raw": 1.0,
+        "p_val_adj": 1.0,
+        "cohens_d": 0.0
+      }
+    },
+    "instance_level_wilcoxon": {
+      "C_vs_A": {
+        "p_val": 1.0
+      },
+      "C_vs_B": {
+        "p_val": 1.0
+      },
+      "A_vs_B": {
+        "p_val": 1.0
+      }
+    }
+  },
+  "family_breakdown": {
+    "hid_high_ratio": {
+      "num_instances": 20,
+      "cond_A_mean": 0.0,
+      "cond_B_mean": 0.0,
+      "cond_C_mean": 0.0
+    },
+    "hid_job_corr": {
+      "num_instances": 20,
+      "cond_A_mean": 0.0,
+      "cond_B_mean": 0.0,
+      "cond_C_mean": 0.0
+    },
+    "hid_mach_corr": {
+      "num_instances": 20,
+      "cond_A_mean": 0.0,
+      "cond_B_mean": 0.0,
+      "cond_C_mean": 0.0
+    },
+    "hid_taillard_uniform": {
+      "num_instances": 20,
+      "cond_A_mean": 0.0,
+      "cond_B_mean": 0.0,
+      "cond_C_mean": 0.0
+    },
+    "hid_trimodal": {
+      "num_instances": 20,
+      "cond_A_mean": 0.0,
+      "cond_B_mean": 0.0,
+      "cond_C_mean": 0.0
+    },
+    "hid_u_load": {
+      "num_instances": 20,
+      "cond_A_mean": 0.0,
+      "cond_B_mean": 0.0,
+      "cond_C_mean": 0.0
+    }
+  },
+  "search_efficiency_curves": {
+    "A": [
+      Infinity,
+      Infinity,
+      Infinity,
+      Infinity,
+      Infinity,
+      Infinity,
+      Infinity,
+      Infinity,
+      Infinity,
+      Infinity,
+      Infinity,
+      Infinity,
+      86219.2,
+      86210.4,
+      86205.6
+    ],
+    "B": [
+      Infinity,
+      Infinity,
+      Infinity,
+      Infinity,
+      Infinity,
+      Infinity,
+      Infinity,
+      Infinity,
+      Infinity,
+      Infinity,
+      Infinity,
+      Infinity,
+      Infinity,
+      Infinity,
+      Infinity
+    ],
+    "C": [
+      Infinity,
+      Infinity,
+      Infinity,
+      Infinity,
+      Infinity,
+      Infinity,
+      Infinity,
+      Infinity,
+      Infinity,
+      Infinity,
+      Infinity,
+      Infinity,
+      Infinity,
+      Infinity,
+      Infinity
+    ]
+  },
+  "diversity_analysis": {
+    "A": {
+      "mean_pairwise_kendall": 0.04965804786294579,
+      "std": 0.035213908586106915
+    },
+    "B": {
+      "mean_pairwise_kendall": 0.0,
+      "std": 0.0
+    },
+    "C": {
+      "mean_pairwise_kendall": 0.0,
+      "std": 0.0
+    }
+  },
+  "verdict": {
+    "verdict": "INCONCLUSIVE",
+    "verdict_reason": "High candidate invalidity rate (92.0% > 15% threshold).",
+    "pre_registered_threshold": 0.005
+  }
+}

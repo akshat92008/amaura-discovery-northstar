@@ -1,0 +1,378 @@
+{
+  "Human Baseline (Best Fit)": {
+    "overall": {
+      "is_valid": true,
+      "excess_pct": 8.1352,
+      "avg_bins": 65.58,
+      "total_bins": 7869,
+      "lower_bound": 7277,
+      "runtime_ms": 27.49,
+      "error": null
+    },
+    "uniform": {
+      "is_valid": true,
+      "excess_pct": 7.7262,
+      "avg_bins": 73.43,
+      "total_bins": 2203,
+      "lower_bound": 2045,
+      "runtime_ms": 7.25,
+      "error": null
+    },
+    "weibull": {
+      "is_valid": true,
+      "excess_pct": 4.6811,
+      "avg_bins": 59.63,
+      "total_bins": 1789,
+      "lower_bound": 1709,
+      "runtime_ms": 6.78,
+      "error": null
+    },
+    "bimodal": {
+      "is_valid": true,
+      "excess_pct": 10.9738,
+      "avg_bins": 74.83,
+      "total_bins": 2245,
+      "lower_bound": 2023,
+      "runtime_ms": 7.8,
+      "error": null
+    },
+    "triplets": {
+      "is_valid": true,
+      "excess_pct": 8.8,
+      "avg_bins": 54.4,
+      "total_bins": 1632,
+      "lower_bound": 1500,
+      "runtime_ms": 6.27,
+      "error": null
+    }
+  },
+  "Human Baseline (First Fit)": {
+    "overall": {
+      "is_valid": true,
+      "excess_pct": 8.7536,
+      "avg_bins": 65.95,
+      "total_bins": 7914,
+      "lower_bound": 7277,
+      "runtime_ms": 25.11,
+      "error": null
+    },
+    "uniform": {
+      "is_valid": true,
+      "excess_pct": 9.1932,
+      "avg_bins": 74.43,
+      "total_bins": 2233,
+      "lower_bound": 2045,
+      "runtime_ms": 6.46,
+      "error": null
+    },
+    "weibull": {
+      "is_valid": true,
+      "excess_pct": 5.3833,
+      "avg_bins": 60.03,
+      "total_bins": 1801,
+      "lower_bound": 1709,
+      "runtime_ms": 6.0,
+      "error": null
+    },
+    "bimodal": {
+      "is_valid": true,
+      "excess_pct": 11.0232,
+      "avg_bins": 74.87,
+      "total_bins": 2246,
+      "lower_bound": 2023,
+      "runtime_ms": 6.37,
+      "error": null
+    },
+    "triplets": {
+      "is_valid": true,
+      "excess_pct": 8.9333,
+      "avg_bins": 54.47,
+      "total_bins": 1634,
+      "lower_bound": 1500,
+      "runtime_ms": 5.84,
+      "error": null
+    }
+  },
+  "Human Baseline (Worst Fit)": {
+    "overall": {
+      "is_valid": true,
+      "excess_pct": 15.5284,
+      "avg_bins": 70.06,
+      "total_bins": 8407,
+      "lower_bound": 7277,
+      "runtime_ms": 28.96,
+      "error": null
+    },
+    "uniform": {
+      "is_valid": true,
+      "excess_pct": 20.1467,
+      "avg_bins": 81.9,
+      "total_bins": 2457,
+      "lower_bound": 2045,
+      "runtime_ms": 7.72,
+      "error": null
+    },
+    "weibull": {
+      "is_valid": true,
+      "excess_pct": 14.0433,
+      "avg_bins": 64.97,
+      "total_bins": 1949,
+      "lower_bound": 1709,
+      "runtime_ms": 7.01,
+      "error": null
+    },
+    "bimodal": {
+      "is_valid": true,
+      "excess_pct": 14.088,
+      "avg_bins": 76.93,
+      "total_bins": 2308,
+      "lower_bound": 2023,
+      "runtime_ms": 7.79,
+      "error": null
+    },
+    "triplets": {
+      "is_valid": true,
+      "excess_pct": 12.8667,
+      "avg_bins": 56.43,
+      "total_bins": 1693,
+      "lower_bound": 1500,
+      "runtime_ms": 6.11,
+      "error": null
+    }
+  },
+  "Exp #5 Best Single-Shot": {
+    "overall": {
+      "is_valid": true,
+      "excess_pct": 8.1077,
+      "avg_bins": 65.56,
+      "total_bins": 7867,
+      "lower_bound": 7277,
+      "runtime_ms": 43.91,
+      "error": null
+    },
+    "uniform": {
+      "is_valid": true,
+      "excess_pct": 7.6284,
+      "avg_bins": 73.37,
+      "total_bins": 2201,
+      "lower_bound": 2045,
+      "runtime_ms": 10.79,
+      "error": null
+    },
+    "weibull": {
+      "is_valid": true,
+      "excess_pct": 4.6811,
+      "avg_bins": 59.63,
+      "total_bins": 1789,
+      "lower_bound": 1709,
+      "runtime_ms": 10.65,
+      "error": null
+    },
+    "bimodal": {
+      "is_valid": true,
+      "excess_pct": 10.9738,
+      "avg_bins": 74.83,
+      "total_bins": 2245,
+      "lower_bound": 2023,
+      "runtime_ms": 13.03,
+      "error": null
+    },
+    "triplets": {
+      "is_valid": true,
+      "excess_pct": 8.8,
+      "avg_bins": 54.4,
+      "total_bins": 1632,
+      "lower_bound": 1500,
+      "runtime_ms": 10.05,
+      "error": null
+    }
+  },
+  "Exp #5 Population Champion": {
+    "overall": {
+      "is_valid": true,
+      "excess_pct": 8.8086,
+      "avg_bins": 65.98,
+      "total_bins": 7918,
+      "lower_bound": 7277,
+      "runtime_ms": 49.88,
+      "error": null
+    },
+    "uniform": {
+      "is_valid": true,
+      "excess_pct": 7.5306,
+      "avg_bins": 73.3,
+      "total_bins": 2199,
+      "lower_bound": 2045,
+      "runtime_ms": 11.7,
+      "error": null
+    },
+    "weibull": {
+      "is_valid": true,
+      "excess_pct": 5.4418,
+      "avg_bins": 60.07,
+      "total_bins": 1802,
+      "lower_bound": 1709,
+      "runtime_ms": 12.5,
+      "error": null
+    },
+    "bimodal": {
+      "is_valid": true,
+      "excess_pct": 11.3198,
+      "avg_bins": 75.07,
+      "total_bins": 2252,
+      "lower_bound": 2023,
+      "runtime_ms": 12.22,
+      "error": null
+    },
+    "triplets": {
+      "is_valid": true,
+      "excess_pct": 11.0,
+      "avg_bins": 55.5,
+      "total_bins": 1665,
+      "lower_bound": 1500,
+      "runtime_ms": 11.1,
+      "error": null
+    }
+  },
+  "Exp #5 Island A Champion": {
+    "overall": {
+      "is_valid": true,
+      "excess_pct": 8.8086,
+      "avg_bins": 65.98,
+      "total_bins": 7918,
+      "lower_bound": 7277,
+      "runtime_ms": 46.93,
+      "error": null
+    },
+    "uniform": {
+      "is_valid": true,
+      "excess_pct": 7.5306,
+      "avg_bins": 73.3,
+      "total_bins": 2199,
+      "lower_bound": 2045,
+      "runtime_ms": 11.33,
+      "error": null
+    },
+    "weibull": {
+      "is_valid": true,
+      "excess_pct": 5.4418,
+      "avg_bins": 60.07,
+      "total_bins": 1802,
+      "lower_bound": 1709,
+      "runtime_ms": 12.09,
+      "error": null
+    },
+    "bimodal": {
+      "is_valid": true,
+      "excess_pct": 11.3198,
+      "avg_bins": 75.07,
+      "total_bins": 2252,
+      "lower_bound": 2023,
+      "runtime_ms": 12.46,
+      "error": null
+    },
+    "triplets": {
+      "is_valid": true,
+      "excess_pct": 11.0,
+      "avg_bins": 55.5,
+      "total_bins": 1665,
+      "lower_bound": 1500,
+      "runtime_ms": 11.39,
+      "error": null
+    }
+  },
+  "Exp #5 Island B Champion": {
+    "overall": {
+      "is_valid": true,
+      "excess_pct": 8.8086,
+      "avg_bins": 65.98,
+      "total_bins": 7918,
+      "lower_bound": 7277,
+      "runtime_ms": 47.48,
+      "error": null
+    },
+    "uniform": {
+      "is_valid": true,
+      "excess_pct": 7.5306,
+      "avg_bins": 73.3,
+      "total_bins": 2199,
+      "lower_bound": 2045,
+      "runtime_ms": 11.35,
+      "error": null
+    },
+    "weibull": {
+      "is_valid": true,
+      "excess_pct": 5.4418,
+      "avg_bins": 60.07,
+      "total_bins": 1802,
+      "lower_bound": 1709,
+      "runtime_ms": 12.31,
+      "error": null
+    },
+    "bimodal": {
+      "is_valid": true,
+      "excess_pct": 11.3198,
+      "avg_bins": 75.07,
+      "total_bins": 2252,
+      "lower_bound": 2023,
+      "runtime_ms": 12.51,
+      "error": null
+    },
+    "triplets": {
+      "is_valid": true,
+      "excess_pct": 11.0,
+      "avg_bins": 55.5,
+      "total_bins": 1665,
+      "lower_bound": 1500,
+      "runtime_ms": 11.3,
+      "error": null
+    }
+  },
+  "Exp #5 Island C Champion": {
+    "overall": {
+      "is_valid": true,
+      "excess_pct": 8.8086,
+      "avg_bins": 65.98,
+      "total_bins": 7918,
+      "lower_bound": 7277,
+      "runtime_ms": 48.31,
+      "error": null
+    },
+    "uniform": {
+      "is_valid": true,
+      "excess_pct": 7.5306,
+      "avg_bins": 73.3,
+      "total_bins": 2199,
+      "lower_bound": 2045,
+      "runtime_ms": 11.3,
+      "error": null
+    },
+    "weibull": {
+      "is_valid": true,
+      "excess_pct": 5.4418,
+      "avg_bins": 60.07,
+      "total_bins": 1802,
+      "lower_bound": 1709,
+      "runtime_ms": 12.05,
+      "error": null
+    },
+    "bimodal": {
+      "is_valid": true,
+      "excess_pct": 11.3198,
+      "avg_bins": 75.07,
+      "total_bins": 2252,
+      "lower_bound": 2023,
+      "runtime_ms": 12.21,
+      "error": null
+    },
+    "triplets": {
+      "is_valid": true,
+      "excess_pct": 11.0,
+      "avg_bins": 55.5,
+      "total_bins": 1665,
+      "lower_bound": 1500,
+      "runtime_ms": 11.1,
+      "error": null
+    }
+  }
+}

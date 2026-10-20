@@ -1,0 +1,202 @@
+{
+  "metadata": {
+    "experiment": "Amaura_Experiment_13",
+    "domain": "Kubernetes-Style Cloud Pod Scheduling",
+    "trials": 5,
+    "calls_per_trial": 15,
+    "total_calls": 75,
+    "model": "nvidia/nvidia/nemotron-3-super-120b-a12b",
+    "invalid_rate": 0.0533,
+    "truncation_rate": 0.0,
+    "qc_passed": true
+  },
+  "strongest_baseline": {
+    "key": "kube_binpacking",
+    "name": "Kube-Scheduler BinPacking (MostAllocated)",
+    "hidden_total_cost": 2171.1271,
+    "hidden_mean_cost": 18.0927,
+    "active_nodes_mean": 14.43
+  },
+  "all_baselines_hidden": {
+    "first_fit": {
+      "name": "First Fit",
+      "total_cost": 2412.6474,
+      "mean_cost": 20.1054,
+      "active_nodes_mean": 16.57,
+      "unscheduled": 0
+    },
+    "best_fit": {
+      "name": "Best Fit (Least Residual)",
+      "total_cost": 2614.9182,
+      "mean_cost": 21.791,
+      "active_nodes_mean": 19.52,
+      "unscheduled": 0
+    },
+    "worst_fit": {
+      "name": "Worst Fit (Load Balancing)",
+      "total_cost": 8413.6027,
+      "mean_cost": 70.1134,
+      "active_nodes_mean": 24.07,
+      "unscheduled": 5
+    },
+    "best_fit_decreasing": {
+      "name": "Best Fit Decreasing (Norm Vector)",
+      "total_cost": 2547.2079,
+      "mean_cost": 21.2267,
+      "active_nodes_mean": 19.16,
+      "unscheduled": 0
+    },
+    "kube_default": {
+      "name": "Kube-Scheduler Default (LeastAllocated)",
+      "total_cost": 10331.0213,
+      "mean_cost": 86.0918,
+      "active_nodes_mean": 23.75,
+      "unscheduled": 7
+    },
+    "kube_binpacking": {
+      "name": "Kube-Scheduler BinPacking (MostAllocated)",
+      "total_cost": 2171.1271,
+      "mean_cost": 18.0927,
+      "active_nodes_mean": 14.43,
+      "unscheduled": 0
+    },
+    "random_feasible": {
+      "name": "Random Feasible",
+      "total_cost": 4389.2489,
+      "mean_cost": 36.5771,
+      "active_nodes_mean": 23.85,
+      "unscheduled": 1
+    }
+  },
+  "amaura_champions_hidden": {
+    "mean_total_cost": 2393.25,
+    "std_total_cost": 167.43,
+    "min_total_cost": 2099.51,
+    "max_total_cost": 2497.72,
+    "mean_active_nodes": 17.32,
+    "total_unscheduled": 0,
+    "best_candidate_id": "T4_C01",
+    "best_angle_name": "Aggressive Node Consolidation",
+    "best_total_cost": 2099.51,
+    "gap_vs_strongest_baseline_percent": 10.23,
+    "best_gap_vs_strongest_percent": -3.3
+  },
+  "trial_scorecard": [
+    {
+      "trial": 1,
+      "candidate_id": "T1_C04",
+      "angle_name": "Cost-Gradient & Price-Performance Efficiency",
+      "amaura_cost": 2468.446,
+      "baseline_cost": 2171.1271,
+      "delta": 297.32,
+      "winner": "Kube-Scheduler BinPacking (MostAllocated)"
+    },
+    {
+      "trial": 2,
+      "candidate_id": "T2_C03",
+      "angle_name": "Complementary Vector Alignment",
+      "amaura_cost": 2497.7207,
+      "baseline_cost": 2171.1271,
+      "delta": 326.59,
+      "winner": "Kube-Scheduler BinPacking (MostAllocated)"
+    },
+    {
+      "trial": 3,
+      "candidate_id": "T3_C06",
+      "angle_name": "Largest-Resource-First Prioritization & Tight Packing",
+      "amaura_cost": 2413.0343,
+      "baseline_cost": 2171.1271,
+      "delta": 241.91,
+      "winner": "Kube-Scheduler BinPacking (MostAllocated)"
+    },
+    {
+      "trial": 4,
+      "candidate_id": "T4_C01",
+      "angle_name": "Aggressive Node Consolidation",
+      "amaura_cost": 2099.5139,
+      "baseline_cost": 2171.1271,
+      "delta": -71.61,
+      "winner": "Amaura"
+    },
+    {
+      "trial": 5,
+      "candidate_id": "T5_C14",
+      "angle_name": "Geometric Mean Utilization Maximization",
+      "amaura_cost": 2487.5321,
+      "baseline_cost": 2171.1271,
+      "delta": 316.4,
+      "winner": "Kube-Scheduler BinPacking (MostAllocated)"
+    }
+  ],
+  "instance_level_comparison": {
+    "instances": 120,
+    "amaura_wins": 71,
+    "baseline_wins": 47,
+    "ties": 2,
+    "wilcoxon_stat": 1673.0,
+    "p_value": 0.0001,
+    "cohens_d": -0.1438
+  },
+  "family_breakdown": {
+    "Uniform": {
+      "instances": 20,
+      "baseline_mean_cost": 20.03,
+      "amaura_mean_cost": 18.41,
+      "difference_percent": -8.07,
+      "wins": 17,
+      "losses": 3,
+      "ties": 0
+    },
+    "CPU_Heavy": {
+      "instances": 20,
+      "baseline_mean_cost": 16.84,
+      "amaura_mean_cost": 16.67,
+      "difference_percent": -1.04,
+      "wins": 6,
+      "losses": 13,
+      "ties": 1
+    },
+    "Memory_Heavy": {
+      "instances": 20,
+      "baseline_mean_cost": 16.64,
+      "amaura_mean_cost": 16.62,
+      "difference_percent": -0.12,
+      "wins": 3,
+      "losses": 16,
+      "ties": 1
+    },
+    "Bimodal": {
+      "instances": 20,
+      "baseline_mean_cost": 18.8,
+      "amaura_mean_cost": 18.1,
+      "difference_percent": -3.72,
+      "wins": 17,
+      "losses": 3,
+      "ties": 0
+    },
+    "Anti_Correlated": {
+      "instances": 20,
+      "baseline_mean_cost": 18.39,
+      "amaura_mean_cost": 17.8,
+      "difference_percent": -3.2,
+      "wins": 12,
+      "losses": 8,
+      "ties": 0
+    },
+    "Correlated": {
+      "instances": 20,
+      "baseline_mean_cost": 17.85,
+      "amaura_mean_cost": 17.37,
+      "difference_percent": -2.71,
+      "wins": 16,
+      "losses": 4,
+      "ties": 0
+    }
+  },
+  "verdict": {
+    "verdict": "PARTIALLY SUPPORTED",
+    "reason": "Amaura's best candidate beat Kube-Scheduler BinPacking (MostAllocated) (2099.51 vs 2171.13), but trial win rate was 1/5.",
+    "trial_wins": "1/5",
+    "stat_sig_p": 0.0001
+  }
+}

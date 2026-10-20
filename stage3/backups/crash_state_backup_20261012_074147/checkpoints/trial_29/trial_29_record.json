@@ -1,0 +1,77 @@
+{
+  "trial_id": 29,
+  "seed": 30329,
+  "duration_sec": 0.77,
+  "arm_a": {
+    "status": "ARM_FAILURE_NO_VALID_CANDIDATE",
+    "selected_candidate_id": null,
+    "selected_candidate_code": null,
+    "dev_score": null,
+    "valid_count": 0,
+    "duration_sec": 0.28
+  },
+  "arm_b": {
+    "status": "ARM_FAILURE_NO_VALID_CANDIDATE",
+    "selected_candidate_id": "T29_B_G10_C01",
+    "selected_candidate_code": "",
+    "dev_score": null,
+    "valid_count": 0,
+    "duration_sec": 0.21,
+    "blind_selection_details": {
+      "raw_response": "",
+      "prompt_hash": "5c40eb7ec1f3187e9fa88545ac913368695fe5f6f74d5def461cac280e24e839"
+    }
+  },
+  "arm_c": {
+    "status": "ARM_FAILURE_NO_VALID_CANDIDATE",
+    "selected_candidate_id": null,
+    "selected_candidate_code": null,
+    "dev_score": null,
+    "valid_count": 0,
+    "duration_sec": 0.27
+  },
+  "checkpoints": {
+    "trial_id": 29,
+    "checkpoints": [
+      1,
+      5,
+      10,
+      20,
+      50,
+      100
+    ],
+    "Arm_A_Independent_Best_of_N": {
+      "curve": {
+        "1": null,
+        "5": null,
+        "10": null,
+        "20": null,
+        "50": null,
+        "100": null
+      },
+      "nature": "Retrospective and descriptive; does not represent adaptive behavior."
+    },
+    "Arm_B_Blind_Iterative": {
+      "curve": {
+        "1": null,
+        "5": null,
+        "10": null,
+        "20": null,
+        "50": null,
+        "100": null
+      },
+      "nature": "Textual context history only; zero execution feedback."
+    },
+    "Arm_C_Amaura": {
+      "curve": {
+        "1": null,
+        "5": null,
+        "10": null,
+        "20": null,
+        "50": null,
+        "100": null
+      },
+      "nature": "Adaptive execution-feedback-driven discovery."
+    }
+  }
+}

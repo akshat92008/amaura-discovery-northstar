@@ -1,0 +1,338 @@
+{
+  "Human Baseline (DSATUR)": {
+    "overall": {
+      "is_valid": true,
+      "total_colors": 901,
+      "avg_colors": 7.51,
+      "excess_pct": 0.0,
+      "runtime_ms": 62.89,
+      "error": null
+    },
+    "erdos_renyi": {
+      "is_valid": true,
+      "total_colors": 256,
+      "avg_colors": 8.53,
+      "excess_pct": 0.0,
+      "runtime_ms": 20.17,
+      "error": null
+    },
+    "geometric": {
+      "is_valid": true,
+      "total_colors": 315,
+      "avg_colors": 10.5,
+      "excess_pct": 0.0,
+      "runtime_ms": 12.74,
+      "error": null
+    },
+    "scale_free": {
+      "is_valid": true,
+      "total_colors": 140,
+      "avg_colors": 4.67,
+      "excess_pct": 0.0,
+      "runtime_ms": 12.84,
+      "error": null
+    },
+    "mycielski": {
+      "is_valid": true,
+      "total_colors": 190,
+      "avg_colors": 6.33,
+      "excess_pct": 0.0,
+      "runtime_ms": 14.31,
+      "error": null
+    }
+  },
+  "Human Baseline (Welsh-Powell)": {
+    "overall": {
+      "is_valid": true,
+      "total_colors": 952,
+      "avg_colors": 7.93,
+      "excess_pct": 5.6604,
+      "runtime_ms": 14.52,
+      "error": null
+    },
+    "erdos_renyi": {
+      "is_valid": true,
+      "total_colors": 287,
+      "avg_colors": 9.57,
+      "excess_pct": 0.0,
+      "runtime_ms": 4.15,
+      "error": null
+    },
+    "geometric": {
+      "is_valid": true,
+      "total_colors": 323,
+      "avg_colors": 10.77,
+      "excess_pct": 0.0,
+      "runtime_ms": 3.99,
+      "error": null
+    },
+    "scale_free": {
+      "is_valid": true,
+      "total_colors": 149,
+      "avg_colors": 4.97,
+      "excess_pct": 0.0,
+      "runtime_ms": 3.37,
+      "error": null
+    },
+    "mycielski": {
+      "is_valid": true,
+      "total_colors": 193,
+      "avg_colors": 6.43,
+      "excess_pct": 0.0,
+      "runtime_ms": 2.69,
+      "error": null
+    }
+  },
+  "Human Baseline (Greedy)": {
+    "overall": {
+      "is_valid": true,
+      "total_colors": 1020,
+      "avg_colors": 8.5,
+      "excess_pct": 13.2075,
+      "runtime_ms": 9.26,
+      "error": null
+    },
+    "erdos_renyi": {
+      "is_valid": true,
+      "total_colors": 315,
+      "avg_colors": 10.5,
+      "excess_pct": 0.0,
+      "runtime_ms": 2.36,
+      "error": null
+    },
+    "geometric": {
+      "is_valid": true,
+      "total_colors": 354,
+      "avg_colors": 11.8,
+      "excess_pct": 0.0,
+      "runtime_ms": 2.19,
+      "error": null
+    },
+    "scale_free": {
+      "is_valid": true,
+      "total_colors": 138,
+      "avg_colors": 4.6,
+      "excess_pct": 0.0,
+      "runtime_ms": 1.51,
+      "error": null
+    },
+    "mycielski": {
+      "is_valid": true,
+      "total_colors": 213,
+      "avg_colors": 7.1,
+      "excess_pct": 0.0,
+      "runtime_ms": 1.48,
+      "error": null
+    }
+  },
+  "Exp #6 Best Single-Shot": {
+    "overall": {
+      "is_valid": true,
+      "total_colors": 900,
+      "avg_colors": 7.5,
+      "excess_pct": -0.111,
+      "runtime_ms": 1106.7,
+      "error": null
+    },
+    "erdos_renyi": {
+      "is_valid": true,
+      "total_colors": 254,
+      "avg_colors": 8.47,
+      "excess_pct": 0.0,
+      "runtime_ms": 571.07,
+      "error": null
+    },
+    "geometric": {
+      "is_valid": true,
+      "total_colors": 316,
+      "avg_colors": 10.53,
+      "excess_pct": 0.0,
+      "runtime_ms": 260.63,
+      "error": null
+    },
+    "scale_free": {
+      "is_valid": true,
+      "total_colors": 140,
+      "avg_colors": 4.67,
+      "excess_pct": 0.0,
+      "runtime_ms": 73.19,
+      "error": null
+    },
+    "mycielski": {
+      "is_valid": true,
+      "total_colors": 190,
+      "avg_colors": 6.33,
+      "excess_pct": 0.0,
+      "runtime_ms": 174.03,
+      "error": null
+    }
+  },
+  "Exp #6 Population Champion": {
+    "overall": {
+      "is_valid": true,
+      "total_colors": 900,
+      "avg_colors": 7.5,
+      "excess_pct": -0.111,
+      "runtime_ms": 1086.42,
+      "error": null
+    },
+    "erdos_renyi": {
+      "is_valid": true,
+      "total_colors": 254,
+      "avg_colors": 8.47,
+      "excess_pct": 0.0,
+      "runtime_ms": 570.15,
+      "error": null
+    },
+    "geometric": {
+      "is_valid": true,
+      "total_colors": 316,
+      "avg_colors": 10.53,
+      "excess_pct": 0.0,
+      "runtime_ms": 257.65,
+      "error": null
+    },
+    "scale_free": {
+      "is_valid": true,
+      "total_colors": 140,
+      "avg_colors": 4.67,
+      "excess_pct": 0.0,
+      "runtime_ms": 72.7,
+      "error": null
+    },
+    "mycielski": {
+      "is_valid": true,
+      "total_colors": 190,
+      "avg_colors": 6.33,
+      "excess_pct": 0.0,
+      "runtime_ms": 170.82,
+      "error": null
+    }
+  },
+  "Exp #6 Island A Champion": {
+    "overall": {
+      "is_valid": true,
+      "total_colors": 900,
+      "avg_colors": 7.5,
+      "excess_pct": -0.111,
+      "runtime_ms": 1059.45,
+      "error": null
+    },
+    "erdos_renyi": {
+      "is_valid": true,
+      "total_colors": 254,
+      "avg_colors": 8.47,
+      "excess_pct": 0.0,
+      "runtime_ms": 555.06,
+      "error": null
+    },
+    "geometric": {
+      "is_valid": true,
+      "total_colors": 316,
+      "avg_colors": 10.53,
+      "excess_pct": 0.0,
+      "runtime_ms": 254.6,
+      "error": null
+    },
+    "scale_free": {
+      "is_valid": true,
+      "total_colors": 140,
+      "avg_colors": 4.67,
+      "excess_pct": 0.0,
+      "runtime_ms": 72.6,
+      "error": null
+    },
+    "mycielski": {
+      "is_valid": true,
+      "total_colors": 190,
+      "avg_colors": 6.33,
+      "excess_pct": 0.0,
+      "runtime_ms": 172.83,
+      "error": null
+    }
+  },
+  "Exp #6 Island B Champion": {
+    "overall": {
+      "is_valid": true,
+      "total_colors": 900,
+      "avg_colors": 7.5,
+      "excess_pct": -0.111,
+      "runtime_ms": 1062.69,
+      "error": null
+    },
+    "erdos_renyi": {
+      "is_valid": true,
+      "total_colors": 254,
+      "avg_colors": 8.47,
+      "excess_pct": 0.0,
+      "runtime_ms": 557.62,
+      "error": null
+    },
+    "geometric": {
+      "is_valid": true,
+      "total_colors": 316,
+      "avg_colors": 10.53,
+      "excess_pct": 0.0,
+      "runtime_ms": 255.79,
+      "error": null
+    },
+    "scale_free": {
+      "is_valid": true,
+      "total_colors": 140,
+      "avg_colors": 4.67,
+      "excess_pct": 0.0,
+      "runtime_ms": 73.1,
+      "error": null
+    },
+    "mycielski": {
+      "is_valid": true,
+      "total_colors": 190,
+      "avg_colors": 6.33,
+      "excess_pct": 0.0,
+      "runtime_ms": 171.57,
+      "error": null
+    }
+  },
+  "Exp #6 Island C Champion": {
+    "overall": {
+      "is_valid": true,
+      "total_colors": 900,
+      "avg_colors": 7.5,
+      "excess_pct": -0.111,
+      "runtime_ms": 1060.85,
+      "error": null
+    },
+    "erdos_renyi": {
+      "is_valid": true,
+      "total_colors": 254,
+      "avg_colors": 8.47,
+      "excess_pct": 0.0,
+      "runtime_ms": 619.53,
+      "error": null
+    },
+    "geometric": {
+      "is_valid": true,
+      "total_colors": 316,
+      "avg_colors": 10.53,
+      "excess_pct": 0.0,
+      "runtime_ms": 255.02,
+      "error": null
+    },
+    "scale_free": {
+      "is_valid": true,
+      "total_colors": 140,
+      "avg_colors": 4.67,
+      "excess_pct": 0.0,
+      "runtime_ms": 71.96,
+      "error": null
+    },
+    "mycielski": {
+      "is_valid": true,
+      "total_colors": 190,
+      "avg_colors": 6.33,
+      "excess_pct": 0.0,
+      "runtime_ms": 168.88,
+      "error": null
+    }
+  }
+}

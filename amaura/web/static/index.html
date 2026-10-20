@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Amaura Labs | Discovery Engine Cockpit</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    :root {
+      --bg: #090d16;
+      --card-bg: rgba(18, 24, 38, 0.85);
+      --border: rgba(255, 255, 255, 0.08);
+      --accent: #00f2fe;
+      --accent-grad: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+      --text: #f0f4f8;
+      --text-muted: #8a99ad;
+      --success: #10b981;
+      --warn: #f59e0b;
+      --code-bg: #050811;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, monospace; }
+    body { background: var(--bg); color: var(--text); padding: 24px; min-height: 100vh; }
+    
+    header {
+      display: flex; justify-content: space-between; align-items: center;
+      padding-bottom: 20px; border-bottom: 1px solid var(--border); margin-bottom: 24px;
+    }
+    .brand { font-size: 24px; font-weight: 800; letter-spacing: -0.5px; display: flex; align-items: center; gap: 10px; }
+    .brand-badge {
+      background: var(--accent-grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .status-tag {
+      padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 600;
+      background: rgba(255, 255, 255, 0.05); border: 1px solid var(--border); display: flex; align-items: center; gap: 8px;
+    }
+    .dot { width: 8px; height: 8px; border-radius: 50%; background: #6b7280; }
+    .dot.running { background: var(--accent); box-shadow: 0 0 10px var(--accent); animation: pulse 1.5s infinite; }
+    .dot.done { background: var(--success); box-shadow: 0 0 10px var(--success); }
+    @keyframes pulse { 0% { opacity: 0.4; } 50% { opacity: 1; } 100% { opacity: 0.4; } }
+
+    .controls-panel {
+      background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px;
+      padding: 16px 20px; display: flex; gap: 20px; align-items: center; margin-bottom: 24px; flex-wrap: wrap;
+    }
+    .ctrl-group { display: flex; flex-direction: column; gap: 6px; }
+    .ctrl-group label { font-size: 12px; text-transform: uppercase; color: var(--text-muted); font-weight: 700; letter-spacing: 0.5px; }
+    select, input {
+      background: rgba(0, 0, 0, 0.4); border: 1px solid var(--border); color: #fff;
+      padding: 8px 12px; border-radius: 6px; font-size: 14px; outline: none;
+    }
+    select:focus, input:focus { border-color: var(--accent); }
+    button.btn-launch {
+      background: var(--accent-grad); color: #000; border: none; font-weight: 700;
+      padding: 10px 24px; border-radius: 8px; cursor: pointer; transition: 0.2s transform, 0.2s opacity;
+      margin-left: auto; font-size: 14px;
+    }
+    button.btn-launch:hover { transform: translateY(-1px); opacity: 0.95; }
+    button.btn-launch:disabled { opacity: 0.4; cursor: not-allowed; }
+
+    .kpi-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-bottom: 24px;
+    }
+    .kpi-card {
+      background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 20px;
+      display: flex; flex-direction: column; gap: 8px;
+    }
+    .kpi-label { font-size: 12px; color: var(--text-muted); text-transform: uppercase; font-weight: 700; }
+    .kpi-val { font-size: 28px; font-weight: 800; font-family: monospace; }
+    .kpi-delta { font-size: 13px; font-weight: 700; }
+    .kpi-delta.pos { color: var(--success); }
+    .kpi-delta.neu { color: var(--text-muted); }
+
+    .main-grid {
+      display: grid; grid-template-columns: 2fr 1fr; gap: 20px; margin-bottom: 24px;
+    }
+    @media (max-width: 900px) { .main-grid { grid-template-columns: 1fr; } }
+    .chart-box, .log-box {
+      background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 20px;
+    }
+    .box-title { font-size: 15px; font-weight: 700; margin-bottom: 16px; display: flex; justify-content: space-between; }
+    .log-stream {
+      height: 320px; overflow-y: auto; font-size: 12px; font-family: monospace;
+      display: flex; flex-direction: column; gap: 6px; padding-right: 8px;
+    }
+    .log-entry { padding: 6px 8px; border-radius: 4px; background: rgba(0,0,0,0.3); border-left: 3px solid var(--accent); }
+    .log-entry.breakthrough { border-left-color: var(--success); background: rgba(16, 185, 129, 0.1); }
+
+    .code-comparison-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+    }
+    @media (max-width: 800px) { .code-comparison-grid { grid-template-columns: 1fr; } }
+    .code-pane {
+      background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; overflow: hidden;
+    }
+    .code-header {
+      background: rgba(0, 0, 0, 0.3); padding: 12px 18px; font-size: 13px; font-weight: 700;
+      border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center;
+    }
+    pre.code-body {
+      background: var(--code-bg); padding: 18px; font-size: 13px; line-height: 1.5;
+      overflow-x: auto; color: #a5b4fc; min-height: 240px; margin: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="brand">
+      <span>AMAURA</span>
+      <span class="brand-badge">DISCOVERY ENGINE</span>
+    </div>
+    <div class="status-tag">
+      <span class="dot" id="statusDot"></span>
+      <span id="statusText">System Standby</span>
+    </div>
+  </header>
+
+  <div class="controls-panel">
+    <div class="ctrl-group">
+      <label>Discovery Problem</label>
+      <select id="probSelect">
+        <option value="bin_packing">Online 1D Bin Packing (FunSearch Benchmark)</option>
+        <option value="cache_policy">Cache Eviction Policy (Systems Benchmark)</option>
+      </select>
+    </div>
+    <div class="ctrl-group">
+      <label>Generations</label>
+      <input type="number" id="genInput" value="35" min="10" max="200" style="width: 90px;">
+    </div>
+    <button class="btn-launch" id="launchBtn" onclick="triggerDiscovery()">Launch Discovery Loop</button>
+  </div>
+
+  <div class="kpi-grid">
+    <div class="kpi-card">
+      <div class="kpi-label">Evolution Generation</div>
+      <div class="kpi-val" id="kpiGen">0 / 0</div>
+      <div class="kpi-delta neu" id="kpiDuration">Standby</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Human Baseline Fitness</div>
+      <div class="kpi-val" id="kpiBase">-</div>
+      <div class="kpi-delta neu">Fixed Benchmark</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Discovered Champion Fitness</div>
+      <div class="kpi-val" id="kpiChamp">-</div>
+      <div class="kpi-delta neu" id="kpiChampSub">Lower is better</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Outperformance vs Human</div>
+      <div class="kpi-val" id="kpiImprovement" style="color: var(--accent);">0.00%</div>
+      <div class="kpi-delta pos" id="kpiStatusBadge">Awaiting Evolution</div>
+    </div>
+  </div>
+
+  <div class="main-grid">
+    <div class="chart-box">
+      <div class="box-title">
+        <span>Evolutionary Fitness Trajectory (Lower = Better)</span>
+        <span style="font-size: 12px; color: var(--text-muted);">Real-time Telemetry</span>
+      </div>
+      <div style="height: 320px;">
+        <canvas id="fitnessChart"></canvas>
+      </div>
+    </div>
+
+    <div class="log-box">
+      <div class="box-title">
+        <span>Discovery Event Stream</span>
+        <span id="candCountBadge" style="font-size: 12px; color: var(--accent);">0 candidates</span>
+      </div>
+      <div class="log-stream" id="logStream">
+        <div class="log-entry">Engine initialized. Ready to launch.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="code-comparison-grid">
+    <div class="code-pane">
+      <div class="code-header">
+        <span>Human Baseline Algorithm</span>
+        <span id="baseName" style="color: var(--text-muted); font-family: monospace;">-</span>
+      </div>
+      <pre class="code-body" id="baseCode"># Human baseline code will appear when engine initializes.</pre>
+    </div>
+
+    <div class="code-pane">
+      <div class="code-header">
+        <span>Amaura Discovered Champion</span>
+        <span id="champMutation" style="color: var(--accent); font-family: monospace;">-</span>
+      </div>
+      <pre class="code-body" id="champCode"># Evolved algorithmic code will appear live as discoveries occur.</pre>
+    </div>
+  </div>
+
+  <script>
+    let chart;
+    let ws;
+
+    function initChart() {
+      const ctx = document.getElementById('fitnessChart').getContext('2d');
+      chart = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: [],
+          datasets: [
+            {
+              label: 'Discovered Best Fitness',
+              data: [],
+              borderColor: '#00f2fe',
+              backgroundColor: 'rgba(0, 242, 254, 0.1)',
+              borderWidth: 2.5,
+              tension: 0.3,
+              fill: true,
+              pointRadius: 3
+            },
+            {
+              label: 'Human Baseline',
+              data: [],
+              borderColor: '#f59e0b',
+              borderDash: [5, 5],
+              borderWidth: 1.8,
+              pointRadius: 0
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { labels: { color: '#8a99ad', font: { family: 'monospace' } } }
+          },
+          scales: {
+            x: {
+              title: { display: true, text: 'Generation', color: '#8a99ad' },
+              grid: { color: 'rgba(255, 255, 255, 0.05)' },
+              ticks: { color: '#8a99ad' }
+            },
+            y: {
+              title: { display: true, text: 'Fitness Score (Excess % / Miss %)', color: '#8a99ad' },
+              grid: { color: 'rgba(255, 255, 255, 0.05)' },
+              ticks: { color: '#8a99ad' }
+            }
+          }
+        }
+      });
+    }
+
+    function connectWebSocket() {
+      const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+      ws = new WebSocket(`${protocol}//${window.location.host}/ws`);
+
+      ws.onopen = () => console.log('Connected to Amaura telemetry socket.');
+      ws.onmessage = (event) => {
+        const msg = JSON.parse(event.data);
+        handleTelemetry(msg);
+      };
+      ws.onclose = () => {
+        setTimeout(connectWebSocket, 2000);
+      };
+    }
+
+    function handleTelemetry(msg) {
+      if (msg.type === 'state_sync') {
+        const s = msg.state;
+        if (s.is_running) setRunningStatus(true);
+        if (s.human_baseline) updateBaseline(s.human_baseline);
+        if (s.best_candidate) updateChampion(s.best_candidate);
+        if (s.history && s.history.length > 0) {
+          rebuildChart(s.history, s.baseline_fitness);
+        }
+      } else if (msg.type === 'initialized') {
+        if (msg.human_baseline) updateBaseline(msg.human_baseline);
+        addLog(`Evaluated human baselines. Starting evolutionary loop...`, false);
+      } else if (msg.type === 'generation_step') {
+        const sum = msg.summary;
+        const cand = msg.best_candidate;
+        
+        document.getElementById('kpiGen').innerText = `${sum.generation} / ${document.getElementById('genInput').value}`;
+        document.getElementById('kpiChamp').innerText = sum.best_fitness.toFixed(4);
+        document.getElementById('kpiImprovement').innerText = `${sum.improvement_pct > 0 ? '+' : ''}${sum.improvement_pct.toFixed(2)}%`;
+        document.getElementById('candCountBadge').innerText = `${sum.total_candidates} evaluated`;
+
+        if (sum.improvement_pct > 0) {
+          document.getElementById('kpiStatusBadge').innerText = 'Outperforming Baseline';
+          document.getElementById('kpiImprovement').style.color = '#10b981';
+        }
+
+        // Update chart
+        chart.data.labels.push(`G${sum.generation}`);
+        chart.data.datasets[0].data.push(sum.best_fitness);
+        chart.data.datasets[1].data.push(sum.baseline_fitness);
+        chart.update('none');
+
+        // Log entry
+        const isBetter = sum.improvement_pct > 0;
+        addLog(`Gen ${sum.generation}: Best Fitness ${sum.best_fitness.toFixed(3)} (${sum.best_mutation}) - Δ: ${sum.improvement_pct.toFixed(2)}%`, isBetter);
+
+        if (cand) updateChampion(cand);
+      } else if (msg.type === 'finished') {
+        setRunningStatus(false);
+        addLog(`✓ Discovery loop concluded. Best candidate saved to disk.`, true);
+      }
+    }
+
+    function updateBaseline(b) {
+      document.getElementById('kpiBase').innerText = b.fitness.toFixed(4);
+      document.getElementById('baseName').innerText = b.mutation_type;
+      document.getElementById('baseCode').innerText = b.code;
+    }
+
+    function updateChampion(c) {
+      document.getElementById('kpiChamp').innerText = c.fitness.toFixed(4);
+      document.getElementById('champMutation').innerText = `${c.mutation_type} (Gen ${c.generation})`;
+      document.getElementById('champCode').innerText = c.code;
+    }
+
+    function rebuildChart(history, baselineFitness) {
+      chart.data.labels = history.map(h => `G${h.generation}`);
+      chart.data.datasets[0].data = history.map(h => h.best_fitness);
+      chart.data.datasets[1].data = history.map(() => baselineFitness);
+      chart.update();
+    }
+
+    function addLog(text, breakthrough) {
+      const stream = document.getElementById('logStream');
+      const div = document.createElement('div');
+      div.className = `log-entry ${breakthrough ? 'breakthrough' : ''}`;
+      const time = new Date().toLocaleTimeString();
+      div.innerText = `[${time}] ${text}`;
+      stream.prepend(div);
+    }
+
+    function setRunningStatus(running) {
+      const dot = document.getElementById('statusDot');
+      const txt = document.getElementById('statusText');
+      const btn = document.getElementById('launchBtn');
+      if (running) {
+        dot.className = 'dot running';
+        txt.innerText = 'Evolving Algorithm Candidates...';
+        btn.disabled = true;
+      } else {
+        dot.className = 'dot done';
+        txt.innerText = 'Discovery Finished / Standby';
+        btn.disabled = false;
+      }
+    }
+
+    async function triggerDiscovery() {
+      const prob = document.getElementById('probSelect').value;
+      const gens = parseInt(document.getElementById('genInput').value) || 35;
+      
+      chart.data.labels = [];
+      chart.data.datasets[0].data = [];
+      chart.data.datasets[1].data = [];
+      chart.update();
+      document.getElementById('logStream').innerHTML = '';
+      
+      setRunningStatus(true);
+      addLog(`Initiating Amaura Discovery run for problem: ${prob}...`, false);
+
+      try {
+        const res = await fetch(`/api/start?problem=${prob}&generations=${gens}`, { method: 'POST' });
+        if (!res.ok) {
+          const err = await res.json();
+          alert(`Error: ${err.error || 'Failed to start engine'}`);
+          setRunningStatus(false);
+        }
+      } catch (e) {
+        alert(`Request failed: ${e}`);
+        setRunningStatus(false);
+      }
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      initChart();
+      connectWebSocket();
+    });
+  </script>
+</body>
+</html>

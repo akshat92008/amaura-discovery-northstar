@@ -1,0 +1,26 @@
+{
+  "expert_prompts": {
+    "graph_coloring": {
+      "file": "stage2/prompts/expert_prompt_gc.txt",
+      "sha256": "e4ca59ac3cae0da8b04b4e72d7208c741f5db128ce4114c59ed7d8571c5623c3",
+      "provenance": "Authored by independent subagent de3d36b2-4013-46da-877e-1e1d1c3fb7a0"
+    },
+    "pfsp": {
+      "file": "stage2/prompts/expert_prompt_pfsp.txt",
+      "sha256": "76d36ad70dd036505a21a06f6d3897c863bc79ece735bc87d377f0bedebe20de",
+      "provenance": "Authored by independent subagent de3d36b2-4013-46da-877e-1e1d1c3fb7a0"
+    }
+  },
+  "perspectives": {
+    "graph_coloring": {
+      "file": "stage2/prompts/amaura_perspectives_gc.py",
+      "sha256": "6b0a67be5177d8d11332f91cc2716f0aafc60c519d42113c3b94914f0feedb38",
+      "count": 20
+    },
+    "pfsp": {
+      "file": "stage2/prompts/amaura_perspectives_pfsp.py",
+      "sha256": "c277bb89cdb0dd5cea566c3948b848935430018fb48c441bf28228e919f052dc",
+      "count": 20
+    }
+  }
+}

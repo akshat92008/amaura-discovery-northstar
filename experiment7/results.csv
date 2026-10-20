@@ -1,0 +1,7 @@
+Algorithm,Dev_Total_Colors,Dev_Runtime_ms,Hidden_Total_Colors,Hidden_Runtime_ms,Strategy
+Baseline_Greedy,254,1.63,1205,8.69,pure_greedy
+Baseline_Welsh-Powell,248,1.89,1145,10.48,degree_ordering
+Baseline_DSATUR,223,27.48,1056,176.13,dsatur_saturation
+Baseline_RLF,220,21.09,1021,139.16,rlf_independent_set
+Best_Single_Shot_single_shot_7_random_restart,213,-,997,-,hybrid_random_restart
+Champion_gen9_crossover_e21319,209,-,984,-,hybrid_constructive_and_local_search

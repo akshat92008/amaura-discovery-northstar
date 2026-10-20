@@ -1,0 +1,3 @@
+"""
+Web visualization dashboard package
+"""

@@ -1,0 +1,46 @@
+{
+  "AUDIT_REPORT.md": {
+    "sha256": "73dee17bae6c5b7badb9159e8d07214e5b75c76d7da75d9fc90a92192980e63b",
+    "size_bytes": 12585
+  },
+  "CANDIDATE_SPACE.md": {
+    "sha256": "2ef72e36779340e53572b2cdc028bfb26911e842f9755181790b4551f6c28461",
+    "size_bytes": 7036
+  },
+  "DECISION_MEMO.md": {
+    "sha256": "567e4ab2b29ede0a0cf0f36db77cd66cd781ae33bd02a2c02ab8a63ad4fe9d2f",
+    "size_bytes": 6476
+  },
+  "PROTOCOL.md": {
+    "sha256": "44929e5e01e3eb75f8d7e22f0f0ce1d9b2327130d20ab53d91ca536eb084292e",
+    "size_bytes": 8133
+  },
+  "development_results.json": {
+    "sha256": "037f4a9905981965278b1926f8104017b4d57c0621216195ebfc0280512efa36",
+    "size_bytes": 57956
+  },
+  "final_results.json": {
+    "sha256": "4f3158ae47622828e8c0d8bedc1843d625c3126651cda77bc65d0bf8a556663f",
+    "size_bytes": 13475
+  },
+  "generate_datasets.py": {
+    "sha256": "2fd241565dc66e8bdce005630b14a211deef8f230ab057d1be1982098b57c835",
+    "size_bytes": 4104
+  },
+  "run_records.jsonl": {
+    "sha256": "d411cca149c3c4aad4aabc5aee10f96cfdb5b5ef939c0c8f5132570d840ec359",
+    "size_bytes": 174355
+  },
+  "seed_manifest.json": {
+    "sha256": "f6a854194df16ec153c174ce1f158955b4cfd7659aa3e053681d66f323aec0a9",
+    "size_bytes": 2578
+  },
+  "data/dev_instances.json": {
+    "sha256": "7255707ae4e1f3b4ce3b8b21e831abfdbed7eb938bd60e309e61acaba6414ecc",
+    "size_bytes": 170091
+  },
+  "data/holdout_instances.json": {
+    "sha256": "b714990db09d95492ec4e1a82f8317b177379ac2f4360c7122b20a94d8580090",
+    "size_bytes": 291660
+  }
+}

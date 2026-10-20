@@ -1,0 +1,12 @@
+{
+  "model": "qwen2.5-coder:1.5b",
+  "provider": "ollama",
+  "problem": "online_1d_bin_packing",
+  "bin_capacity": 100.0,
+  "dev_instances": 25,
+  "hidden_instances": 120,
+  "total_calls": 28,
+  "prompt_tokens": 13560,
+  "completion_tokens": 8768,
+  "failed_calls": 0
+}

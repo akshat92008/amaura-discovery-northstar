@@ -1,0 +1,26 @@
+{
+  "palmer": {
+    "is_valid": true,
+    "total_makespan": 552715,
+    "mean_makespan": 4605.96,
+    "runtime_ms": 16.35
+  },
+  "cds": {
+    "is_valid": true,
+    "total_makespan": 547633,
+    "mean_makespan": 4563.61,
+    "runtime_ms": 73.33
+  },
+  "neh": {
+    "is_valid": true,
+    "total_makespan": 531943,
+    "mean_makespan": 4432.86,
+    "runtime_ms": 4629.21
+  },
+  "iterated_greedy": {
+    "is_valid": true,
+    "total_makespan": 530529,
+    "mean_makespan": 4421.07,
+    "runtime_ms": 9985.68
+  }
+}

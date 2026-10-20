@@ -1,0 +1,45 @@
+{
+  "experiment": "pfsp_full_algorithm_pilot_20261018",
+  "timestamp": 1792334965.284724,
+  "model": "nvidia/nvidia/nemotron-3-super-120b-a12b",
+  "total_proposals": 32,
+  "valid_proposals": 1,
+  "validity_rate": 0.0312,
+  "unique_code_hashes": 32,
+  "unique_schedule_phenotypes": 1,
+  "baselines": {
+    "train": {
+      "neh": 84907,
+      "neh_ls": 84593,
+      "natural": 93526
+    },
+    "test": {
+      "neh": 176409,
+      "neh_ls": 176145,
+      "natural": 176820
+    }
+  },
+  "performance": {
+    "best_train_cmax": 84530,
+    "median_train_cmax": 84530,
+    "best_train_gap_vs_neh": -0.00444,
+    "best_test_cmax": null,
+    "median_test_cmax": null,
+    "best_test_gap_vs_neh": null,
+    "candidates_beating_neh_train": 1,
+    "candidates_beating_neh_test": 0,
+    "candidates_beating_neh_ls_train": 1,
+    "candidates_beating_neh_ls_test": 0
+  },
+  "champion": {
+    "proposal_num": 2,
+    "code_hash": "78b488ae102af57e",
+    "code": "def solve(processing_times):\n    \"\"\"\n    Permutation Flow-Shop Scheduling heuristic:\n    - Construct initial solution using NEH with a composite initial order\n      (total processing time descending) and tie-breaking by total flow time.\n    - Apply iterative pairwise exchange local search until no improvement.\n    Returns a permutation of job indices minimizing the makespan.\n    \"\"\"\n    n = len(processing_times)\n    if n == 0:\n        return []\n    m = len(processing_times[0])\n\n    # ----- helper functions -----\n    def makespan_and_flow(seq):\n        \"\"\"Return (makespan, total_flow_time) for a given sequence.\"\"\"\n        dp = [0] * m\n        flow_sum = 0\n        for j in seq:\n            pj = processing_times[j]\n            dp[0] += pj[0]\n            for c in range(1, m):\n                dp[c] = (dp[c-1] if dp[c-1] > dp[c] else dp[c]) + pj[c]\n            flow_sum += dp[-1]          # completion time of job j on last machine\n        return dp[-1], flow_sum\n\n    # ----- NEH construction -----\n    # initial order: descending total processing time (can be extended with other criteria)\n    order = sorted(range(n), key=lambda j: sum(processing_times[j]), reverse=True)\n\n    seq = [order[0]]\n    for idx in range(1, n):\n        job = order[idx]\n        best_pos = 0\n        best_val = float('inf')\n        best_flow = float('inf')\n        # evaluate all insertion positions\n        for pos in range(len(seq) + 1):\n            cand = seq[:pos] + [job] + seq[pos:]\n            makespan_val, flow_val = makespan_and_flow(cand)\n            if makespan_val < best_val or (makespan_val == best_val and flow_val < best_flow):\n                best_val = makespan_val\n                best_flow = flow_val\n                best_pos = pos\n        seq.insert(best_pos, job)\n\n    # ----- local search (pairwise exchange) -----\n    cur_makespan, _ = makespan_and_flow(seq)\n    improved = True\n    while improved:\n        improved = False\n        best_delta = 0\n        best_i = best_j = -1\n        # examine all swaps\n        for i in range(n):\n            for j in range(i + 1, n):\n                seq[i], seq[j] = seq[j], seq[i]\n                new_makespan, _ = makespan_and_flow(seq)\n                delta = new_makespan - cur_makespan\n                if delta < best_delta:   # improvement (negative delta)\n                    best_delta = delta\n                    best_i, best_j = i, j\n                # revert swap\n                seq[i], seq[j] = seq[j], seq[i]\n            if best_delta < 0:   # early exit if we already found an improving swap\n                break\n        if best_delta < 0:\n            # apply the best improving swap\n            seq[best_i], seq[best_j] = seq[best_j], seq[best_i]\n            cur_makespan += best_delta   # update makespan\n            improved = True\n\n    return seq",
+    "train_cmax": 84530,
+    "train_gap": -0.00444,
+    "test_cmax": null,
+    "test_gap": null
+  },
+  "discovery_candidates_count": 0,
+  "replications": []
+}

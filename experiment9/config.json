@@ -1,0 +1,33 @@
+{
+  "experiment_id": "Amaura_Experiment_9",
+  "domain": "Permutation Flow Shop Scheduling (PFSP - Fm | prmu | C_max)",
+  "objective": "Minimize total makespan C_max across unseen test instances",
+  "model": "antigravity/claude-sonnet-4-6",
+  "temperature": 0.6,
+  "max_completion_tokens": 3000,
+  "calls_per_condition_per_trial": 15,
+  "conditions": [
+    "Condition_A_Independent",
+    "Condition_B_NaiveEvolution",
+    "Condition_C_BehavioralDiversity"
+  ],
+  "num_trials": 5,
+  "total_llm_calls": 225,
+  "qd_archive": {
+    "delta_min": 0.20,
+    "max_archive_size": 10,
+    "metric": "Kendall_Tau_Permutation_Distance",
+    "pruning_rule": "pairwise_minimum_distance_remove_worse_score"
+  },
+  "runtime_limits": {
+    "per_instance_soft_limit_ms": 50.0,
+    "per_instance_hard_limit_ms": 300.0
+  },
+  "benchmark_split": {
+    "dev_instances": 30,
+    "dev_seed": 1042,
+    "hidden_instances": 120,
+    "hidden_seed": 70099
+  },
+  "practical_significance_threshold": 0.005
+}

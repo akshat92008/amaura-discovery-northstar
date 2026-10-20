@@ -1,0 +1,9 @@
+Algorithm,Representation,Dev Excess %,Hidden1 Overall %,Hidden1 Total Bins,Hidden2 Overall %,Hidden2 Total Bins,Runtime ms,H1_uniform_%,H1_weibull_%,H1_bimodal_%,H1_triplets_%,H2_pareto_%,H2_gaussian_%,H2_small_dominant_%,H2_quads_%
+Human Baseline (Best Fit),Scalar,8.80%,8.14%,7869,5.82%,8295,66.50,7.73%,4.68%,10.97%,8.80%,4.52%,6.77%,4.28%,7.53%
+Human Baseline (First Fit),Scalar,10.28%,8.75%,7914,6.25%,8329,64.11,9.19%,5.38%,11.02%,8.93%,4.71%,7.87%,4.28%,7.60%
+Human Baseline (Worst Fit),Scalar,21.69%,15.53%,8407,11.80%,8764,69.56,20.15%,14.04%,14.09%,12.87%,7.29%,17.06%,9.86%,9.53%
+Exp #5 Best Single-Shot,Rich State,8.71%,8.11%,7867,5.83%,8296,107.75,7.63%,4.68%,10.97%,8.80%,4.52%,6.85%,4.23%,7.53%
+Exp #5 Population Champion,Rich State,8.19%,8.81%,7918,6.19%,8324,118.01,7.53%,5.44%,11.32%,11.00%,4.39%,7.25%,4.86%,7.93%
+Exp #5 Island A Champion,Rich State,8.19%,8.81%,7918,6.19%,8324,110.88,7.53%,5.44%,11.32%,11.00%,4.39%,7.25%,4.86%,7.93%
+Exp #5 Island B Champion,Rich State,8.19%,8.81%,7918,6.19%,8324,111.45,7.53%,5.44%,11.32%,11.00%,4.39%,7.25%,4.86%,7.93%
+Exp #5 Island C Champion,Rich State,8.19%,8.81%,7918,6.19%,8324,117.12,7.53%,5.44%,11.32%,11.00%,4.39%,7.25%,4.86%,7.93%

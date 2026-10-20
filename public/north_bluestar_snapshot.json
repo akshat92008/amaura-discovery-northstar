@@ -1,0 +1,3177 @@
+{
+  "generated_at_epoch": 1792437164,
+  "generation_wall_time_sec": 5.578,
+  "engine_version": "North BlueStar v2.0.0",
+  "forensic_audit": {
+    "stage4_pilot2_audit": {
+      "found": true,
+      "num_trials": 3,
+      "total_candidates": 300,
+      "ai_total_candidates": 276,
+      "ai_valid_candidates": 232,
+      "ai_validity_rate_pct": 84.06,
+      "ai_matching_best_fit_count": 208,
+      "unique_ai_fitness_scores": 16,
+      "unique_behavioral_phenotypes_in_top_tier": 1,
+      "best_fit_baseline_fitness": 0.031433,
+      "best_discovered_fitness": 0.031433,
+      "mean_delta_dev": 0.0,
+      "gate1_passed": false,
+      "total_api_cost_usd": 10.403418,
+      "discovery_advantage_over_best_fit": 0.0,
+      "root_cause": "Prompt directive in stage4/src/simulator.py line 172 ('Write a concise Python function priority(item, remaining_capacity) that returns a float priority score to minimize leftover space') anchored the LLM into emitting strictly decreasing monotonic transformations of (remaining_capacity - item). Because online bin selection uses argmax over open bins, any strictly decreasing transformation f(rem - item) induces the exact same bin ranking as Best-Fit.",
+      "sample_behavioral_equivalences": [
+        {
+          "variant": "best_fit_seed",
+          "behavioral_hash": "72ced16ef9bdefe0",
+          "identical_to_best_fit": true,
+          "fitness": 0.031433,
+          "code_snippet": "return -(remaining_capacity - item)"
+        },
+        {
+          "variant": "reciprocal_slack",
+          "behavioral_hash": "72ced16ef9bdefe0",
+          "identical_to_best_fit": true,
+          "fitness": 0.031433,
+          "code_snippet": "return 1.0 / (remaining_capacity - item + 1e-5)"
+        },
+        {
+          "variant": "quadratic_slack",
+          "behavioral_hash": "72ced16ef9bdefe0",
+          "identical_to_best_fit": true,
+          "fitness": 0.031433,
+          "code_snippet": "return -((remaining_capacity - item) / bin_capacity) ** 2"
+        },
+        {
+          "variant": "normalized_fill",
+          "behavioral_hash": "72ced16ef9bdefe0",
+          "identical_to_best_fit": true,
+          "fitness": 0.031433,
+          "code_snippet": "return (item - remaining_capacity) / bin_capacity"
+        }
+      ]
+    },
+    "pfsp_780_space_audit": {
+      "total_structural_configurations": 780,
+      "unique_structural_hashes": 780,
+      "unique_canonical_configurations": 660,
+      "semantic_redundancy_collapsed_count": 120,
+      "semantic_redundancy_pct": 15.38,
+      "constructive_base_configs": 60,
+      "distinct_constructive_behavioral_phenotypes": 16,
+      "redundancy_mechanisms": [
+        "When local_search_op == 'none', pivot_rule ('first_improvement' vs 'best_improvement') is dead state (60 redundant configs).",
+        "When priority_rule produces no exact ties on continuous/wide-range processing times, tie_breaker variants collapse to identical initial job orders.",
+        "Different configuration hashes do NOT imply different algorithms unless verified by behavioral trace fingerprinting."
+      ]
+    },
+    "verified_legacy_defects_and_fixes": [
+      {
+        "id": "DEFECT-01",
+        "component": "amaura/evaluators/base.py (Lines 85-186)",
+        "severity": "CRITICAL",
+        "finding": "Test & Generalization Holdout Leakage during search evolution: evaluate_candidate() unconditionally executed 'train', 'test', and 'generalization' splits on every candidate evaluation and exposed test_score/generalization_score on live Candidate objects.",
+        "status": "REMEDIATED",
+        "remediation": "Added include_holdout: bool = False guard in BaseEvaluator.evaluate_candidate() and implemented cryptographic SplitFirewall in north_bluestar/problem.py."
+      },
+      {
+        "id": "DEFECT-02",
+        "component": "amaura/evaluators/cache_policy.py (Lines 127-132)",
+        "severity": "HIGH",
+        "finding": "Silent Baseline Impersonation: when a candidate evict_score() raised an exception (e.g. ZeroDivisionError), simulate_cache() caught it and silently substituted score = -float(meta['recency']) (canonical LRU), crediting broken candidates with LRU's 64.9% hit rate.",
+        "status": "REMEDIATED",
+        "remediation": "Replaced silent LRU fallback with explicit RuntimeError propagation and NaN/Inf rejection so crashing policies are marked invalid."
+      },
+      {
+        "id": "DEFECT-03",
+        "component": "amaura/engine/generator.py (Lines 65-75)",
+        "severity": "HIGH",
+        "finding": "Silent AST Fallback Masquerading as LLM Discovery: when llm_provider='openai' had no valid client or timed out, generate_candidate() silently fell back to _generate_with_ast() while logging LLM run configurations.",
+        "status": "REMEDIATED",
+        "remediation": "Enforced fail-closed RuntimeError when an explicit external LLM provider is configured without credentials."
+      },
+      {
+        "id": "DEFECT-04",
+        "component": "stage3/src/search_engine.py (Lines 356, 388-418, 483)",
+        "severity": "HIGH",
+        "finding": "Broken Multi-Parent Recombination & Markov-1 Generational Amnesia: Arm C combine_parents selected two parent IDs (valid_prior[:2]) but only injected best_prior['code_body'] into the prompt, and overwrote prior_gen_eval_results each generation so earlier elites were forgotten.",
+        "status": "REMEDIATED",
+        "remediation": "Patched stage3/src/search_engine.py to maintain cumulative elite archives across all generations and inject all selected parent code blocks during recombination."
+      },
+      {
+        "id": "DEFECT-05",
+        "component": "amaura/evaluators/base.py (Line 128) & stage2/src/evaluator_pfsp.py",
+        "severity": "CRITICAL",
+        "finding": "Unkillable Timeout Threads & Penalty-Objective Conflation: ThreadPoolExecutor.shutdown(wait=False) leaves timed-out Python loops running forever in background threads; Stage 2 PFSP originally assigned numeric penalty 1e9 to invalid permutations, inverting evolutionary selection.",
+        "status": "REMEDIATED",
+        "remediation": "Built ExecutionSupervisor in north_bluestar/execution.py with OS subprocess isolation and SIGKILL termination, and strictly separated boolean feasibility from scalar objective values."
+      }
+    ]
+  },
+  "preregistered_benchmarks": {
+    "budget_evaluations_per_arm": 24,
+    "seed": 42,
+    "domains": {
+      "pfsp_makespan": {
+        "randomized_search": {
+          "problem_id": "pfsp_makespan",
+          "problem_name": "Permutation Flow-Shop Scheduling (Fm | prmu | Cmax)",
+          "controller_mode": "randomized_search",
+          "termination_reason": "budget_exhausted",
+          "total_dev_evaluations": 24,
+          "total_wall_clock_ms": 833.54,
+          "anchor_baseline_id": "baseline-pfsp-neh",
+          "anchor_baseline_dev_obj": 829.0,
+          "anchor_baseline_holdout_obj": 1006.5,
+          "champion_candidate_id": "pfsp-adff7785",
+          "champion_method_id": "declarative_pfsp_compiler",
+          "champion_strategy_id": "randomized_search",
+          "champion_payload": {
+            "priority_rule": "front_back_weighted",
+            "tie_breaker": "last_machine_desc",
+            "insertion_mode": "earliest_makespan",
+            "local_search_op": "vnd_insert_swap",
+            "pivot_rule": "best_improvement",
+            "perturbation_d": 2,
+            "raw_variant_tag": "default"
+          },
+          "champion_dev_obj": 826.375,
+          "champion_val_obj": 817.5,
+          "champion_holdout_obj": 1001.625,
+          "champion_holdout_improvement_vs_anchor_pct": 0.4844,
+          "champion_holdout_gap_to_bound_pct": 0.4543,
+          "champion_is_proven_optimal_on_holdout": false,
+          "champion_is_repeatable": true,
+          "freeze_certificate_sha256": "f42f4eaa5c4ab890ecf14fa203e910219e8d778d21ebee170e7fc674b8438a6f",
+          "evidence_chain_verified": true,
+          "diversity_summary": {
+            "total_evaluated": 24,
+            "feasible_count": 24,
+            "unique_structural_hashes": 24,
+            "unique_canonical_hashes": 24,
+            "unique_behavioral_phenotypes": 8,
+            "behavioral_diversity_ratio": 0.3333,
+            "duplicate_rejections": {
+              "structural": 0,
+              "canonical": 0,
+              "behavioral": 0
+            }
+          },
+          "learned_operator_effects": {
+            "priority_rule": {
+              "gupta_profile": 0.802083,
+              "front_back_weighted": 1.654762,
+              "cds_stage_best": 2.333333,
+              "total_time_desc": 0.315476,
+              "palmer_slope": -4.885417
+            },
+            "tie_breaker": {
+              "index_asc": -0.363095,
+              "last_machine_desc": 0.677083,
+              "first_machine_asc": -0.516667,
+              "bottleneck_slack": -0.166667
+            },
+            "insertion_mode": {
+              "earliest_makespan": 1.541667,
+              "latest_makespan": 0.35119,
+              "min_machine_idle": -2.363095
+            },
+            "local_search_op": {
+              "vnd_insert_swap": 2.958333,
+              "swap_ls": -0.809524,
+              "insertion_ls": 1.508333,
+              "none": -3.966667
+            },
+            "pivot_rule": {
+              "first_improvement": 0.467949,
+              "best_improvement": -0.629167
+            },
+            "perturbation_d": {
+              "2": 1.583333,
+              "0": -1.46875
+            },
+            "algorithm_name": {
+              "NEH": 0.208333
+            }
+          },
+          "strategy_posteriors": {
+            "baseline_portfolio": {
+              "attempts": 1.0,
+              "feasibility_rate": 1.0,
+              "behavioral_novelty_rate": 1.0,
+              "max_improvement_pct": 0.0,
+              "mean_improvement_pct": 0.0,
+              "ucb_score": 11.3432
+            },
+            "randomized_search": {
+              "attempts": 23.0,
+              "feasibility_rate": 1.0,
+              "behavioral_novelty_rate": 0.3478,
+              "max_improvement_pct": 0.4222,
+              "mean_improvement_pct": -0.0262,
+              "ucb_score": 5.2294
+            }
+          },
+          "baseline_comparison_table": [
+            {
+              "candidate_id": "baseline-pfsp-neh",
+              "algorithm_name": "NEH",
+              "holdout_mean_objective": 1006.5,
+              "holdout_optimality_gap_pct": 0.9512,
+              "holdout_mean_runtime_ms": 0.668,
+              "is_proven_optimal": false
+            },
+            {
+              "candidate_id": "baseline-pfsp-neh-ls",
+              "algorithm_name": "NEH-LS",
+              "holdout_mean_objective": 1001.875,
+              "holdout_optimality_gap_pct": 0.4797,
+              "holdout_mean_runtime_ms": 2.435,
+              "is_proven_optimal": false
+            },
+            {
+              "candidate_id": "baseline-pfsp-palmer",
+              "algorithm_name": "Palmer",
+              "holdout_mean_objective": 1058.0,
+              "holdout_optimality_gap_pct": 6.0983,
+              "holdout_mean_runtime_ms": 0.082,
+              "is_proven_optimal": false
+            },
+            {
+              "candidate_id": "baseline-pfsp-cds",
+              "algorithm_name": "CDS",
+              "holdout_mean_objective": 1018.875,
+              "holdout_optimality_gap_pct": 2.2306,
+              "holdout_mean_runtime_ms": 0.189,
+              "is_proven_optimal": false
+            },
+            {
+              "candidate_id": "baseline-pfsp-bb-ig-exact",
+              "algorithm_name": "BB-IG-Exact",
+              "holdout_mean_objective": 1000.25,
+              "holdout_optimality_gap_pct": 0.31,
+              "holdout_mean_runtime_ms": 13.403,
+              "is_proven_optimal": false
+            }
+          ],
+          "convergence_history": [
+            {
+              "eval_index": 1,
+              "candidate_id": "baseline-pfsp-neh",
+              "strategy_id": "baseline_portfolio",
+              "mean_objective": 829.0,
+              "best_so_far": 829.0,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 2,
+              "candidate_id": "pfsp-466bcd96",
+              "strategy_id": "randomized_search",
+              "mean_objective": 829.75,
+              "best_so_far": 829.0,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 3,
+              "candidate_id": "pfsp-c070ed79",
+              "strategy_id": "randomized_search",
+              "mean_objective": 839.375,
+              "best_so_far": 829.0,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 4,
+              "candidate_id": "pfsp-5e97362a",
+              "strategy_id": "randomized_search",
+              "mean_objective": 828.625,
+              "best_so_far": 828.625,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 5,
+              "candidate_id": "pfsp-9b2e45ad",
+              "strategy_id": "randomized_search",
+              "mean_objective": 826.875,
+              "best_so_far": 826.875,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 6,
+              "candidate_id": "pfsp-d14d8671",
+              "strategy_id": "randomized_search",
+              "mean_objective": 834.375,
+              "best_so_far": 826.875,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 7,
+              "candidate_id": "pfsp-a01174c0",
+              "strategy_id": "randomized_search",
+              "mean_objective": 825.5,
+              "best_so_far": 825.5,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 8,
+              "candidate_id": "pfsp-ec5bcd9d",
+              "strategy_id": "randomized_search",
+              "mean_objective": 825.5,
+              "best_so_far": 825.5,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 9,
+              "candidate_id": "pfsp-4f2d791f",
+              "strategy_id": "randomized_search",
+              "mean_objective": 829.75,
+              "best_so_far": 825.5,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 10,
+              "candidate_id": "pfsp-628746ba",
+              "strategy_id": "randomized_search",
+              "mean_objective": 829.875,
+              "best_so_far": 825.5,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 11,
+              "candidate_id": "pfsp-2c23754d",
+              "strategy_id": "randomized_search",
+              "mean_objective": 826.875,
+              "best_so_far": 825.5,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 12,
+              "candidate_id": "pfsp-cc909796",
+              "strategy_id": "randomized_search",
+              "mean_objective": 830.75,
+              "best_so_far": 825.5,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 13,
+              "candidate_id": "pfsp-36be8d34",
+              "strategy_id": "randomized_search",
+              "mean_objective": 826.375,
+              "best_so_far": 825.5,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 14,
+              "candidate_id": "pfsp-a53886f9",
+              "strategy_id": "randomized_search",
+              "mean_objective": 829.75,
+              "best_so_far": 825.5,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 15,
+              "candidate_id": "pfsp-c3fb1066",
+              "strategy_id": "randomized_search",
+              "mean_objective": 828.875,
+              "best_so_far": 825.5,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 16,
+              "candidate_id": "pfsp-adff7785",
+              "strategy_id": "randomized_search",
+              "mean_objective": 826.375,
+              "best_so_far": 825.5,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 17,
+              "candidate_id": "pfsp-4cc1d083",
+              "strategy_id": "randomized_search",
+              "mean_objective": 827.625,
+              "best_so_far": 825.5,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 18,
+              "candidate_id": "pfsp-ff323389",
+              "strategy_id": "randomized_search",
+              "mean_objective": 826.875,
+              "best_so_far": 825.5,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 19,
+              "candidate_id": "pfsp-e548a4be",
+              "strategy_id": "randomized_search",
+              "mean_objective": 827.125,
+              "best_so_far": 825.5,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 20,
+              "candidate_id": "pfsp-505a5f4a",
+              "strategy_id": "randomized_search",
+              "mean_objective": 826.875,
+              "best_so_far": 825.5,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 21,
+              "candidate_id": "pfsp-28b30653",
+              "strategy_id": "randomized_search",
+              "mean_objective": 829.75,
+              "best_so_far": 825.5,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 22,
+              "candidate_id": "pfsp-3e7b3763",
+              "strategy_id": "randomized_search",
+              "mean_objective": 828.25,
+              "best_so_far": 825.5,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 23,
+              "candidate_id": "pfsp-e27d9ce8",
+              "strategy_id": "randomized_search",
+              "mean_objective": 831.875,
+              "best_so_far": 825.5,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 24,
+              "candidate_id": "pfsp-91221c7c",
+              "strategy_id": "randomized_search",
+              "mean_objective": 835.0,
+              "best_so_far": 825.5,
+              "is_feasible": true
+            }
+          ]
+        },
+        "structured_enumeration": {
+          "problem_id": "pfsp_makespan",
+          "problem_name": "Permutation Flow-Shop Scheduling (Fm | prmu | Cmax)",
+          "controller_mode": "structured_enumeration",
+          "termination_reason": "budget_exhausted",
+          "total_dev_evaluations": 24,
+          "total_wall_clock_ms": 1406.27,
+          "anchor_baseline_id": "baseline-pfsp-neh",
+          "anchor_baseline_dev_obj": 829.0,
+          "anchor_baseline_holdout_obj": 1006.5,
+          "champion_candidate_id": "pfsp-ea6b1174",
+          "champion_method_id": "declarative_pfsp_compiler",
+          "champion_strategy_id": "structured_enumeration",
+          "champion_payload": {
+            "priority_rule": "gupta_profile",
+            "tie_breaker": "bottleneck_slack",
+            "insertion_mode": "earliest_makespan",
+            "local_search_op": "vnd_insert_swap",
+            "pivot_rule": "best_improvement",
+            "perturbation_d": 2,
+            "raw_variant_tag": "vnd_bi_2"
+          },
+          "champion_dev_obj": 825.5,
+          "champion_val_obj": 822.333333,
+          "champion_holdout_obj": 1000.375,
+          "champion_holdout_improvement_vs_anchor_pct": 0.6085,
+          "champion_holdout_gap_to_bound_pct": 0.3215,
+          "champion_is_proven_optimal_on_holdout": false,
+          "champion_is_repeatable": true,
+          "freeze_certificate_sha256": "583baa777f46a06e8a4075e5e741488ff6ecd40fc32eeb5c674ec9818025ce6f",
+          "evidence_chain_verified": true,
+          "diversity_summary": {
+            "total_evaluated": 24,
+            "feasible_count": 24,
+            "unique_structural_hashes": 24,
+            "unique_canonical_hashes": 24,
+            "unique_behavioral_phenotypes": 9,
+            "behavioral_diversity_ratio": 0.375,
+            "duplicate_rejections": {
+              "structural": 0,
+              "canonical": 0,
+              "behavioral": 439
+            }
+          },
+          "learned_operator_effects": {
+            "priority_rule": {
+              "gupta_profile": 2.0625,
+              "cds_stage_best": 0.020833,
+              "total_time_desc": -0.5875,
+              "front_back_weighted": -0.6875
+            },
+            "tie_breaker": {
+              "bottleneck_slack": 0.378676,
+              "index_asc": -0.5875,
+              "first_machine_asc": -2.0625
+            },
+            "insertion_mode": {
+              "earliest_makespan": 0.130682,
+              "latest_makespan": 0.0
+            },
+            "local_search_op": {
+              "insertion_ls": 0.46875,
+              "vnd_insert_swap": 0.479167,
+              "swap_ls": -1.4125
+            },
+            "pivot_rule": {
+              "first_improvement": -0.208333,
+              "best_improvement": 0.357955
+            },
+            "perturbation_d": {
+              "2": 0.25,
+              "0": -0.229167
+            },
+            "algorithm_name": {
+              "NEH": -1.4375
+            }
+          },
+          "strategy_posteriors": {
+            "baseline_portfolio": {
+              "attempts": 1.0,
+              "feasibility_rate": 1.0,
+              "behavioral_novelty_rate": 1.0,
+              "max_improvement_pct": 0.0,
+              "mean_improvement_pct": 0.0,
+              "ucb_score": 11.3432
+            },
+            "structured_enumeration": {
+              "attempts": 23.0,
+              "feasibility_rate": 1.0,
+              "behavioral_novelty_rate": 0.3478,
+              "max_improvement_pct": 0.4222,
+              "mean_improvement_pct": 0.1809,
+              "ucb_score": 5.2294
+            }
+          },
+          "baseline_comparison_table": [
+            {
+              "candidate_id": "baseline-pfsp-neh",
+              "algorithm_name": "NEH",
+              "holdout_mean_objective": 1006.5,
+              "holdout_optimality_gap_pct": 0.9512,
+              "holdout_mean_runtime_ms": 0.699,
+              "is_proven_optimal": false
+            },
+            {
+              "candidate_id": "baseline-pfsp-neh-ls",
+              "algorithm_name": "NEH-LS",
+              "holdout_mean_objective": 1001.875,
+              "holdout_optimality_gap_pct": 0.4797,
+              "holdout_mean_runtime_ms": 2.527,
+              "is_proven_optimal": false
+            },
+            {
+              "candidate_id": "baseline-pfsp-palmer",
+              "algorithm_name": "Palmer",
+              "holdout_mean_objective": 1058.0,
+              "holdout_optimality_gap_pct": 6.0983,
+              "holdout_mean_runtime_ms": 0.081,
+              "is_proven_optimal": false
+            },
+            {
+              "candidate_id": "baseline-pfsp-cds",
+              "algorithm_name": "CDS",
+              "holdout_mean_objective": 1018.875,
+              "holdout_optimality_gap_pct": 2.2306,
+              "holdout_mean_runtime_ms": 0.182,
+              "is_proven_optimal": false
+            },
+            {
+              "candidate_id": "baseline-pfsp-bb-ig-exact",
+              "algorithm_name": "BB-IG-Exact",
+              "holdout_mean_objective": 1000.25,
+              "holdout_optimality_gap_pct": 0.31,
+              "holdout_mean_runtime_ms": 13.386,
+              "is_proven_optimal": false
+            }
+          ],
+          "convergence_history": [
+            {
+              "eval_index": 1,
+              "candidate_id": "baseline-pfsp-neh",
+              "strategy_id": "baseline_portfolio",
+              "mean_objective": 829.0,
+              "best_so_far": 829.0,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 2,
+              "candidate_id": "pfsp-4fa19298",
+              "strategy_id": "structured_enumeration",
+              "mean_objective": 826.875,
+              "best_so_far": 826.875,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 3,
+              "candidate_id": "pfsp-c4377694",
+              "strategy_id": "structured_enumeration",
+              "mean_objective": 826.75,
+              "best_so_far": 826.75,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 4,
+              "candidate_id": "pfsp-2c4f4f87",
+              "strategy_id": "structured_enumeration",
+              "mean_objective": 826.75,
+              "best_so_far": 826.75,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 5,
+              "candidate_id": "pfsp-91a5742d",
+              "strategy_id": "structured_enumeration",
+              "mean_objective": 826.875,
+              "best_so_far": 826.75,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 6,
+              "candidate_id": "pfsp-2da6b13e",
+              "strategy_id": "structured_enumeration",
+              "mean_objective": 826.875,
+              "best_so_far": 826.75,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 7,
+              "candidate_id": "pfsp-f08f3dad",
+              "strategy_id": "structured_enumeration",
+              "mean_objective": 826.875,
+              "best_so_far": 826.75,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 8,
+              "candidate_id": "pfsp-fb2d0a6f",
+              "strategy_id": "structured_enumeration",
+              "mean_objective": 825.5,
+              "best_so_far": 825.5,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 9,
+              "candidate_id": "pfsp-61959ce3",
+              "strategy_id": "structured_enumeration",
+              "mean_objective": 825.5,
+              "best_so_far": 825.5,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 10,
+              "candidate_id": "pfsp-ea6b1174",
+              "strategy_id": "structured_enumeration",
+              "mean_objective": 825.5,
+              "best_so_far": 825.5,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 11,
+              "candidate_id": "pfsp-52016f78",
+              "strategy_id": "structured_enumeration",
+              "mean_objective": 826.875,
+              "best_so_far": 825.5,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 12,
+              "candidate_id": "pfsp-e9bc9bd6",
+              "strategy_id": "structured_enumeration",
+              "mean_objective": 826.875,
+              "best_so_far": 825.5,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 13,
+              "candidate_id": "pfsp-5e53d208",
+              "strategy_id": "structured_enumeration",
+              "mean_objective": 826.875,
+              "best_so_far": 825.5,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 14,
+              "candidate_id": "pfsp-f7cb8c27",
+              "strategy_id": "structured_enumeration",
+              "mean_objective": 828.25,
+              "best_so_far": 825.5,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 15,
+              "candidate_id": "pfsp-a7e2b8cd",
+              "strategy_id": "structured_enumeration",
+              "mean_objective": 828.25,
+              "best_so_far": 825.5,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 16,
+              "candidate_id": "pfsp-63ea9dfd",
+              "strategy_id": "structured_enumeration",
+              "mean_objective": 828.25,
+              "best_so_far": 825.5,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 17,
+              "candidate_id": "pfsp-dde76a2d",
+              "strategy_id": "structured_enumeration",
+              "mean_objective": 828.25,
+              "best_so_far": 825.5,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 18,
+              "candidate_id": "pfsp-171bd852",
+              "strategy_id": "structured_enumeration",
+              "mean_objective": 828.25,
+              "best_so_far": 825.5,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 19,
+              "candidate_id": "pfsp-f97e9dc9",
+              "strategy_id": "structured_enumeration",
+              "mean_objective": 828.25,
+              "best_so_far": 825.5,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 20,
+              "candidate_id": "pfsp-a1a956a3",
+              "strategy_id": "structured_enumeration",
+              "mean_objective": 829.625,
+              "best_so_far": 825.5,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 21,
+              "candidate_id": "pfsp-baa9080b",
+              "strategy_id": "structured_enumeration",
+              "mean_objective": 829.625,
+              "best_so_far": 825.5,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 22,
+              "candidate_id": "pfsp-413e7a88",
+              "strategy_id": "structured_enumeration",
+              "mean_objective": 829.625,
+              "best_so_far": 825.5,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 23,
+              "candidate_id": "pfsp-2f1a06c0",
+              "strategy_id": "structured_enumeration",
+              "mean_objective": 828.0,
+              "best_so_far": 825.5,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 24,
+              "candidate_id": "pfsp-a01d1922",
+              "strategy_id": "structured_enumeration",
+              "mean_objective": 828.0,
+              "best_so_far": 825.5,
+              "is_feasible": true
+            }
+          ]
+        },
+        "local_coordinate_search": {
+          "problem_id": "pfsp_makespan",
+          "problem_name": "Permutation Flow-Shop Scheduling (Fm | prmu | Cmax)",
+          "controller_mode": "local_coordinate_search",
+          "termination_reason": "diminishing_returns_stagnation_16",
+          "total_dev_evaluations": 13,
+          "total_wall_clock_ms": 924.67,
+          "anchor_baseline_id": "baseline-pfsp-neh",
+          "anchor_baseline_dev_obj": 829.0,
+          "anchor_baseline_holdout_obj": 1006.5,
+          "champion_candidate_id": "pfsp-fd78186a",
+          "champion_method_id": "declarative_pfsp_compiler",
+          "champion_strategy_id": "randomized_search",
+          "champion_payload": {
+            "priority_rule": "palmer_slope",
+            "tie_breaker": "first_machine_asc",
+            "insertion_mode": "latest_makespan",
+            "local_search_op": "insertion_ls",
+            "pivot_rule": "first_improvement",
+            "perturbation_d": 2,
+            "raw_variant_tag": "default"
+          },
+          "champion_dev_obj": 826.25,
+          "champion_val_obj": 815.666667,
+          "champion_holdout_obj": 1003.625,
+          "champion_holdout_improvement_vs_anchor_pct": 0.2856,
+          "champion_holdout_gap_to_bound_pct": 0.6606,
+          "champion_is_proven_optimal_on_holdout": false,
+          "champion_is_repeatable": true,
+          "freeze_certificate_sha256": "d5ffb635198aabb6eb6f94613e54fe4f40dbe33785cb7409ca10284b16b11c33",
+          "evidence_chain_verified": true,
+          "diversity_summary": {
+            "total_evaluated": 13,
+            "feasible_count": 13,
+            "unique_structural_hashes": 13,
+            "unique_canonical_hashes": 13,
+            "unique_behavioral_phenotypes": 10,
+            "behavioral_diversity_ratio": 0.7692,
+            "duplicate_rejections": {
+              "structural": 84,
+              "canonical": 0,
+              "behavioral": 244
+            }
+          },
+          "learned_operator_effects": {
+            "priority_rule": {
+              "palmer_slope": -0.844952,
+              "cds_stage_best": 1.49359,
+              "front_back_weighted": 0.826923
+            },
+            "tie_breaker": {
+              "first_machine_asc": 0.051923,
+              "index_asc": 0.826923,
+              "last_machine_desc": -2.798077
+            },
+            "insertion_mode": {
+              "latest_makespan": -0.298077,
+              "min_machine_idle": 0.347756,
+              "earliest_makespan": -1.173077
+            },
+            "local_search_op": {
+              "insertion_ls": 3.483173,
+              "swap_ls": -1.298077,
+              "none": -2.298077
+            },
+            "pivot_rule": {
+              "first_improvement": 0.122378,
+              "best_improvement": -2.798077
+            },
+            "perturbation_d": {
+              "2": 0.122378,
+              "0": -2.798077
+            },
+            "algorithm_name": {
+              "NEH": 1.451923
+            }
+          },
+          "strategy_posteriors": {
+            "baseline_portfolio": {
+              "attempts": 1.0,
+              "feasibility_rate": 1.0,
+              "behavioral_novelty_rate": 1.0,
+              "max_improvement_pct": 0.0,
+              "mean_improvement_pct": 0.0,
+              "ucb_score": 10.7435
+            },
+            "randomized_search": {
+              "attempts": 3.0,
+              "feasibility_rate": 1.0,
+              "behavioral_novelty_rate": 0.6667,
+              "max_improvement_pct": 0.3317,
+              "mean_improvement_pct": -0.0855,
+              "ucb_score": 7.8152
+            },
+            "local_coordinate_search": {
+              "attempts": 9.0,
+              "feasibility_rate": 1.0,
+              "behavioral_novelty_rate": 0.7778,
+              "max_improvement_pct": 0.3016,
+              "mean_improvement_pct": -0.2245,
+              "ucb_score": 6.6209
+            }
+          },
+          "baseline_comparison_table": [
+            {
+              "candidate_id": "baseline-pfsp-neh",
+              "algorithm_name": "NEH",
+              "holdout_mean_objective": 1006.5,
+              "holdout_optimality_gap_pct": 0.9512,
+              "holdout_mean_runtime_ms": 0.657,
+              "is_proven_optimal": false
+            },
+            {
+              "candidate_id": "baseline-pfsp-neh-ls",
+              "algorithm_name": "NEH-LS",
+              "holdout_mean_objective": 1001.875,
+              "holdout_optimality_gap_pct": 0.4797,
+              "holdout_mean_runtime_ms": 2.391,
+              "is_proven_optimal": false
+            },
+            {
+              "candidate_id": "baseline-pfsp-palmer",
+              "algorithm_name": "Palmer",
+              "holdout_mean_objective": 1058.0,
+              "holdout_optimality_gap_pct": 6.0983,
+              "holdout_mean_runtime_ms": 0.082,
+              "is_proven_optimal": false
+            },
+            {
+              "candidate_id": "baseline-pfsp-cds",
+              "algorithm_name": "CDS",
+              "holdout_mean_objective": 1018.875,
+              "holdout_optimality_gap_pct": 2.2306,
+              "holdout_mean_runtime_ms": 0.184,
+              "is_proven_optimal": false
+            },
+            {
+              "candidate_id": "baseline-pfsp-bb-ig-exact",
+              "algorithm_name": "BB-IG-Exact",
+              "holdout_mean_objective": 1000.25,
+              "holdout_optimality_gap_pct": 0.31,
+              "holdout_mean_runtime_ms": 12.849,
+              "is_proven_optimal": false
+            }
+          ],
+          "convergence_history": [
+            {
+              "eval_index": 1,
+              "candidate_id": "baseline-pfsp-neh",
+              "strategy_id": "baseline_portfolio",
+              "mean_objective": 829.0,
+              "best_so_far": 829.0,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 2,
+              "candidate_id": "pfsp-fd78186a",
+              "strategy_id": "randomized_search",
+              "mean_objective": 826.25,
+              "best_so_far": 826.25,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 3,
+              "candidate_id": "pfsp-b0cb0dc4",
+              "strategy_id": "randomized_search",
+              "mean_objective": 829.625,
+              "best_so_far": 826.25,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 4,
+              "candidate_id": "pfsp-35ecb9b7",
+              "strategy_id": "randomized_search",
+              "mean_objective": 833.25,
+              "best_so_far": 826.25,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 5,
+              "candidate_id": "pfsp-4612eb1b",
+              "strategy_id": "local_coordinate_search",
+              "mean_objective": 828.25,
+              "best_so_far": 826.25,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 6,
+              "candidate_id": "pfsp-ea5fcfc6",
+              "strategy_id": "local_coordinate_search",
+              "mean_objective": 826.5,
+              "best_so_far": 826.25,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 7,
+              "candidate_id": "pfsp-4b89834f",
+              "strategy_id": "local_coordinate_search",
+              "mean_objective": 833.875,
+              "best_so_far": 826.25,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 8,
+              "candidate_id": "pfsp-15f46b04",
+              "strategy_id": "local_coordinate_search",
+              "mean_objective": 833.0,
+              "best_so_far": 826.25,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 9,
+              "candidate_id": "pfsp-9b8dd123",
+              "strategy_id": "local_coordinate_search",
+              "mean_objective": 826.875,
+              "best_so_far": 826.25,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 10,
+              "candidate_id": "pfsp-21d05696",
+              "strategy_id": "local_coordinate_search",
+              "mean_objective": 834.25,
+              "best_so_far": 826.25,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 11,
+              "candidate_id": "pfsp-68803b22",
+              "strategy_id": "local_coordinate_search",
+              "mean_objective": 831.0,
+              "best_so_far": 826.25,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 12,
+              "candidate_id": "pfsp-1eeb2e8a",
+              "strategy_id": "local_coordinate_search",
+              "mean_objective": 829.0,
+              "best_so_far": 826.25,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 13,
+              "candidate_id": "pfsp-3fde46a3",
+              "strategy_id": "local_coordinate_search",
+              "mean_objective": 835.0,
+              "best_so_far": 826.25,
+              "is_feasible": true
+            }
+          ]
+        },
+        "surrogate_ucb": {
+          "problem_id": "pfsp_makespan",
+          "problem_name": "Permutation Flow-Shop Scheduling (Fm | prmu | Cmax)",
+          "controller_mode": "surrogate_ucb",
+          "termination_reason": "diminishing_returns_stagnation_17",
+          "total_dev_evaluations": 22,
+          "total_wall_clock_ms": 1133.84,
+          "anchor_baseline_id": "baseline-pfsp-neh",
+          "anchor_baseline_dev_obj": 829.0,
+          "anchor_baseline_holdout_obj": 1006.5,
+          "champion_candidate_id": "pfsp-a01174c0",
+          "champion_method_id": "declarative_pfsp_compiler",
+          "champion_strategy_id": "randomized_search",
+          "champion_payload": {
+            "priority_rule": "gupta_profile",
+            "tie_breaker": "index_asc",
+            "insertion_mode": "earliest_makespan",
+            "local_search_op": "vnd_insert_swap",
+            "pivot_rule": "first_improvement",
+            "perturbation_d": 2,
+            "raw_variant_tag": "default"
+          },
+          "champion_dev_obj": 825.5,
+          "champion_val_obj": 822.333333,
+          "champion_holdout_obj": 1002.375,
+          "champion_holdout_improvement_vs_anchor_pct": 0.4098,
+          "champion_holdout_gap_to_bound_pct": 0.5281,
+          "champion_is_proven_optimal_on_holdout": false,
+          "champion_is_repeatable": true,
+          "freeze_certificate_sha256": "e8e83390e68ab9330d6e0146fc1770c011ebd72e7503322b272e018ba4bccfe1",
+          "evidence_chain_verified": true,
+          "diversity_summary": {
+            "total_evaluated": 22,
+            "feasible_count": 22,
+            "unique_structural_hashes": 22,
+            "unique_canonical_hashes": 22,
+            "unique_behavioral_phenotypes": 12,
+            "behavioral_diversity_ratio": 0.5455,
+            "duplicate_rejections": {
+              "structural": 0,
+              "canonical": 0,
+              "behavioral": 288
+            }
+          },
+          "learned_operator_effects": {
+            "priority_rule": {
+              "gupta_profile": 1.209091,
+              "front_back_weighted": 2.534091,
+              "cds_stage_best": 0.690341,
+              "total_time_desc": -0.340909,
+              "palmer_slope": -7.715909
+            },
+            "tie_breaker": {
+              "last_machine_desc": 0.659091,
+              "index_asc": -1.653409,
+              "first_machine_asc": 0.459091,
+              "bottleneck_slack": -0.278409
+            },
+            "insertion_mode": {
+              "earliest_makespan": 1.091783,
+              "latest_makespan": -0.340909,
+              "min_machine_idle": -3.247159
+            },
+            "local_search_op": {
+              "insertion_ls": 2.190341,
+              "vnd_insert_swap": 2.934091,
+              "swap_ls": -1.035354,
+              "none": -4.757576
+            },
+            "pivot_rule": {
+              "first_improvement": 0.277146,
+              "best_improvement": -1.715909
+            },
+            "perturbation_d": {
+              "2": 1.921591,
+              "0": -1.761364
+            },
+            "algorithm_name": {
+              "NEH": 0.159091
+            }
+          },
+          "strategy_posteriors": {
+            "baseline_portfolio": {
+              "attempts": 1.0,
+              "feasibility_rate": 1.0,
+              "behavioral_novelty_rate": 1.0,
+              "max_improvement_pct": 0.0,
+              "mean_improvement_pct": 0.0,
+              "ucb_score": 11.2605
+            },
+            "randomized_search": {
+              "attempts": 12.0,
+              "feasibility_rate": 1.0,
+              "behavioral_novelty_rate": 0.5833,
+              "max_improvement_pct": 0.4222,
+              "mean_improvement_pct": -0.0566,
+              "ucb_score": 6.185
+            },
+            "surrogate_ucb": {
+              "attempts": 9.0,
+              "feasibility_rate": 1.0,
+              "behavioral_novelty_rate": 0.6667,
+              "max_improvement_pct": 0.4222,
+              "mean_improvement_pct": 0.0285,
+              "ucb_score": 6.6313
+            }
+          },
+          "baseline_comparison_table": [
+            {
+              "candidate_id": "baseline-pfsp-neh",
+              "algorithm_name": "NEH",
+              "holdout_mean_objective": 1006.5,
+              "holdout_optimality_gap_pct": 0.9512,
+              "holdout_mean_runtime_ms": 0.719,
+              "is_proven_optimal": false
+            },
+            {
+              "candidate_id": "baseline-pfsp-neh-ls",
+              "algorithm_name": "NEH-LS",
+              "holdout_mean_objective": 1001.875,
+              "holdout_optimality_gap_pct": 0.4797,
+              "holdout_mean_runtime_ms": 2.48,
+              "is_proven_optimal": false
+            },
+            {
+              "candidate_id": "baseline-pfsp-palmer",
+              "algorithm_name": "Palmer",
+              "holdout_mean_objective": 1058.0,
+              "holdout_optimality_gap_pct": 6.0983,
+              "holdout_mean_runtime_ms": 0.082,
+              "is_proven_optimal": false
+            },
+            {
+              "candidate_id": "baseline-pfsp-cds",
+              "algorithm_name": "CDS",
+              "holdout_mean_objective": 1018.875,
+              "holdout_optimality_gap_pct": 2.2306,
+              "holdout_mean_runtime_ms": 0.183,
+              "is_proven_optimal": false
+            },
+            {
+              "candidate_id": "baseline-pfsp-bb-ig-exact",
+              "algorithm_name": "BB-IG-Exact",
+              "holdout_mean_objective": 1000.25,
+              "holdout_optimality_gap_pct": 0.31,
+              "holdout_mean_runtime_ms": 13.49,
+              "is_proven_optimal": false
+            }
+          ],
+          "convergence_history": [
+            {
+              "eval_index": 1,
+              "candidate_id": "baseline-pfsp-neh",
+              "strategy_id": "baseline_portfolio",
+              "mean_objective": 829.0,
+              "best_so_far": 829.0,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 2,
+              "candidate_id": "pfsp-466bcd96",
+              "strategy_id": "randomized_search",
+              "mean_objective": 829.75,
+              "best_so_far": 829.0,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 3,
+              "candidate_id": "pfsp-c070ed79",
+              "strategy_id": "randomized_search",
+              "mean_objective": 839.375,
+              "best_so_far": 829.0,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 4,
+              "candidate_id": "pfsp-5e97362a",
+              "strategy_id": "randomized_search",
+              "mean_objective": 828.625,
+              "best_so_far": 828.625,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 5,
+              "candidate_id": "pfsp-78c07134",
+              "strategy_id": "surrogate_ucb",
+              "mean_objective": 825.5,
+              "best_so_far": 825.5,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 6,
+              "candidate_id": "pfsp-be154c8d",
+              "strategy_id": "surrogate_ucb",
+              "mean_objective": 826.875,
+              "best_so_far": 825.5,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 7,
+              "candidate_id": "pfsp-4fa19298",
+              "strategy_id": "surrogate_ucb",
+              "mean_objective": 826.875,
+              "best_so_far": 825.5,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 8,
+              "candidate_id": "pfsp-9b2e45ad",
+              "strategy_id": "randomized_search",
+              "mean_objective": 826.875,
+              "best_so_far": 825.5,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 9,
+              "candidate_id": "pfsp-d14d8671",
+              "strategy_id": "randomized_search",
+              "mean_objective": 834.375,
+              "best_so_far": 825.5,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 10,
+              "candidate_id": "pfsp-a01174c0",
+              "strategy_id": "randomized_search",
+              "mean_objective": 825.5,
+              "best_so_far": 825.5,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 11,
+              "candidate_id": "pfsp-4a791c7e",
+              "strategy_id": "surrogate_ucb",
+              "mean_objective": 829.625,
+              "best_so_far": 825.5,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 12,
+              "candidate_id": "pfsp-413e7a88",
+              "strategy_id": "surrogate_ucb",
+              "mean_objective": 829.625,
+              "best_so_far": 825.5,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 13,
+              "candidate_id": "pfsp-a1a956a3",
+              "strategy_id": "surrogate_ucb",
+              "mean_objective": 829.625,
+              "best_so_far": 825.5,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 14,
+              "candidate_id": "pfsp-ec5bcd9d",
+              "strategy_id": "randomized_search",
+              "mean_objective": 825.5,
+              "best_so_far": 825.5,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 15,
+              "candidate_id": "pfsp-4f2d791f",
+              "strategy_id": "randomized_search",
+              "mean_objective": 829.75,
+              "best_so_far": 825.5,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 16,
+              "candidate_id": "pfsp-628746ba",
+              "strategy_id": "randomized_search",
+              "mean_objective": 829.875,
+              "best_so_far": 825.5,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 17,
+              "candidate_id": "pfsp-81d2e6ae",
+              "strategy_id": "surrogate_ucb",
+              "mean_objective": 832.5,
+              "best_so_far": 825.5,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 18,
+              "candidate_id": "pfsp-66407f89",
+              "strategy_id": "surrogate_ucb",
+              "mean_objective": 826.875,
+              "best_so_far": 825.5,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 19,
+              "candidate_id": "pfsp-ad21e0e7",
+              "strategy_id": "surrogate_ucb",
+              "mean_objective": 831.375,
+              "best_so_far": 825.5,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 20,
+              "candidate_id": "pfsp-2c23754d",
+              "strategy_id": "randomized_search",
+              "mean_objective": 826.875,
+              "best_so_far": 825.5,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 21,
+              "candidate_id": "pfsp-cc909796",
+              "strategy_id": "randomized_search",
+              "mean_objective": 830.75,
+              "best_so_far": 825.5,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 22,
+              "candidate_id": "pfsp-36be8d34",
+              "strategy_id": "randomized_search",
+              "mean_objective": 826.375,
+              "best_so_far": 825.5,
+              "is_feasible": true
+            }
+          ]
+        },
+        "north_bluestar_portfolio": {
+          "problem_id": "pfsp_makespan",
+          "problem_name": "Permutation Flow-Shop Scheduling (Fm | prmu | Cmax)",
+          "controller_mode": "north_bluestar_portfolio",
+          "termination_reason": "diminishing_returns_stagnation_16",
+          "total_dev_evaluations": 13,
+          "total_wall_clock_ms": 599.45,
+          "anchor_baseline_id": "baseline-pfsp-neh",
+          "anchor_baseline_dev_obj": 829.0,
+          "anchor_baseline_holdout_obj": 1006.5,
+          "champion_candidate_id": "pfsp-dba5d610",
+          "champion_method_id": "declarative_pfsp_compiler",
+          "champion_strategy_id": "local_coordinate_search",
+          "champion_payload": {
+            "priority_rule": "total_time_desc",
+            "tie_breaker": "bottleneck_slack",
+            "insertion_mode": "earliest_makespan",
+            "local_search_op": "insertion_ls",
+            "pivot_rule": "best_improvement",
+            "perturbation_d": 2,
+            "raw_variant_tag": "default"
+          },
+          "champion_dev_obj": 826.375,
+          "champion_val_obj": 817.5,
+          "champion_holdout_obj": 1000.25,
+          "champion_holdout_improvement_vs_anchor_pct": 0.621,
+          "champion_holdout_gap_to_bound_pct": 0.31,
+          "champion_is_proven_optimal_on_holdout": false,
+          "champion_is_repeatable": true,
+          "freeze_certificate_sha256": "83c4f18a511fdab6b43df558a28215075b2bf7fcdbfa75c001083cda66d44e84",
+          "evidence_chain_verified": true,
+          "diversity_summary": {
+            "total_evaluated": 13,
+            "feasible_count": 13,
+            "unique_structural_hashes": 13,
+            "unique_canonical_hashes": 13,
+            "unique_behavioral_phenotypes": 9,
+            "behavioral_diversity_ratio": 0.6923,
+            "duplicate_rejections": {
+              "structural": 5,
+              "canonical": 1,
+              "behavioral": 12
+            }
+          },
+          "learned_operator_effects": {
+            "priority_rule": {
+              "gupta_profile": 0.778846,
+              "total_time_desc": 1.966346,
+              "front_back_weighted": 1.966346,
+              "cds_stage_best": 1.747596,
+              "palmer_slope": -8.721154
+            },
+            "tie_breaker": {
+              "bottleneck_slack": 2.153846,
+              "last_machine_desc": -6.804487
+            },
+            "insertion_mode": {
+              "earliest_makespan": 3.591346,
+              "min_machine_idle": -2.896154,
+              "latest_makespan": -8.096154
+            },
+            "local_search_op": {
+              "insertion_ls": 3.653846,
+              "vnd_insert_swap": 3.278846,
+              "none": -3.762821
+            },
+            "pivot_rule": {
+              "best_improvement": 3.678846,
+              "first_improvement": -2.774725
+            },
+            "perturbation_d": {
+              "2": 3.591346,
+              "0": -3.762821
+            },
+            "algorithm_name": {
+              "NEH": 1.028846
+            }
+          },
+          "strategy_posteriors": {
+            "baseline_portfolio": {
+              "attempts": 1.0,
+              "feasibility_rate": 1.0,
+              "behavioral_novelty_rate": 1.0,
+              "max_improvement_pct": 0.0,
+              "mean_improvement_pct": 0.0,
+              "ucb_score": 10.7435
+            },
+            "structured_enumeration": {
+              "attempts": 3.0,
+              "feasibility_rate": 1.0,
+              "behavioral_novelty_rate": 0.3333,
+              "max_improvement_pct": 0.2714,
+              "mean_improvement_pct": 0.2664,
+              "ucb_score": 7.1184
+            },
+            "surrogate_ucb": {
+              "attempts": 3.0,
+              "feasibility_rate": 1.0,
+              "behavioral_novelty_rate": 1.0,
+              "max_improvement_pct": -0.4825,
+              "mean_improvement_pct": -0.9449,
+              "ucb_score": 8.316
+            },
+            "local_coordinate_search": {
+              "attempts": 3.0,
+              "feasibility_rate": 1.0,
+              "behavioral_novelty_rate": 0.6667,
+              "max_improvement_pct": 0.4222,
+              "mean_improvement_pct": 0.3518,
+              "ucb_score": 7.8605
+            },
+            "operator_recombination": {
+              "attempts": 3.0,
+              "feasibility_rate": 1.0,
+              "behavioral_novelty_rate": 0.6667,
+              "max_improvement_pct": -0.0905,
+              "mean_improvement_pct": -0.2111,
+              "ucb_score": 7.6494
+            }
+          },
+          "baseline_comparison_table": [
+            {
+              "candidate_id": "baseline-pfsp-neh",
+              "algorithm_name": "NEH",
+              "holdout_mean_objective": 1006.5,
+              "holdout_optimality_gap_pct": 0.9512,
+              "holdout_mean_runtime_ms": 0.661,
+              "is_proven_optimal": false
+            },
+            {
+              "candidate_id": "baseline-pfsp-neh-ls",
+              "algorithm_name": "NEH-LS",
+              "holdout_mean_objective": 1001.875,
+              "holdout_optimality_gap_pct": 0.4797,
+              "holdout_mean_runtime_ms": 2.403,
+              "is_proven_optimal": false
+            },
+            {
+              "candidate_id": "baseline-pfsp-palmer",
+              "algorithm_name": "Palmer",
+              "holdout_mean_objective": 1058.0,
+              "holdout_optimality_gap_pct": 6.0983,
+              "holdout_mean_runtime_ms": 0.081,
+              "is_proven_optimal": false
+            },
+            {
+              "candidate_id": "baseline-pfsp-cds",
+              "algorithm_name": "CDS",
+              "holdout_mean_objective": 1018.875,
+              "holdout_optimality_gap_pct": 2.2306,
+              "holdout_mean_runtime_ms": 0.184,
+              "is_proven_optimal": false
+            },
+            {
+              "candidate_id": "baseline-pfsp-bb-ig-exact",
+              "algorithm_name": "BB-IG-Exact",
+              "holdout_mean_objective": 1000.25,
+              "holdout_optimality_gap_pct": 0.31,
+              "holdout_mean_runtime_ms": 12.935,
+              "is_proven_optimal": false
+            }
+          ],
+          "convergence_history": [
+            {
+              "eval_index": 1,
+              "candidate_id": "baseline-pfsp-neh",
+              "strategy_id": "baseline_portfolio",
+              "mean_objective": 829.0,
+              "best_so_far": 829.0,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 2,
+              "candidate_id": "pfsp-4fa19298",
+              "strategy_id": "structured_enumeration",
+              "mean_objective": 826.875,
+              "best_so_far": 826.875,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 3,
+              "candidate_id": "pfsp-c4377694",
+              "strategy_id": "structured_enumeration",
+              "mean_objective": 826.75,
+              "best_so_far": 826.75,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 4,
+              "candidate_id": "pfsp-2c4f4f87",
+              "strategy_id": "structured_enumeration",
+              "mean_objective": 826.75,
+              "best_so_far": 826.75,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 5,
+              "candidate_id": "pfsp-6fde68a8",
+              "strategy_id": "surrogate_ucb",
+              "mean_objective": 838.125,
+              "best_so_far": 826.75,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 6,
+              "candidate_id": "pfsp-d87f0a18",
+              "strategy_id": "surrogate_ucb",
+              "mean_objective": 839.375,
+              "best_so_far": 826.75,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 7,
+              "candidate_id": "pfsp-fa593769",
+              "strategy_id": "surrogate_ucb",
+              "mean_objective": 833.0,
+              "best_so_far": 826.75,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 8,
+              "candidate_id": "pfsp-2314fc4c",
+              "strategy_id": "local_coordinate_search",
+              "mean_objective": 826.375,
+              "best_so_far": 826.375,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 9,
+              "candidate_id": "pfsp-805238b3",
+              "strategy_id": "local_coordinate_search",
+              "mean_objective": 825.5,
+              "best_so_far": 825.5,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 10,
+              "candidate_id": "pfsp-dba5d610",
+              "strategy_id": "local_coordinate_search",
+              "mean_objective": 826.375,
+              "best_so_far": 825.5,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 11,
+              "candidate_id": "pfsp-c7fcb4f6",
+              "strategy_id": "operator_recombination",
+              "mean_objective": 829.75,
+              "best_so_far": 825.5,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 12,
+              "candidate_id": "pfsp-556e256e",
+              "strategy_id": "operator_recombination",
+              "mean_objective": 829.75,
+              "best_so_far": 825.5,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 13,
+              "candidate_id": "pfsp-1eaa6b5a",
+              "strategy_id": "operator_recombination",
+              "mean_objective": 832.75,
+              "best_so_far": 825.5,
+              "is_feasible": true
+            }
+          ]
+        }
+      },
+      "online_bin_packing_1d": {
+        "randomized_search": {
+          "problem_id": "online_bin_packing_1d",
+          "problem_name": "Online 1D Bin Packing (L1 Excess Ratio)",
+          "controller_mode": "randomized_search",
+          "termination_reason": "diminishing_returns_stagnation_18",
+          "total_dev_evaluations": 19,
+          "total_wall_clock_ms": 96.85,
+          "anchor_baseline_id": "baseline-bp-best-fit",
+          "anchor_baseline_dev_obj": 0.072882,
+          "anchor_baseline_holdout_obj": 0.078388,
+          "champion_candidate_id": "baseline-bp-best-fit",
+          "champion_method_id": "verified_classical_and_exact",
+          "champion_strategy_id": "baseline_portfolio",
+          "champion_payload": {
+            "algorithm_name": "Best-Fit"
+          },
+          "champion_dev_obj": 0.072882,
+          "champion_val_obj": 0.062797,
+          "champion_holdout_obj": 0.078388,
+          "champion_holdout_improvement_vs_anchor_pct": 0.0,
+          "champion_holdout_gap_to_bound_pct": 7838827838.8278,
+          "champion_is_proven_optimal_on_holdout": false,
+          "champion_is_repeatable": true,
+          "freeze_certificate_sha256": "6ff75393ee3ccc89adfd3dad60b0fdda9ea5300444668cfb1879707ccb9d7658",
+          "evidence_chain_verified": true,
+          "diversity_summary": {
+            "total_evaluated": 19,
+            "feasible_count": 19,
+            "unique_structural_hashes": 19,
+            "unique_canonical_hashes": 19,
+            "unique_behavioral_phenotypes": 6,
+            "behavioral_diversity_ratio": 0.3158,
+            "duplicate_rejections": {
+              "structural": 0,
+              "canonical": 0,
+              "behavioral": 0
+            }
+          },
+          "learned_operator_effects": {
+            "algorithm_name": {
+              "Best-Fit": -0.0
+            },
+            "slack_exponent": {
+              "1.97": -0.0,
+              "0.51": -0.0,
+              "1.91": -0.0,
+              "1.69": -0.0,
+              "1.17": -0.0,
+              "0.92": -0.0,
+              "1.18": -0.0,
+              "1.93": -0.0,
+              "1.41": -0.0,
+              "0.58": -0.0,
+              "1.59": -0.0,
+              "0.87": -0.0,
+              "1.11": -0.0,
+              "1.1": -0.0,
+              "0.66": -0.0,
+              "1.75": -0.0
+            },
+            "fill_ratio_weight": {
+              "0.27": -0.0,
+              "0.91": -0.0,
+              "0.63": -0.0,
+              "0.33": -0.0,
+              "1.07": -0.0,
+              "0.54": -0.0,
+              "-0.2": -0.0,
+              "0.86": -0.0,
+              "0.39": -0.0,
+              "1.16": -0.0,
+              "0.04": -0.0,
+              "-0.26": -0.0,
+              "0.85": -0.0,
+              "0.03": -0.0,
+              "0.22": -0.0,
+              "0.71": -0.0,
+              "0.05": -0.0,
+              "0.72": -0.0
+            },
+            "tight_threshold": {
+              "0.07": -0.0,
+              "0.04": -0.0,
+              "0.02": -0.0,
+              "0.0": -0.0
+            },
+            "tight_bonus": {
+              "200.0": -0.0,
+              "80.0": -0.0,
+              "500.0": -0.0,
+              "0.0": -0.0
+            },
+            "mid_gap_penalty": {
+              "0.33": -0.0,
+              "0.56": -0.0,
+              "1.41": -0.0,
+              "1.62": -0.0,
+              "0.53": -0.0,
+              "1.8": -0.0,
+              "1.31": -0.0,
+              "1.61": -0.0,
+              "1.37": -0.0,
+              "1.1": -0.0,
+              "1.71": -0.0,
+              "0.45": -0.0,
+              "0.76": -0.0,
+              "0.18": -0.0,
+              "1.46": -0.0,
+              "1.07": -0.0,
+              "1.43": -0.0,
+              "0.06": -0.0
+            }
+          },
+          "strategy_posteriors": {
+            "baseline_portfolio": {
+              "attempts": 1.0,
+              "feasibility_rate": 1.0,
+              "behavioral_novelty_rate": 1.0,
+              "max_improvement_pct": 0.0,
+              "mean_improvement_pct": 0.0,
+              "ucb_score": 11.1194
+            },
+            "randomized_search": {
+              "attempts": 18.0,
+              "feasibility_rate": 1.0,
+              "behavioral_novelty_rate": 0.3333,
+              "max_improvement_pct": -0.0003,
+              "mean_improvement_pct": -0.0003,
+              "ucb_score": 5.109
+            }
+          },
+          "baseline_comparison_table": [
+            {
+              "candidate_id": "baseline-bp-best-fit",
+              "algorithm_name": "Best-Fit",
+              "holdout_mean_objective": 0.078388,
+              "holdout_optimality_gap_pct": 7838827838.8278,
+              "holdout_mean_runtime_ms": 0.201,
+              "is_proven_optimal": false
+            },
+            {
+              "candidate_id": "baseline-bp-first-fit",
+              "algorithm_name": "First-Fit",
+              "holdout_mean_objective": 0.078388,
+              "holdout_optimality_gap_pct": 7838827838.8278,
+              "holdout_mean_runtime_ms": 0.198,
+              "is_proven_optimal": false
+            },
+            {
+              "candidate_id": "baseline-bp-worst-fit",
+              "algorithm_name": "Worst-Fit",
+              "holdout_mean_objective": 0.104477,
+              "holdout_optimality_gap_pct": 10447700447.7004,
+              "holdout_mean_runtime_ms": 0.205,
+              "is_proven_optimal": false
+            },
+            {
+              "candidate_id": "baseline-bp-harmonic-threshold",
+              "algorithm_name": "Harmonic-Threshold",
+              "holdout_mean_objective": 0.078388,
+              "holdout_optimality_gap_pct": 7838827838.8278,
+              "holdout_mean_runtime_ms": 0.209,
+              "is_proven_optimal": false
+            }
+          ],
+          "convergence_history": [
+            {
+              "eval_index": 1,
+              "candidate_id": "baseline-bp-best-fit",
+              "strategy_id": "baseline_portfolio",
+              "mean_objective": 0.072882,
+              "best_so_far": 0.072882,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 2,
+              "candidate_id": "bp-bd968573",
+              "strategy_id": "randomized_search",
+              "mean_objective": 0.072882,
+              "best_so_far": 0.072882,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 3,
+              "candidate_id": "bp-b10d34cd",
+              "strategy_id": "randomized_search",
+              "mean_objective": 0.072882,
+              "best_so_far": 0.072882,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 4,
+              "candidate_id": "bp-4ea6a92c",
+              "strategy_id": "randomized_search",
+              "mean_objective": 0.072882,
+              "best_so_far": 0.072882,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 5,
+              "candidate_id": "bp-dd405522",
+              "strategy_id": "randomized_search",
+              "mean_objective": 0.072882,
+              "best_so_far": 0.072882,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 6,
+              "candidate_id": "bp-95f61c98",
+              "strategy_id": "randomized_search",
+              "mean_objective": 0.072882,
+              "best_so_far": 0.072882,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 7,
+              "candidate_id": "bp-d5f62258",
+              "strategy_id": "randomized_search",
+              "mean_objective": 0.072882,
+              "best_so_far": 0.072882,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 8,
+              "candidate_id": "bp-70b681e2",
+              "strategy_id": "randomized_search",
+              "mean_objective": 0.072882,
+              "best_so_far": 0.072882,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 9,
+              "candidate_id": "bp-41d0ed42",
+              "strategy_id": "randomized_search",
+              "mean_objective": 0.072882,
+              "best_so_far": 0.072882,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 10,
+              "candidate_id": "bp-b7322eb4",
+              "strategy_id": "randomized_search",
+              "mean_objective": 0.072882,
+              "best_so_far": 0.072882,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 11,
+              "candidate_id": "bp-ba41370a",
+              "strategy_id": "randomized_search",
+              "mean_objective": 0.072882,
+              "best_so_far": 0.072882,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 12,
+              "candidate_id": "bp-2470723c",
+              "strategy_id": "randomized_search",
+              "mean_objective": 0.072882,
+              "best_so_far": 0.072882,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 13,
+              "candidate_id": "bp-4464227b",
+              "strategy_id": "randomized_search",
+              "mean_objective": 0.072882,
+              "best_so_far": 0.072882,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 14,
+              "candidate_id": "bp-f5bddec3",
+              "strategy_id": "randomized_search",
+              "mean_objective": 0.072882,
+              "best_so_far": 0.072882,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 15,
+              "candidate_id": "bp-9bb37f47",
+              "strategy_id": "randomized_search",
+              "mean_objective": 0.072882,
+              "best_so_far": 0.072882,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 16,
+              "candidate_id": "bp-2c240653",
+              "strategy_id": "randomized_search",
+              "mean_objective": 0.072882,
+              "best_so_far": 0.072882,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 17,
+              "candidate_id": "bp-e87d41bc",
+              "strategy_id": "randomized_search",
+              "mean_objective": 0.072882,
+              "best_so_far": 0.072882,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 18,
+              "candidate_id": "bp-0db0699f",
+              "strategy_id": "randomized_search",
+              "mean_objective": 0.072882,
+              "best_so_far": 0.072882,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 19,
+              "candidate_id": "bp-0d7666b1",
+              "strategy_id": "randomized_search",
+              "mean_objective": 0.072882,
+              "best_so_far": 0.072882,
+              "is_feasible": true
+            }
+          ]
+        },
+        "structured_enumeration": {
+          "problem_id": "online_bin_packing_1d",
+          "problem_name": "Online 1D Bin Packing (L1 Excess Ratio)",
+          "controller_mode": "structured_enumeration",
+          "termination_reason": "diminishing_returns_stagnation_16",
+          "total_dev_evaluations": 13,
+          "total_wall_clock_ms": 84.53,
+          "anchor_baseline_id": "baseline-bp-best-fit",
+          "anchor_baseline_dev_obj": 0.072882,
+          "anchor_baseline_holdout_obj": 0.078388,
+          "champion_candidate_id": "baseline-bp-best-fit",
+          "champion_method_id": "verified_classical_and_exact",
+          "champion_strategy_id": "baseline_portfolio",
+          "champion_payload": {
+            "algorithm_name": "Best-Fit"
+          },
+          "champion_dev_obj": 0.072882,
+          "champion_val_obj": 0.062797,
+          "champion_holdout_obj": 0.078388,
+          "champion_holdout_improvement_vs_anchor_pct": 0.0,
+          "champion_holdout_gap_to_bound_pct": 7838827838.8278,
+          "champion_is_proven_optimal_on_holdout": false,
+          "champion_is_repeatable": true,
+          "freeze_certificate_sha256": "6ff75393ee3ccc89adfd3dad60b0fdda9ea5300444668cfb1879707ccb9d7658",
+          "evidence_chain_verified": true,
+          "diversity_summary": {
+            "total_evaluated": 13,
+            "feasible_count": 13,
+            "unique_structural_hashes": 13,
+            "unique_canonical_hashes": 13,
+            "unique_behavioral_phenotypes": 11,
+            "behavioral_diversity_ratio": 0.8462,
+            "duplicate_rejections": {
+              "structural": 0,
+              "canonical": 0,
+              "behavioral": 129
+            }
+          },
+          "learned_operator_effects": {
+            "algorithm_name": {
+              "Best-Fit": 0.000769
+            },
+            "slack_exponent": {
+              "1.0": 0.000769,
+              "1.35": 0.000769,
+              "1.8": -0.002564
+            },
+            "fill_ratio_weight": {
+              "-0.2": -0.000342,
+              "0.0": 0.000769
+            },
+            "tight_threshold": {
+              "0.03": -0.000897,
+              "0.0": 0.000214
+            },
+            "tight_bonus": {
+              "120.0": -0.000897,
+              "0.0": 0.000214
+            },
+            "mid_gap_penalty": {
+              "0.65": 0.000769,
+              "1.4": 0.000769,
+              "0.0": -0.001731
+            }
+          },
+          "strategy_posteriors": {
+            "baseline_portfolio": {
+              "attempts": 1.0,
+              "feasibility_rate": 1.0,
+              "behavioral_novelty_rate": 1.0,
+              "max_improvement_pct": 0.0,
+              "mean_improvement_pct": 0.0,
+              "ucb_score": 10.7435
+            },
+            "structured_enumeration": {
+              "attempts": 12.0,
+              "feasibility_rate": 1.0,
+              "behavioral_novelty_rate": 0.8333,
+              "max_improvement_pct": -0.0003,
+              "mean_improvement_pct": -1.1437,
+              "ucb_score": 6.3247
+            }
+          },
+          "baseline_comparison_table": [
+            {
+              "candidate_id": "baseline-bp-best-fit",
+              "algorithm_name": "Best-Fit",
+              "holdout_mean_objective": 0.078388,
+              "holdout_optimality_gap_pct": 7838827838.8278,
+              "holdout_mean_runtime_ms": 0.2,
+              "is_proven_optimal": false
+            },
+            {
+              "candidate_id": "baseline-bp-first-fit",
+              "algorithm_name": "First-Fit",
+              "holdout_mean_objective": 0.078388,
+              "holdout_optimality_gap_pct": 7838827838.8278,
+              "holdout_mean_runtime_ms": 0.194,
+              "is_proven_optimal": false
+            },
+            {
+              "candidate_id": "baseline-bp-worst-fit",
+              "algorithm_name": "Worst-Fit",
+              "holdout_mean_objective": 0.104477,
+              "holdout_optimality_gap_pct": 10447700447.7004,
+              "holdout_mean_runtime_ms": 0.213,
+              "is_proven_optimal": false
+            },
+            {
+              "candidate_id": "baseline-bp-harmonic-threshold",
+              "algorithm_name": "Harmonic-Threshold",
+              "holdout_mean_objective": 0.078388,
+              "holdout_optimality_gap_pct": 7838827838.8278,
+              "holdout_mean_runtime_ms": 0.214,
+              "is_proven_optimal": false
+            }
+          ],
+          "convergence_history": [
+            {
+              "eval_index": 1,
+              "candidate_id": "baseline-bp-best-fit",
+              "strategy_id": "baseline_portfolio",
+              "mean_objective": 0.072882,
+              "best_so_far": 0.072882,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 2,
+              "candidate_id": "bp-339615fd",
+              "strategy_id": "structured_enumeration",
+              "mean_objective": 0.072882,
+              "best_so_far": 0.072882,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 3,
+              "candidate_id": "bp-d821f57c",
+              "strategy_id": "structured_enumeration",
+              "mean_objective": 0.072882,
+              "best_so_far": 0.072882,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 4,
+              "candidate_id": "bp-6bd534ae",
+              "strategy_id": "structured_enumeration",
+              "mean_objective": 0.072882,
+              "best_so_far": 0.072882,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 5,
+              "candidate_id": "bp-5752330c",
+              "strategy_id": "structured_enumeration",
+              "mean_objective": 0.072882,
+              "best_so_far": 0.072882,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 6,
+              "candidate_id": "bp-2cd6e60a",
+              "strategy_id": "structured_enumeration",
+              "mean_objective": 0.072882,
+              "best_so_far": 0.072882,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 7,
+              "candidate_id": "bp-087af862",
+              "strategy_id": "structured_enumeration",
+              "mean_objective": 0.072882,
+              "best_so_far": 0.072882,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 8,
+              "candidate_id": "bp-cf07f9fb",
+              "strategy_id": "structured_enumeration",
+              "mean_objective": 0.072882,
+              "best_so_far": 0.072882,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 9,
+              "candidate_id": "bp-cb1283b9",
+              "strategy_id": "structured_enumeration",
+              "mean_objective": 0.072882,
+              "best_so_far": 0.072882,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 10,
+              "candidate_id": "bp-84753589",
+              "strategy_id": "structured_enumeration",
+              "mean_objective": 0.072882,
+              "best_so_far": 0.072882,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 11,
+              "candidate_id": "bp-5930c1c4",
+              "strategy_id": "structured_enumeration",
+              "mean_objective": 0.077882,
+              "best_so_far": 0.072882,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 12,
+              "candidate_id": "bp-1d292a44",
+              "strategy_id": "structured_enumeration",
+              "mean_objective": 0.072882,
+              "best_so_far": 0.072882,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 13,
+              "candidate_id": "bp-2be2dd84",
+              "strategy_id": "structured_enumeration",
+              "mean_objective": 0.077882,
+              "best_so_far": 0.072882,
+              "is_feasible": true
+            }
+          ]
+        },
+        "local_coordinate_search": {
+          "problem_id": "online_bin_packing_1d",
+          "problem_name": "Online 1D Bin Packing (L1 Excess Ratio)",
+          "controller_mode": "local_coordinate_search",
+          "termination_reason": "diminishing_returns_stagnation_17",
+          "total_dev_evaluations": 18,
+          "total_wall_clock_ms": 104.1,
+          "anchor_baseline_id": "baseline-bp-best-fit",
+          "anchor_baseline_dev_obj": 0.072882,
+          "anchor_baseline_holdout_obj": 0.078388,
+          "champion_candidate_id": "baseline-bp-best-fit",
+          "champion_method_id": "verified_classical_and_exact",
+          "champion_strategy_id": "baseline_portfolio",
+          "champion_payload": {
+            "algorithm_name": "Best-Fit"
+          },
+          "champion_dev_obj": 0.072882,
+          "champion_val_obj": 0.062797,
+          "champion_holdout_obj": 0.078388,
+          "champion_holdout_improvement_vs_anchor_pct": 0.0,
+          "champion_holdout_gap_to_bound_pct": 7838827838.8278,
+          "champion_is_proven_optimal_on_holdout": false,
+          "champion_is_repeatable": true,
+          "freeze_certificate_sha256": "6ff75393ee3ccc89adfd3dad60b0fdda9ea5300444668cfb1879707ccb9d7658",
+          "evidence_chain_verified": true,
+          "diversity_summary": {
+            "total_evaluated": 18,
+            "feasible_count": 18,
+            "unique_structural_hashes": 18,
+            "unique_canonical_hashes": 18,
+            "unique_behavioral_phenotypes": 13,
+            "behavioral_diversity_ratio": 0.7222,
+            "duplicate_rejections": {
+              "structural": 0,
+              "canonical": 0,
+              "behavioral": 152
+            }
+          },
+          "learned_operator_effects": {
+            "algorithm_name": {
+              "Best-Fit": 0.00082
+            },
+            "slack_exponent": {
+              "1.989": 0.00082,
+              "2.404": 0.00082,
+              "2.256": 0.00082,
+              "2.171": 0.00082,
+              "2.363": 0.00082,
+              "2.08": 0.00082,
+              "2.589": 0.00082,
+              "1.771": 0.00082,
+              "1.972": 0.00082,
+              "1.97": 0.00082,
+              "2.337": 0.00082,
+              "2.488": 0.00082,
+              "1.66": 0.00082,
+              "2.081": 0.00082,
+              "1.748": -0.00418,
+              "2.206": -0.008942
+            },
+            "fill_ratio_weight": {
+              "0.639": 0.00082,
+              "-0.236": 0.00082,
+              "-0.123": 0.00082,
+              "-0.137": 0.00082,
+              "-0.229": 0.00082,
+              "0.05": 0.00082,
+              "-0.251": 0.00082,
+              "0.447": 0.00082,
+              "-0.332": 0.00082,
+              "0.54": 0.00082,
+              "-0.295": 0.00082,
+              "-0.273": 0.00082,
+              "0.6": 0.00082,
+              "-0.17": 0.00082,
+              "0.729": 0.00082,
+              "0.669": -0.00418,
+              "-0.372": -0.008942
+            },
+            "tight_threshold": {
+              "0.038": 0.00082,
+              "0.011": 0.00082,
+              "0.007": 0.00082,
+              "0.0": 0.00082,
+              "0.002": 0.00082,
+              "0.02": 0.00082,
+              "0.04": 0.00082,
+              "0.021": 0.00082,
+              "0.048": 0.00082,
+              "0.049": -0.00418,
+              "0.008": -0.008942
+            },
+            "tight_bonus": {
+              "18.4": 0.00082,
+              "60.9": 0.00082,
+              "46.2": 0.00082,
+              "89.5": 0.00082,
+              "95.5": 0.00082,
+              "0.0": 0.00082,
+              "72.7": 0.00082,
+              "37.2": 0.00082,
+              "97.4": 0.00082,
+              "7.5": 0.00082,
+              "39.4": 0.00082,
+              "500.0": 0.00082,
+              "27.6": 0.00082,
+              "10.8": 0.00082,
+              "0.1": -0.00418,
+              "70.4": -0.008942
+            },
+            "mid_gap_penalty": {
+              "0.987": 0.00082,
+              "1.575": 0.00082,
+              "1.902": 0.00082,
+              "1.836": 0.00082,
+              "1.65": 0.00082,
+              "1.96": 0.00082,
+              "1.649": 0.00082,
+              "0.691": 0.00082,
+              "1.74": 0.00082,
+              "1.07": 0.00082,
+              "1.854": 0.00082,
+              "1.662": 0.00082,
+              "1.29": 0.00082,
+              "1.851": 0.00082,
+              "0.834": 0.00082,
+              "0.81": -0.00418,
+              "1.673": -0.008942
+            }
+          },
+          "strategy_posteriors": {
+            "baseline_portfolio": {
+              "attempts": 1.0,
+              "feasibility_rate": 1.0,
+              "behavioral_novelty_rate": 1.0,
+              "max_improvement_pct": 0.0,
+              "mean_improvement_pct": 0.0,
+              "ucb_score": 11.0668
+            },
+            "randomized_search": {
+              "attempts": 3.0,
+              "feasibility_rate": 1.0,
+              "behavioral_novelty_rate": 0.3333,
+              "max_improvement_pct": -0.0003,
+              "mean_improvement_pct": -0.0003,
+              "ucb_score": 7.1693
+            },
+            "local_coordinate_search": {
+              "attempts": 14.0,
+              "feasibility_rate": 1.0,
+              "behavioral_novelty_rate": 0.7857,
+              "max_improvement_pct": -0.0003,
+              "mean_improvement_pct": -1.447,
+              "ucb_score": 6.1928
+            }
+          },
+          "baseline_comparison_table": [
+            {
+              "candidate_id": "baseline-bp-best-fit",
+              "algorithm_name": "Best-Fit",
+              "holdout_mean_objective": 0.078388,
+              "holdout_optimality_gap_pct": 7838827838.8278,
+              "holdout_mean_runtime_ms": 0.203,
+              "is_proven_optimal": false
+            },
+            {
+              "candidate_id": "baseline-bp-first-fit",
+              "algorithm_name": "First-Fit",
+              "holdout_mean_objective": 0.078388,
+              "holdout_optimality_gap_pct": 7838827838.8278,
+              "holdout_mean_runtime_ms": 0.209,
+              "is_proven_optimal": false
+            },
+            {
+              "candidate_id": "baseline-bp-worst-fit",
+              "algorithm_name": "Worst-Fit",
+              "holdout_mean_objective": 0.104477,
+              "holdout_optimality_gap_pct": 10447700447.7004,
+              "holdout_mean_runtime_ms": 0.204,
+              "is_proven_optimal": false
+            },
+            {
+              "candidate_id": "baseline-bp-harmonic-threshold",
+              "algorithm_name": "Harmonic-Threshold",
+              "holdout_mean_objective": 0.078388,
+              "holdout_optimality_gap_pct": 7838827838.8278,
+              "holdout_mean_runtime_ms": 0.212,
+              "is_proven_optimal": false
+            }
+          ],
+          "convergence_history": [
+            {
+              "eval_index": 1,
+              "candidate_id": "baseline-bp-best-fit",
+              "strategy_id": "baseline_portfolio",
+              "mean_objective": 0.072882,
+              "best_so_far": 0.072882,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 2,
+              "candidate_id": "bp-fea55e1e",
+              "strategy_id": "randomized_search",
+              "mean_objective": 0.072882,
+              "best_so_far": 0.072882,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 3,
+              "candidate_id": "bp-b3aa8b19",
+              "strategy_id": "randomized_search",
+              "mean_objective": 0.072882,
+              "best_so_far": 0.072882,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 4,
+              "candidate_id": "bp-fb0dbfcc",
+              "strategy_id": "randomized_search",
+              "mean_objective": 0.072882,
+              "best_so_far": 0.072882,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 5,
+              "candidate_id": "bp-d80ea1bf",
+              "strategy_id": "local_coordinate_search",
+              "mean_objective": 0.077882,
+              "best_so_far": 0.072882,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 6,
+              "candidate_id": "bp-a00293de",
+              "strategy_id": "local_coordinate_search",
+              "mean_objective": 0.072882,
+              "best_so_far": 0.072882,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 7,
+              "candidate_id": "bp-e558b3b9",
+              "strategy_id": "local_coordinate_search",
+              "mean_objective": 0.072882,
+              "best_so_far": 0.072882,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 8,
+              "candidate_id": "bp-682eedb1",
+              "strategy_id": "local_coordinate_search",
+              "mean_objective": 0.072882,
+              "best_so_far": 0.072882,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 9,
+              "candidate_id": "bp-8f42c0ff",
+              "strategy_id": "local_coordinate_search",
+              "mean_objective": 0.072882,
+              "best_so_far": 0.072882,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 10,
+              "candidate_id": "bp-d5e80970",
+              "strategy_id": "local_coordinate_search",
+              "mean_objective": 0.072882,
+              "best_so_far": 0.072882,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 11,
+              "candidate_id": "bp-5de4dbf4",
+              "strategy_id": "local_coordinate_search",
+              "mean_objective": 0.072882,
+              "best_so_far": 0.072882,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 12,
+              "candidate_id": "bp-d791c2d1",
+              "strategy_id": "local_coordinate_search",
+              "mean_objective": 0.072882,
+              "best_so_far": 0.072882,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 13,
+              "candidate_id": "bp-f8b8a9fd",
+              "strategy_id": "local_coordinate_search",
+              "mean_objective": 0.072882,
+              "best_so_far": 0.072882,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 14,
+              "candidate_id": "bp-ab1a2e37",
+              "strategy_id": "local_coordinate_search",
+              "mean_objective": 0.072882,
+              "best_so_far": 0.072882,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 15,
+              "candidate_id": "bp-088d8720",
+              "strategy_id": "local_coordinate_search",
+              "mean_objective": 0.072882,
+              "best_so_far": 0.072882,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 16,
+              "candidate_id": "bp-2111a91b",
+              "strategy_id": "local_coordinate_search",
+              "mean_objective": 0.082644,
+              "best_so_far": 0.072882,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 17,
+              "candidate_id": "bp-3a1ebf29",
+              "strategy_id": "local_coordinate_search",
+              "mean_objective": 0.072882,
+              "best_so_far": 0.072882,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 18,
+              "candidate_id": "bp-3d15dc44",
+              "strategy_id": "local_coordinate_search",
+              "mean_objective": 0.072882,
+              "best_so_far": 0.072882,
+              "is_feasible": true
+            }
+          ]
+        },
+        "surrogate_ucb": {
+          "problem_id": "online_bin_packing_1d",
+          "problem_name": "Online 1D Bin Packing (L1 Excess Ratio)",
+          "controller_mode": "surrogate_ucb",
+          "termination_reason": "diminishing_returns_stagnation_16",
+          "total_dev_evaluations": 10,
+          "total_wall_clock_ms": 82.35,
+          "anchor_baseline_id": "baseline-bp-best-fit",
+          "anchor_baseline_dev_obj": 0.072882,
+          "anchor_baseline_holdout_obj": 0.078388,
+          "champion_candidate_id": "baseline-bp-best-fit",
+          "champion_method_id": "verified_classical_and_exact",
+          "champion_strategy_id": "baseline_portfolio",
+          "champion_payload": {
+            "algorithm_name": "Best-Fit"
+          },
+          "champion_dev_obj": 0.072882,
+          "champion_val_obj": 0.062797,
+          "champion_holdout_obj": 0.078388,
+          "champion_holdout_improvement_vs_anchor_pct": 0.0,
+          "champion_holdout_gap_to_bound_pct": 7838827838.8278,
+          "champion_is_proven_optimal_on_holdout": false,
+          "champion_is_repeatable": true,
+          "freeze_certificate_sha256": "6ff75393ee3ccc89adfd3dad60b0fdda9ea5300444668cfb1879707ccb9d7658",
+          "evidence_chain_verified": true,
+          "diversity_summary": {
+            "total_evaluated": 10,
+            "feasible_count": 10,
+            "unique_structural_hashes": 10,
+            "unique_canonical_hashes": 10,
+            "unique_behavioral_phenotypes": 6,
+            "behavioral_diversity_ratio": 0.6,
+            "duplicate_rejections": {
+              "structural": 1,
+              "canonical": 0,
+              "behavioral": 281
+            }
+          },
+          "learned_operator_effects": {
+            "algorithm_name": {
+              "Best-Fit": 0.0
+            },
+            "slack_exponent": {
+              "0.51": 0.0,
+              "1.69": 0.0,
+              "1.59": 0.0,
+              "0.65": 0.0,
+              "0.66": 0.0,
+              "1.45": 0.0,
+              "0.87": 0.0,
+              "1.75": 0.0
+            },
+            "fill_ratio_weight": {
+              "0.91": 0.0,
+              "0.33": 0.0,
+              "-0.26": 0.0,
+              "0.25": 0.0,
+              "0.05": 0.0,
+              "0.65": 0.0,
+              "0.85": 0.0,
+              "0.72": 0.0
+            },
+            "tight_threshold": {
+              "0.07": 0.0,
+              "0.04": 0.0,
+              "0.035": 0.0,
+              "0.0": 0.0,
+              "0.02": 0.0
+            },
+            "tight_bonus": {
+              "200.0": 0.0,
+              "80.0": 0.0,
+              "150.0": 0.0,
+              "300.0": 0.0,
+              "0.0": 0.0,
+              "500.0": 0.0
+            },
+            "mid_gap_penalty": {
+              "0.56": 0.0,
+              "1.62": 0.0,
+              "0.45": 0.0,
+              "0.4": 0.0,
+              "1.43": 0.0,
+              "0.76": 0.0,
+              "0.06": 0.0
+            }
+          },
+          "strategy_posteriors": {
+            "baseline_portfolio": {
+              "attempts": 1.0,
+              "feasibility_rate": 1.0,
+              "behavioral_novelty_rate": 1.0,
+              "max_improvement_pct": 0.0,
+              "mean_improvement_pct": 0.0,
+              "ucb_score": 10.4748
+            },
+            "randomized_search": {
+              "attempts": 6.0,
+              "feasibility_rate": 1.0,
+              "behavioral_novelty_rate": 0.6667,
+              "max_improvement_pct": -0.0003,
+              "mean_improvement_pct": -0.0003,
+              "ucb_score": 6.5684
+            },
+            "surrogate_ucb": {
+              "attempts": 3.0,
+              "feasibility_rate": 1.0,
+              "behavioral_novelty_rate": 0.6667,
+              "max_improvement_pct": -0.0003,
+              "mean_improvement_pct": -0.0003,
+              "ucb_score": 7.4942
+            }
+          },
+          "baseline_comparison_table": [
+            {
+              "candidate_id": "baseline-bp-best-fit",
+              "algorithm_name": "Best-Fit",
+              "holdout_mean_objective": 0.078388,
+              "holdout_optimality_gap_pct": 7838827838.8278,
+              "holdout_mean_runtime_ms": 0.196,
+              "is_proven_optimal": false
+            },
+            {
+              "candidate_id": "baseline-bp-first-fit",
+              "algorithm_name": "First-Fit",
+              "holdout_mean_objective": 0.078388,
+              "holdout_optimality_gap_pct": 7838827838.8278,
+              "holdout_mean_runtime_ms": 0.194,
+              "is_proven_optimal": false
+            },
+            {
+              "candidate_id": "baseline-bp-worst-fit",
+              "algorithm_name": "Worst-Fit",
+              "holdout_mean_objective": 0.104477,
+              "holdout_optimality_gap_pct": 10447700447.7004,
+              "holdout_mean_runtime_ms": 0.205,
+              "is_proven_optimal": false
+            },
+            {
+              "candidate_id": "baseline-bp-harmonic-threshold",
+              "algorithm_name": "Harmonic-Threshold",
+              "holdout_mean_objective": 0.078388,
+              "holdout_optimality_gap_pct": 7838827838.8278,
+              "holdout_mean_runtime_ms": 0.209,
+              "is_proven_optimal": false
+            }
+          ],
+          "convergence_history": [
+            {
+              "eval_index": 1,
+              "candidate_id": "baseline-bp-best-fit",
+              "strategy_id": "baseline_portfolio",
+              "mean_objective": 0.072882,
+              "best_so_far": 0.072882,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 2,
+              "candidate_id": "bp-bd968573",
+              "strategy_id": "randomized_search",
+              "mean_objective": 0.072882,
+              "best_so_far": 0.072882,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 3,
+              "candidate_id": "bp-b10d34cd",
+              "strategy_id": "randomized_search",
+              "mean_objective": 0.072882,
+              "best_so_far": 0.072882,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 4,
+              "candidate_id": "bp-4ea6a92c",
+              "strategy_id": "randomized_search",
+              "mean_objective": 0.072882,
+              "best_so_far": 0.072882,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 5,
+              "candidate_id": "bp-730ab3a8",
+              "strategy_id": "surrogate_ucb",
+              "mean_objective": 0.072882,
+              "best_so_far": 0.072882,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 6,
+              "candidate_id": "bp-754fe955",
+              "strategy_id": "surrogate_ucb",
+              "mean_objective": 0.072882,
+              "best_so_far": 0.072882,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 7,
+              "candidate_id": "bp-ca13dc23",
+              "strategy_id": "surrogate_ucb",
+              "mean_objective": 0.072882,
+              "best_so_far": 0.072882,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 8,
+              "candidate_id": "bp-dd405522",
+              "strategy_id": "randomized_search",
+              "mean_objective": 0.072882,
+              "best_so_far": 0.072882,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 9,
+              "candidate_id": "bp-95f61c98",
+              "strategy_id": "randomized_search",
+              "mean_objective": 0.072882,
+              "best_so_far": 0.072882,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 10,
+              "candidate_id": "bp-d5f62258",
+              "strategy_id": "randomized_search",
+              "mean_objective": 0.072882,
+              "best_so_far": 0.072882,
+              "is_feasible": true
+            }
+          ]
+        },
+        "north_bluestar_portfolio": {
+          "problem_id": "online_bin_packing_1d",
+          "problem_name": "Online 1D Bin Packing (L1 Excess Ratio)",
+          "controller_mode": "north_bluestar_portfolio",
+          "termination_reason": "diminishing_returns_stagnation_16",
+          "total_dev_evaluations": 10,
+          "total_wall_clock_ms": 74.78,
+          "anchor_baseline_id": "baseline-bp-best-fit",
+          "anchor_baseline_dev_obj": 0.072882,
+          "anchor_baseline_holdout_obj": 0.078388,
+          "champion_candidate_id": "baseline-bp-best-fit",
+          "champion_method_id": "verified_classical_and_exact",
+          "champion_strategy_id": "baseline_portfolio",
+          "champion_payload": {
+            "algorithm_name": "Best-Fit"
+          },
+          "champion_dev_obj": 0.072882,
+          "champion_val_obj": 0.062797,
+          "champion_holdout_obj": 0.078388,
+          "champion_holdout_improvement_vs_anchor_pct": 0.0,
+          "champion_holdout_gap_to_bound_pct": 7838827838.8278,
+          "champion_is_proven_optimal_on_holdout": false,
+          "champion_is_repeatable": true,
+          "freeze_certificate_sha256": "6ff75393ee3ccc89adfd3dad60b0fdda9ea5300444668cfb1879707ccb9d7658",
+          "evidence_chain_verified": true,
+          "diversity_summary": {
+            "total_evaluated": 10,
+            "feasible_count": 10,
+            "unique_structural_hashes": 10,
+            "unique_canonical_hashes": 10,
+            "unique_behavioral_phenotypes": 6,
+            "behavioral_diversity_ratio": 0.6,
+            "duplicate_rejections": {
+              "structural": 0,
+              "canonical": 0,
+              "behavioral": 163
+            }
+          },
+          "learned_operator_effects": {
+            "algorithm_name": {
+              "Best-Fit": 0.0
+            },
+            "slack_exponent": {
+              "1.443": 0.0,
+              "1.0": 0.0,
+              "1.354": 0.0,
+              "1.45": 0.0,
+              "0.941": 0.0,
+              "0.65": 0.0,
+              "1.75": 0.0
+            },
+            "fill_ratio_weight": {
+              "0.078": 0.0,
+              "0.0": 0.0,
+              "0.073": 0.0,
+              "0.25": 0.0,
+              "0.198": 0.0
+            },
+            "tight_threshold": {
+              "0.043": 0.0,
+              "0.0": 0.0,
+              "0.046": 0.0,
+              "0.03": 0.0,
+              "0.035": 0.0,
+              "0.031": 0.0,
+              "0.02": 0.0
+            },
+            "tight_bonus": {
+              "186.6": 0.0,
+              "0.0": 0.0,
+              "204.7": 0.0,
+              "120.0": 0.0,
+              "150.0": 0.0,
+              "177.1": 0.0,
+              "300.0": 0.0
+            },
+            "mid_gap_penalty": {
+              "0.177": 0.0,
+              "1.4": 0.0,
+              "0.151": 0.0,
+              "0.65": 0.0,
+              "0.4": 0.0,
+              "0.866": 0.0
+            }
+          },
+          "strategy_posteriors": {
+            "baseline_portfolio": {
+              "attempts": 1.0,
+              "feasibility_rate": 1.0,
+              "behavioral_novelty_rate": 1.0,
+              "max_improvement_pct": 0.0,
+              "mean_improvement_pct": 0.0,
+              "ucb_score": 10.4748
+            },
+            "structured_enumeration": {
+              "attempts": 3.0,
+              "feasibility_rate": 1.0,
+              "behavioral_novelty_rate": 0.6667,
+              "max_improvement_pct": -0.0003,
+              "mean_improvement_pct": -0.0003,
+              "ucb_score": 7.4942
+            },
+            "surrogate_ucb": {
+              "attempts": 3.0,
+              "feasibility_rate": 1.0,
+              "behavioral_novelty_rate": 0.3333,
+              "max_improvement_pct": -0.0003,
+              "mean_improvement_pct": -0.0003,
+              "ucb_score": 6.8276
+            },
+            "local_coordinate_search": {
+              "attempts": 3.0,
+              "feasibility_rate": 1.0,
+              "behavioral_novelty_rate": 0.6667,
+              "max_improvement_pct": -0.0003,
+              "mean_improvement_pct": -0.0003,
+              "ucb_score": 7.4942
+            }
+          },
+          "baseline_comparison_table": [
+            {
+              "candidate_id": "baseline-bp-best-fit",
+              "algorithm_name": "Best-Fit",
+              "holdout_mean_objective": 0.078388,
+              "holdout_optimality_gap_pct": 7838827838.8278,
+              "holdout_mean_runtime_ms": 0.195,
+              "is_proven_optimal": false
+            },
+            {
+              "candidate_id": "baseline-bp-first-fit",
+              "algorithm_name": "First-Fit",
+              "holdout_mean_objective": 0.078388,
+              "holdout_optimality_gap_pct": 7838827838.8278,
+              "holdout_mean_runtime_ms": 0.194,
+              "is_proven_optimal": false
+            },
+            {
+              "candidate_id": "baseline-bp-worst-fit",
+              "algorithm_name": "Worst-Fit",
+              "holdout_mean_objective": 0.104477,
+              "holdout_optimality_gap_pct": 10447700447.7004,
+              "holdout_mean_runtime_ms": 0.207,
+              "is_proven_optimal": false
+            },
+            {
+              "candidate_id": "baseline-bp-harmonic-threshold",
+              "algorithm_name": "Harmonic-Threshold",
+              "holdout_mean_objective": 0.078388,
+              "holdout_optimality_gap_pct": 7838827838.8278,
+              "holdout_mean_runtime_ms": 0.206,
+              "is_proven_optimal": false
+            }
+          ],
+          "convergence_history": [
+            {
+              "eval_index": 1,
+              "candidate_id": "baseline-bp-best-fit",
+              "strategy_id": "baseline_portfolio",
+              "mean_objective": 0.072882,
+              "best_so_far": 0.072882,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 2,
+              "candidate_id": "bp-339615fd",
+              "strategy_id": "structured_enumeration",
+              "mean_objective": 0.072882,
+              "best_so_far": 0.072882,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 3,
+              "candidate_id": "bp-d821f57c",
+              "strategy_id": "structured_enumeration",
+              "mean_objective": 0.072882,
+              "best_so_far": 0.072882,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 4,
+              "candidate_id": "bp-6bd534ae",
+              "strategy_id": "structured_enumeration",
+              "mean_objective": 0.072882,
+              "best_so_far": 0.072882,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 5,
+              "candidate_id": "bp-730ab3a8",
+              "strategy_id": "surrogate_ucb",
+              "mean_objective": 0.072882,
+              "best_so_far": 0.072882,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 6,
+              "candidate_id": "bp-eb533397",
+              "strategy_id": "surrogate_ucb",
+              "mean_objective": 0.072882,
+              "best_so_far": 0.072882,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 7,
+              "candidate_id": "bp-754fe955",
+              "strategy_id": "surrogate_ucb",
+              "mean_objective": 0.072882,
+              "best_so_far": 0.072882,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 8,
+              "candidate_id": "bp-a024aae9",
+              "strategy_id": "local_coordinate_search",
+              "mean_objective": 0.072882,
+              "best_so_far": 0.072882,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 9,
+              "candidate_id": "bp-e41a96c8",
+              "strategy_id": "local_coordinate_search",
+              "mean_objective": 0.072882,
+              "best_so_far": 0.072882,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 10,
+              "candidate_id": "bp-d3c28b37",
+              "strategy_id": "local_coordinate_search",
+              "mean_objective": 0.072882,
+              "best_so_far": 0.072882,
+              "is_feasible": true
+            }
+          ]
+        }
+      },
+      "vertex_graph_coloring": {
+        "north_bluestar_portfolio": {
+          "problem_id": "vertex_graph_coloring",
+          "problem_name": "Vertex Graph Coloring (Chromatic Minimization)",
+          "controller_mode": "north_bluestar_portfolio",
+          "termination_reason": "diminishing_returns_stagnation_8",
+          "total_dev_evaluations": 2,
+          "total_wall_clock_ms": 173.52,
+          "anchor_baseline_id": "baseline-gc-dsatur",
+          "anchor_baseline_dev_obj": 5.625,
+          "anchor_baseline_holdout_obj": 7.0,
+          "champion_candidate_id": "baseline-gc-dsatur",
+          "champion_method_id": "verified_classical_and_exact",
+          "champion_strategy_id": "baseline_portfolio",
+          "champion_payload": {
+            "algorithm_name": "DSATUR"
+          },
+          "champion_dev_obj": 5.625,
+          "champion_val_obj": 6.333333,
+          "champion_holdout_obj": 7.0,
+          "champion_holdout_improvement_vs_anchor_pct": 0.0,
+          "champion_holdout_gap_to_bound_pct": 133.3333,
+          "champion_is_proven_optimal_on_holdout": false,
+          "champion_is_repeatable": true,
+          "freeze_certificate_sha256": "abe0a02567a94fc2b0eabbfe97b95139461743da534b1a3308444c9cc9f945cb",
+          "evidence_chain_verified": true,
+          "diversity_summary": {
+            "total_evaluated": 2,
+            "feasible_count": 2,
+            "unique_structural_hashes": 2,
+            "unique_canonical_hashes": 2,
+            "unique_behavioral_phenotypes": 1,
+            "behavioral_diversity_ratio": 0.5,
+            "duplicate_rejections": {
+              "structural": 7,
+              "canonical": 0,
+              "behavioral": 0
+            }
+          },
+          "learned_operator_effects": {
+            "algorithm_name": {
+              "DSATUR": 0.125
+            },
+            "entry_func_name": {
+              "color_graph": -0.125
+            }
+          },
+          "strategy_posteriors": {
+            "baseline_portfolio": {
+              "attempts": 1.0,
+              "feasibility_rate": 1.0,
+              "behavioral_novelty_rate": 1.0,
+              "max_improvement_pct": 0.0,
+              "mean_improvement_pct": 0.0,
+              "ucb_score": 8.7058
+            },
+            "program_synthesis": {
+              "attempts": 1.0,
+              "feasibility_rate": 1.0,
+              "behavioral_novelty_rate": 0.0,
+              "max_improvement_pct": -4.4444,
+              "mean_improvement_pct": -4.4444,
+              "ucb_score": 6.7058
+            }
+          },
+          "baseline_comparison_table": [
+            {
+              "candidate_id": "baseline-gc-dsatur",
+              "algorithm_name": "DSATUR",
+              "holdout_mean_objective": 7.0,
+              "holdout_optimality_gap_pct": 133.3333,
+              "holdout_mean_runtime_ms": 0.421,
+              "is_proven_optimal": false
+            },
+            {
+              "candidate_id": "baseline-gc-smallest-last",
+              "algorithm_name": "Smallest-Last",
+              "holdout_mean_objective": 7.875,
+              "holdout_optimality_gap_pct": 162.5,
+              "holdout_mean_runtime_ms": 0.403,
+              "is_proven_optimal": false
+            },
+            {
+              "candidate_id": "baseline-gc-dsatur-kempe-ls",
+              "algorithm_name": "DSATUR-Kempe-LS",
+              "holdout_mean_objective": 6.875,
+              "holdout_optimality_gap_pct": 129.1666,
+              "holdout_mean_runtime_ms": 0.43,
+              "is_proven_optimal": false
+            }
+          ],
+          "convergence_history": [
+            {
+              "eval_index": 1,
+              "candidate_id": "baseline-gc-dsatur",
+              "strategy_id": "baseline_portfolio",
+              "mean_objective": 5.625,
+              "best_so_far": 5.625,
+              "is_feasible": true
+            },
+            {
+              "eval_index": 2,
+              "candidate_id": "prog-25c77b2b",
+              "strategy_id": "program_synthesis",
+              "mean_objective": 5.875,
+              "best_so_far": 5.625,
+              "is_feasible": true
+            }
+          ]
+        }
+      }
+    }
+  },
+  "registered_methods": [
+    {
+      "method_id": "verified_classical_and_exact",
+      "name": "Verified Classical, Local Search & Exact Solvers",
+      "paradigm": "CLASSICAL_CONSTRUCTIVE",
+      "supported_problem_ids": [
+        "pfsp_makespan",
+        "online_bin_packing_1d",
+        "vertex_graph_coloring"
+      ],
+      "supported_candidate_kinds": [
+        "VERIFIED_BASELINE"
+      ],
+      "can_prove_optimality": true,
+      "is_deterministic": true,
+      "estimated_cost_tier": 1,
+      "description": "Established OR algorithms (NEH, NEH-LS, B&B-IG, Palmer, CDS, Best-Fit, First-Fit, DSATUR, Kempe-LS)."
+    },
+    {
+      "method_id": "declarative_pfsp_compiler",
+      "name": "Declarative PFSP Operator Composition Compiler",
+      "paradigm": "DECLARATIVE_OPERATOR_COMPILER",
+      "supported_problem_ids": [
+        "pfsp_makespan"
+      ],
+      "supported_candidate_kinds": [
+        "DECLARATIVE_PFSP"
+      ],
+      "can_prove_optimality": true,
+      "is_deterministic": true,
+      "estimated_cost_tier": 2,
+      "description": "Compiles verified PFSP constructive ordering, tie-breaking, insertion, and VND local search operators."
+    },
+    {
+      "method_id": "parametric_bin_packing_compiler",
+      "name": "Parametric Online Bin Packing Scorer Compiler",
+      "paradigm": "DECLARATIVE_OPERATOR_COMPILER",
+      "supported_problem_ids": [
+        "online_bin_packing_1d"
+      ],
+      "supported_candidate_kinds": [
+        "DECLARATIVE_BIN_PACKING"
+      ],
+      "can_prove_optimality": true,
+      "is_deterministic": true,
+      "estimated_cost_tier": 1,
+      "description": "Compiles multi-term parametric online bin packing priority functions with non-monotonic slack and gap shaping."
+    },
+    {
+      "method_id": "sandboxed_python_program",
+      "name": "Sandboxed Python AST Program Adapter",
+      "paradigm": "SANDBOXED_PROGRAM_ADAPTER",
+      "supported_problem_ids": [
+        "pfsp_makespan",
+        "online_bin_packing_1d",
+        "vertex_graph_coloring"
+      ],
+      "supported_candidate_kinds": [
+        "PYTHON_PROGRAM"
+      ],
+      "can_prove_optimality": true,
+      "is_deterministic": true,
+      "estimated_cost_tier": 2,
+      "description": "Executes AST-validated Python candidate functions inside a restricted builtin namespace and subprocess worker."
+    }
+  ],
+  "threat_model": {
+    "level": "POSIX_SUBPROCESS_AST_RESTRICTED",
+    "enforces_ast_allowlist": true,
+    "enforces_os_process_boundary": true,
+    "enforces_sigkill_on_timeout": true,
+    "guarantees": [
+      "Timed-out worker processes are forcibly terminated via OS SIGKILL (`proc.kill()`), preventing runaway CPU starvation.",
+      "Input problem instances are deep-copied before execution so in-place mutation cannot corrupt benchmark data.",
+      "Python program candidates undergo AST static analysis blocking imports of os/sys/subprocess/socket and dunder introspection.",
+      "Every candidate output is validated by an independent host-process verifier before objective scoring."
+    ],
+    "non_guarantees": [
+      "Does NOT claim containment against kernel zero-days or arbitrary native code execution without an external container/nsjail/Firecracker microVM boundary."
+    ]
+  }
+}

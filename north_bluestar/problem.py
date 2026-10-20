@@ -37,6 +37,7 @@ class LifecyclePhase(str, Enum):
     DEVELOPMENT_SEARCH = "DEVELOPMENT_SEARCH"
     VALIDATION_SELECTION = "VALIDATION_SELECTION"
     CHAMPIONS_FROZEN_HOLDOUT_UNSEALED = "CHAMPIONS_FROZEN_HOLDOUT_UNSEALED"
+    HOLDOUT_CONSUMED = "HOLDOUT_CONSUMED"
 
 
 class SolutionStatus(str, Enum):
@@ -140,6 +141,7 @@ class SplitFirewall:
         }
         self._freeze_timestamp: Optional[float] = None
         self._holdout_access_count: int = 0
+        self._holdout_evaluated_champions: set[str] = set()
         self._selection_manifest: Optional[Dict[str, Any]] = None
 
     @staticmethod
@@ -155,7 +157,12 @@ class SplitFirewall:
         if self.phase == LifecyclePhase.DEVELOPMENT_SEARCH:
             self.phase = LifecyclePhase.VALIDATION_SELECTION
 
-    def freeze_champions(self, champion_ids: Sequence[str], selection_metadata: Optional[Dict[str, Any]] = None) -> str:
+    def freeze_champions(
+        self,
+        champion_ids: Sequence[str],
+        evidence_store: Optional[Any] = None,
+        selection_metadata: Optional[Dict[str, Any]] = None,
+    ) -> str:
         """Freezes selected champion IDs and unseals FINAL_HOLDOUT for one-shot verification."""
         if not champion_ids:
             raise ValueError("Cannot freeze empty champion_ids list.")
@@ -168,12 +175,25 @@ class SplitFirewall:
                 validated_ids.append(cid)
         if self.frozen_champion_ids is not None:
             raise RuntimeError("Champions have already been frozen; re-freezing is prohibited.")
+
+        # Validate champion IDs against evidence store if provided
+        evidence_head_hash = "0" * 64
+        if evidence_store is not None and hasattr(evidence_store, "records"):
+            evaluated_ids = {r.candidate_id for r in evidence_store.records}
+            for cid in validated_ids:
+                if cid not in evaluated_ids:
+                    raise ValueError(f"Champion ID '{cid}' has no corresponding evaluation in the evidence store.")
+            if evidence_store.records:
+                evidence_head_hash = evidence_store.records[-1].record_hash
+
         import time as _time
         self.frozen_champion_ids = tuple(validated_ids)
         self.phase = LifecyclePhase.CHAMPIONS_FROZEN_HOLDOUT_UNSEALED
         self._freeze_timestamp = _time.time()
+        self._holdout_evaluated_champions = set()
         self._selection_manifest = {
             "frozen_champions": list(self.frozen_champion_ids),
+            "evidence_chain_head": evidence_head_hash,
             "holdout_hash": self.get_split_hash(SplitType.FINAL_HOLDOUT),
             "freeze_timestamp": self._freeze_timestamp,
             "metadata": dict(selection_metadata or {}),
@@ -190,18 +210,65 @@ class SplitFirewall:
     def get_selection_manifest(self) -> Optional[Dict[str, Any]]:
         return copy.deepcopy(self._selection_manifest)
 
-    def get_instances(self, split: SplitType, caller: str = "unknown") -> List[ProblemInstance]:
-        """Returns defensive copies of instances for the requested split if permitted by firewall state."""
-        if split == SplitType.FINAL_HOLDOUT and self.phase != LifecyclePhase.CHAMPIONS_FROZEN_HOLDOUT_UNSEALED:
-            self.access_log.append(
-                {"split": split.value, "caller": caller, "phase": self.phase.value, "allowed": False}
-            )
-            raise SplitAccessViolationError(
-                f"FIREWALL VIOLATION: Caller '{caller}' attempted to access FINAL_HOLDOUT during phase '{self.phase.value}'. "
-                "Holdout evaluation is strictly forbidden prior to freeze_champions()."
-            )
+    def consume_holdout(self) -> None:
+        """Permanently transitions firewall into HOLDOUT_CONSUMED phase."""
+        self.phase = LifecyclePhase.HOLDOUT_CONSUMED
 
+    def get_instances(
+        self,
+        split: SplitType,
+        caller: str = "unknown",
+        candidate_id: Optional[str] = None,
+    ) -> List[ProblemInstance]:
+        """Returns defensive copies of instances for the requested split if permitted by firewall state."""
         if split == SplitType.FINAL_HOLDOUT:
+            if self.phase == LifecyclePhase.HOLDOUT_CONSUMED:
+                self.access_log.append(
+                    {"split": split.value, "caller": caller, "phase": self.phase.value, "allowed": False}
+                )
+                raise SplitAccessViolationError(
+                    f"FIREWALL VIOLATION: FINAL_HOLDOUT is permanently consumed (phase '{self.phase.value}'). "
+                    "Re-reading holdout data is strictly forbidden in a confirmation run."
+                )
+
+            if self.phase != LifecyclePhase.CHAMPIONS_FROZEN_HOLDOUT_UNSEALED:
+                self.access_log.append(
+                    {"split": split.value, "caller": caller, "phase": self.phase.value, "allowed": False}
+                )
+                raise SplitAccessViolationError(
+                    f"FIREWALL VIOLATION: Caller '{caller}' attempted to access FINAL_HOLDOUT during phase '{self.phase.value}'. "
+                    "Holdout evaluation is strictly forbidden prior to freeze_champions()."
+                )
+
+            if candidate_id is not None:
+                if self.frozen_champion_ids and candidate_id not in self.frozen_champion_ids:
+                    self.access_log.append(
+                        {"split": split.value, "caller": caller, "candidate_id": candidate_id, "allowed": False}
+                    )
+                    raise SplitAccessViolationError(
+                        f"FIREWALL VIOLATION: Candidate '{candidate_id}' is not in frozen champions {self.frozen_champion_ids}."
+                    )
+                if candidate_id in self._holdout_evaluated_champions:
+                    self.access_log.append(
+                        {"split": split.value, "caller": caller, "candidate_id": candidate_id, "allowed": False}
+                    )
+                    raise SplitAccessViolationError(
+                        f"FIREWALL VIOLATION: Candidate '{candidate_id}' has already been evaluated on FINAL_HOLDOUT. One-shot evaluation prohibited duplicate access."
+                    )
+                self._holdout_evaluated_champions.add(candidate_id)
+                if self.frozen_champion_ids and len(self._holdout_evaluated_champions) >= len(self.frozen_champion_ids):
+                    self.phase = LifecyclePhase.HOLDOUT_CONSUMED
+            else:
+                # Direct access without candidate ID is strictly one-shot
+                if self._holdout_access_count >= 1:
+                    self.phase = LifecyclePhase.HOLDOUT_CONSUMED
+                    self.access_log.append(
+                        {"split": split.value, "caller": caller, "phase": self.phase.value, "allowed": False}
+                    )
+                    raise SplitAccessViolationError(
+                        "FIREWALL VIOLATION: FINAL_HOLDOUT has already been accessed in direct mode. Subsequent access is permanently prohibited."
+                    )
+
             self._holdout_access_count += 1
 
         # Verify cryptographic integrity before returning instances

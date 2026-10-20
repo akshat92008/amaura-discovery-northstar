@@ -99,12 +99,41 @@ def _subprocess_worker_entry(
     candidate: CandidateSpec,
     instance: ProblemInstance,
     result_queue: mp.Queue,
+    max_memory_mb: int = 512,
+    cpu_timeout_sec: int = 10,
 ) -> None:
     """
-    Isolated worker target executed in a separate OS process.
+    Isolated worker target executed in a separate OS process with hard OS resource limits (P0 2.3).
     Compiles the candidate via a fresh MethodRegistry and runs it on a defensive copy of `instance`.
     """
     try:
+        # Enforce OS-level resource containment limits (P0 2.3)
+        try:
+            import resource
+            # CPU time limit: soft = cpu_timeout_sec, hard = cpu_timeout_sec + 2
+            resource.setrlimit(resource.RLIMIT_CPU, (cpu_timeout_sec, cpu_timeout_sec + 2))
+            if hasattr(resource, "RLIMIT_CORE"):
+                resource.setrlimit(resource.RLIMIT_CORE, (0, 0))
+            if hasattr(resource, "RLIMIT_FSIZE"):
+                resource.setrlimit(resource.RLIMIT_FSIZE, (1024 * 1024, 1024 * 1024))
+            if hasattr(resource, "RLIMIT_NOFILE"):
+                resource.setrlimit(resource.RLIMIT_NOFILE, (64, 64))
+            if hasattr(resource, "RLIMIT_AS"):
+                try:
+                    limit_bytes = max_memory_mb * 1024 * 1024
+                    resource.setrlimit(resource.RLIMIT_AS, (limit_bytes, limit_bytes))
+                except (ValueError, OSError):
+                    pass
+        except Exception as lim_err:
+            result_queue.put({
+                "ok": False,
+                "solution": None,
+                "runtime_ms": 0.0,
+                "error": f"ResourceLimitError: Failed to set OS resource limits: {lim_err}",
+                "traceback": "",
+            })
+            return
+
         reg = MethodRegistry.create_default_registry()
         adapter = reg.get(candidate.method_id)
         runner = adapter.compile_runner(candidate)
@@ -215,10 +244,19 @@ class ExecutionSupervisor:
         and optionally verifies exact repeatability across a second pass.
         """
         # 1. Request instances through the SplitFirewall (raises SplitAccessViolationError if FINAL_HOLDOUT is sealed)
-        instances = problem.firewall.get_instances(split, caller=caller)
+        instances = problem.firewall.get_instances(split, caller=caller, candidate_id=candidate.candidate_id)
         timeout_ms = problem.default_timeout_ms or self.default_timeout_ms
 
-        use_subproc = self.force_subprocess_for_all or (candidate.kind == CandidateKind.PYTHON_PROGRAM)
+        # Any candidate with search, iterative loops, or untrusted code runs in killable subprocess (P0 2.2)
+        has_iterative_search = False
+        if candidate.kind == CandidateKind.DECLARATIVE_PFSP:
+            cfg_dict = candidate.payload.get("config", {})
+            if isinstance(cfg_dict, dict):
+                has_iterative_search = (
+                    cfg_dict.get("local_search_op", "none") != "none"
+                    or int(cfg_dict.get("perturbation_d", 0)) > 0
+                )
+        use_subproc = self.force_subprocess_for_all or (candidate.kind == CandidateKind.PYTHON_PROGRAM) or has_iterative_search
         if candidate.kind not in (
             CandidateKind.DECLARATIVE_PFSP,
             CandidateKind.DECLARATIVE_BIN_PACKING,

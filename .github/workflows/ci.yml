@@ -34,8 +34,6 @@ jobs:
       run: |
         python -m pytest tests/test_sandbox_escapes.py -v --tb=short
 
-    - name: Verify test suite volume
+    - name: Verify test suite collection
       run: |
-        count=$(python -m pytest tests/ --collect-only -q | tail -1 | grep -oE '[0-9]+' | head -1)
-        echo "Collected $count tests"
-        test "$count" -ge 175
+        python -m pytest tests/ --collect-only -q

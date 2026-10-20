@@ -31,7 +31,23 @@ function runPythonWithStdin(script: string, inputPayload: Record<string, unknown
   });
 }
 
-// Static allowlists for input validation (WEB-1, WEB-3)
+// Helper for strict finite integer parsing and range enforcement (3.2)
+function parseFiniteInteger(value: unknown, fieldName: string, minVal: number, maxVal: number, defaultValue?: number): number {
+  if (value === undefined || value === null) {
+    if (defaultValue !== undefined) return defaultValue;
+    throw new Error(`Field '${fieldName}' is required.`);
+  }
+  const n = typeof value === 'number' ? value : Number(String(value).trim());
+  if (!Number.isFinite(n) || !Number.isInteger(n)) {
+    throw new Error(`Field '${fieldName}' must be a finite integer, got '${String(value)}'.`);
+  }
+  if (n < minVal || n > maxVal) {
+    throw new Error(`Field '${fieldName}' must be between ${minVal} and ${maxVal}, got ${n}.`);
+  }
+  return n;
+}
+
+// Canonical search grammar allowlists matching north_bluestar/candidates.py exactly (3.1)
 const ALLOWED_PROBLEM_IDS = new Set([
   'pfsp_makespan',
   'online_bin_packing_1d',
@@ -49,34 +65,33 @@ const ALLOWED_STRATEGY_MODES = new Set([
 
 const ALLOWED_PRIORITY_RULES = new Set([
   'total_time_desc',
-  'total_time_asc',
-  'first_op_desc',
-  'last_op_asc',
+  'palmer_slope',
+  'gupta_profile',
+  'cds_stage_best',
+  'front_back_weighted',
 ]);
 
 const ALLOWED_TIE_BREAKERS = new Set([
+  'index_asc',
+  'first_machine_asc',
+  'last_machine_desc',
   'bottleneck_slack',
-  'fifo',
-  'lifo',
 ]);
 
 const ALLOWED_INSERTION_MODES = new Set([
   'earliest_makespan',
-  'first_feasible',
-  'best_fit',
+  'latest_makespan',
+  'min_machine_idle',
 ]);
 
 const ALLOWED_LOCAL_SEARCH_OPS = new Set([
   'none',
-  'insert_adjacent',
-  'insert_any',
-  'swap_adjacent',
-  'swap_any',
+  'insertion_ls',
+  'swap_ls',
   'vnd_insert_swap',
 ]);
 
 const ALLOWED_PIVOT_RULES = new Set([
-  'none',
   'first_improvement',
   'best_improvement',
 ]);
@@ -211,7 +226,7 @@ export async function GET() {
   }
 }
 
-// POST: validated RPC handlers with safe parameter transmission (WEB-1, WEB-3)
+// POST: validated RPC handlers with safe parameter transmission (WEB-1, WEB-3, 3.1, 3.2, 3.3)
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
@@ -234,8 +249,15 @@ export async function POST(req: NextRequest) {
         );
       }
 
-      const budget = Math.min(60, Math.max(6, Math.floor(Number(body.budget || 20))));
-      const seed = Math.floor(Number(body.seed || 42));
+      // Safe bounded budget (max 24) to guarantee synchronous HTTP execution completes within 25s (3.3)
+      let budget: number;
+      let seed: number;
+      try {
+        budget = parseFiniteInteger(body.budget, 'budget', 4, 24, 16);
+        seed = parseFiniteInteger(body.seed, 'seed', 0, 1000000, 42);
+      } catch (err) {
+        return NextResponse.json({ error: (err as Error).message }, { status: 400 });
+      }
 
       const payload = {
         problem_id: problemId,
@@ -289,7 +311,12 @@ export async function POST(req: NextRequest) {
         );
       }
 
-      const perturbationD = Math.max(0, Math.min(10, Math.floor(Number(body.perturbation_d ?? 2))));
+      let perturbationD: number;
+      try {
+        perturbationD = parseFiniteInteger(body.perturbation_d, 'perturbation_d', 0, 2, 0);
+      } catch (err) {
+        return NextResponse.json({ error: (err as Error).message }, { status: 400 });
+      }
 
       const payload = {
         priority_rule: priorityRule,

@@ -18,6 +18,8 @@ import copy
 import hashlib
 import json
 import math
+import os
+import tempfile
 from dataclasses import dataclass, field
 from typing import Any, Dict, List, Optional, Sequence, Tuple
 
@@ -56,9 +58,11 @@ class EvidenceRecord:
     is_repeatable: bool
     prev_record_hash: str
     record_hash: str
+    schema_version: int = 1
 
     def to_dict(self) -> Dict[str, Any]:
         return {
+            "schema_version": self.schema_version,
             "sequence_index": self.sequence_index,
             "candidate_id": self.candidate_id,
             "kind": self.kind,
@@ -71,7 +75,7 @@ class EvidenceRecord:
             "structural_hash": self.structural_hash,
             "canonical_hash": self.canonical_hash,
             "behavioral_hash": self.behavioral_hash,
-            "payload": self.payload,
+            "payload": copy.deepcopy(self.payload),
             "is_feasible": self.is_feasible,
             "is_proven_optimal": self.is_proven_optimal,
             "mean_objective": self.mean_objective,
@@ -94,8 +98,13 @@ class EvidenceStore:
     Append-only, cryptographically hash-chained evidence store with empirical learning analytics.
     """
 
-    def __init__(self, direction: OptimizationDirection = OptimizationDirection.MINIMIZE) -> None:
+    def __init__(
+        self,
+        direction: OptimizationDirection = OptimizationDirection.MINIMIZE,
+        auto_persist_path: Optional[str] = None,
+    ) -> None:
         self.direction = direction
+        self.auto_persist_path = auto_persist_path
         self.records: List[EvidenceRecord] = []
         self._seen_structural_hashes: set[str] = set()
         self._seen_canonical_hashes: set[str] = set()
@@ -126,7 +135,12 @@ class EvidenceStore:
             return True, f"duplicate_behavioral_hash:{candidate.behavioral_hash}"
         return False, None
 
-    def append(self, candidate: CandidateSpec, report: VerificationReport) -> EvidenceRecord:
+    def append(
+        self,
+        candidate: CandidateSpec,
+        report: VerificationReport,
+        persist_path: Optional[str] = None,
+    ) -> EvidenceRecord:
         seq_idx = len(self.records)
         prev_hash = self.records[-1].record_hash if self.records else "0" * 64
         out = report.outcome
@@ -138,6 +152,7 @@ class EvidenceStore:
                 self._seen_behavioral_hashes.add(candidate.behavioral_hash)
 
         body = {
+            "schema_version": 1,
             "sequence_index": seq_idx,
             "candidate_id": candidate.candidate_id,
             "kind": candidate.kind.value,
@@ -150,7 +165,7 @@ class EvidenceStore:
             "structural_hash": candidate.structural_hash,
             "canonical_hash": candidate.canonical_hash,
             "behavioral_hash": candidate.behavioral_hash,
-            "payload": candidate.payload,
+            "payload": copy.deepcopy(candidate.payload),
             "is_feasible": out.is_fully_feasible,
             "is_proven_optimal": out.is_proven_split_optimal,
             "mean_objective": out.mean_objective,
@@ -195,15 +210,21 @@ class EvidenceStore:
             is_repeatable=report.is_repeatable,
             prev_record_hash=prev_hash,
             record_hash=rec_hash,
+            schema_version=1,
         )
         self.records.append(record)
+        target_path = persist_path or self.auto_persist_path
+        if target_path:
+            self.save_to_file(target_path)
         return record
 
     def save_to_file(self, path: str) -> None:
         """Atomically persists the evidence chain to disk (P0.11)."""
         import os, tempfile
         data = {
+            "schema_version": 1,
             "direction": self.direction.value,
+            "record_count": len(self.records),
             "records": [r.to_dict() for r in self.records],
         }
         dir_name = os.path.dirname(os.path.abspath(path))
@@ -223,13 +244,29 @@ class EvidenceStore:
     @classmethod
     def load_from_file(cls, path: str) -> "EvidenceStore":
         """Loads a persisted evidence chain and verifies cryptographic integrity."""
+        if not os.path.exists(path):
+            raise FileNotFoundError(f"Evidence file not found: {path}")
         with open(path, "r", encoding="utf-8") as f:
-            data = json.load(f)
+            content = f.read().strip()
+            if not content:
+                raise ValueError(f"Evidence file is empty: {path}")
+            try:
+                data = json.loads(content)
+            except json.JSONDecodeError as jde:
+                raise ValueError(f"Corrupted JSON in evidence file '{path}': {jde}") from jde
+
+        if not isinstance(data, dict):
+            raise ValueError(f"Evidence file content must be a JSON object, got {type(data)}")
+
+        schema_version = data.get("schema_version", 1)
+        if schema_version != 1:
+            raise ValueError(f"Unsupported evidence schema version: {schema_version}")
 
         store = cls(direction=OptimizationDirection(data.get("direction", "MINIMIZE")))
         for rec_dict in data.get("records", []):
             rec_dict_copy = dict(rec_dict)
             rec_dict_copy["parent_ids"] = tuple(rec_dict_copy.get("parent_ids", []))
+            rec_dict_copy.setdefault("schema_version", schema_version)
             record = EvidenceRecord(**rec_dict_copy)
             store.records.append(record)
             if record.split == SplitType.DEVELOPMENT.value:

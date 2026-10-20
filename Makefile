@@ -9,7 +9,7 @@ help:
 	@echo "All default targets are strictly offline, deterministic, and make ZERO network calls."
 	@echo ""
 	@echo "Available targets:"
-	@echo "  make test                      Run all safe offline unit and regression tests (118 tests)"
+	@echo "  make test                      Run all safe offline unit and regression tests (181+ tests)"
 	@echo "  make test-stage4               Run Stage 4 offline regression and safety tests (109 tests)"
 	@echo "  make test-stage2               Run Stage 2 offline regression tests (29 tests)"
 	@echo "  make test-flaws                Run regression test demonstrating the PFSP penalty flaw"

@@ -25,6 +25,30 @@ dev = [
 requires = ["setuptools>=68.0"]
 build-backend = "setuptools.build_meta"
 
+[tool.setuptools.packages.find]
+where = ["."]
+include = [
+    "amaura*",
+    "amaura_exec*",
+    "north_bluestar*",
+    "discovery_kernel*",
+    "stage2*",
+    "stage3*",
+    "stage4*",
+]
+exclude = [
+    "app*",
+    "components*",
+    "hooks*",
+    "lib*",
+    "public*",
+    "tests*",
+    "experiment*",
+    "amaura_runs*",
+    "benchmark_v1*",
+    "stage4_research_decision*",
+]
+
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 python_files = ["test_*.py"]

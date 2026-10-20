@@ -19,6 +19,7 @@ from north_bluestar import (
     CandidateSpec,
     ExecutionSupervisor,
     FailureCategory,
+    LifecyclePhase,
     MethodRegistry,
     SolutionStatus,
     SplitAccessViolationError,
@@ -99,9 +100,74 @@ def test_holdout_firewall_access_counter_and_manifest():
     assert problem.firewall.get_holdout_access_count() == 1
     assert problem.firewall.has_holdout_been_accessed()
 
+    # Second direct access is strictly prohibited (P0 2.1: genuinely one-shot)
+    with pytest.raises(SplitAccessViolationError):
+        problem.firewall.get_instances(SplitType.FINAL_HOLDOUT)
+
     # Re-freezing is strictly prohibited
     with pytest.raises(RuntimeError):
         problem.firewall.freeze_champions(["champ-3"])
+
+
+def test_holdout_candidate_authorization_and_one_shot():
+    """P0 2.1: Candidate-level holdout authorization, duplicate prevention, and consumption."""
+    problem = build_pfsp_problem(seed=42, dev_count=2, val_count=1, holdout_count=2)
+    # Freeze two specific champions
+    problem.firewall.freeze_champions(["champ-A", "champ-B"])
+
+    # Unauthorized candidate cannot access holdout
+    with pytest.raises(SplitAccessViolationError, match="not in frozen champions"):
+        problem.firewall.get_instances(SplitType.FINAL_HOLDOUT, candidate_id="intruder")
+
+    # champ-A accesses holdout: succeeds
+    insts_a = problem.firewall.get_instances(SplitType.FINAL_HOLDOUT, candidate_id="champ-A")
+    assert len(insts_a) == 2
+
+    # champ-A attempts duplicate access: fails
+    with pytest.raises(SplitAccessViolationError, match="already been evaluated on FINAL_HOLDOUT"):
+        problem.firewall.get_instances(SplitType.FINAL_HOLDOUT, candidate_id="champ-A")
+
+    # champ-B accesses holdout: succeeds
+    insts_b = problem.firewall.get_instances(SplitType.FINAL_HOLDOUT, candidate_id="champ-B")
+    assert len(insts_b) == 2
+
+    # All champions have been evaluated -> phase is permanently HOLDOUT_CONSUMED
+    assert problem.firewall.phase == LifecyclePhase.HOLDOUT_CONSUMED
+
+    # Any further access raises SplitAccessViolationError
+    with pytest.raises(SplitAccessViolationError, match="permanently consumed"):
+        problem.firewall.get_instances(SplitType.FINAL_HOLDOUT, candidate_id="champ-B")
+
+
+def test_freeze_champions_validates_evidence_records():
+    """P0 2.1: freeze_champions rejects champion IDs that lack evaluation in evidence store."""
+    from north_bluestar.evidence import EvidenceStore
+    store = EvidenceStore()
+    problem = build_pfsp_problem(seed=42, dev_count=2, val_count=1, holdout_count=2)
+
+    # Empty store -> freeze_champions with unevaluated champion raises ValueError
+    with pytest.raises(ValueError, match="no corresponding evaluation in the evidence store"):
+        problem.firewall.freeze_champions(["unevaluated_champ"], evidence_store=store)
+
+
+def test_subprocess_resource_limits_terminate_memory_exhaustion():
+    """P0 2.3: Subprocess worker memory containment terminates extreme allocations."""
+    registry = MethodRegistry.create_default_registry()
+    supervisor = ExecutionSupervisor(registry, default_timeout_ms=500.0)
+    problem = build_bin_packing_problem(seed=42, dev_count=2, val_count=1, holdout_count=1)
+
+    # Memory bomb candidate attempting massive allocation
+    memory_bomb_code = (
+        "def priority(item, rem, cap):\n"
+        "    big = [0] * (2 * 1024 * 1024 * 1024)\n"  # 16 GB allocation
+        "    return float(len(big))\n"
+    )
+    spec = CandidateSpec.from_python_program(
+        code=memory_bomb_code, entry_func_name="priority", problem_id="online_bin_packing_1d"
+    )
+    report = supervisor.evaluate_candidate_on_split(problem, spec, split=SplitType.DEVELOPMENT)
+    assert not report.outcome.is_fully_feasible
+    assert report.failure_category in (FailureCategory.RUNTIME_EXCEPTION, FailureCategory.TIMEOUT_SIGKILL)
 
 
 def test_repeatability_uses_process_isolation_for_python_programs():

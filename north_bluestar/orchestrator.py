@@ -322,8 +322,10 @@ class NorthBlueStarEngine:
         if not default_baselines:
             raise RuntimeError(f"No verified baselines registered for {self.problem.problem_id}")
 
+        for b in default_baselines:
+            self.candidate_catalog[b.candidate_id] = b
+
         anchor_spec = default_baselines[0]  # e.g., NEH for PFSP, Best-Fit for Bin Packing, DSATUR for GC
-        self.candidate_catalog[anchor_spec.candidate_id] = anchor_spec
         anchor_dev_rep = self.supervisor.evaluate_candidate_on_split(
             self.problem, anchor_spec, split=SplitType.DEVELOPMENT, verify_repeatability=True
         )
@@ -415,7 +417,13 @@ class NorthBlueStarEngine:
         # Phase 3: Advance Firewall to VALIDATION and evaluate top K development finalists + baselines
         self.problem.firewall.advance_to_validation()
         top_dev_records = self.evidence.get_top_k(k=top_k_validation, split=SplitType.DEVELOPMENT)
-        finalist_ids = list(dict.fromkeys([r.candidate_id for r in top_dev_records] + [anchor_spec.candidate_id]))
+        finalist_ids = list(dict.fromkeys(
+            [r.candidate_id for r in top_dev_records]
+            + [anchor_spec.candidate_id]
+            + [b.candidate_id for b in default_baselines]
+        ))
+        for b_spec in default_baselines:
+            self.candidate_catalog.setdefault(b_spec.candidate_id, b_spec)
 
         best_val_id = anchor_spec.candidate_id
         best_val_obj = float("inf")
@@ -440,34 +448,48 @@ class NorthBlueStarEngine:
 
         # Phase 4: Freeze Champion(s) and Unseal FINAL_HOLDOUT for One-Shot Verification
         freeze_ids = list(dict.fromkeys([best_val_id, anchor_spec.candidate_id] + [b.candidate_id for b in default_baselines]))
-        for b_spec in default_baselines:
-            self.candidate_catalog.setdefault(b_spec.candidate_id, b_spec)
 
-        freeze_cert = self.problem.firewall.freeze_champions(freeze_ids)
+        freeze_cert = self.problem.firewall.freeze_champions(
+            freeze_ids,
+            evidence_store=self.evidence,
+            selection_metadata={
+                "selection_rule": "validation_argmin",
+                "best_val_obj": best_val_obj,
+                "best_val_id": best_val_id,
+            },
+        )
 
-        # Evaluate Anchor Baseline on FINAL_HOLDOUT
+        holdout_reports: Dict[str, VerificationReport] = {}
+
+        # 1. Evaluate Anchor Baseline on FINAL_HOLDOUT first to establish reference metrics
         anchor_holdout_rep = self.supervisor.evaluate_candidate_on_split(
             self.problem, anchor_spec, split=SplitType.FINAL_HOLDOUT, verify_repeatability=True
         )
         self.evidence.append(anchor_spec, anchor_holdout_rep)
+        holdout_reports[anchor_spec.candidate_id] = anchor_holdout_rep
         anchor_holdout_obj = float(anchor_holdout_rep.outcome.mean_objective or 1.0)
         anchor_holdout_rt = float(anchor_holdout_rep.outcome.mean_runtime_ms or 1.0)
 
-        # Evaluate all Reference Baselines on FINAL_HOLDOUT for complete comparison table
+        # 2. Evaluate all other frozen candidates on FINAL_HOLDOUT exactly once
+        for cid in freeze_ids:
+            if cid in holdout_reports:
+                continue
+            cspec = self.candidate_catalog[cid]
+            rep = self.supervisor.evaluate_candidate_on_split(
+                self.problem,
+                cspec,
+                split=SplitType.FINAL_HOLDOUT,
+                baseline_mean_obj=anchor_holdout_obj,
+                baseline_mean_runtime_ms=anchor_holdout_rt,
+                verify_repeatability=True,
+            )
+            self.evidence.append(cspec, rep)
+            holdout_reports[cid] = rep
+
+        # Build baseline comparison table from holdout reports
         baseline_table: List[Dict[str, Any]] = []
         for b_spec in default_baselines:
-            if b_spec.candidate_id == anchor_spec.candidate_id:
-                b_rep = anchor_holdout_rep
-            else:
-                b_rep = self.supervisor.evaluate_candidate_on_split(
-                    self.problem,
-                    b_spec,
-                    split=SplitType.FINAL_HOLDOUT,
-                    baseline_mean_obj=anchor_holdout_obj,
-                    baseline_mean_runtime_ms=anchor_holdout_rt,
-                    verify_repeatability=True,
-                )
-                self.evidence.append(b_spec, b_rep)
+            b_rep = holdout_reports[b_spec.candidate_id]
             baseline_table.append(
                 {
                     "candidate_id": b_spec.candidate_id,
@@ -479,20 +501,12 @@ class NorthBlueStarEngine:
                 }
             )
 
-        # Evaluate Selected Champion on FINAL_HOLDOUT
+        # Retrieve Selected Champion's holdout report
         champion_spec = self.candidate_catalog[best_val_id]
-        if best_val_id == anchor_spec.candidate_id:
-            champ_holdout_rep = anchor_holdout_rep
-        else:
-            champ_holdout_rep = self.supervisor.evaluate_candidate_on_split(
-                self.problem,
-                champion_spec,
-                split=SplitType.FINAL_HOLDOUT,
-                baseline_mean_obj=anchor_holdout_obj,
-                baseline_mean_runtime_ms=anchor_holdout_rt,
-                verify_repeatability=True,
-            )
-            self.evidence.append(champion_spec, champ_holdout_rep)
+        champ_holdout_rep = holdout_reports[best_val_id]
+
+        # Permanently consume FINAL_HOLDOUT so no subsequent access is possible
+        self.problem.firewall.consume_holdout()
 
         champ_holdout_obj = float(champ_holdout_rep.outcome.mean_objective or anchor_holdout_obj)
         champ_imp_pct = float(champ_holdout_rep.outcome.measured_improvement_vs_baseline_pct or 0.0)

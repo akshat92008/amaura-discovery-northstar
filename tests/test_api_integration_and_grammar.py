@@ -90,6 +90,10 @@ def test_evidence_store_schema_version_and_immutability(tmp_path):
     assert "mutated" not in rec.payload
     assert "mutated" not in rec.to_dict()["payload"]
 
+    # Direct mutation on rec.payload must raise TypeError (MappingProxyType immutability)
+    with pytest.raises(TypeError):
+        rec.payload["attack"] = "value"
+
     # Save to disk
     save_path = str(tmp_path / "evidence_v1.json")
     store.save_to_file(save_path)
@@ -123,3 +127,41 @@ def test_evidence_store_fails_closed_on_corrupt_files(tmp_path):
     corrupt_file.write_text("{ unparseable", encoding="utf-8")
     with pytest.raises(ValueError, match="Corrupted JSON"):
         EvidenceStore.load_from_file(str(corrupt_file))
+
+
+def test_manifest_persistence_and_multi_seed_scientific_benchmark(tmp_path):
+    """Section 2.E & Section 3: Experiment manifest generation, persistence, and multi-seed benchmarking."""
+    from north_bluestar import (
+        build_pfsp_problem, NorthBlueStarEngine, SearchController,
+        SearchBudget, BaselinePortfolioStrategy, run_multi_seed_scientific_benchmark,
+    )
+    manifest_path = str(tmp_path / "manifest.json")
+    evidence_path = str(tmp_path / "evidence.json")
+    problem = build_pfsp_problem(seed=42, dev_count=3, val_count=2, holdout_count=2)
+    engine = NorthBlueStarEngine(
+        problem=problem,
+        evidence_persist_path=evidence_path,
+        manifest_persist_path=manifest_path,
+    )
+    ctrl = SearchController(
+        strategies=[BaselinePortfolioStrategy(seed=42)],
+        budget=SearchBudget(max_evaluations=4, stagnation_limit=4),
+        seed=42,
+    )
+    res = engine.run_discovery(ctrl)
+    assert res.manifest is not None
+    assert os.path.exists(manifest_path)
+    assert os.path.exists(evidence_path)
+
+    # Load and verify manifest
+    with open(manifest_path, "r", encoding="utf-8") as f:
+        mf = json.load(f)
+    assert mf["schema_version"] == 1
+    assert mf["champion_candidate_id"] == res.champion_candidate_id
+    assert mf["freeze_certificate_sha256"] == res.freeze_certificate_sha256
+
+    # Test multi-seed scientific benchmark runner with small budget
+    bench = run_multi_seed_scientific_benchmark(seeds=(42,), budget_evals=4, problem_id="pfsp_makespan")
+    assert bench["problem_id"] == "pfsp_makespan"
+    assert len(bench["runs"]) == 1
+    assert "north_bluestar_portfolio" in bench["runs"][0]["arms"]

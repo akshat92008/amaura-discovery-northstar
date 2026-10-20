@@ -52,11 +52,13 @@ from north_bluestar.methods import (
 )
 from north_bluestar.orchestrator import (
     DiscoveryRunResult,
+    ExperimentManifest,
     ForensicRepositoryAuditor,
     NorthBlueStarEngine,
     build_bin_packing_problem,
     build_graph_coloring_problem,
     build_pfsp_problem,
+    run_multi_seed_scientific_benchmark,
     run_preregistered_benchmark_suite,
 )
 from north_bluestar.problem import (
@@ -91,6 +93,7 @@ __all__ = [
     "EvidenceRecord",
     "EvidenceStore",
     "ExecutionSupervisor",
+    "ExperimentManifest",
     "FailureCategory",
     "ForensicRepositoryAuditor",
     "GraphColoringProblem",
@@ -133,5 +136,6 @@ __all__ = [
     "compile_declarative_pfsp_solver",
     "compute_kendall_tau_distance",
     "enumerate_structural_pfsp_space",
+    "run_multi_seed_scientific_benchmark",
     "run_preregistered_benchmark_suite",
 ]

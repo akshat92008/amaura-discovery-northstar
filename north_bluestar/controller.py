@@ -59,9 +59,9 @@ class SearchBudget:
 class SearchStrategy(ABC):
     """Uniform interface for independently testable search strategies."""
 
-    def __init__(self, strategy_id: str, name: str, seed: int = 42) -> None:
+    def __init__(self, strategy_id: str, name: str = "", seed: int = 42) -> None:
         self.strategy_id = strategy_id
-        self.name = name
+        self.name = name or strategy_id
         self.rng = random.Random(seed)
 
     @abstractmethod
@@ -712,6 +712,7 @@ class SearchController:
         self.strategies: Dict[str, SearchStrategy] = {s.strategy_id: s for s in strategies}
         self.strategy_order: List[str] = [s.strategy_id for s in strategies]
         self.budget = budget
+        self.seed = seed
         self.rng = random.Random(seed)
         self.decision_trace: List[Dict[str, Any]] = []
 

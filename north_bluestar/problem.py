@@ -176,15 +176,30 @@ class SplitFirewall:
         if self.frozen_champion_ids is not None:
             raise RuntimeError("Champions have already been frozen; re-freezing is prohibited.")
 
-        # Validate champion IDs against evidence store if provided
+        # Validate champion IDs and evidence chain against evidence store if provided
         evidence_head_hash = "0" * 64
-        if evidence_store is not None and hasattr(evidence_store, "records"):
-            evaluated_ids = {r.candidate_id for r in evidence_store.records}
-            for cid in validated_ids:
-                if cid not in evaluated_ids:
-                    raise ValueError(f"Champion ID '{cid}' has no corresponding evaluation in the evidence store.")
-            if evidence_store.records:
-                evidence_head_hash = evidence_store.records[-1].record_hash
+        val_evidence_hash = "0" * 64
+        if evidence_store is not None:
+            if hasattr(evidence_store, "verify_hash_chain"):
+                if not evidence_store.verify_hash_chain():
+                    raise ValueError("Evidence chain integrity verification failed on freeze_champions.")
+
+            if hasattr(evidence_store, "records"):
+                evaluated_ids = {r.candidate_id for r in evidence_store.records}
+                for cid in validated_ids:
+                    if cid not in evaluated_ids:
+                        raise ValueError(f"Champion ID '{cid}' has no corresponding evaluation in the evidence store.")
+
+                val_records = [r for r in evidence_store.records if r.split == SplitType.VALIDATION.value]
+                if val_records:
+                    val_candidate_ids = {r.candidate_id for r in val_records}
+                    if not any(cid in val_candidate_ids for cid in validated_ids):
+                        raise ValueError("Frozen champions must have validation-split evidence before holdout unsealing.")
+                    val_hashes = [r.record_hash for r in val_records]
+                    val_evidence_hash = hashlib.sha256(json.dumps(val_hashes).encode("utf-8")).hexdigest()
+
+                if evidence_store.records:
+                    evidence_head_hash = evidence_store.records[-1].record_hash
 
         import time as _time
         self.frozen_champion_ids = tuple(validated_ids)
@@ -194,9 +209,15 @@ class SplitFirewall:
         self._selection_manifest = {
             "frozen_champions": list(self.frozen_champion_ids),
             "evidence_chain_head": evidence_head_hash,
+            "validation_evidence_head": val_evidence_hash,
             "holdout_hash": self.get_split_hash(SplitType.FINAL_HOLDOUT),
+            "dev_hash": self.get_split_hash(SplitType.DEVELOPMENT),
+            "val_hash": self.get_split_hash(SplitType.VALIDATION),
             "freeze_timestamp": self._freeze_timestamp,
+            "selection_metadata": dict(selection_metadata or {}),
             "metadata": dict(selection_metadata or {}),
+            "evaluator_version": "north_bluestar_v1",
+            "benchmark_version": "1.0.0",
         }
         payload = json.dumps(self._selection_manifest, sort_keys=True)
         return hashlib.sha256(payload.encode("utf-8")).hexdigest()

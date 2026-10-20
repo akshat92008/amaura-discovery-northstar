@@ -21,7 +21,8 @@ import math
 import os
 import tempfile
 from dataclasses import dataclass, field
-from typing import Any, Dict, List, Optional, Sequence, Tuple
+from types import MappingProxyType
+from typing import Any, Dict, List, Mapping, Optional, Sequence, Tuple
 
 from north_bluestar.candidates import CandidateKind, CandidateSpec
 from north_bluestar.execution import FailureCategory, VerificationReport
@@ -60,6 +61,11 @@ class EvidenceRecord:
     record_hash: str
     schema_version: int = 1
 
+    def __post_init__(self) -> None:
+        # Enforce nested payload immutability via MappingProxyType
+        if not isinstance(self.payload, MappingProxyType):
+            object.__setattr__(self, "payload", MappingProxyType(copy.deepcopy(dict(self.payload))))
+
     def to_dict(self) -> Dict[str, Any]:
         return {
             "schema_version": self.schema_version,
@@ -75,7 +81,7 @@ class EvidenceRecord:
             "structural_hash": self.structural_hash,
             "canonical_hash": self.canonical_hash,
             "behavioral_hash": self.behavioral_hash,
-            "payload": copy.deepcopy(self.payload),
+            "payload": copy.deepcopy(dict(self.payload)),
             "is_feasible": self.is_feasible,
             "is_proven_optimal": self.is_proven_optimal,
             "mean_objective": self.mean_objective,
@@ -262,8 +268,15 @@ class EvidenceStore:
         if schema_version != 1:
             raise ValueError(f"Unsupported evidence schema version: {schema_version}")
 
+        claimed_count = data.get("record_count")
+        raw_records = data.get("records", [])
+        if claimed_count is not None and len(raw_records) != claimed_count:
+            raise ValueError(
+                f"PERSISTED EVIDENCE TAMPERING DETECTED: Claimed {claimed_count} records but found {len(raw_records)}"
+            )
+
         store = cls(direction=OptimizationDirection(data.get("direction", "MINIMIZE")))
-        for rec_dict in data.get("records", []):
+        for rec_dict in raw_records:
             rec_dict_copy = dict(rec_dict)
             rec_dict_copy["parent_ids"] = tuple(rec_dict_copy.get("parent_ids", []))
             rec_dict_copy.setdefault("schema_version", schema_version)

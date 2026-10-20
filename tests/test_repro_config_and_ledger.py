@@ -156,3 +156,98 @@ def test_concurrent_budget_reservations_cannot_exceed_cap(tmp_path):
     final_ledger = GlobalBudgetLedger(ledger_path=ledger_file, cap_usd=10.0)
     assert final_ledger.total_reserved_usd == 8.0
     assert final_ledger.remaining_unreserved_usd == 2.0
+
+
+def test_ledger_rejects_non_finite_and_negative_amounts(tmp_path):
+    """Section 2.C: Ledger strictly rejects NaN, Infinity, and negative amounts in all endpoints."""
+    import math
+    ledger_file = str(tmp_path / "finite_ledger.json")
+    ledger = GlobalBudgetLedger(ledger_path=ledger_file, cap_usd=20.0)
+
+    # 1. reserve_budget rejects NaN and Infinity
+    for bad in [float("nan"), float("inf"), float("-inf"), -5.0, 0.0]:
+        with pytest.raises(ValueError):
+            ledger.reserve_budget("bad_run", estimated_cost_usd=bad)
+
+    # reserve_budget rejects invalid max_requests
+    with pytest.raises(ValueError):
+        ledger.reserve_budget("bad_req", estimated_cost_usd=1.0, max_requests=-1)
+
+    # 2. reconcile_reservation rejects NaN and negative costs
+    tok = ledger.reserve_budget("ok_run", estimated_cost_usd=5.0)
+    for bad in [float("nan"), float("inf"), -1.0]:
+        with pytest.raises(ValueError):
+            ledger.reconcile_reservation(tok, actual_cost_usd=bad, actual_requests=10)
+
+    with pytest.raises(ValueError):
+        ledger.reconcile_reservation(tok, actual_cost_usd=2.0, actual_requests=-5)
+
+    # Successful settlement
+    ledger.reconcile_reservation(tok, actual_cost_usd=2.5, actual_requests=10)
+    assert ledger.total_spent_usd == 2.5
+
+    # 3. record_spend rejects NaN and negative
+    for bad in [float("nan"), float("inf"), -0.5]:
+        with pytest.raises(ValueError):
+            ledger.record_spend("direct_bad", cost_usd=bad, requests=5)
+
+    # 4. preflight_check rejects NaN and negative
+    for bad in [float("nan"), -1.0]:
+        with pytest.raises(ValueError):
+            ledger.preflight_check(bad)
+
+
+def test_orchestrator_budget_reservation_integration(tmp_path):
+    """Section 2.C: NorthBlueStarEngine integrates with budget ledger reservations and reconciliation."""
+    from north_bluestar import (
+        build_pfsp_problem, NorthBlueStarEngine, SearchController,
+        SearchBudget, BaselinePortfolioStrategy,
+    )
+    ledger_file = str(tmp_path / "engine_ledger.json")
+    ledger = GlobalBudgetLedger(ledger_path=ledger_file, cap_usd=10.0)
+
+    problem = build_pfsp_problem(seed=42, dev_count=3, val_count=2, holdout_count=2)
+    engine = NorthBlueStarEngine(problem=problem, budget_ledger=ledger)
+
+    ctrl = SearchController(
+        strategies=[BaselinePortfolioStrategy(seed=42)],
+        budget=SearchBudget(max_evaluations=4, stagnation_limit=4),
+        seed=42,
+    )
+
+    res = engine.run_discovery(ctrl, run_id="exp_run_01", estimated_cost_usd=2.0)
+    assert res.run_state in ("COMPLETED", "BUDGET_EXHAUSTED")
+
+    # Verify reservation was settled and recorded
+    assert ledger.total_reserved_usd == 0.0
+    assert ledger.total_spent_usd > 0.0
+    runs = ledger._load_locked()["runs"]
+    assert len(runs) == 1
+    assert runs[0]["run_id"] == "exp_run_01"
+
+
+def test_orchestrator_releases_reservation_on_failure(tmp_path):
+    """Section 2.C: If discovery fails, reservation is released without unbacked spend."""
+    from north_bluestar import (
+        build_pfsp_problem, NorthBlueStarEngine, SearchController,
+        SearchBudget, SearchStrategy,
+    )
+    ledger_file = str(tmp_path / "fail_ledger.json")
+    ledger = GlobalBudgetLedger(ledger_path=ledger_file, cap_usd=10.0)
+
+    class CrashingStrategy(SearchStrategy):
+        def __init__(self):
+            super().__init__(strategy_id="crashing_strat")
+        def propose_candidates(self, **kwargs):
+            raise RuntimeError("Simulated search loop explosion")
+
+    problem = build_pfsp_problem(seed=42, dev_count=2, val_count=1, holdout_count=1)
+    engine = NorthBlueStarEngine(problem=problem, budget_ledger=ledger)
+    ctrl = SearchController(strategies=[CrashingStrategy()], budget=SearchBudget(max_evaluations=4), seed=42)
+
+    with pytest.raises(RuntimeError, match="Simulated search loop explosion"):
+        engine.run_discovery(ctrl, run_id="doomed_run", estimated_cost_usd=3.0)
+
+    # Reservation must be cleanly released
+    assert ledger.total_reserved_usd == 0.0
+    assert ledger.total_spent_usd == 0.0

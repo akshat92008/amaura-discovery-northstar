@@ -17,6 +17,7 @@ import copy
 import multiprocessing as mp
 import os
 import signal
+import sys
 import time
 import traceback
 from dataclasses import dataclass, field
@@ -118,12 +119,19 @@ def _subprocess_worker_entry(
                 resource.setrlimit(resource.RLIMIT_FSIZE, (1024 * 1024, 1024 * 1024))
             if hasattr(resource, "RLIMIT_NOFILE"):
                 resource.setrlimit(resource.RLIMIT_NOFILE, (64, 64))
+            if hasattr(resource, "RLIMIT_NPROC"):
+                try:
+                    resource.setrlimit(resource.RLIMIT_NPROC, (64, 64))
+                except (ValueError, OSError) as nproc_err:
+                    if sys.platform.startswith("linux"):
+                        raise RuntimeError(f"Failed to set RLIMIT_NPROC on Linux: {nproc_err}") from nproc_err
             if hasattr(resource, "RLIMIT_AS"):
                 try:
                     limit_bytes = max_memory_mb * 1024 * 1024
                     resource.setrlimit(resource.RLIMIT_AS, (limit_bytes, limit_bytes))
-                except (ValueError, OSError):
-                    pass
+                except (ValueError, OSError) as as_err:
+                    if sys.platform.startswith("linux"):
+                        raise RuntimeError(f"Failed to set RLIMIT_AS on Linux: {as_err}") from as_err
         except Exception as lim_err:
             result_queue.put({
                 "ok": False,

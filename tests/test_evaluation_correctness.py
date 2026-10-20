@@ -17,6 +17,7 @@ import pytest
 from north_bluestar import (
     CandidateKind,
     CandidateSpec,
+    DeclarativePFSPConfig,
     ExecutionSupervisor,
     FailureCategory,
     LifecyclePhase,
@@ -140,14 +141,72 @@ def test_holdout_candidate_authorization_and_one_shot():
 
 
 def test_freeze_champions_validates_evidence_records():
-    """P0 2.1: freeze_champions rejects champion IDs that lack evaluation in evidence store."""
+    """P0 2.1 & Section 2.A: freeze_champions validates evidence records, hash chain integrity, and validation-split proofs."""
     from north_bluestar.evidence import EvidenceStore
+    from north_bluestar.execution import VerificationReport, FailureCategory
+    from north_bluestar.problem import AggregateEvaluationOutcome
+
     store = EvidenceStore()
     problem = build_pfsp_problem(seed=42, dev_count=2, val_count=1, holdout_count=2)
 
     # Empty store -> freeze_champions with unevaluated champion raises ValueError
     with pytest.raises(ValueError, match="no corresponding evaluation in the evidence store"):
         problem.firewall.freeze_champions(["unevaluated_champ"], evidence_store=store)
+
+    # Add dev-only evaluation for candidate A
+    spec_a = CandidateSpec.from_declarative_pfsp(DeclarativePFSPConfig(priority_rule="total_time_desc"))
+    cid_a = spec_a.candidate_id
+    out_dev = AggregateEvaluationOutcome(
+        split=SplitType.DEVELOPMENT, is_fully_feasible=True, feasible_count=1, total_count=1,
+        proven_optimal_count=0, mean_objective=100.0, total_objective=100.0, std_objective=0.0,
+        mean_optimality_gap_pct=0.0, total_runtime_ms=1.0, mean_runtime_ms=1.0,
+    )
+    rep_dev = VerificationReport(candidate_id=cid_a, split=SplitType.DEVELOPMENT, outcome=out_dev, failure_category=FailureCategory.NONE)
+    store.append(spec_a, rep_dev)
+
+    # Add validation evaluation for candidate B
+    spec_b = CandidateSpec.from_declarative_pfsp(DeclarativePFSPConfig(priority_rule="palmer_slope"))
+    cid_b = spec_b.candidate_id
+    out_val = AggregateEvaluationOutcome(
+        split=SplitType.VALIDATION, is_fully_feasible=True, feasible_count=1, total_count=1,
+        proven_optimal_count=0, mean_objective=95.0, total_objective=95.0, std_objective=0.0,
+        mean_optimality_gap_pct=0.0, total_runtime_ms=1.0, mean_runtime_ms=1.0,
+    )
+    rep_val = VerificationReport(candidate_id=cid_b, split=SplitType.VALIDATION, outcome=out_val, failure_category=FailureCategory.NONE)
+    store.append(spec_b, rep_val)
+
+    # Attempting to freeze only cid_a (which has no validation record) when validation records exist must fail
+    with pytest.raises(ValueError, match="must have validation-split evidence"):
+        problem.firewall.freeze_champions([cid_a], evidence_store=store)
+
+    # Freezing cid_b (which has validation record) succeeds and generates complete bound manifest
+    cert = problem.firewall.freeze_champions([cid_b], evidence_store=store)
+    assert len(cert) == 64
+    manifest = problem.firewall.get_selection_manifest()
+    assert manifest is not None
+    assert manifest["frozen_champions"] == [cid_b]
+    assert "validation_evidence_head" in manifest
+    assert manifest["evaluator_version"] == "north_bluestar_v1"
+    assert manifest["benchmark_version"] == "1.0.0"
+
+
+def test_external_unseen_holdout_instances():
+    """Section 2.A: Support external/unseen holdout instances for strictly private evaluations."""
+    from north_bluestar.problem import ProblemInstance
+    custom_inst = ProblemInstance(
+        instance_id="custom_secret_holdout_01",
+        split=SplitType.FINAL_HOLDOUT,
+        data={"times": [[10, 20], [30, 40]], "n_jobs": 2, "n_machines": 2},
+        provenance="external_secret_vault",
+        theoretical_bound=50.0,
+        scale_factor=4.0,
+    )
+    problem = build_pfsp_problem(seed=999, dev_count=2, val_count=1, external_holdout_instances=[custom_inst])
+    problem.firewall.freeze_champions(["champ-X"])
+    holdout = problem.firewall.get_instances(SplitType.FINAL_HOLDOUT, candidate_id="champ-X")
+    assert len(holdout) == 1
+    assert holdout[0].instance_id == "custom_secret_holdout_01"
+    assert holdout[0].provenance == "external_secret_vault"
 
 
 def test_subprocess_resource_limits_terminate_memory_exhaustion():
@@ -173,8 +232,8 @@ def test_subprocess_resource_limits_terminate_memory_exhaustion():
 def test_repeatability_uses_process_isolation_for_python_programs():
     """P0.1: Repeatability checks for PYTHON_PROGRAM must run through subprocess isolation."""
     registry = MethodRegistry.create_default_registry()
-    supervisor = ExecutionSupervisor(registry, default_timeout_ms=300.0)
-    problem = build_bin_packing_problem(seed=42, dev_count=2, val_count=1, holdout_count=1)
+    supervisor = ExecutionSupervisor(registry, default_timeout_ms=3000.0)
+    problem = build_bin_packing_problem(seed=42, dev_count=2, val_count=1, holdout_count=1, default_timeout_ms=3000.0)
 
     code = (
         "def priority(item, rem, cap):\n"

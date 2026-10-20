@@ -226,8 +226,29 @@ export async function GET() {
   }
 }
 
-// POST: validated RPC handlers with safe parameter transmission (WEB-1, WEB-3, 3.1, 3.2, 3.3)
+// Operational concurrency and payload size limits (Section 2.D)
+let activeConcurrentJobs = 0;
+const MAX_CONCURRENT_JOBS = 2;
+const MAX_PAYLOAD_BYTES = 65536; // 64 KB
+
+// POST: validated RPC handlers with safe parameter transmission (WEB-1, WEB-3, 3.1, 3.2, 3.3, Section 2.D)
 export async function POST(req: NextRequest) {
+  const contentLength = req.headers.get('content-length');
+  if (contentLength && parseInt(contentLength, 10) > MAX_PAYLOAD_BYTES) {
+    return NextResponse.json(
+      { error: `Payload too large. Maximum allowed size is ${MAX_PAYLOAD_BYTES} bytes.` },
+      { status: 413 }
+    );
+  }
+
+  if (activeConcurrentJobs >= MAX_CONCURRENT_JOBS) {
+    return NextResponse.json(
+      { error: 'Server busy: maximum concurrent experiment jobs reached. Please retry shortly.' },
+      { status: 429 }
+    );
+  }
+
+  activeConcurrentJobs++;
   try {
     const body = await req.json();
     const action = String(body.action || 'run_experiment');
@@ -335,5 +356,7 @@ export async function POST(req: NextRequest) {
   } catch (err: unknown) {
     const message = err instanceof Error ? err.message : String(err);
     return NextResponse.json({ error: message }, { status: 500 });
+  } finally {
+    activeConcurrentJobs--;
   }
 }

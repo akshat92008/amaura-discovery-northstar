@@ -9,6 +9,7 @@ from __future__ import annotations
 import contextlib
 import fcntl
 import json
+import math
 import os
 import tempfile
 import time
@@ -29,6 +30,37 @@ class BudgetExceededError(RuntimeError):
 class LedgerCorruptError(RuntimeError):
     """Raised when the persistent budget ledger file is corrupted or unparseable."""
     pass
+
+
+def _validate_finite_non_negative(val: Any, name: str) -> float:
+    try:
+        fval = float(val)
+    except (ValueError, TypeError) as e:
+        raise ValueError(f"{name} must be a valid number, got {val!r}") from e
+    if math.isnan(fval) or not math.isfinite(fval):
+        raise ValueError(f"{name} must be finite, got {val!r}")
+    if fval < 0.0:
+        raise ValueError(f"{name} cannot be negative, got {val!r}")
+    return fval
+
+
+def _validate_finite_positive(val: Any, name: str) -> float:
+    fval = _validate_finite_non_negative(val, name)
+    if fval <= 0.0:
+        raise ValueError(f"{name} must be strictly positive, got {val!r}")
+    return fval
+
+
+def _validate_integer_non_negative(val: Any, name: str) -> int:
+    if isinstance(val, float) and (math.isnan(val) or not math.isfinite(val)):
+        raise ValueError(f"{name} must be finite, got {val!r}")
+    try:
+        ival = int(val)
+    except (ValueError, TypeError) as e:
+        raise ValueError(f"{name} must be an integer, got {val!r}") from e
+    if ival < 0:
+        raise ValueError(f"{name} cannot be negative, got {val!r}")
+    return ival
 
 
 class GlobalBudgetLedger:
@@ -149,6 +181,7 @@ class GlobalBudgetLedger:
         """
         Returns True if the estimated worst-case run cost fits within remaining unreserved budget.
         """
+        worst_case_cost_usd = _validate_finite_non_negative(worst_case_cost_usd, "worst_case_cost_usd")
         with self._lock():
             data = self._load_locked()
             spent = float(data.get("total_spent_usd", 0.0))
@@ -166,8 +199,8 @@ class GlobalBudgetLedger:
         Atomically reserves an estimated budget amount before run commencement (P0 2.4, 3.4).
         Returns a unique reservation token to be reconciled on run completion.
         """
-        if estimated_cost_usd <= 0:
-            raise ValueError(f"Estimated reservation cost must be positive, got {estimated_cost_usd}")
+        estimated_cost_usd = _validate_finite_positive(estimated_cost_usd, "estimated_cost_usd")
+        max_requests = _validate_integer_non_negative(max_requests, "max_requests")
 
         with self._lock():
             data = self._load_locked()
@@ -202,6 +235,9 @@ class GlobalBudgetLedger:
         """
         Settles an active budget reservation: releases reserved amount and records actual spend.
         """
+        actual_cost_usd = _validate_finite_non_negative(actual_cost_usd, "actual_cost_usd")
+        actual_requests = _validate_integer_non_negative(actual_requests, "actual_requests")
+
         with self._lock():
             data = self._load_locked()
             reservations = data.get("active_reservations", {})
@@ -236,6 +272,8 @@ class GlobalBudgetLedger:
         """
         Direct spend recording (convenience for non-reservation workflows).
         """
+        cost_usd = _validate_finite_non_negative(cost_usd, "cost_usd")
+        requests = _validate_integer_non_negative(requests, "requests")
         with self._lock():
             data = self._load_locked()
             new_spent = round(data.get("total_spent_usd", 0.0) + cost_usd, 6)
